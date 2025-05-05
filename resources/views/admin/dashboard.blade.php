@@ -22,13 +22,13 @@
         </div>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link active">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.articles') }}" class="nav-link">
                     <i class="fas fa-newspaper"></i>
                     <span>Articles</span>
                 </a>
@@ -182,7 +182,7 @@
         </div>
 
         <footer class="footer">
-            <p>&copy; 2023 Dashboard Admin. All rights reserved.</p>
+            <p>&copy; 2025 Dashboard Admin. All rights reserved.</p>
         </footer>
     </div>
 </body>

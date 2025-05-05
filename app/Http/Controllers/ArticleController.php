@@ -51,53 +51,62 @@ class ArticleController extends Controller
     public function edit(string $id)
     {
         $article = Article::findOrFail($id);
-        return view('articles.edit', compact('article'));
+        return view('admin.edit', compact('article'));
     }
-
     public function update(Request $request, string $id)
     {
+        // Validasi input
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi foto
+        ]);
+
+        // Cari artikel yang akan diperbarui
         $article = Article::findOrFail($id);
 
-        // Validasi input
-        $validatedData = $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        // Perbarui data artikel
+        $article->title = $request->input('title');
+        $article->description = $request->input('description');
 
-        // Proses upload gambar baru jika ada
-        $photoPath = $article->photo; // Defaultnya menggunakan foto lama
+        // Jika ada foto baru, simpan foto dan perbarui path-nya
         if ($request->hasFile('photo')) {
             // Hapus foto lama jika ada
-            if ($photoPath) {
-                Storage::delete('public/' . $photoPath);
+            if ($article->photo) {
+                Storage::delete('public/' . $article->photo);
             }
-
-            $photo = $request->file('photo');
-            $photoPath = $photo->store('assets', 'public'); // Simpan gambar baru di folder public/assets
+            // Simpan foto baru
+            $path = $request->file('photo')->store('articles', 'public');
+            $article->photo = $path;
         }
 
-        // Perbarui artikel dengan data baru
-        $article->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'photo' => $photoPath, // Perbarui path gambar di database
-        ]);
+        // Simpan perubahan
+        $article->save();
 
+        // Redirect dengan pesan sukses
         return redirect()->route('admin.dashboard')->with('success', 'Artikel berhasil diperbarui!');
     }
+
 
 
     public function destroy(string $id)
     {
         $article = Article::findOrFail($id);
+
+        // Hapus gambar terkait jika ada
+        if ($article->photo) {
+            Storage::delete('public/' . $article->photo);
+        }
+
+        // Hapus artikel dari database
         $article->delete();
+
         return redirect()->route('admin.dashboard')->with('success', 'Artikel berhasil dihapus!');
     }
+
     public function home()
     {
         $articles = Article::latest()->get(); // atau ->take(5) untuk batasi jumlah
         return view('home', compact('articles'));
     }
-    
 }

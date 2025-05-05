@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Article</title>
+    <title>Edit Article</title>
     <link rel="stylesheet" href="{{ asset('FBE/dashboard.css') }}">
     <script src="{{ asset('FBE/main.js') }}"></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,7 +71,7 @@
             <button class="menu-toggle" id="toggle-sidebar">
                 <i class="fas fa-bars"></i>
             </button>
-            <h1 class="page-title">Create New Article</h1>
+            <h1 class="page-title">Edit Article</h1>
             <div class="header-actions">
                 <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to Dashboard
@@ -94,15 +94,16 @@
         <div class="content">
             <div class="form-card">
                 <div class="form-header">
-                    <h2>Article Information</h2>
+                    <h2>Edit Article Information</h2>
                 </div>
                 <div class="form-body">
-                    <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         
                         <div class="form-group">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $article->title) }}" required>
                             @error('title')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -110,11 +111,12 @@
                         
                         <div class="form-group">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>{{ old('description') }}</textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>{{ old('description', $article->description) }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>   
+
                         <div class="form-group">
                             <label for="photo" class="form-label">Featured Image</label>
                             <div class="file-upload">
@@ -124,7 +126,11 @@
                                 <span class="file-hint">JPG, PNG or GIF, Max size 2MB</span>
                             </div>
                             <div class="image-preview" id="imagePreview">
-                                <img id="preview" src="#" alt="Preview">
+                                @if($article->photo)
+                                    <img id="preview" src="{{ asset('storage/' . $article->photo) }}" alt="Preview">
+                                @else
+                                    <p>No Image Available</p>
+                                @endif
                             </div>
                             @error('photo')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -133,7 +139,7 @@
                         
                         <div class="form-buttons">
                             <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Create Article</button>
+                            <button type="submit" class="btn btn-primary">Update Article</button>
                         </div>
                     </form>
                 </div>
