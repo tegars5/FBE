@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="{{ asset('FBE/style.css') }}">
-    <script src="{{ asset('FBE/main.js') }}"></script>   
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <x-layout.head title="Login"/>
+
 <body class="login-page">
     <div class="login-container">
         <div class="login-image">
