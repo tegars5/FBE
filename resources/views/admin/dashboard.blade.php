@@ -10,60 +10,7 @@
 </head>
 <body>
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon">A</div>
-                <span>AdminPanel</span>
-            </div>
-            <button class="menu-toggle" id="close-sidebar">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.articles') }}" class="nav-link">
-                    <i class="fas fa-newspaper"></i>
-                    <span>Articles</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Users</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-        </ul>
-        <div class="user-info">
-            <div class="user-details">
-                <div class="user-avatar">
-                    {{ substr(Auth::user()->name, 0, 1) }}
-                </div>
-                <div>
-                    <div class="user-name">{{ Auth::user()->name }}</div>
-                    <div class="user-role">Administrator</div>
-                </div>
-            </div>
-            <form method="POST" action="{{ route('admin.logout') }}">
-                @csrf
-                <button type="submit" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </form>
-        </div>
-    </aside>
+    <x-dashboard.sidebar />
 
     <!-- Main Content -->
     <div class="main-content">
@@ -80,8 +27,8 @@
         <div class="content">
             <!-- Welcome Banner -->
             <div class="welcome-banner">
-                <h1>Selamat Datang, {{ Auth::user()->name }}!</h1>
-                <p>Kelola artikel dan konten website Anda dengan mudah menggunakan dashboard admin ini.</p>
+                <h1>Welcome, {{ Auth::user()->name }}!</h1>
+                <p>Easily manage your website's articles and content using this admin dashboard.</p>
             </div>
 
             <!-- Stats Row -->
@@ -91,8 +38,8 @@
                         <i class="fas fa-newspaper"></i>
                     </div>
                     <div class="stat-details">
-                        <div class="stat-number">{{ count($articles) }}</div>
-                        <div class="stat-label">Total Artikel</div>
+                        <div class="stat-number"> {{ count($articles) }}</div>
+                        <div class="stat-label">Total Articles</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -110,7 +57,7 @@
                     </div>
                     <div class="stat-details">
                         <div class="stat-number">18</div>
-                        <div class="stat-label">Pengguna</div>
+                        <div class="stat-label">Users</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -119,70 +66,17 @@
                     </div>
                     <div class="stat-details">
                         <div class="stat-number">156</div>
-                        <div class="stat-label">Komentar</div>
+                        <div class="stat-label">Comments</div>
                     </div>
                 </div>
             </div>
 
             <!-- Article Management -->
-            <div class="content-card">
-                <div class="card-header">
-                    <h2>Manajemen Artikel</h2>
-                    <a href="{{ route('articles.create') }}" class="add-button">
-                        <i class="fas fa-plus"></i> Tambah Artikel
-                    </a>
-                </div>
-                <div class="card-body">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Foto</th>
-                                <th>Judul</th>
-                                <th>Deskripsi</th>
-                                <th>Tanggal</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($articles as $article)
-                            <tr>
-                                <td>
-                                    @if($article->photo)
-                                        <!-- Menampilkan gambar dengan asset -->
-                                        <img class="table-image" src="{{ asset('storage/' . $article->photo) }}" alt="Artikel">
-                                    @else
-                                        <div class="no-image">No Image</div>
-                                    @endif
-                                </td>
-                                <td>{{ $article->title }}</td>
-                                <td class="truncate">{{ $article->description }}</td>
-                                <td class="date">{{ optional($article->created_at)->format('d M Y') }}</td>
-                                <td><span class="badge badge-success">Published</span></td>
-                                <td>
-                                    <div class="table-actions">
-                                        <a href="{{ route('articles.edit', $article->id) }}" class="action-btn edit-btn">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="action-btn delete-btn">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>                        
-                    </table>
-                </div>
-            </div>
-        </div>
+            <x-dashboard.article-management :articles="$articles" />
 
+        </div>
         <footer class="footer">
-            <p>&copy; 2025 Dashboard Admin. All rights reserved.</p>
+            <p>&copy; 2025 FujiyamaBiomasEnergy. All rights reserved.</p>
         </footer>
     </div>
 </body>

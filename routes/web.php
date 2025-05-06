@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');

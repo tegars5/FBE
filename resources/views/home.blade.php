@@ -253,7 +253,7 @@
           <div class="footer-column brand">
             <h3><img src="{{ asset('FBE/assets/logo.png') }}" alt="fujiyama Logo" class="logo"> fujiyama</h3>
             <p>Generix Express provides customized services for customers around the world from 50+ leading industries. For more information please</p>
-            <p class="copyright">© 2020 All rights reserved – fujiyama</p>
+            <p class="copyright">© 2025 All rights reserved – fujiyama</p>
           </div>
       
           <div class="footer-column">

@@ -12,7 +12,7 @@
     <div class="login-container">
         <div class="login-image">
             <h1>Log in to your account.</h1>
-            <p style="color: #fff; font-size: 16px; margin-top: 10px; position: relative; z-index: 2; max-width: 80%;">Welcome back! Please enter your details to access your account.</p>
+            <p>Welcome back! Please enter your details to access your account.</p>
         </div>
         <div class="login-form-container">
             <h2>Login</h2>

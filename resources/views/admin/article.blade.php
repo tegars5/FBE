@@ -10,61 +10,7 @@
     <title>Article</title>
 </head>
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon">A</div>
-                <span>AdminPanel</span>
-            </div>
-            <button class="menu-toggle" id="close-sidebar">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <ul class="nav-menu">
-            <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.articles') }}" class="nav-link">
-                    <i class="fas fa-newspaper"></i>
-                    <span>Articles</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-users"></i>
-                    <span>Users</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-            </li>
-        </ul>
-        <div class="user-info">
-            <div class="user-details">
-                <div class="user-avatar">
-                    {{ substr(Auth::user()->name, 0, 1) }}
-                </div>
-                <div>
-                    <div class="user-name">{{ Auth::user()->name }}</div>
-                    <div class="user-role">Administrator</div>
-                </div>
-            </div>
-            <form method="POST" action="{{ route('admin.logout') }}">
-                @csrf
-                <button type="submit" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </form>
-        </div>
-    </aside>
+    <x-dashboard.sidebar />
      <!-- Main Content -->
      <div class="main-content">
         <header class="header">
@@ -79,21 +25,21 @@
 
     <div class="content-card">
         <div class="card-header">
-            <h2>Manajemen Artikel</h2>
+            <h2>Article Management</h2>
             <a href="{{ route('articles.create') }}" class="add-button">
-                <i class="fas fa-plus"></i> Tambah Artikel
+                <i class="fas fa-plus"></i> Add Article
             </a>
         </div>
         <div class="card-body">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Foto</th>
-                        <th>Judul</th>
-                        <th>Deskripsi</th>
-                        <th>Tanggal</th>
+                        <th>Photo</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,8 +47,8 @@
                     <tr>
                         <td>
                             @if($article->photo)
-                                <!-- Menampilkan gambar dengan asset -->
-                                <img class="table-image" src="{{ asset('storage/' . $article->photo) }}" alt="Artikel">
+                                <!-- Display image using asset -->
+                                <img class="table-image" src="{{ asset('storage/' . $article->photo) }}" alt="Article">
                             @else
                                 <div class="no-image">No Image</div>
                             @endif
@@ -130,6 +76,9 @@
                 </tbody>                        
             </table>
         </div>
+        <footer class="footer">
+            <p>&copy; 2025 FujiyamaBiomasEnergy. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
