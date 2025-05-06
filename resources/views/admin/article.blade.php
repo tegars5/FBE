@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <x-layout.head title="Articles"/>
+    <x-layout.head title="Articles" :styles="false"/>
 
 <body>
     <x-dashboard.sidebar />

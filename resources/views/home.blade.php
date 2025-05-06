@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <x-layout.head title="Homes"/>
+  <x-layout.head title="Homes" />
   <body>
     <header>
       <nav class="navbar">
