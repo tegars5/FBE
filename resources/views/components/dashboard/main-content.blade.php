@@ -58,9 +58,13 @@
                             <p>Drag your image here or click to browse</p>
                             <span class="file-hint">JPG, PNG or GIF, Max size 2MB</span>
                         </div>
-                        <div class="image-preview" id="imagePreview">
-                            <img id="preview" src="#" alt="Preview">
+                        <div id="imagePreview" style="display: none; margin-top: 10px;">
+                            <img id="preview" src="#" alt="Preview Image" style="max-width: 200px;">
                         </div>
+                        @if(isset($article) && $article->photo)
+                            <img src="{{ asset('storage/' . $article->photo) }}" alt="Current Photo" style="max-width: 200px; margin-top: 10px;">
+                        @endif
+
                         @error('photo')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -79,3 +83,4 @@
         <p>&copy; 2025 Fujiyama. All rights reserved.</p>
     </footer>
 </div>
+

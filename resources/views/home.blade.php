@@ -10,21 +10,21 @@
           </a>
         </div>
         <ul class="nav-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Location</a></li>
-          <li><a href="#">Our Strength</a></li>
-          <li><a href="#">Customer Care</a></li>
+          <li><a href="#home">About</a></li>
+          <li><a href="#faq">Services</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#project">Our Strength</a></li>
+          <li><a href="#cta">Customer Care</a></li>
         </ul>
         <div class="auth-buttons">
-          <a href="#" class="track-btn">Track</a>
+          <a href="#location" class="track-btn">Track</a>
           <a href="{{ route('admin.login') }}" class="login-btn">Login</a>
         </div>
       </nav>
     </header>
 
     <main>
-      <section class="hero-section">
+      <section class="hero-section" id="home">
         <div class="hero-top">
           <div class="hero-title">
             <h1>We provide logistics solution tailor-made for individual customer!</h1>
@@ -37,7 +37,7 @@
           <img src="{{ asset('FBE/assets/content2.jpg') }}" alt="hero" />
         </div>
       </section>
-      <section class="project-section">
+      <section class="project-section" id="about">
         <div class="hero-title">
           <h1>Why choose us?</h1>
         </div>
@@ -64,7 +64,7 @@
       </section>
 
       <!-- future section -->
-      <section class="project-section">
+      <section class="project-section" id="project">
         <div class="hero-title">
           <h1>The tools you need to win and keep more client</h1>
         </div>
@@ -109,7 +109,7 @@
           </div>
         </div>
       </section>
-      <section class="industry-section">
+      <section class="industry-section" id="location">
         <div class="industry-header">
           <div class="top-header">
             <h3>Industry Knowledge</h3>
@@ -144,7 +144,7 @@
           </div>
         </div>
       </section>
-      <section class="testimonial-section">
+      <section class="testimonial-section" id="testimonial">
         <div class="testimonial-box">
           <img src="{{ asset('FBE/assets/testimoni.jpg') }}" alt="Port image" class="testimonial-image" />
           <div class="testimonial-text">
@@ -166,7 +166,7 @@
           <div class="brand-logo"><img src="{{ asset('FBE/assets/logo-brand/Shopify.com.png') }}" alt="Shopify" /></div>
         </div>
       </section>
-      <section class="articles-section">
+      <section class="articles-section" id="articles">
         <div class="hero-title">
           <h1>The latest articles and industry insights</h1>
           <a href="#" class="learn-more">View All →</a>
@@ -201,7 +201,7 @@
           @endforeach
       </div>       
       </section>
-      <section class="questions-section">
+      <section class="questions-section" id="faq">
         <div class="question-header">
           <h1>Frequently Asked <br>Questions</h1>
         </div>
@@ -229,7 +229,7 @@
         </div>
           </div>
       </section>
-      <section class="cta-footer-section">
+      <section class="cta-footer-section" id="cta">
         <div class="cta-container">
           <div class="cta-text">
             <h2>Make sure you choose<br> the right expedition<br> services for your delivery</h2>

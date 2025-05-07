@@ -14,11 +14,11 @@
                 @csrf
                 <div class="input-group">
                     <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
+            <input autocomplete="off" type="email" name="email" id="email" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <input autocomplete="off" type="password" id="password" name="password" placeholder="••••••••" required>
                     <span class="toggle-password" onclick="togglePassword()">👁️</span>
                 </div>
                 <div class="forgot-password">
