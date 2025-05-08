@@ -112,11 +112,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.head.appendChild(style);
 });
 
-// Sidebar toggle functionality
 document.addEventListener("DOMContentLoaded", function () {
     const toggleSidebar = document.getElementById("toggle-sidebar");
     const closeSidebar = document.getElementById("close-sidebar");
     const sidebar = document.getElementById("sidebar");
+
+    // Pastikan elemen-elemen ditemukan
+    if (!toggleSidebar || !closeSidebar || !sidebar) {
+        return; // Jika salah satu elemen tidak ditemukan, keluar dari fungsi
+    }
 
     toggleSidebar.addEventListener("click", function () {
         sidebar.classList.toggle("active");
@@ -234,3 +238,14 @@ function previewImage(input) {
         previewContainer.style.display = "none";
     }
 }
+
+document.querySelectorAll(".learn-more").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const detail =
+            this.previousElementSibling.querySelector(".extra-detail");
+        const isVisible = detail.style.display === "inline";
+        detail.style.display = isVisible ? "none" : "inline";
+        this.textContent = isVisible ? "Show more →" : "Show less ←";
+    });
+});

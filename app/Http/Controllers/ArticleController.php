@@ -109,4 +109,5 @@ class ArticleController extends Controller
         $articles = Article::latest()->get(); // atau ->take(5) untuk batasi jumlah
         return view('home', compact('articles'));
     }
+
 }

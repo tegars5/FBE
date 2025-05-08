@@ -31,7 +31,7 @@ header {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 15px 0;
     background-color: var(--base-bg);
@@ -216,10 +216,10 @@ header {
     margin-top: 0.5rem;
     gap: 6px;
     transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 
 .learn-more::after {
-    content: "→";
     display: inline-block;
     transition: transform 0.3s ease;
 }
@@ -230,6 +230,9 @@ header {
 
 .learn-more:hover::after {
     transform: translateX(4px);
+}
+.extra-detail {
+    display: none;
 }
 
 /* Industry Section */

@@ -45,20 +45,38 @@
           <div class="project-box">
             <i class="uil uil-user-arrows icon"></i>
             <h3>Top Team</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
             <i class="uil uil-user-arrows icon"></i>
-            <h3>Customer Support</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <h3>Top Team</h3>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
-            <i class="uil uil-tag icon"></i>
-            <h3>Competitive Rates</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <i class="uil uil-user-arrows icon"></i>
+            <h3>Top Team</h3>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
         </div>
       </section>
@@ -73,40 +91,70 @@
             <i class="uil uil-user-arrows icon"></i>
             <h3>Top Team</h3>
             <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <a href="#" class="learn-more">Learn More </a>
           </div>
           <div class="project-box">
             <i class="uil uil-user-arrows icon"></i>
-            <h3>Customer Support</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <h3>Top Team</h3>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
-            <i class="uil uil-tag icon"></i>
-            <h3>Competitive Rates</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <i class="uil uil-user-arrows icon"></i>
+            <h3>Top Team</h3>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
         </div>
         <div class="project-container">
           <div class="project-box">
             <i class="uil uil-user-arrows icon"></i>
             <h3>Top Team</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
             <i class="uil uil-user-arrows icon"></i>
-            <h3>Customer Support</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
+            <h3>Top Team</h3>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
-            <i class="uil uil-tag icon"></i>
-            <h3>Competitive Rates</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More →</a>
-          </div>
+            <i class="uil uil-user-arrows icon"></i>
+            <h3>Top Team</h3>
+            <p>
+              We have a team of experts with extensive experience in managing palm kernel shells,
+              ready to provide the best solutions for your industrial needs.
+              <span class="extra-detail" style="display: none;">
+                We offer some of the most competitive rates in the industry without compromising on quality.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
+          </div>  
         </div>
       </section>
       <section class="industry-section" id="location">

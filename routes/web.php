@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserController;
+use App\Models\Admin;
 
 Route::get('/', function () {
     return view('home');
@@ -14,6 +15,7 @@ Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin
 Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
 Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
 Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+
 
 
 
