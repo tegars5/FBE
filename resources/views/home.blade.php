@@ -22,7 +22,6 @@
         </div>
       </nav>
     </header>
-
     <main>
       <section class="hero-section" id="home">
         <div class="hero-top">
@@ -37,50 +36,53 @@
           <img src="{{ asset('FBE/assets/content2.jpg') }}" alt="hero" />
         </div>
       </section>
-      <section class="project-section" id="about">
-        <div class="hero-title">
-          <h1>Why choose us?</h1>
-        </div>
-        <div class="project-container">
-          <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
-            <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
-              <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
-              </span>
-            </p>
-            <a href="#" class="learn-more">Show more →</a>
-          </div>
-          <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
-            <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
-              <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
-              </span>
-            </p>
-            <a href="#" class="learn-more">Show more →</a>
-          </div>
-          <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
-            <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
-              <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
-              </span>
-            </p>
-            <a href="#" class="learn-more">Show more →</a>
-          </div>
-        </div>
-      </section>
-
+  <section class="project-section" id="about">
+  <div class="hero-title">
+    <h1>Why choose us?</h1>
+  </div>
+  <div class="project-container">
+    <!-- Box 1: Top Team -->
+    <div class="project-box">
+      <i class="uil uil-user-arrows icon"></i>
+      <h3>Top Team</h3>
+      <p>
+        We have a team of experts with extensive experience in managing palm kernel shells,
+        ready to provide the best solutions for your industrial needs.
+        <span class="extra-detail" style="display: none;">
+          We offer some of the most competitive rates in the industry without compromising on quality.
+        </span>
+      </p>
+      <a href="#" class="learn-more">Show more →</a>
+    </div>
+    
+    <!-- Box 2: Customer Support -->
+    <div class="project-box">
+      <i class="uil-headphones icon"></i>
+      <h3>Customer Support</h3>
+      <p>
+        In logistics, timing is everything—and so is communication. That's why we provide round-the-clock customer support to assist you at every stage of your delivery process.
+        <span class="extra-detail" style="display: none;">
+          Our dedicated support staff are always ready to respond to inquiries, resolve issues, and provide updates. Whether it's a last-minute change, a customs question, or an urgent delivery need, we're only one message away. Our goal is to give you complete peace of mind.
+        </span>
+      </p>
+      <a href="#" class="learn-more">Show more →</a>
+    </div>
+    
+    <!-- Box 3: Competitive Rates -->
+    <div class="project-box">
+      <i class="uil-tag-alt icon"></i>
+      <h3>Competitive Rates</h3>
+      <p>
+        At our core, we believe that exceptional logistics services should be accessible to all. That's why we offer competitive pricing structures without compromising quality.
+        <span class="extra-detail" style="display: none;">
+          Our team works diligently to optimize every route, reduce unnecessary costs, and provide value-driven solutions 
+          for individuals, startups, and corporations alike. Whether you're shipping one box or multiple containers, you can count on cost-effective services that deliver more than just your goods—delivering trust and satisfaction.
+        </span>
+      </p>
+      <a href="#" class="learn-more">Show more →</a>
+    </div>
+  </div>
+</section>
       <!-- future section -->
       <section class="project-section" id="project">
         <div class="hero-title">
@@ -88,31 +90,34 @@
         </div>
         <div class="project-container">
           <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
-            <p>Sometimes features require a short description. This can be detailed description or just a short text.</p>
-            <a href="#" class="learn-more">Learn More </a>
-          </div>
-          <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
+            <i class="uil-ship icon"></i>
+            <h3>Air Cargo Services</h3>
             <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
+              We provide international and domestic sea freight services with global reach. Using modern cargo ships and
               <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
+                real-time tracking systems, we ensure your goods arrive safely and on time, even for long-distance and high-volume shipments.
               </span>
             </p>
             <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
+            <i class="uil-plane icon"></i>
+            <h3>Air Cargo Services</h3>
             <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
+              If speed is your top priority, our air freight service is the perfect choice. We partner with trusted airlines to
               <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
+                guarantee fast and secure delivery—ideal for high-value goods or urgent shipments.
+              </span>
+            </p>
+            <a href="#" class="learn-more">Show more →</a>
+          </div>
+          <div class="project-box">
+            <i class="uil-truck icon"></i>
+            <h3>Inland Cargo Services</h3>
+            <p>
+              Our reliable inland freight service is coordinated using a modern fleet of trucks and logistics vehicles. Perfect for
+              <span class="extra-detail" style="display: none;">
+                intercity and inter-province distribution, we offer door-to-door delivery—even to remote areas.
               </span>
             </p>
             <a href="#" class="learn-more">Show more →</a>
@@ -120,37 +125,34 @@
         </div>
         <div class="project-container">
           <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
+            <i class="uil-constructor icon"></i>
+            <h3>Heavy Equipment Services</h3>
             <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
+              Transporting heavy equipment and industrial goods requires special handling. We offer specialized 
               <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
+                services for heavy-duty transport with high safety standards, including escorting, protection, and licensed drivers.
               </span>
             </p>
             <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
+            <i class="uil-car icon"></i>
+            <h3>Car Shipping Services</h3>
             <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
+              Our vehicle transportation service is designed with maximum safety and care. Whether for personal use,
               <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
+                dealerships, or corporate fleets, we ensure your vehicle arrives at its destination in perfect condition.
               </span>
             </p>
             <a href="#" class="learn-more">Show more →</a>
           </div>
           <div class="project-box">
-            <i class="uil uil-user-arrows icon"></i>
-            <h3>Top Team</h3>
+            <i class="uil-box icon"></i>
+            <h3>Container Sea Cargo</h3>
             <p>
-              We have a team of experts with extensive experience in managing palm kernel shells,
-              ready to provide the best solutions for your industrial needs.
+              Shipping by sea container is the best solution for bulk deliveries. We offer various types of containers tailored to
               <span class="extra-detail" style="display: none;">
-                We offer some of the most competitive rates in the industry without compromising on quality.
+                your cargo needs, along with comprehensive tracking and document management services.
               </span>
             </p>
             <a href="#" class="learn-more">Show more →</a>
@@ -214,41 +216,41 @@
           <div class="brand-logo"><img src="{{ asset('FBE/assets/logo-brand/Shopify.com.png') }}" alt="Shopify" /></div>
         </div>
       </section>
-      <section class="articles-section" id="articles">
-        <div class="hero-title">
-          <h1>The latest articles and industry insights</h1>
-          <a href="#" class="learn-more">View All →</a>
+{{-- Articles Section --}}
+<section class="articles-section" id="articles">
+    <div class="hero-title">
+        <h1>The latest articles and industry insights</h1>
+        <a href="#" class="learn-more">View All →</a>
+    </div>
+    <div class="articles-grid">
+        {{-- Artikel unggulan --}}
+        @if($articles->isNotEmpty())
+        <div class="article-card featured">
+            @php $featured = $articles->first(); @endphp
+            @if($featured->photo)
+                <img src="{{ asset('storage/' . $featured->photo) }}" alt="Article Image" />
+            @else
+                <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
+            @endif
+            <h3>{{ $featured->title }}</h3>
+            <p class="meta">Article — {{ $featured->created_at->format('F j, Y') }}</p>
         </div>
+        @endif
+    
+        {{-- Tampilkan artikel lainnya (maksimal 4 artikel selain featured) --}}
+        @foreach ($articles->skip(1) as $article)
+        <div class="article-card">
+            @if($article->photo)
+                <img src="{{ asset('storage/' . $article->photo) }}" alt="Article Image" />
+            @else
+                <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
+            @endif
+            <h3>{{ $article->title }}</h3>
+            <p class="meta">Article — {{ $article->created_at->format('F j, Y') }}</p>
         </div>
-        <div class="articles-grid">
-          {{-- Artikel unggulan --}}
-          @if($articles->isNotEmpty())
-          <div class="article-card featured">
-              @php $featured = $articles->first(); @endphp
-              @if($featured->photo)
-                  <img src="{{ asset('storage/' . $featured->photo) }}" alt="Article Image" />
-              @else
-                  <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
-              @endif
-              <h3>{{ $featured->title }}</h3>
-              <p class="meta">Article — {{ $featured->created_at->format('F j, Y') }}</p>
-          </div>
-          @endif
-      
-          {{-- Artikel lainnya --}}
-          @foreach ($articles->skip(1) as $article)
-          <div class="article-card">
-              @if($article->photo)
-                  <img src="{{ asset('storage/' . $article->photo) }}" alt="Article Image" />
-              @else
-                  <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
-              @endif
-              <h3>{{ $article->title }}</h3>
-              <p class="meta">Article — {{ $article->created_at->format('F j, Y') }}</p>
-          </div>
-          @endforeach
-      </div>       
-      </section>
+        @endforeach
+    </div>       
+</section>
       <section class="questions-section" id="faq">
         <div class="question-header">
           <h1>Frequently Asked <br>Questions</h1>

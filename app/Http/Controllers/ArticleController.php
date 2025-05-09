@@ -110,4 +110,17 @@ class ArticleController extends Controller
         return view('home', compact('articles'));
     }
 
+    // Di dalam controller yang menampilkan halaman dengan artikel
+    // (misalnya HomeController.php atau PageController.php)
+
+    // Jika ingin membatasi jumlah maksimal artikel dari database
+    // Anda bisa gunakan kode berikut sebagai alternatif:
+    public function indexAlternative()
+    {
+        // Batasi hanya mengambil maksimal 10 artikel terbaru
+        $articles = Article::latest()->take(10)->get();
+
+        // Kirim data ke view
+        return view('home', compact('articles'));
+    }
 }

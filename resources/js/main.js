@@ -168,8 +168,6 @@ function togglePassword() {
     }
 }
 
-// Tambahkan kode ini ke file JavaScript Anda (main.js)
-
 // Fungsi untuk menangani menu navigasi aktif
 document.addEventListener("DOMContentLoaded", function () {
     // Mendapatkan semua link navigasi
@@ -239,13 +237,143 @@ function previewImage(input) {
     }
 }
 
-document.querySelectorAll(".learn-more").forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const detail =
-            this.previousElementSibling.querySelector(".extra-detail");
-        const isVisible = detail.style.display === "inline";
-        detail.style.display = isVisible ? "none" : "inline";
-        this.textContent = isVisible ? "Show more →" : "Show less ←";
+// Updated JavaScript
+document.addEventListener("DOMContentLoaded", function () {
+    // Hide all extra-detail content when page loads
+    document.querySelectorAll(".extra-detail").forEach(function (detail) {
+        detail.style.display = "none";
     });
+
+    // Handle click for each learn-more button
+    document.querySelectorAll(".learn-more").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Find parent box for the clicked button
+            const parentBox = this.closest(".project-box");
+
+            // Find the extra-detail element inside this parent box only
+            const extraDetail = parentBox.querySelector(".extra-detail");
+
+            if (extraDetail) {
+                // Check if extra detail is currently visible
+                const isVisible =
+                    window.getComputedStyle(extraDetail).display !== "none";
+
+                // Change display based on current status
+                extraDetail.style.display = isVisible ? "none" : "inline";
+
+                // Update button text
+                this.textContent = isVisible ? "Show more →" : "Show less ←";
+
+                // Remove fixed height when expanded, restore when collapsed
+                if (!isVisible) {
+                    parentBox.style.height = "auto"; // Auto height when expanded
+                } else {
+                    parentBox.style.height = "300px"; // Return to fixed height when collapsed
+                }
+            }
+        });
+    });
+});
+
+// JavaScript untuk menangani tampilan artikel dengan maksimal 10 artikel
+document.addEventListener("DOMContentLoaded", function () {
+    const allArticles = document.querySelectorAll(
+        ".article-card:not(.featured)"
+    );
+    const viewAllButton = document.querySelector(
+        ".articles-section .learn-more"
+    );
+    const maxArticlesToShow = 10; // Total maksimal artikel yang akan ditampilkan (termasuk featured)
+
+    // Hitung berapa banyak artikel yang tersedia (termasuk featured)
+    const featuredArticle = document.querySelector(".article-card.featured");
+    const totalArticles = allArticles.length + (featuredArticle ? 1 : 0);
+
+    // Sembunyikan artikel melebihi 5 pertama saat halaman dimuat
+    if (allArticles.length > 4) {
+        // Mulai dari index 4 (artikel ke-5), sembunyikan sisanya
+        for (let i = 4; i < allArticles.length; i++) {
+            allArticles[i].classList.add("hidden-article");
+        }
+
+        // Tampilkan tombol "View All" jika ada artikel yang disembunyikan
+        viewAllButton.style.display = "inline-flex";
+    } else {
+        // Jika artikelnya kurang dari 5, sembunyikan tombol "View All"
+        viewAllButton.style.display = "none";
+    }
+
+    // Tambahkan event listener untuk tombol "View All"
+    viewAllButton.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (this.textContent === "View All →") {
+            // Jika tombol "View All" diklik
+            let shownCount = 0;
+
+            // Tampilkan artikel tambahan hingga maksimal 10 total
+            document
+                .querySelectorAll(".hidden-article")
+                .forEach(function (article) {
+                    // Hitung berapa artikel yang sudah tampil (5 artikel awal + featured)
+                    const initiallyShown = 5; // 1 featured + 4 artikel biasa
+
+                    // Hanya tampilkan artikel tambahan jika masih di bawah batas maksimal
+                    if (initiallyShown + shownCount < maxArticlesToShow) {
+                        article.classList.remove("hidden-article");
+                        article.classList.add("show-article");
+                        shownCount++;
+                    }
+                });
+
+            // Jika jumlah artikel yang ditampilkan sudah maksimal dan masih ada yang tersembunyi
+            if (totalArticles > maxArticlesToShow) {
+                this.textContent = "Show Less ←";
+            } else {
+                // Jika semua artikel sudah ditampilkan (tidak lebih dari maksimal)
+                this.textContent = "Show Less ←";
+            }
+        } else {
+            // Jika tombol "Show Less" diklik
+            // Sembunyikan kembali artikel, hanya tampilkan 5 artikel pertama
+            let hiddenCount = 0;
+
+            document
+                .querySelectorAll(".show-article")
+                .forEach(function (article) {
+                    article.classList.remove("show-article");
+                    article.classList.add("hidden-article");
+                    hiddenCount++;
+                });
+
+            this.textContent = "View All →";
+        }
+    });
+
+    // Tambahkan informasi di bawah artikel jika jumlah artikel lebih dari maksimal
+    if (totalArticles > maxArticlesToShow) {
+        const infoElement = document.createElement("p");
+        infoElement.classList.add("articles-info");
+        // infoElement.textContent = `Menampilkan ${maxArticlesToShow} dari ${totalArticles} artikel.`;
+
+        const articlesGrid = document.querySelector(".articles-grid");
+        articlesGrid.parentNode.insertBefore(
+            infoElement,
+            articlesGrid.nextSibling
+        );
+
+        // Atur tampilan awal info
+        infoElement.style.display = "none";
+
+        // Update tampilan info saat tombol diklik
+        viewAllButton.addEventListener("click", function () {
+            if (this.textContent === "Show Less ←") {
+                infoElement.style.display = "block";
+            } else {
+                infoElement.style.display = "none";
+            }
+        });
+    }
 });

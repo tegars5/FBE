@@ -151,8 +151,7 @@ header {
     object-fit: cover;
     aspect-ratio: 16/9;
 }
-
-/* Project Section */
+/* Updated CSS */
 .project-section {
     background-color: var(--base-bg);
     max-width: 1200px;
@@ -160,13 +159,13 @@ header {
     padding: 4rem 2rem;
 }
 
+/* Use Grid instead of Flexbox for more stable layout */
 .project-container {
     margin-top: 2rem;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
+    width: 100%;
 }
 
 .project-box {
@@ -175,14 +174,14 @@ header {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    width: 100%;
-    max-width: 350px;
+    height: 300px; /* Fixed height initially */
     padding: 1.5rem;
     background: var(--base-bg);
     gap: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease; /* Added transition for height change */
+    overflow: hidden; /* Changed from overflow-y: auto to overflow: hidden */
 }
 
 .project-box:hover {
@@ -198,12 +197,14 @@ header {
 .project-box h3 {
     font-weight: 600;
     font-size: 1.1rem;
+    margin-top: 0;
 }
 
 .project-box p {
     color: #666;
     font-size: 0.95rem;
     line-height: 1.5;
+    margin-bottom: auto; /* Push button to bottom */
 }
 
 .learn-more {
@@ -213,7 +214,7 @@ header {
     font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
-    margin-top: 0.5rem;
+    margin-top: auto; /* Position at the bottom */
     gap: 6px;
     transition: color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
@@ -231,10 +232,23 @@ header {
 .learn-more:hover::after {
     transform: translateX(4px);
 }
+
+/* For hidden/expanded content */
 .extra-detail {
     display: none;
+    transition: all 0.3s ease;
 }
 
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-box {
+        max-width: 100%;
+    }
+}
 /* Industry Section */
 .industry-section {
     background-color: var(--industry-blue);
@@ -477,7 +491,56 @@ header {
 .article-card.featured img {
     height: 250px;
 }
+/* CSS tambahan untuk artikel */
+.hidden-article {
+    display: none;
+}
 
+.show-article {
+    display: flex;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pastikan tombol View All terlihat menarik */
+.articles-section .learn-more {
+    color: var(--base-bg-button);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.articles-section .learn-more:hover {
+    color: #003d80;
+    transform: translateX(3px);
+}
+
+/* Style untuk informasi artikel */
+.articles-info {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1.5rem;
+    font-style: italic;
+    animation: fadeIn 0.5s ease-in-out;
+}
 /* FAQ Section */
 .questions-section {
     max-width: 1200px;
