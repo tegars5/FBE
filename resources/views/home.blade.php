@@ -6,7 +6,7 @@
       <nav class="navbar">
         <div class="logo">
           <a href="">
-            <img src="{{ asset('FBE/assets/logo.png') }}" class="logo" />
+            <img src="{{ asset('assets/logo.png') }}" class="logo" />
           </a>
         </div>
         <ul class="nav-links">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="{{ asset('FBE/assets/content2.jpg') }}" alt="hero" />
+          <img src="{{ asset('assets/content2.jpg') }}" alt="hero" />
         </div>
       </section>
   <section class="project-section" id="about">
@@ -169,7 +169,7 @@
           </div>
         </div>
         <div class="industry-map">
-          <img src="{{ asset('FBE/assets/map2.png') }}" alt="World Map" />
+          <img src="{{ asset('assets/map2.png') }}" alt="World Map" />
         </div>
         <div class="industry-stats">
           <div class="stat-box">
@@ -196,7 +196,7 @@
       </section>
       <section class="testimonial-section" id="testimonial">
         <div class="testimonial-box">
-          <img src="{{ asset('FBE/assets/testimoni.jpg') }}" alt="Port image" class="testimonial-image" />
+          <img src="{{ asset('assets/testimoni.jpg') }}" alt="Port image" class="testimonial-image" />
           <div class="testimonial-text">
             <p class="quote">
               “Designspace has consistently delivered above and beyond my expectations!<br />
@@ -205,15 +205,15 @@
             <div class="author">
               <p><strong> Dennis of Amazon </strong><br />CEO of Amazon</p>
               <br />
-              <img src="{{ asset('FBE/assets/logo-brand/Amazon.png') }}" alt="Amazon Logo" class="brand-logo" />
+              <img src="{{ asset('assets/logo-brand/Amazon.png') }}" alt="Amazon Logo" class="brand-logo" />
             </div>
           </div>
         </div>
         <div class="brand-logos">
-          <div class="brand-logo"> <img src="{{ asset('FBE/assets/logo-brand/Amazon.png') }}" alt="Amazon" /></div>
-          <div class="brand-logo"> <img src="{{ asset('FBE/assets/logo-brand/Creative-Market.png') }}" alt="Creative Market" /></div>
-          <div class="brand-logo"><img src="{{ asset('FBE/assets/logo-brand/Airbnb.png') }}" alt="Airbnb" /></div>
-          <div class="brand-logo"><img src="{{ asset('FBE/assets/logo-brand/Shopify.com.png') }}" alt="Shopify" /></div>
+          <div class="brand-logo"> <img src="{{ asset('assets/logo-brand/Amazon.png') }}" alt="Amazon" /></div>
+          <div class="brand-logo"> <img src="{{ asset('assets/logo-brand/Creative-Market.png') }}" alt="Creative Market" /></div>
+          <div class="brand-logo"><img src="{{ asset('assets/logo-brand/Airbnb.png') }}" alt="Airbnb" /></div>
+          <div class="brand-logo"><img src="{{ asset('assets/logo-brand/Shopify.com.png') }}" alt="Shopify" /></div>
         </div>
       </section>
 {{-- Articles Section --}}
@@ -228,7 +228,7 @@
         <div class="article-card featured">
             @php $featured = $articles->first(); @endphp
             @if($featured->photo)
-                <img src="{{ asset('storage/' . $featured->photo) }}" alt="Article Image" />
+                <img src="{{$featured->image_url}}" alt="Article Image" />
             @else
                 <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
             @endif
@@ -241,7 +241,7 @@
         @foreach ($articles->skip(1) as $article)
         <div class="article-card">
             @if($article->photo)
-                <img src="{{ asset('storage/' . $article->photo) }}" alt="Article Image" />
+                <img src="{{ $article->image_url }}" alt="Article Image" />
             @else
                 <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
             @endif
@@ -292,7 +292,7 @@
       
         <footer class="footer">
           <div class="footer-column brand">
-            <h3><img src="{{ asset('FBE/assets/logo.png') }}" alt="fujiyama Logo" class="logo"> fujiyama</h3>
+            <h3><img src="{{ asset('assets/logo.png') }}" alt="fujiyama Logo" class="logo"> fujiyama</h3>
             <p>Generix Express provides customized services for customers around the world from 50+ leading industries. For more information please</p>
             <p class="copyright">© 2025 All rights reserved – fujiyama</p>
           </div>
