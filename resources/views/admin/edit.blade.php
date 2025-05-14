@@ -60,7 +60,7 @@
                         <label for="photo" class="form-label">Featured Image</label>
                         @if($article->photo)
                             <div class="current-image mb-3">
-                                <img src="{{ asset('storage/' . $article->photo) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;">
+                                <img src="{{  $article->image_url}}" alt="Current Image" style="max-width: 200px; max-height: 200px;">
                                 <p>Current image</p>
                             </div>
                         @endif

@@ -30,13 +30,13 @@ class ArticleController extends Controller
         // Proses upload gambar jika ada
         $photoPath = null;
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $photoPath = $photo->store('assets', 'public'); // Simpan gambar di folder public/assets
+            $imagePath = $request->file('photo')->store('articles', 's3');
+            $validatedData['photo'] = $imagePath;
         }
         Article::create([
             'title' => $request->title,
             'description' => $request->description,
-            'photo' => $photoPath, // Simpan path gambar di database
+            'photo' => $validatedData['photo'] ?? null,
         ]);
 
         return redirect()->route('admin.dashboard')->with('success', 'Artikel berhasil disimpan!');
@@ -69,15 +69,14 @@ class ArticleController extends Controller
         $article->title = $request->input('title');
         $article->description = $request->input('description');
 
-        // Jika ada foto baru, simpan foto dan perbarui path-nya
         if ($request->hasFile('photo')) {
-            // Hapus foto lama jika ada
+            // Hapus file lama dari R2 jika ada
             if ($article->photo) {
-                Storage::delete('public/' . $article->photo);
+                Storage::disk('s3')->delete($article->photo);
             }
-            // Simpan foto baru
-            $path = $request->file('photo')->store('articles', 'public');
-            $article->photo = $path;
+
+            $imagePath = $request->file('photo')->store('articles', 's3');
+            $article->photo = $imagePath;
         }
 
         // Simpan perubahan
@@ -93,9 +92,9 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        // Hapus gambar terkait jika ada
+        // Hapus file dari R2
         if ($article->photo) {
-            Storage::delete('public/' . $article->photo);
+            Storage::disk('s3')->delete($article->photo);
         }
 
         // Hapus artikel dari database
