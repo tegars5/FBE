@@ -41,7 +41,7 @@
                         <td>
                             @if($article->photo)
                                 <!-- Display image using asset -->
-                                <img class="table-image" src="{{ asset('storage/' . $article->photo) }}" alt="Article">
+                               <img class="table-image" src="{{ $article->image_url }}" alt="Article">
                             @else
                                 <div class="no-image">No Image</div>
                             @endif

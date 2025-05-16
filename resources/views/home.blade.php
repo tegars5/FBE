@@ -7,7 +7,7 @@
         <div class="logo">
           <a href="">
             <img src="{{ asset('assets/logo.png') }}" class="logo" />
-          </a>
+            </a>
         </div>
         <ul class="nav-links">
           <li><a href="#home">About</a></li>
@@ -220,36 +220,39 @@
 <section class="articles-section" id="articles">
     <div class="hero-title">
         <h1>The latest articles and industry insights</h1>
-        <a href="#" class="learn-more">View All →</a>
+        <a href="{{ route('articles.index') }}" class="learn-more">View All →</a>
     </div>
     <div class="articles-grid">
-        {{-- Artikel unggulan --}}
-        @if($articles->isNotEmpty())
-        <div class="article-card featured">
-            @php $featured = $articles->first(); @endphp
+    @if($articles->isNotEmpty())
+    @php $featured = $articles->first(); @endphp
+    <div class="article-card featured">
+        <a href="{{ route('articles.show', $featured->id) }}" class="article-link">
             @if($featured->photo)
-                <img src="{{$featured->image_url}}" alt="Article Image" />
+                <img src="{{ Storage::disk('s3')->url($featured->photo) }}" alt="{{ $featured->title }}" />
             @else
                 <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
             @endif
             <h3>{{ $featured->title }}</h3>
             <p class="meta">Article — {{ $featured->created_at->format('F j, Y') }}</p>
-        </div>
-        @endif
-    
-        {{-- Tampilkan artikel lainnya (maksimal 4 artikel selain featured) --}}
-        @foreach ($articles->skip(1) as $article)
-        <div class="article-card">
+        </a>
+    </div>
+    @endif
+
+    <!-- Tampilkan artikel lainnya -->
+    @foreach ($articles->skip(1)->take(4) as $article)
+    <div class="article-card">
+        <a href="{{ route('articles.show', $article->id) }}" class="article-link">
             @if($article->photo)
-                <img src="{{ $article->image_url }}" alt="Article Image" />
+                <img src="{{ Storage::disk('s3')->url($article->photo) }}" alt="{{ $article->title }}" />
             @else
                 <img src="{{ asset('images/no-image.png') }}" alt="No Image" />
             @endif
             <h3>{{ $article->title }}</h3>
             <p class="meta">Article — {{ $article->created_at->format('F j, Y') }}</p>
-        </div>
-        @endforeach
-    </div>       
+        </a>
+    </div>
+    @endforeach
+</div>      
 </section>
       <section class="questions-section" id="faq">
         <div class="question-header">

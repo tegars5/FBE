@@ -377,3 +377,100 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Pastikan kode ini dijalankan setelah dokumen selesai dimuat
+document.addEventListener("DOMContentLoaded", function () {
+    // Animasi saat masuk ke halaman detail artikel
+    const articleDetail = document.querySelector(".article-detail-container");
+    if (articleDetail) {
+        articleDetail.classList.add("animate-fade-in");
+    }
+
+    // Fungsi untuk share artikel ke media sosial
+    const shareButtons = document.querySelectorAll(".share-button");
+    shareButtons.forEach((button) => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            const url = this.getAttribute("href");
+            window.open(url, "_blank", "width=600,height=400");
+        });
+    });
+
+    // Animasi untuk artikel terkait
+    const relatedArticles = document.querySelectorAll(
+        ".related-articles .article-card"
+    );
+    if (relatedArticles.length > 0) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-fade-in");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        relatedArticles.forEach((article) => {
+            observer.observe(article);
+        });
+    }
+
+    // Tambahkan efek hover untuk artikel cards
+    const articleCards = document.querySelectorAll(".article-card");
+    articleCards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-5px)";
+            this.style.transition = "transform 0.3s ease";
+        });
+        card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+        });
+    });
+});
+
+// Ini adalah kode opsional untuk lazy loading gambar jika diperlukan
+function lazyLoadImages() {
+    const images = document.querySelectorAll("img[data-src]");
+
+    if ("IntersectionObserver" in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const image = entry.target;
+                    image.src = image.dataset.src;
+                    image.removeAttribute("data-src");
+                    imageObserver.unobserve(image);
+                }
+            });
+        });
+
+        images.forEach((img) => imageObserver.observe(img));
+    } else {
+        // Fallback untuk browser yang tidak mendukung Intersection Observer
+        images.forEach((img) => {
+            img.src = img.dataset.src;
+            img.removeAttribute("data-src");
+        });
+    }
+}
+
+window.previewImageku = function (input) {
+    const previewContainer = document.getElementById("imagePreviewku");
+    const previewImage = document.getElementById("previewku");
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            previewImage.src = e.target.result;
+            previewContainer.style.display = "block";
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        previewContainer.style.display = "none";
+    }
+};

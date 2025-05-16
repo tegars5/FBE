@@ -12,9 +12,8 @@ Route::get('/', function () {
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login']);
 Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
-Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
-Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+Route::resource('articles', ArticleController::class);
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 
 
@@ -48,5 +47,5 @@ Route::middleware('auth')->group(function () {
 });
 
 // Route resource untuk artikel
-Route::resource('articles', ArticleController::class);
+
 Route::get('/', [ArticleController::class, 'home']);

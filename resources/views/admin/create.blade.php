@@ -4,6 +4,7 @@
 
 <body>
    <x-dashboard.sidebar />
+   
     <!-- Main Content -->
  <x-dashboard.main-content title="Create New Article" back-link="{{ route('admin.dashboard') }}">
         @if(session('success'))

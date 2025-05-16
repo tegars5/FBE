@@ -41,7 +41,7 @@
                         <i class="fas fa-eye"></i>
                     </div>
                     <div class="stat-details">
-                        <div class="stat-number">2,450</div>
+                        <div class="stat-number">0</div>
                         <div class="stat-label">Total Views</div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="stat-details">
-                        <div class="stat-number">18</div>
+                        <div class="stat-number">0</div>
                         <div class="stat-label">Users</div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <i class="fas fa-comments"></i>
                     </div>
                     <div class="stat-details">
-                        <div class="stat-number">156</div>
+                        <div class="stat-number">0</div>
                         <div class="stat-label">Comments</div>
                     </div>
                 </div>

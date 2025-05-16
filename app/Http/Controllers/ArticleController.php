@@ -41,13 +41,16 @@ class ArticleController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'Artikel berhasil disimpan!');
     }
-
-    public function show(string $id)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
-        return view('articles.show', compact('article'));
-    }
+        // Ambil artikel terkait untuk ditampilkan di bagian bawah
+        $relatedArticles = Article::where('id', '!=', $article->id)
+            ->latest()
+            ->take(3)
+            ->get();
 
+        return view('components.articles.show', compact('article', 'relatedArticles'));
+    }
     public function edit(string $id)
     {
         $article = Article::findOrFail($id);
