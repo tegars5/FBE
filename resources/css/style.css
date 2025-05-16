@@ -538,7 +538,7 @@ header {
 
 /* ========== ARTICLE DETAIL PAGE ========== */
 .article-detail-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 2rem auto 4rem;
     padding: 0;
     background-color: var(--base-bg);
