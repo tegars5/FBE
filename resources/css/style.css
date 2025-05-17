@@ -29,24 +29,28 @@ body {
 }
 
 /* ========== HEADER AND NAVIGATION ========== */
+/* Header and Navigation */
 header {
-    padding: 0 2rem;
+    padding: 0 1rem;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
-    width: 50px;
+    width: 80px;
+    height: auto;
+    padding: 5px 0;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 12px 0;
     background-color: var(--base-bg);
-    flex-wrap: wrap;
-    gap: 10px;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .nav-links {
@@ -54,12 +58,14 @@ header {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
+    margin: 0; /* Reset margin */
 }
 
 .logo img {
     width: 100%;
     height: auto;
     display: block;
+    object-fit: contain; /* Pastikan logo terlihat utuh */
 }
 
 .nav-links li a {
@@ -81,23 +87,28 @@ header {
 
 .track-btn,
 .login-btn {
-    padding: 8px 10px;
+    padding: 8px 16px; /* Padding yang lebih konsisten */
     text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
+    font-size: 15px;
+    border-radius: 6px; /* Radius yang lebih standar */
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .track-btn {
     background-color: transparent;
     color: black;
     border: 1px solid #e0e0e0;
+    min-width: 80px; /* Lebar minimum untuk konsistensi */
 }
 
 .login-btn {
     background-color: var(--base-bg-button);
     color: var(--base-color-button);
     font-weight: 600;
+    min-width: 80px; /* Lebar minimum untuk konsistensi */
 }
 
 .track-btn:hover {
@@ -108,16 +119,138 @@ header {
     background-color: #3506c1;
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle - Standar Perusahaan */
 .menu-toggle {
     display: none;
-    background: transparent;
+    background-color: var(--base-bg-button);
+    color: white;
     border: none;
-    font-size: 24px;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
     cursor: pointer;
-    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
 
+.menu-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active i {
+    transform: rotate(90deg);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 992px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .auth-buttons {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0;
+    }
+
+    .navbar {
+        padding: 12px 15px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        width: 70px; /* Logo lebih kecil di mobile */
+    }
+
+    .menu-toggle {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: white;
+        padding: 1rem 0;
+        margin-top: 1rem;
+        border-top: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links.active {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 0;
+    }
+
+    .nav-links li a {
+        display: block;
+        font-size: 15px;
+    }
+
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .track-btn,
+    .login-btn {
+        flex: 1;
+        text-align: center;
+        max-width: 120px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 10px;
+    }
+
+    .logo {
+        width: 60px; /* Logo lebih kecil lagi di mobile kecil */
+    }
+
+    .track-btn,
+    .login-btn {
+        padding: 7px 12px;
+        font-size: 14px;
+    }
+
+    .menu-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+}
 /* ========== HERO SECTION ========== */
 .hero-section {
     max-width: 1200px;
@@ -434,11 +567,10 @@ header {
 
 /* ========== ARTICLE SECTION ========== */
 .articles-section {
-    padding-top: 3rem;
-    max-width: 1200px;
+    padding: 2rem 1rem;
+    max-width: 100%;
     margin: 0 auto;
     border-top: 1px solid #eee;
-    padding: 4rem 2rem;
 }
 
 .articles-section .hero-title {
@@ -448,17 +580,18 @@ header {
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .articles-section .hero-title h1 {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    max-width: 600px;
+    font-size: clamp(1.2rem, 5vw, 2.2rem);
+    max-width: 100%;
+    width: 100%;
 }
 
 .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
@@ -467,36 +600,39 @@ header {
     flex-direction: column;
     gap: 0.8rem;
     transition: transform 0.2s;
+    width: 100%; /* Memastikan kartu artikel mengambil lebar penuh */
 }
 
 .article-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px); /* Mengurangi efek hover pada mobile */
 }
 
 .article-card img {
     width: 100%;
-    height: 200px;
+    height: auto; /* Tinggi otomatis untuk menjaga rasio aspek */
+    max-height: 200px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .article-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Ukuran font lebih kecil pada mobile */
     font-weight: 600;
     line-height: 1.4;
 }
 
 .article-card .meta {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     color: #666;
 }
 
 .article-card.featured {
-    grid-column: span 2;
+    grid-column: 1; /* Pada mobile, featured article hanya span 1 kolom */
 }
 
 .article-card.featured img {
-    height: 250px;
+    height: auto;
+    max-height: 220px;
 }
 
 .hidden-article {
@@ -512,7 +648,7 @@ header {
     color: var(--base-bg-button);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Ukuran font sedikit lebih kecil */
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -520,6 +656,7 @@ header {
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 4px;
+    margin-top: 1rem; /* Tambahkan sedikit margin */
 }
 
 .articles-section .learn-more:hover {
@@ -529,11 +666,62 @@ header {
 
 .articles-info {
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
     margin-top: 1.5rem;
     font-style: italic;
     animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Media Queries untuk berbagai ukuran layar */
+@media (min-width: 480px) {
+    .articles-section {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .articles-section {
+        padding: 3rem 2rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
+    }
+
+    .article-card.featured {
+        grid-column: span 2; /* Featured article span 2 kolom pada tablet */
+    }
+}
+
+@media (min-width: 1024px) {
+    .articles-section {
+        max-width: 1200px;
+        padding: 4rem 2rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        ); /* Kembali ke pengaturan asli untuk desktop */
+    }
+
+    .article-card.featured {
+        grid-column: span 2;
+    }
+
+    .articles-section .hero-title h1 {
+        max-width: 600px;
+        width: auto;
+    }
+}
+
+/* Tetapkan tinggi maksimum untuk gambar pada semua ukuran layar */
+@media (max-width: 480px) {
+    .article-card img {
+        max-height: 180px;
+    }
 }
 
 /* ========== ARTICLE DETAIL PAGE ========== */
@@ -873,13 +1061,18 @@ header {
 .toggle {
     width: 30px;
     height: 30px;
-    background: #f0f0f0;
+    background: var(--base-bg-button);
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+    color: #fff;
     transition: transform 0.2s;
+}
+
+.faq-question:hover {
+    background-color: #f0f0f0;
 }
 
 .faq-answer {
