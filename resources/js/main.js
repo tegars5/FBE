@@ -1,24 +1,56 @@
+// Kode khusus untuk toggle dashboard
+document.addEventListener("DOMContentLoaded", function () {
+    const dashboardToggle = document.getElementById("dashboard-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    // Pastikan kedua elemen ada sebelum menambahkan event listener
+    if (dashboardToggle && sidebar) {
+        dashboardToggle.addEventListener("click", function (e) {
+            console.log("Toggle button clicked");
+            e.preventDefault();
+            sidebar.classList.toggle("active");
+        });
+
+        // Tambahkan event listener untuk menutup sidebar ketika mengklik di luar
+        document.addEventListener("click", function (event) {
+            if (window.innerWidth <= 992) {
+                if (
+                    !sidebar.contains(event.target) &&
+                    !dashboardToggle.contains(event.target) &&
+                    sidebar.classList.contains("active")
+                ) {
+                    sidebar.classList.remove("active");
+                }
+            }
+        });
+    }
+});
+
 // Kode JavaScript untuk perbaikan tombol toggle mobile
 document.addEventListener("DOMContentLoaded", function () {
-    // Fungsi untuk menangani menu mobile
     const setupMobileMenu = function () {
         const navbar = document.querySelector(".navbar");
         const navLinks = document.querySelector(".nav-links");
+        const logo = document.querySelector(".logo");
 
-        // Hapus toggle button yang lama jika ada
+        // Pastikan elemen-elemen ada sebelum melakukan manipulasi
+        if (!navbar || !navLinks || !logo) {
+            console.error(
+                "One or more elements not found: navbar, navLinks, logo"
+            );
+            return;
+        }
+
+        // Hapus toggle button lama jika ada
         const oldToggleBtn = document.querySelector(".menu-toggle");
         if (oldToggleBtn) {
             oldToggleBtn.remove();
         }
-
-        // Buat toggle button yang baru dengan standar perusahaan
         const toggleBtn = document.createElement("button");
         toggleBtn.classList.add("menu-toggle");
         toggleBtn.innerHTML = '<i class="uil uil-bars"></i>';
         toggleBtn.setAttribute("aria-label", "Toggle Navigation Menu");
 
-        // Sisipkan tombol setelah logo
-        const logo = document.querySelector(".logo");
         if (logo && logo.nextSibling) {
             navbar.insertBefore(toggleBtn, logo.nextSibling);
         } else {
@@ -40,14 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 toggleBtn.innerHTML = '<i class="uil uil-bars"></i>';
             }
         }
-
-        // Jalankan saat halaman dimuat
         checkScreenSize();
-
-        // Jalankan ketika ukuran layar berubah
         window.addEventListener("resize", checkScreenSize);
-
-        // Toggle menu saat tombol diklik
         toggleBtn.addEventListener("click", function () {
             navLinks.classList.toggle("active");
             toggleBtn.classList.toggle("active");
@@ -74,20 +100,16 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     };
-
-    // Panggil setup untuk menu mobile
     setupMobileMenu();
-
-    // Tambahkan event listener untuk resize
     let resizeTimeout;
     window.addEventListener("resize", function () {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function () {
-            // Cek kembali jika ukuran layar berubah signifikan
             setupMobileMenu();
         }, 250);
     });
 });
+
 // Animasi sederhana saat scroll
 window.addEventListener("scroll", function () {
     const projectBoxes = document.querySelectorAll(".project-box");
@@ -120,10 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleSidebar = document.getElementById("toggle-sidebar");
     const closeSidebar = document.getElementById("close-sidebar");
     const sidebar = document.getElementById("sidebar");
-
-    // Pastikan elemen-elemen ditemukan
     if (!toggleSidebar || !closeSidebar || !sidebar) {
-        return; // Jika salah satu elemen tidak ditemukan, keluar dari fungsi
+        return;
     }
 
     toggleSidebar.addEventListener("click", function () {
@@ -158,32 +178,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function togglePassword() {
-    var passwordField = document.getElementById("password");
-    var toggleIcon = document.querySelector(".toggle-password");
+// Menambahkan event listener untuk toggle password
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleIcon = document.querySelector(".toggle-password");
+    const passwordField = document.getElementById("password");
 
-    // Cek tipe input, dan ubah menjadi text atau password
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        toggleIcon.textContent = "🙈"; // Ganti ikon saat password terlihat
+    // Pastikan elemen ditemukan
+    if (toggleIcon && passwordField) {
+        toggleIcon.addEventListener("click", function () {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordField.type = "password";
+                toggleIcon.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        });
     } else {
-        passwordField.type = "password";
-        toggleIcon.textContent = "👁️"; // Ganti ikon saat password disembunyikan
+        console.error("Elemen toggle atau password tidak ditemukan");
     }
-}
+});
 
 // Fungsi untuk menangani menu navigasi aktif
 document.addEventListener("DOMContentLoaded", function () {
-    // Mendapatkan semua link navigasi
     const navLinks = document.querySelectorAll(".nav-link");
-
-    // Pertama, periksa apakah ada link aktif yang tersimpan di localStorage
     const activeNavLink = localStorage.getItem("activeNavLink");
-
-    // Jika ada, terapkan class active ke link tersebut
     if (activeNavLink) {
         navLinks.forEach((link) => {
-            // Menggunakan data-route untuk identifikasi (tambahkan atribut ini ke HTML Anda)
             if (link.getAttribute("data-route") === activeNavLink) {
                 link.classList.add("active");
             } else {
@@ -191,7 +212,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     } else {
-        // Jika tidak ada, set Dashboard sebagai default aktif
         if (navLinks.length > 0) {
             navLinks[0].classList.add("active");
             localStorage.setItem(
@@ -204,15 +224,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Menambahkan event listener untuk setiap link navigasi
     navLinks.forEach((link) => {
         link.addEventListener("click", function (e) {
-            // Hapus class active dari semua link
             navLinks.forEach((item) => {
                 item.classList.remove("active");
             });
-
-            // Tambahkan class active ke link yang diklik
             this.classList.add("active");
-
-            // Simpan status aktif di localStorage
             localStorage.setItem(
                 "activeNavLink",
                 this.getAttribute("data-route")
@@ -321,10 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document
                 .querySelectorAll(".hidden-article")
                 .forEach(function (article) {
-                    // Hitung berapa artikel yang sudah tampil (5 artikel awal + featured)
-                    const initiallyShown = 5; // 1 featured + 4 artikel biasa
-
-                    // Hanya tampilkan artikel tambahan jika masih di bawah batas maksimal
+                    const initiallyShown = 5;
                     if (initiallyShown + shownCount < maxArticlesToShow) {
                         article.classList.remove("hidden-article");
                         article.classList.add("show-article");
@@ -336,12 +348,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (totalArticles > maxArticlesToShow) {
                 this.textContent = "Show Less ←";
             } else {
-                // Jika semua artikel sudah ditampilkan (tidak lebih dari maksimal)
                 this.textContent = "Show Less ←";
             }
         } else {
-            // Jika tombol "Show Less" diklik
-            // Sembunyikan kembali artikel, hanya tampilkan 5 artikel pertama
             let hiddenCount = 0;
 
             document
@@ -360,7 +369,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (totalArticles > maxArticlesToShow) {
         const infoElement = document.createElement("p");
         infoElement.classList.add("articles-info");
-        // infoElement.textContent = `Menampilkan ${maxArticlesToShow} dari ${totalArticles} artikel.`;
 
         const articlesGrid = document.querySelector(".articles-grid");
         articlesGrid.parentNode.insertBefore(
@@ -384,7 +392,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Pastikan kode ini dijalankan setelah dokumen selesai dimuat
 document.addEventListener("DOMContentLoaded", function () {
-    // Animasi saat masuk ke halaman detail artikel
     const articleDetail = document.querySelector(".article-detail-container");
     if (articleDetail) {
         articleDetail.classList.add("animate-fade-in");
@@ -453,7 +460,6 @@ function lazyLoadImages() {
 
         images.forEach((img) => imageObserver.observe(img));
     } else {
-        // Fallback untuk browser yang tidak mendukung Intersection Observer
         images.forEach((img) => {
             img.src = img.dataset.src;
             img.removeAttribute("data-src");
@@ -469,8 +475,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         question.addEventListener("click", function () {
             item.classList.toggle("active");
-
-            // Jika sudah aktif, tutup jawaban lainnya
             faqItems.forEach((otherItem) => {
                 if (otherItem !== item) {
                     otherItem.classList.remove("active");

@@ -9,9 +9,9 @@
     <!-- Main Content -->
     <div class="main-content">
         <header class="header">
-            <button class="menu-toggle" id="toggle-sidebar">
-                <i class="fas fa-bars"></i>
-            </button>
+           <button class="menu-toggle" id="dashboard-toggle">
+    <i class="fas fa-bars"></i>
+</button>
             <h1 class="page-title">Dashboard</h1>
             <div class="header-actions">
                 <span class="date">{{ date('l, d F Y') }}</span>
@@ -73,5 +73,6 @@
             <p>&copy; 2025 FujiyamaBiomasEnergy. All rights reserved.</p>
         </footer>
     </div>
+ 
 </body>
 </html>

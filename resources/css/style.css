@@ -37,7 +37,7 @@ header {
 }
 
 .logo {
-    width: 80px;
+    width: 60px;
     height: auto;
     padding: 5px 0;
 }
@@ -58,14 +58,14 @@ header {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin: 0; /* Reset margin */
+    margin: 0;
 }
 
 .logo img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: contain; /* Pastikan logo terlihat utuh */
+    object-fit: contain;
 }
 
 .nav-links li a {
@@ -87,10 +87,10 @@ header {
 
 .track-btn,
 .login-btn {
-    padding: 8px 16px; /* Padding yang lebih konsisten */
+    padding: 8px 16px;
     text-decoration: none;
     font-size: 15px;
-    border-radius: 6px; /* Radius yang lebih standar */
+    border-radius: 6px;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -101,14 +101,14 @@ header {
     background-color: transparent;
     color: black;
     border: 1px solid #e0e0e0;
-    min-width: 80px; /* Lebar minimum untuk konsistensi */
+    min-width: 80px;
 }
 
 .login-btn {
     background-color: var(--base-bg-button);
     color: var(--base-color-button);
     font-weight: 600;
-    min-width: 80px; /* Lebar minimum untuk konsistensi */
+    min-width: 80px;
 }
 
 .track-btn:hover {
@@ -119,7 +119,6 @@ header {
     background-color: #3506c1;
 }
 
-/* Mobile Menu Toggle - Standar Perusahaan */
 .menu-toggle {
     display: none;
     background-color: var(--base-bg-button);
@@ -167,7 +166,7 @@ header {
     }
 
     .logo {
-        width: 70px; /* Logo lebih kecil di mobile */
+        width: 50px;
     }
 
     .menu-toggle {
@@ -236,7 +235,7 @@ header {
     }
 
     .logo {
-        width: 60px; /* Logo lebih kecil lagi di mobile kecil */
+        width: 50px;
     }
 
     .track-btn,
@@ -600,23 +599,23 @@ header {
     flex-direction: column;
     gap: 0.8rem;
     transition: transform 0.2s;
-    width: 100%; /* Memastikan kartu artikel mengambil lebar penuh */
+    width: 100%;
 }
 
 .article-card:hover {
-    transform: translateY(-3px); /* Mengurangi efek hover pada mobile */
+    transform: translateY(-3px);
 }
 
 .article-card img {
     width: 100%;
-    height: auto; /* Tinggi otomatis untuk menjaga rasio aspek */
+    height: auto;
     max-height: 200px;
     object-fit: cover;
     border-radius: 6px;
 }
 
 .article-card h3 {
-    font-size: 1rem; /* Ukuran font lebih kecil pada mobile */
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.4;
 }
@@ -627,7 +626,7 @@ header {
 }
 
 .article-card.featured {
-    grid-column: 1; /* Pada mobile, featured article hanya span 1 kolom */
+    grid-column: 1;
 }
 
 .article-card.featured img {
@@ -648,7 +647,7 @@ header {
     color: var(--base-bg-button);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.85rem; /* Ukuran font sedikit lebih kecil */
+    font-size: 0.85rem;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -656,7 +655,7 @@ header {
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 4px;
-    margin-top: 1rem; /* Tambahkan sedikit margin */
+    margin-top: 1rem;
 }
 
 .articles-section .learn-more:hover {
@@ -686,11 +685,11 @@ header {
     }
 
     .articles-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk tablet */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .article-card.featured {
-        grid-column: span 2; /* Featured article span 2 kolom pada tablet */
+        grid-column: span 2;
     }
 }
 
@@ -701,10 +700,7 @@ header {
     }
 
     .articles-grid {
-        grid-template-columns: repeat(
-            auto-fit,
-            minmax(280px, 1fr)
-        ); /* Kembali ke pengaturan asli untuk desktop */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .article-card.featured {
@@ -717,7 +713,6 @@ header {
     }
 }
 
-/* Tetapkan tinggi maksimum untuk gambar pada semua ukuran layar */
 @media (max-width: 480px) {
     .article-card img {
         max-height: 180px;
@@ -1397,15 +1392,18 @@ hr {
 }
 
 .social-btn.google {
-    color: #db4437;
+    background-color: #db4437;
+    color: white;
 }
 
-.social-btn.facebook {
-    color: #4267b2;
+.social-btn.facebookku {
+    background-color: #4267b2;
+    color: white;
 }
 
 .social-btn.linkedin {
-    color: #0077b5;
+    background-color: #0077b5;
+    color: white;
 }
 
 .social-btn:hover {
