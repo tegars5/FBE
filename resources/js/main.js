@@ -2,71 +2,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const dashboardToggle = document.getElementById("dashboard-toggle");
     const sidebar = document.getElementById("sidebar");
-    const sidebarClose = document.getElementById("sidebar-close");
 
-    // Fungsi untuk menampilkan sidebar
-    function showSidebar() {
-        sidebar.classList.add("active");
-        if (dashboardToggle) {
-            dashboardToggle.innerHTML = '<i class="fas fa-times"></i>';
-        }
-    }
-
-    // Fungsi untuk menyembunyikan sidebar
-    function hideSidebar() {
-        sidebar.classList.remove("active");
-        if (dashboardToggle) {
-            dashboardToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        }
-    }
-
-    // Event listener untuk toggle sidebar
     if (dashboardToggle && sidebar) {
-        dashboardToggle.addEventListener("click", function (e) {
+        // Hapus event listener lain yang mungkin mengganggu
+        dashboardToggle.replaceWith(dashboardToggle.cloneNode(true));
+
+        // Tambahkan kembali event listener
+        const newToggle = document.getElementById("dashboard-toggle");
+        newToggle.addEventListener("click", function (e) {
             e.preventDefault();
-            if (sidebar.classList.contains("active")) {
-                hideSidebar();
-            } else {
-                showSidebar();
-            }
+            e.stopPropagation(); // Hentikan event bubbling
+            sidebar.classList.toggle("active");
+            console.log("Toggle clicked"); // Debugging
         });
     }
-
-    // Event listener untuk tombol close di sidebar
-    if (sidebarClose && sidebar) {
-        sidebarClose.addEventListener("click", function (e) {
-            e.preventDefault();
-            hideSidebar();
-        });
-    }
-
-    // Event listener untuk menutup sidebar saat klik di luar
-    document.addEventListener("click", function (e) {
-        if (window.innerWidth <= 992) {
-            const isClickInsideSidebar = sidebar && sidebar.contains(e.target);
-            const isClickOnToggle =
-                dashboardToggle && dashboardToggle.contains(e.target);
-            const isClickOnClose =
-                sidebarClose && sidebarClose.contains(e.target);
-
-            if (
-                !isClickInsideSidebar &&
-                !isClickOnToggle &&
-                !isClickOnClose &&
-                sidebar &&
-                sidebar.classList.contains("active")
-            ) {
-                hideSidebar();
-            }
-        }
-    });
-
-    // Event listener untuk resize window
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 992 && sidebar) {
-            hideSidebar();
-        }
-    });
 });
 // Kode JavaScript untuk perbaikan tombol toggle mobile
 document.addEventListener("DOMContentLoaded", function () {

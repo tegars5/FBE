@@ -4,8 +4,7 @@
 
 <body class="login-page">
     <div class="login-container">
-        <div class="login-image">
-            <img src="{{ asset('assets/login-background.jpg') }}" alt="Login Background" class="background-img">
+        <div class="login-image" style="background-image: url('{{ asset('assets/login-background.jpg') }}')">>
             <h1>Log in to your account.</h1>
             <p>Welcome back! Please enter your details to access your account.</p>
         </div>

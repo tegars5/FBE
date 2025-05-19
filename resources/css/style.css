@@ -1246,13 +1246,13 @@ hr {
 .login-image h1 {
     position: relative;
     z-index: 2;
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-image p {
     color: #fff;
-    font-size: 16px;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
     margin-top: 10px;
     position: relative;
     z-index: 2;
@@ -1268,7 +1268,7 @@ hr {
 }
 
 .login-form-container h2 {
-    font-size: 28px;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     margin-bottom: 30px;
 }
 
@@ -1280,7 +1280,7 @@ hr {
 .input-group label {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     color: #666;
     font-weight: 500;
 }
@@ -1314,13 +1314,14 @@ hr {
 
 .forgot-password a {
     color: #666;
-    font-size: 14px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     text-decoration: none;
 }
 
 .forgot-password a:hover {
     color: #4308e7;
 }
+
 .login-btn-dash {
     background-color: #4308e7;
     color: white;
@@ -1334,6 +1335,7 @@ hr {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .button-wrapper {
     text-align: center;
     width: 100%;
@@ -1344,12 +1346,13 @@ hr {
 .login-btn:hover {
     background-color: #3506c1;
 }
+
 .divider {
     display: flex;
     align-items: center;
     margin: 20px 0;
     color: #666;
-    font-size: 14px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .divider::before,
@@ -1411,7 +1414,7 @@ hr {
 
 .create-account {
     text-align: center;
-    font-size: 14px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     color: #666;
 }
 
@@ -1453,5 +1456,33 @@ hr {
     .login-form-container {
         width: 100%;
         padding: 30px 20px;
+    }
+
+    .login-image h1 {
+        font-size: 2rem;
+    }
+
+    .login-image p {
+        font-size: 1rem;
+    }
+
+    .login-form-container h2 {
+        font-size: 2rem;
+    }
+
+    .input-group label {
+        font-size: 0.9rem;
+    }
+
+    .login-btn-dash {
+        font-size: 14px;
+    }
+
+    .divider {
+        font-size: 0.8rem;
+    }
+
+    .social-btn {
+        font-size: 18px;
     }
 }
