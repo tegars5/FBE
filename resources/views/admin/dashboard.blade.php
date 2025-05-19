@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <x-layout.head title="Dashboard" :styles="false"/>
+<x-layout.head title="Dashboard" :styles="false" />
 
 <body>
     <!-- Sidebar -->
@@ -9,9 +9,9 @@
     <!-- Main Content -->
     <div class="main-content">
         <header class="header">
-           <button class="menu-toggle" id="dashboard-toggle">
-    <i class="fas fa-bars"></i>
-</button>
+            <button class="menu-toggle" id="dashboard-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <h1 class="page-title">Dashboard</h1>
             <div class="header-actions">
                 <span class="date">{{ date('l, d F Y') }}</span>
@@ -73,6 +73,40 @@
             <p>&copy; 2025 FujiyamaBiomasEnergy. All rights reserved.</p>
         </footer>
     </div>
- 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dashboardToggle = document.getElementById("dashboard-toggle");
+            const sidebar = document.getElementById("sidebar");
+            const sidebarClose = document.getElementById("sidebar-close");
+
+            if (dashboardToggle && sidebar) {
+                // Toggle Sidebar
+                dashboardToggle.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle("active");
+                });
+
+                // Close Sidebar when clicking close button (X)
+                sidebarClose.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    sidebar.classList.remove("active");
+                });
+
+                // Close Sidebar when clicking outside (on mobile)
+                document.addEventListener("click", function(event) {
+                    if (window.innerWidth <= 992) {
+                        if (
+                            !sidebar.contains(event.target) &&
+                            !dashboardToggle.contains(event.target) &&
+                            sidebar.classList.contains("active")
+                        ) {
+                            sidebar.classList.remove("active");
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>

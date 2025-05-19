@@ -5,6 +5,7 @@
 <body class="login-page">
     <div class="login-container">
         <div class="login-image">
+            <img src="{{ asset('assets/login-background.jpg') }}" alt="Login Background" class="background-img">
             <h1>Log in to your account.</h1>
             <p>Welcome back! Please enter your details to access your account.</p>
         </div>
@@ -16,14 +17,12 @@
                     <label for="email">Email</label>
                     <input autocomplete="off" type="email" name="email" id="email" required>
                 </div>
-
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input autocomplete="off" type="password" id="password" name="password" placeholder="••••••••"
                         required>
                     <span class="toggle-password"><i class="fas fa-eye"></i></span>
                 </div>
-
                 <div class="forgot-password">
                     <a href="#">Forgot your password?</a>
                 </div>
