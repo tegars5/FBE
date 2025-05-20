@@ -501,7 +501,9 @@ body {
     height: 100vh;
     z-index: 100;
     transition: var(--transition);
-    overflow-y: auto;
+    overflow-y: auto; /* Pastikan bisa scroll */
+    display: flex;
+    flex-direction: column; /* Atur layout menjadi kolom */
 }
 
 .sidebar-header {
@@ -543,7 +545,7 @@ body {
 }
 
 .nav-menu {
-    padding: 20px 0;
+    padding: 20px 0 80px;
     list-style: none;
 }
 
@@ -577,10 +579,11 @@ body {
     padding: 15px 20px;
     border-top: 1px solid var(--gray-light);
     margin-top: auto;
-    position: absolute;
+    position: sticky; /* Ubah dari absolute ke sticky */
     bottom: 0;
     width: 100%;
     background-color: white;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.05); /* Tambahkan shadow agar terlihat terpisah */
 }
 
 .user-details {
@@ -836,6 +839,7 @@ textarea.form-control {
 @media (max-width: 992px) {
     .sidebar {
         transform: translateX(-100%);
+        padding-bottom: 90px; /* Tambahkan padding bawah untuk ruang scroll */
     }
 
     .sidebar.active {
@@ -875,21 +879,22 @@ textarea.form-control {
         text-align: center;
     }
     /* Pada desktop, sembunyikan tombol close */
-@media (min-width: 993px) {
-    .close-btn {
-        display: none;
+    @media (min-width: 993px) {
+        .close-btn {
+            display: none;
+        }
     }
-}
 
-/* Pada mobile, tampilkan tombol close */
-@media (max-width: 992px) {
-    .close-btn {
-        display: flex;
+    /* Pada mobile, tampilkan tombol close */
+    @media (max-width: 992px) {
+        .close-btn {
+            display: flex;
+        }
+
+        /* Pastikan sidebar memiliki z-index yang tinggi */
+        .sidebar.active {
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
     }
-    
-    /* Pastikan sidebar memiliki z-index yang tinggi */
-    .sidebar.active {
-        z-index: 1000;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    }}
 }
