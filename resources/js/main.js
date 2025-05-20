@@ -18,86 +18,104 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 // Kode JavaScript untuk perbaikan tombol toggle mobile
+// Tunggu sampai dokumen selesai dimuat
 document.addEventListener("DOMContentLoaded", function () {
-    const setupMobileMenu = function () {
-        const navbar = document.querySelector(".navbar");
-        const navLinks = document.querySelector(".nav-links");
-        const logo = document.querySelector(".logo");
+    // Cari elemen navbar dan buat tombol menu hamburger jika belum ada
+    const navbar = document.querySelector(".navbar");
+    const navLinks = document.querySelector(".nav-links");
+    const authButtons = document.querySelector(".auth-buttons");
+    let menuToggle = document.querySelector(".menu-toggle");
 
-        // Pastikan elemen-elemen ada sebelum melakukan manipulasi
-        if (!navbar || !navLinks || !logo) {
-            console.error(
-                "One or more elements not found: navbar, navLinks, logo"
-            );
-            return;
-        }
+    // Jika belum ada tombol toggle, buat baru
+    if (!menuToggle) {
+        menuToggle = document.createElement("button");
+        menuToggle.classList.add("menu-toggle");
+        menuToggle.innerHTML = '<i class="uil uil-bars"></i>';
+        menuToggle.setAttribute("aria-label", "Toggle Navigation Menu");
+        navbar.appendChild(menuToggle);
+    }
 
-        // Hapus toggle button lama jika ada
-        const oldToggleBtn = document.querySelector(".menu-toggle");
-        if (oldToggleBtn) {
-            oldToggleBtn.remove();
-        }
-        const toggleBtn = document.createElement("button");
-        toggleBtn.classList.add("menu-toggle");
-        toggleBtn.innerHTML = '<i class="uil uil-bars"></i>';
-        toggleBtn.setAttribute("aria-label", "Toggle Navigation Menu");
+    // Buat overlay untuk sidebar
+    let overlay = document.querySelector(".sidebar-overlay");
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.classList.add("sidebar-overlay");
+        document.body.appendChild(overlay);
+    }
 
-        if (logo && logo.nextSibling) {
-            navbar.insertBefore(toggleBtn, logo.nextSibling);
+    // Tambahkan fungsi untuk cek ukuran layar dan menyesuaikan tampilan
+    function checkScreenSize() {
+        if (window.innerWidth <= 768) {
+            menuToggle.style.display = "flex";
+
+            // Atur ulang tampilan navbar saat mode mobile
+            navLinks.classList.add("sidebar-nav");
+
+            // Pindahkan auth buttons ke dalam sidebar jika dalam mode mobile
+            if (!navLinks.contains(authButtons) && authButtons) {
+                const authClone = authButtons.cloneNode(true);
+                authClone.classList.add("sidebar-auth");
+                navLinks.appendChild(authClone);
+                authButtons.style.display = "none";
+            }
         } else {
-            navbar.appendChild(toggleBtn);
-        }
+            menuToggle.style.display = "none";
+            navLinks.style.display = "flex";
+            navLinks.classList.remove("sidebar-nav", "active");
 
-        // Fungsi untuk mengatur tampilan berdasarkan ukuran layar
-        function checkScreenSize() {
+            // Kembalikan auth buttons ke posisi semula dalam mode desktop
+            if (authButtons) {
+                authButtons.style.display = "flex";
+                const sidebarAuth = document.querySelector(".sidebar-auth");
+                if (sidebarAuth) {
+                    sidebarAuth.remove();
+                }
+            }
+
+            overlay.style.display = "none";
+        }
+    }
+
+    // Jalankan pengecekan saat halaman dimuat dan saat ukuran window berubah
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    // Fungsi untuk toggle sidebar
+    menuToggle.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+        overlay.style.display = navLinks.classList.contains("active")
+            ? "block"
+            : "none";
+
+        // Ganti ikon saat sidebar aktif/tidak aktif
+        if (navLinks.classList.contains("active")) {
+            menuToggle.innerHTML = '<i class="uil uil-times"></i>';
+            document.body.style.overflow = "hidden"; // Mencegah scrolling
+        } else {
+            menuToggle.innerHTML = '<i class="uil uil-bars"></i>';
+            document.body.style.overflow = ""; // Mengaktifkan kembali scrolling
+        }
+    });
+
+    // Tutup sidebar saat mengklik overlay
+    overlay.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+        overlay.style.display = "none";
+        menuToggle.innerHTML = '<i class="uil uil-bars"></i>';
+        document.body.style.overflow = "";
+    });
+
+    // Tutup sidebar saat link di dalamnya diklik
+    const navItems = navLinks.querySelectorAll("a");
+    navItems.forEach(function (item) {
+        item.addEventListener("click", function () {
             if (window.innerWidth <= 768) {
-                toggleBtn.style.display = "flex";
-                if (!navLinks.classList.contains("active")) {
-                    navLinks.style.display = "none";
-                }
-            } else {
-                toggleBtn.style.display = "none";
-                navLinks.style.display = "flex";
                 navLinks.classList.remove("active");
-                toggleBtn.classList.remove("active");
-                toggleBtn.innerHTML = '<i class="uil uil-bars"></i>';
-            }
-        }
-        checkScreenSize();
-        window.addEventListener("resize", checkScreenSize);
-        toggleBtn.addEventListener("click", function () {
-            navLinks.classList.toggle("active");
-            toggleBtn.classList.toggle("active");
-
-            if (navLinks.classList.contains("active")) {
-                navLinks.style.display = "flex";
-                toggleBtn.innerHTML = '<i class="uil uil-times"></i>';
-            } else {
-                navLinks.style.display = "none";
-                toggleBtn.innerHTML = '<i class="uil uil-bars"></i>';
+                overlay.style.display = "none";
+                menuToggle.innerHTML = '<i class="uil uil-bars"></i>';
+                document.body.style.overflow = "";
             }
         });
-
-        // Tutup menu saat link di dalamnya diklik
-        const navItems = navLinks.querySelectorAll("a");
-        navItems.forEach(function (item) {
-            item.addEventListener("click", function () {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove("active");
-                    navLinks.style.display = "none";
-                    toggleBtn.classList.remove("active");
-                    toggleBtn.innerHTML = '<i class="uil uil-bars"></i>';
-                }
-            });
-        });
-    };
-    setupMobileMenu();
-    let resizeTimeout;
-    window.addEventListener("resize", function () {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function () {
-            setupMobileMenu();
-        }, 250);
     });
 });
 
