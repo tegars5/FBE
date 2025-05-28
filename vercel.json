@@ -2,7 +2,7 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.0" }
+        "api/index.php": { "runtime": "vercel-php@0.6.1" }
     },
     "routes": [
         { "src": "/build/(.*)", "dest": "/public/build/" },
@@ -29,6 +29,7 @@
         "DB_HOST": "ep-delicate-cake-a1dx9brb.ap-southeast-1.pg.koyeb.app",
         "DB_PORT": "5432",
         "DB_DATABASE": "koyebdb",
-        "DB_USERNAME": "fbe_owner"
+        "DB_USERNAME": "fbe_owner",
+        "DB_PASSWORD": "npg_ychDMgKbU1L9"
     }
 }
