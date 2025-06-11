@@ -290,30 +290,53 @@
             <div class="question-header">
                 <h1>Frequently Asked <br>Questions</h1>
             </div>
+
             <div class="faq-item">
-                <div class="faq-question">What mostly people want to ask no.1 ? <span class="toggle">+</span></div>
-                <div class="faq-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+                <div class="faq-question">What is a palm kernel shell (PKS) company? <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    A palm kernel shell company is a business that processes and supplies palm kernel shells — a
+                    byproduct of palm oil production — commonly used as biofuel and biomass energy.
+                </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">What mostly people want to ask no.2 ? <span class="toggle">+</span></div>
-                <div class="faq-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+                <div class="faq-question">What are the main uses of palm kernel shells? <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    Palm kernel shells are primarily used as renewable energy sources in power plants, boilers, and
+                    cement factories due to their high calorific value and eco-friendly characteristics.
+                </div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">What mostly people want to ask no.3 ? <span class="toggle">+</span></div>
-                <div class="faq-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+                <div class="faq-question">Where do you source your palm kernel shells? <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    We source our PKS directly from certified palm oil mills across Indonesia, ensuring sustainability
+                    and consistent supply quality.
+                </div>
             </div>
+
             <div class="faq-item">
-                <div class="faq-question">What mostly people want to ask no.4 ? <span class="toggle">+</span></div>
-                <div class="faq-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+                <div class="faq-question">Do you export palm kernel shells internationally? <span
+                        class="toggle">+</span></div>
+                <div class="faq-answer">
+                    Yes, we export PKS to various countries in Asia and Europe, complying with international shipping
+                    standards and biomass quality certifications.
+                </div>
             </div>
+
             <div class="faq-item">
-                <div class="faq-question">What mostly people want to ask no.5 ? <span class="toggle">+</span></div>
-                <div class="faq-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
-            </div>
+                <div class="faq-question">How can I partner or purchase from your company? <span
+                        class="toggle">+</span></div>
+                <div class="faq-answer">
+                    You can reach out to us through our contact page. We offer flexible contract terms for both domestic
+                    and international clients.
+                </div>
             </div>
         </section>
+
         <section class="cta-footer-section" id="cta">
             <div class="cta-container">
                 <div class="cta-text">
