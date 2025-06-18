@@ -6,12 +6,14 @@
 }
 
 :root {
-    --base-bg: #ffffff;
+    --base-bg: #f5f5dc;
     --base-width-container: 92%;
-    --base-bg-button: #4308e7;
+    --base-bg-button: #008000;
     --base-color-button: #fff;
     --base-font-size: clamp(1.5rem, 3vw, 3rem);
-    --industry-blue: #4308e7;
+    --base-bg-hover-text: #a79c9c;
+    --industry-green: #90ee90;
+    --light-green: #00ab41;
     --text-color: #333;
     --light-gray: #f5f5f5;
     --medium-gray: #e0e0e0;
@@ -77,7 +79,7 @@ header {
 }
 
 .nav-links li a:hover {
-    color: var(--base-bg-button);
+    color: var(--base-bg-hover-text);
 }
 
 .auth-buttons {
@@ -116,7 +118,7 @@ header {
 }
 
 .login-btn:hover {
-    background-color: #3506c1;
+    background-color: var(--light-green);
 }
 
 /* Tombol Menu Toggle (Hamburger) */
@@ -467,7 +469,7 @@ header {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #cfd8ff;
+    color: #ffff;
 }
 
 .top-industry {
@@ -518,7 +520,7 @@ header {
 
 .stat-box p {
     font-size: 0.9rem;
-    color: #cfd8ff;
+    color: #fff;
     line-height: 1.5;
 }
 
@@ -1111,10 +1113,6 @@ header {
     transition: transform 0.2s;
 }
 
-.faq-question:hover {
-    background-color: #f0f0f0;
-}
-
 .faq-answer {
     font-size: 0.95rem;
     color: #666;
@@ -1178,7 +1176,7 @@ header {
 }
 
 .cta-button .btn:hover {
-    background: #3506c1;
+    background: var(--light-green);
     transform: translateY(-3px);
 }
 
@@ -1386,10 +1384,6 @@ hr {
     width: 100%;
     width: 150px;
     margin: 0 auto;
-}
-
-.login-btn:hover {
-    background-color: #3506c1;
 }
 
 .divider {
