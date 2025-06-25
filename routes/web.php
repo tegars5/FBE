@@ -6,8 +6,11 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserController;
 use App\Models\Admin;
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/test', function () {
+    return view('test');
+});
+Route::get('/latihan', function () {
+    return view('latihan');
 });
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login']);
