@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fujiyama Biomass Energy</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap"
         rel="stylesheet" />
+
     <script>
         tailwind.config = {
             theme: {
@@ -30,11 +32,70 @@
             }
         }
     </script>
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            /* Tambahkan padding-top ke body untuk mengkompensasi navbar fixed */
+            padding-top: 80px;
+            /* Sesuaikan nilai ini dengan tinggi navbar Anda (misal: py-5 = 20px atas + 20px bawah + tinggi konten = ~80px) */
         }
 
+        @media (min-width: 768px) {
+
+            /* Untuk md breakpoint dan di atasnya */
+            body {
+                padding-top: 100px;
+                /* Sesuaikan lagi jika navbar lebih tinggi di desktop */
+            }
+        }
+
+        /* --- CSS Tambahan untuk Efek Scroll --- */
+        /* Pastikan transisi mulus saat logo bergerak */
+        .logo-image-container {
+            transition: top 0.3s ease-in-out;
+            /* Tambahkan transisi ke properti top */
+        }
+
+        /* Gaya saat navbar di-scroll (kelas 'scrolled' ditambahkan via JS) */
+        nav.scrolled .logo-image-container {
+            position: relative;
+            /* Pastikan posisi relatif agar 'top' bekerja */
+            top: 0 !important;
+            /* Menimpa md:top-12 agar logo sejajar */
+            width: 4rem;
+            /* Contoh: perkecil logo saat di-scroll */
+            height: 4rem;
+        }
+
+        nav.scrolled .logo-image-container img {
+            object-fit: contain;
+            /* Pastikan gambar tetap proporsional */
+        }
+
+
+        /* Sembunyikan elemen dekoratif logo-bg saat di-scroll */
+        nav.scrolled .logo-bg {
+            display: none;
+            /* Atau gunakan opacity untuk efek fade: opacity: 0; transition: opacity 0.3s ease; */
+        }
+
+        /* Opsional: Ubah tinggi navigasi saat di-scroll jika Anda ingin lebih ringkas */
+        nav.scrolled {
+            padding-top: 0.75rem;
+            /* py-3 */
+            padding-bottom: 0.75rem;
+            /* py-3 */
+            /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+            /* Tambahkan shadow ringan */
+        }
+
+        /* Pastikan tautan navigasi mobile tidak terpengaruh */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* --- CSS Anda yang sudah ada --- */
         .text-shadow-hero {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -145,86 +206,6 @@
             visibility: visible;
         }
 
-        /* Menu Header */
-        .mobile-menu-header {
-            background: #1B5E20;
-            color: white;
-            padding: 20px;
-            border-bottom: 2px solid #4CAF50;
-            position: relative;
-        }
-
-        /* Menu Items */
-        .mobile-menu-item {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mobile-menu-link {
-            display: flex;
-            align-items: center;
-            padding: 16px 20px;
-            color: #1B5E20;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            border-bottom: 1px solid rgba(27, 94, 32, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .mobile-menu-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(76, 175, 80, 0.1) 0%, transparent 100%);
-            transition: width 0.3s ease;
-        }
-
-        .mobile-menu-link:hover::before {
-            width: 100%;
-        }
-
-        .mobile-menu-link:hover {
-            color: #228B22;
-            background: rgba(76, 175, 80, 0.05);
-            padding-left: 24px;
-        }
-
-        .mobile-menu-link i {
-            width: 24px;
-            margin-right: 12px;
-            color: #4CAF50;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-link:hover i {
-            color: #228B22;
-            transform: scale(1.1);
-        }
-
-        /* Login Button in Mobile Menu */
-        .mobile-login-btn {
-            background: #1B5E20;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.2s ease;
-            margin: 20px;
-            display: block;
-            text-decoration: none;
-        }
-
-        .mobile-login-btn:hover {
-            background: #228B22;
-            color: white;
-        }
-
         /* Close Button */
         .close-btn {
             width: 28px;
@@ -331,8 +312,7 @@
 
 <body class="font-sans leading-relaxed overflow-x-hidden">
     <div class="relative min-h-screen">
-        <!-- Hero Background -->
-        <div class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center">
+        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
@@ -349,141 +329,94 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- Navigation -->
-        <div class="bg-beige py-3 md:py-5 relative z-[1000]">
+        <nav class="bg-beige py-3 md:py-5 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
             <div class="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-5">
-                <!-- Logo -->
                 <div class="relative flex items-center gap-4 z-[100]">
                     <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
                     <div
-                        class="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-12 bg-transparent">
-                        <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                            alt="Logo" class="w-full h-full object-contain rounded-full" />
+                        class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-12 bg-transparent">
+                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama Biomass Energy Logo"
+                            class="w-full h-full object-contain" />
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
                 <ul class="hidden lg:flex list-none gap-6 xl:gap-10">
                     <li><a href="#home"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">Home</a>
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">Home</a>
                     </li>
                     <li><a href="#about"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">About
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">About
                             Us</a></li>
                     <li><a href="#products"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">Products</a>
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">Products</a>
                     </li>
                     <li><a href="#exports"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">Exports
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">Exports
                             & Partnerships</a></li>
                     <li>
-                        <a href="#login"
-                            class="px-4 xl:px-6 py-4 xl:py-3 border-none rounded-md text-sm xl:text-base font-semibold cursor-pointer transition-all duration-300 text-center bg-green-custom text-white shadow-green-custom hover:bg-green-hover hover:-translate-y-0.5 hover:shadow-green-hover">
+                        <a href="{{ route('admin.login') }}"
+                            class="px-4 xl:px-6 py-4 xl:py-3 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all">
                             Login
                         </a>
                     </li>
                 </ul>
 
-                <!-- Mobile Hamburger Button -->
-                <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle menu">
+                <!-- ✅ SATU-SATUNYA tombol hamburger -->
+                <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                 </button>
             </div>
 
-            <!-- Mobile Menu Overlay -->
+            <!-- Overlay -->
             <div class="mobile-menu-overlay" id="menu-overlay"></div>
 
-            <!-- Mobile Menu -->
+            <!-- Mobile menu -->
             <div class="mobile-menu" id="mobile-menu">
-                <!-- Mobile Menu Header -->
                 <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50">
                     <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&q=80"
-                            alt="Logo" class="w-8 h-8 object-contain rounded-full" />
-                        <span class="font-bold text-lg text-gray-800">Fujiyama</span>
+                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama logo"
+                            class="w-8 h-8 object-contain rounded-full" />
                     </div>
-                    <button class="hamburger open" id="close-btn" aria-label="Close menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
                 </div>
 
-                <!-- Mobile Menu Items -->
                 <nav class="px-4 py-6">
                     <ul class="space-y-2">
                         <li class="mobile-menu-item">
                             <a href="#home"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-home w-6 mr-4 text-green-custom"></i>
-                                <span>Home</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
-                            </a>
+                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">Home</a>
                         </li>
                         <li class="mobile-menu-item">
                             <a href="#about"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-info-circle w-6 mr-4 text-green-custom"></i>
-                                <span>About Us</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
-                            </a>
+                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">About
+                                Us</a>
                         </li>
                         <li class="mobile-menu-item">
                             <a href="#products"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-leaf w-6 mr-4 text-green-custom"></i>
-                                <span>Products</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
-                            </a>
+                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">Products</a>
                         </li>
                         <li class="mobile-menu-item">
                             <a href="#exports"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-globe w-6 mr-4 text-green-custom"></i>
-                                <span>Exports & Partnerships</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
-                            </a>
+                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">Exports
+                                & Partnerships</a>
                         </li>
                     </ul>
-                </nav>
-
-                <!-- Mobile Menu Footer -->
-                <div class="p-6 border-t border-gray-100 bg-gray-50 mt-auto">
-                    <div class="mobile-menu-item">
-                        <a href="#login"
-                            class="mobile-menu-link flex items-center justify-center w-full px-6 py-4 bg-green-custom text-white font-semibold rounded-xl hover:bg-green-hover transition-all duration-200 active:scale-95 shadow-lg">
-                            <i class="fas fa-sign-in-alt mr-3"></i>
-                            <span>Login</span>
+                    <div class="p-6 border-t border-gray-100 bg-gray-50">
+                        <a href="{{ route('admin.login') }}"
+                            class="block w-full text-center bg-green-custom text-white font-semibold py-3 rounded-lg hover:bg-green-hover transition-all">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Login
                         </a>
                     </div>
 
-                    <!-- Contact Info -->
-                    <div class="mt-6 pt-4 border-t border-gray-200">
-                        <div class="text-center">
-                            <p class="text-sm text-gray-600 mb-2">Butuh bantuan?</p>
-                            <div class="flex items-center justify-center space-x-4">
-                                <a href="tel:+621234567890"
-                                    class="flex items-center text-green-custom hover:text-green-hover transition-colors">
-                                    <i class="fas fa-phone text-sm mr-2"></i>
-                                    <span class="text-sm font-medium">Call Us</span>
-                                </a>
-                                <a href="mailto:info@fujiyama.com"
-                                    class="flex items-center text-green-custom hover:text-green-hover transition-colors">
-                                    <i class="fas fa-envelope text-sm mr-2"></i>
-                                    <span class="text-sm font-medium">Email</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </nav>
             </div>
-        </div>
+        </nav>
     </div>
 
+    {{-- About Section --}}
     <section id="about"
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12 space-y-8 md:space-y-12">
         <div class="max-w-4xl">
@@ -533,6 +466,7 @@
         PKS charcoal products that benefit both the planet and its people
     </div>
 
+    {{-- Why Choose Us Section --}}
     <section class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-6 md:mb-10">Why choose us?</h2>
@@ -550,7 +484,7 @@
                         See Certification <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                     <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                        alt="Biomass energy facility"
+                        alt="Biomass energy facility certification"
                         class="rounded-md mt-3 mx-auto md:mx-0 transition-all transform hover:scale-105 w-full h-32 md:h-40 object-cover" />
                 </div>
 
@@ -584,8 +518,10 @@
                         class="rounded-md mt-3 mx-auto md:mx-0 transition-all transform hover:scale-105 w-full h-32 md:h-40 object-cover" />
                 </div>
             </div>
+        </div>
     </section>
 
+    {{--  Articles Section --}}
     <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pb-8 md:pb-12" id="articles">
         <div class="flex justify-between items-center mb-4 md:mb-6">
             <h3 class="font-extrabold text-sm md:text-lg max-w-xs leading-tight">The latest articles and industry
@@ -604,7 +540,7 @@
                             <img src="{{ Storage::disk('s3')->url($featured->photo) }}" alt="{{ $featured->title }}"
                                 class="rounded-md w-full object-cover h-40 md:h-48 transition-all hover:scale-105" />
                         @else
-                            <img src="{{ asset('images/no-image.png') }}" alt="No Image"
+                            <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
                                 class="rounded-md w-full object-cover h-40 md:h-48 transition-all hover:scale-105" />
                         @endif
                         <h4 class="font-semibold text-sm md:text-base leading-tight mt-2">{{ $featured->title }}</h4>
@@ -624,7 +560,7 @@
                                             alt="{{ $article->title }}"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @else
-                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image"
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @endif
                                     <div class="flex flex-col justify-between">
@@ -650,7 +586,7 @@
                                             alt="{{ $article->title }}"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @else
-                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image"
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @endif
                                     <div class="flex flex-col justify-between">
@@ -671,6 +607,8 @@
             @endif
         </div>
     </section>
+
+
     <section
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-6 flex flex-col md:flex-row items-center justify-between border-t border-gray-300 gap-4">
         <h3 class="font-extrabold text-sm md:text-base max-w-xs leading-tight text-center md:text-left">
@@ -681,16 +619,16 @@
             Contact Us
         </button>
     </section>
-    <!-- Footer -->
+
+    {{-- Footer Section --}}
     <footer class="bg-beige py-12">
         <div class="max-w-7xl mx-auto px-6 sm:px-12 md:px-20">
             <div class="flex flex-col md:flex-row md:justify-between md:space-x-12">
                 <div class="flex flex-col space-y-3 md:flex-1">
                     <div class="flex items-center space-x-2">
-                        <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                            alt="Fujiyama logo icon with mountain and leaf"
+                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama logo icon with mountain and leaf"
                             class="w-6 h-6 object-contain rounded-full" />
-                        <span class="font-bold text-xs md:text-sm">fujiyama</span>
+                        <span class="font-bold text-xs md:text-sm">fujiyamabiomassenergy</span>
                     </div>
                     <p class="text-[9px] md:text-xs max-w-xs">
                         Fujiyama Biomass Energy provides sustainable energy solutions for customers around the world
@@ -736,86 +674,83 @@
     <script>
         class MobileMenuController {
             constructor() {
-                this.menuBtn = document.getElementById('menu-btn');
-                this.closeBtn = document.getElementById('close-btn');
-                this.mobileMenu = document.getElementById('mobile-menu');
-                this.menuOverlay = document.getElementById('menu-overlay');
-                this.mobileLinks = document.querySelectorAll('.mobile-menu-link');
-                this.isMenuOpen = false;
+                this.menuBtn = document.getElementById('menu-btn')
+                this.mobileMenu = document.getElementById('mobile-menu')
+                this.menuOverlay = document.getElementById('menu-overlay')
+                this.mobileLinks = document.querySelectorAll('.mobile-menu-link')
+                this.isMenuOpen = false
 
-                this.init();
+                this.init()
             }
 
             init() {
-                // Event listeners
-                this.menuBtn.addEventListener('click', () => this.toggleMenu());
-                this.closeBtn.addEventListener('click', () => this.closeMenu());
-                this.menuOverlay.addEventListener('click', () => this.closeMenu());
+                this.menuBtn.addEventListener('click', () => this.toggleMenu())
+                this.menuOverlay.addEventListener('click', () => this.closeMenu())
 
-                // Close menu when clicking on navigation links
                 this.mobileLinks.forEach(link => {
-                    link.addEventListener('click', () => this.closeMenu());
-                });
+                    link.addEventListener('click', () => this.closeMenu())
+                })
 
-                // Close menu with escape key
-                document.addEventListener('keydown', (e) => {
+                document.addEventListener('keydown', e => {
                     if (e.key === 'Escape' && this.isMenuOpen) {
-                        this.closeMenu();
+                        this.closeMenu()
                     }
-                });
+                })
 
-                // Handle resize - close menu if screen becomes larger
                 window.addEventListener('resize', () => {
                     if (window.innerWidth >= 1024 && this.isMenuOpen) {
-                        this.closeMenu();
+                        this.closeMenu()
                     }
-                });
+                })
             }
 
             toggleMenu() {
-                if (this.isMenuOpen) {
-                    this.closeMenu();
-                } else {
-                    this.openMenu();
-                }
+                this.isMenuOpen ? this.closeMenu() : this.openMenu()
             }
 
             openMenu() {
-                this.isMenuOpen = true;
-                this.menuBtn.classList.add('open');
-                this.mobileMenu.classList.add('active');
-                this.menuOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                this.isMenuOpen = true
+                this.menuBtn.classList.add('open')
+                this.mobileMenu.classList.add('active')
+                this.menuOverlay.classList.add('active')
+                document.body.style.overflow = 'hidden'
             }
 
             closeMenu() {
-                this.isMenuOpen = false;
-                this.menuBtn.classList.remove('open');
-                this.mobileMenu.classList.remove('active');
-                this.menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
+                this.isMenuOpen = false
+                this.menuBtn.classList.remove('open')
+                this.mobileMenu.classList.remove('active')
+                this.menuOverlay.classList.remove('active')
+                document.body.style.overflow = ''
             }
         }
 
-        // Initialize the mobile menu when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new MobileMenuController();
-        });
+            new MobileMenuController()
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+            // Navbar shrink on scroll
+            const navbar = document.querySelector('nav')
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 100)
+            })
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault()
+                    const target = document.querySelector(this.getAttribute('href'))
+                    if (target) {
+                        const offset = target.offsetTop - document.querySelector('nav').offsetHeight
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        })
+                    }
+                })
+            })
+        })
     </script>
+
 </body>
 
 </html>

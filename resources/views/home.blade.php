@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/fujiyama-logo.png') }}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/fujiyama-logo.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/fujiyama-logo-32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/fujiyama-logo-96.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/fujiyama-logo-apple.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/fujiyama-logo.ico') }}" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Fujiyama Biomass Energy</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,8 +44,66 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+            /* Tambahkan padding-top ke body untuk mengkompensasi navbar fixed */
+            padding-top: 80px;
+            /* Sesuaikan nilai ini dengan tinggi navbar Anda (misal: py-5 = 20px atas + 20px bawah + tinggi konten = ~80px) */
         }
 
+        @media (min-width: 768px) {
+
+            /* Untuk md breakpoint dan di atasnya */
+            body {
+                padding-top: 100px;
+                /* Sesuaikan lagi jika navbar lebih tinggi di desktop */
+            }
+        }
+
+        /* --- CSS Tambahan untuk Efek Scroll --- */
+        /* Pastikan transisi mulus saat logo bergerak */
+        .logo-image-container {
+            transition: top 0.3s ease-in-out;
+            /* Tambahkan transisi ke properti top */
+        }
+
+        /* Gaya saat navbar di-scroll (kelas 'scrolled' ditambahkan via JS) */
+        nav.scrolled .logo-image-container {
+            position: relative;
+            /* Pastikan posisi relatif agar 'top' bekerja */
+            top: 0 !important;
+            /* Menimpa md:top-12 agar logo sejajar */
+            width: 4rem;
+            /* Contoh: perkecil logo saat di-scroll */
+            height: 4rem;
+        }
+
+        nav.scrolled .logo-image-container img {
+            object-fit: contain;
+            /* Pastikan gambar tetap proporsional */
+        }
+
+
+        /* Sembunyikan elemen dekoratif logo-bg saat di-scroll */
+        nav.scrolled .logo-bg {
+            display: none;
+            /* Atau gunakan opacity untuk efek fade: opacity: 0; transition: opacity 0.3s ease; */
+        }
+
+        /* Opsional: Ubah tinggi navigasi saat di-scroll jika Anda ingin lebih ringkas */
+        nav.scrolled {
+            padding-top: 0.75rem;
+            /* py-3 */
+            padding-bottom: 0.75rem;
+            /* py-3 */
+            /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+            /* Tambahkan shadow ringan */
+        }
+
+        /* Pastikan tautan navigasi mobile tidak terpengaruh */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* --- CSS Anda yang sudah ada --- */
         .text-shadow-hero {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -61,86 +127,115 @@
             width: 100%;
         }
 
-        /* Improved Hamburger Menu Styles */
+        /* ========== IMPROVED HAMBURGER MENU STYLES ========== */
+
+        /* Hamburger Button - Modern Design */
         .hamburger {
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
-            z-index: 1001;
-            padding: 4px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            border: none;
             background: transparent;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1001;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .hamburger:hover {
-            background: rgba(27, 94, 32, 0.1);
+            background: rgba(27, 94, 32, 0.08);
+            transform: scale(1.05);
         }
 
+        .hamburger:active {
+            transform: scale(0.95);
+        }
+
+        /* Hamburger Lines - Premium Animation */
         .hamburger-line {
-            width: 20px;
-            height: 2.5px;
+            display: block;
+            width: 24px;
+            height: 2px;
             background: #1B5E20;
             border-radius: 2px;
-            transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             transform-origin: center;
-            margin: 1.5px 0;
+            position: relative;
         }
 
-        .hamburger.open .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(0, 7px);
-            background: #1B5E20;
+        .hamburger-line:nth-child(1) {
+            transform: translateY(-6px);
         }
 
-        .hamburger.open .hamburger-line:nth-child(2) {
+        .hamburger-line:nth-child(2) {
+            transform: translateY(0);
+            width: 20px;
+        }
+
+        .hamburger-line:nth-child(3) {
+            transform: translateY(6px);
+        }
+
+        /* Active State - Smooth X Animation */
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translateY(0);
+            width: 24px;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
             opacity: 0;
-            transform: scale(0);
+            transform: scale(0) rotate(180deg);
         }
 
-        .hamburger.open .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(0, -7px);
-            background: #1B5E20;
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translateY(0);
+            width: 24px;
         }
 
-        /* Mobile Menu Overlay */
+        /* Mobile Menu Overlay - Smooth Backdrop */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: rgba(0, 0, 0, 0);
-            z-index: 999;
+            backdrop-filter: blur(0px);
+            z-index: 998;
             visibility: hidden;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .mobile-menu-overlay.active {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             visibility: visible;
             opacity: 1;
         }
 
-        /* Mobile Menu Slide */
+        /* Mobile Menu - Modern Slide-in Design */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: 0;
-            width: 280px;
+            width: 320px;
+            max-width: 85vw;
             height: 100vh;
-            background: #F5F5DC;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+            background: #ffffff;
+            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
             transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 999;
             overflow-y: auto;
             visibility: hidden;
+            border-radius: 24px 0 0 24px;
         }
 
         .mobile-menu.active {
@@ -148,42 +243,177 @@
             visibility: visible;
         }
 
-        /* Close Button */
-        .close-btn {
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
+        /* Mobile Menu Header - Clean Design */
+        .mobile-menu-header {
+            position: relative;
+            background: linear-gradient(135deg, #F5F5DC 0%, #ffffff 100%);
+            border-bottom: 1px solid rgba(27, 94, 32, 0.1);
+            padding: 24px;
+        }
+
+        .mobile-menu-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #1B5E20, #4CAF50);
+        }
+
+        /* Mobile Menu Items - Enhanced Styling */
+        .mobile-menu-nav {
+            padding: 24px 0;
+        }
+
+        .mobile-menu-item {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active .mobile-menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(4) {
+            transition-delay: 0.25s;
+        }
+
+        .mobile-menu-link {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            margin: 0 12px;
+            color: #374151;
+            font-weight: 500;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(27, 94, 32, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mobile-menu-link:hover::before {
+            left: 100%;
+        }
+
+        .mobile-menu-link i {
+            margin-right: 12px;
+            font-size: 18px;
+            color: #1B5E20;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-link:hover {
+            background: rgba(27, 94, 32, 0.08);
+            color: #1B5E20;
+            transform: translateX(4px);
+        }
+
+        .mobile-menu-link:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Footer - Login Button */
+        .mobile-menu-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(27, 94, 32, 0.1);
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        .mobile-login-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.2s ease;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1B5E20 0%, #228B22 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
             border: none;
-            position: relative;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
         }
 
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .mobile-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 94, 32, 0.4);
         }
 
-        .close-btn::before,
-        .close-btn::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 1.5px;
-            background: white;
-            border-radius: 1px;
+        .mobile-login-btn:active {
+            transform: translateY(0);
         }
 
-        .close-btn::before {
-            transform: rotate(45deg);
+        .mobile-login-btn i {
+            margin-right: 8px;
+            font-size: 16px;
         }
 
-        .close-btn::after {
-            transform: rotate(-45deg);
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .mobile-menu {
+                width: 100%;
+                border-radius: 0;
+            }
         }
+
+        /* Dark Mode Support (Optional) */
+        @media (prefers-color-scheme: dark) {
+            .mobile-menu {
+                background: #1f2937;
+                color: #f9fafb;
+            }
+
+            .mobile-menu-header {
+                background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-menu-link {
+                color: #f9fafb;
+            }
+
+            .mobile-menu-link:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: #4CAF50;
+            }
+
+            .mobile-menu-footer {
+                background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* ========== END HAMBURGER MENU STYLES ========== */
 
         .logo-bg {
             border-bottom-right-radius: 150px 100px;
@@ -273,39 +503,39 @@
             </div>
         </header>
 
-        {{-- Navigation Bar --}}
-        <nav class="bg-beige py-3 md:py-5 relative z-[1000]">
+        <nav class="bg-beige py-3 md:py-5 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out">
             <div class="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-5">
                 <div class="relative flex items-center gap-4 z-[100]">
                     <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
                     <div
-                        class="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-12 bg-transparent">
-                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama Biomass Energy Logo"
+                        class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-12 bg-transparent">
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Biomass Energy Logo"
                             class="w-full h-full object-contain" />
                     </div>
                 </div>
 
                 <ul class="hidden lg:flex list-none gap-6 xl:gap-10">
                     <li><a href="#home"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">Home</a>
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">Home</a>
                     </li>
                     <li><a href="#about"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">About
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">About
                             Us</a></li>
                     <li><a href="#products"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">Products</a>
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">Products</a>
                     </li>
                     <li><a href="#exports"
-                            class="nav-link no-underline text-gray-800 font-medium text-base py-2.5 relative transition-colors duration-300 hover:text-green-light">Exports
+                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light">Exports
                             & Partnerships</a></li>
                     <li>
-                        <a href="#login"
-                            class="px-4 xl:px-6 py-4 xl:py-3 border-none rounded-md text-sm xl:text-base font-semibold cursor-pointer transition-all duration-300 text-center bg-green-custom text-white shadow-green-custom hover:bg-green-hover hover:-translate-y-0.5 hover:shadow-green-hover">
+                        <a href="{{ route('admin.login') }}"
+                            class="px-4 xl:px-6 py-4 xl:py-3 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all">
                             Login
                         </a>
                     </li>
                 </ul>
 
+                <!-- IMPROVED HAMBURGER BUTTON -->
                 <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -313,85 +543,59 @@
                 </button>
             </div>
 
+            <!-- Mobile Menu Overlay -->
             <div class="mobile-menu-overlay" id="menu-overlay"></div>
 
+            <!-- IMPROVED MOBILE MENU -->
             <div class="mobile-menu" id="mobile-menu">
-                <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50">
+                <!-- Mobile Menu Header -->
+                <div class="mobile-menu-header">
                     <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&q=80"
-                            alt="Fujiyama logo small icon" class="w-8 h-8 object-contain rounded-full" />
-                        <span class="font-bold text-lg text-gray-800">Fujiyama</span>
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
+                            class="w-10 h-10 object-contain rounded-full" />
+                        <div>
+                            <h3 class="font-bold text-lg text-green-custom">Fujiyama</h3>
+                            <p class="text-xs text-gray-600">Biomass Energy</p>
+                        </div>
                     </div>
-                    <button class="hamburger open" id="close-btn" aria-label="Close mobile menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
                 </div>
 
-                <nav class="px-4 py-6">
+                <!-- Mobile Menu Navigation -->
+                <nav class="mobile-menu-nav">
                     <ul class="space-y-2">
                         <li class="mobile-menu-item">
-                            <a href="#home"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-home w-6 mr-4 text-green-custom"></i>
-                                <span>Home</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
+                            <a href="#home" class="mobile-menu-link">
+                                <i class="fas fa-home"></i>
+                                Home
                             </a>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#about"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-info-circle w-6 mr-4 text-green-custom"></i>
-                                <span>About Us</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
+                            <a href="#about" class="mobile-menu-link">
+                                <i class="fas fa-info-circle"></i>
+                                About Us
                             </a>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#products"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-leaf w-6 mr-4 text-green-custom"></i>
-                                <span>Products</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
+                            <a href="#products" class="mobile-menu-link">
+                                <i class="fas fa-cube"></i>
+                                Products
                             </a>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#exports"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium text-base hover:bg-green-50 hover:text-green-custom rounded-xl transition-all duration-200 active:scale-95">
-                                <i class="fas fa-globe w-6 mr-4 text-green-custom"></i>
-                                <span>Exports & Partnerships</span>
-                                <i class="fas fa-chevron-right ml-auto text-xs text-gray-400"></i>
+                            <a href="#exports" class="mobile-menu-link">
+                                <i class="fas fa-globe"></i>
+                                Exports & Partnerships
                             </a>
                         </li>
                     </ul>
                 </nav>
 
-                <div class="p-6 border-t border-gray-100 bg-gray-50 mt-auto">
-                    <div class="mobile-menu-item">
-                        <a href="#login"
-                            class="mobile-menu-link flex items-center justify-center w-full px-6 py-4 bg-green-custom text-white font-semibold rounded-xl hover:bg-green-hover transition-all duration-200 active:scale-95 shadow-lg">
-                            <i class="fas fa-sign-in-alt mr-3"></i>
-                            <span>Login</span>
-                        </a>
-                    </div>
-
-                    <div class="mt-6 pt-4 border-t border-gray-200">
-                        <div class="text-center">
-                            <p class="text-sm text-gray-600 mb-2">Butuh bantuan?</p>
-                            <div class="flex items-center justify-center space-x-4">
-                                <a href="tel:+621234567890"
-                                    class="flex items-center text-green-custom hover:text-green-hover transition-colors">
-                                    <i class="fas fa-phone text-sm mr-2"></i>
-                                    <span class="text-sm font-medium">Call Us</span>
-                                </a>
-                                <a href="mailto:info@fujiyama.com"
-                                    class="flex items-center text-green-custom hover:text-green-hover transition-colors">
-                                    <i class="fas fa-envelope text-sm mr-2"></i>
-                                    <span class="text-sm font-medium">Email</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Mobile Menu Footer -->
+                <div class="mobile-menu-footer">
+                    <button class="mobile-login-btn" onclick="window.location.href='{{ route('admin.login') }}'">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
                 </div>
             </div>
         </nav>
@@ -407,7 +611,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-12 space-y-6 lg:space-y-0 max-w-4xl">
-            <img src="{{ asset('assets/about.jpg') }}"
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
                 alt="Close-up image of PKS charcoal pellets and a white block product on a wooden pallet"
                 class="w-full lg:w-48 h-48 lg:h-36 object-cover rounded-md flex-shrink-0" />
             <div>
@@ -502,7 +706,6 @@
         </div>
     </section>
 
-
     {{--  Articles Section --}}
     <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pb-8 md:pb-12" id="articles">
         <div class="flex justify-between items-center mb-4 md:mb-6">
@@ -590,6 +793,7 @@
         </div>
     </section>
 
+
     <section
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-6 flex flex-col md:flex-row items-center justify-between border-t border-gray-300 gap-4">
         <h3 class="font-extrabold text-sm md:text-base max-w-xs leading-tight text-center md:text-left">
@@ -607,10 +811,9 @@
             <div class="flex flex-col md:flex-row md:justify-between md:space-x-12">
                 <div class="flex flex-col space-y-3 md:flex-1">
                     <div class="flex items-center space-x-2">
-                        <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                            alt="Fujiyama logo icon with mountain and leaf"
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
                             class="w-6 h-6 object-contain rounded-full" />
-                        <span class="font-bold text-xs md:text-sm">fujiyama</span>
+                        <span class="font-bold text-xs md:text-sm">fujiyamabiomassenergy</span>
                     </div>
                     <p class="text-[9px] md:text-xs max-w-xs">
                         Fujiyama Biomass Energy provides sustainable energy solutions for customers around the world
@@ -656,86 +859,83 @@
     <script>
         class MobileMenuController {
             constructor() {
-                this.menuBtn = document.getElementById('menu-btn');
-                this.closeBtn = document.getElementById('close-btn');
-                this.mobileMenu = document.getElementById('mobile-menu');
-                this.menuOverlay = document.getElementById('menu-overlay');
-                this.mobileLinks = document.querySelectorAll('.mobile-menu-link');
-                this.isMenuOpen = false;
+                this.menuBtn = document.getElementById('menu-btn')
+                this.mobileMenu = document.getElementById('mobile-menu')
+                this.menuOverlay = document.getElementById('menu-overlay')
+                this.mobileLinks = document.querySelectorAll('.mobile-menu-link')
+                this.isMenuOpen = false
 
-                this.init();
+                this.init()
             }
 
             init() {
-                // Event listeners
-                this.menuBtn.addEventListener('click', () => this.toggleMenu());
-                this.closeBtn.addEventListener('click', () => this.closeMenu());
-                this.menuOverlay.addEventListener('click', () => this.closeMenu());
+                this.menuBtn.addEventListener('click', () => this.toggleMenu())
+                this.menuOverlay.addEventListener('click', () => this.closeMenu())
 
-                // Close menu when clicking on navigation links
                 this.mobileLinks.forEach(link => {
-                    link.addEventListener('click', () => this.closeMenu());
-                });
+                    link.addEventListener('click', () => this.closeMenu())
+                })
 
-                // Close menu with escape key
-                document.addEventListener('keydown', (e) => {
+                document.addEventListener('keydown', e => {
                     if (e.key === 'Escape' && this.isMenuOpen) {
-                        this.closeMenu();
+                        this.closeMenu()
                     }
-                });
+                })
 
-                // Handle resize - close menu if screen becomes larger
                 window.addEventListener('resize', () => {
                     if (window.innerWidth >= 1024 && this.isMenuOpen) {
-                        this.closeMenu();
+                        this.closeMenu()
                     }
-                });
+                })
             }
 
             toggleMenu() {
-                if (this.isMenuOpen) {
-                    this.closeMenu();
-                } else {
-                    this.openMenu();
-                }
+                this.isMenuOpen ? this.closeMenu() : this.openMenu()
             }
 
             openMenu() {
-                this.isMenuOpen = true;
-                this.menuBtn.classList.add('open');
-                this.mobileMenu.classList.add('active');
-                this.menuOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling body when menu is open
+                this.isMenuOpen = true
+                this.menuBtn.classList.add('open')
+                this.mobileMenu.classList.add('active')
+                this.menuOverlay.classList.add('active')
+                document.body.style.overflow = 'hidden'
             }
 
             closeMenu() {
-                this.isMenuOpen = false;
-                this.menuBtn.classList.remove('open');
-                this.mobileMenu.classList.remove('active');
-                this.menuOverlay.classList.remove('active');
-                document.body.style.overflow = ''; // Restore body scrolling
+                this.isMenuOpen = false
+                this.menuBtn.classList.remove('open')
+                this.mobileMenu.classList.remove('active')
+                this.menuOverlay.classList.remove('active')
+                document.body.style.overflow = ''
             }
         }
 
-        // Initialize the mobile menu when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new MobileMenuController();
-        });
+            new MobileMenuController()
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+            // Navbar shrink on scroll
+            const navbar = document.querySelector('nav')
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 100)
+            })
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault()
+                    const target = document.querySelector(this.getAttribute('href'))
+                    if (target) {
+                        const offset = target.offsetTop - document.querySelector('nav').offsetHeight
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        })
+                    }
+                })
+            })
+        })
     </script>
+
 </body>
 
 </html>
