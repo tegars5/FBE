@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/fujiyama-logo.png') }}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/fujiyama-logo.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/fujiyama-logo-32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/fujiyama-logo-96.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/fujiyama-logo-apple.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/fujiyama-logo.ico') }}" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Fujiyama Biomass Energy</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -119,86 +127,115 @@
             width: 100%;
         }
 
-        /* Improved Hamburger Menu Styles */
+        /* ========== IMPROVED HAMBURGER MENU STYLES ========== */
+
+        /* Hamburger Button - Modern Design */
         .hamburger {
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
-            z-index: 1001;
-            padding: 4px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            border: none;
             background: transparent;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1001;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .hamburger:hover {
-            background: rgba(27, 94, 32, 0.1);
+            background: rgba(27, 94, 32, 0.08);
+            transform: scale(1.05);
         }
 
+        .hamburger:active {
+            transform: scale(0.95);
+        }
+
+        /* Hamburger Lines - Premium Animation */
         .hamburger-line {
-            width: 20px;
-            height: 2.5px;
+            display: block;
+            width: 24px;
+            height: 2px;
             background: #1B5E20;
             border-radius: 2px;
-            transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             transform-origin: center;
-            margin: 1.5px 0;
+            position: relative;
         }
 
-        .hamburger.open .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(0, 7px);
-            background: #1B5E20;
+        .hamburger-line:nth-child(1) {
+            transform: translateY(-6px);
         }
 
-        .hamburger.open .hamburger-line:nth-child(2) {
+        .hamburger-line:nth-child(2) {
+            transform: translateY(0);
+            width: 20px;
+        }
+
+        .hamburger-line:nth-child(3) {
+            transform: translateY(6px);
+        }
+
+        /* Active State - Smooth X Animation */
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translateY(0);
+            width: 24px;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
             opacity: 0;
-            transform: scale(0);
+            transform: scale(0) rotate(180deg);
         }
 
-        .hamburger.open .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(0, -7px);
-            background: #1B5E20;
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translateY(0);
+            width: 24px;
         }
 
-        /* Mobile Menu Overlay */
+        /* Mobile Menu Overlay - Smooth Backdrop */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: rgba(0, 0, 0, 0);
-            z-index: 999;
+            backdrop-filter: blur(0px);
+            z-index: 998;
             visibility: hidden;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .mobile-menu-overlay.active {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             visibility: visible;
             opacity: 1;
         }
 
-        /* Mobile Menu Slide */
+        /* Mobile Menu - Modern Slide-in Design */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: 0;
-            width: 280px;
+            width: 320px;
+            max-width: 85vw;
             height: 100vh;
-            background: #F5F5DC;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+            background: #ffffff;
+            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
             transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 999;
             overflow-y: auto;
             visibility: hidden;
+            border-radius: 24px 0 0 24px;
         }
 
         .mobile-menu.active {
@@ -206,42 +243,177 @@
             visibility: visible;
         }
 
-        /* Close Button */
-        .close-btn {
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
+        /* Mobile Menu Header - Clean Design */
+        .mobile-menu-header {
+            position: relative;
+            background: linear-gradient(135deg, #F5F5DC 0%, #ffffff 100%);
+            border-bottom: 1px solid rgba(27, 94, 32, 0.1);
+            padding: 24px;
+        }
+
+        .mobile-menu-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #1B5E20, #4CAF50);
+        }
+
+        /* Mobile Menu Items - Enhanced Styling */
+        .mobile-menu-nav {
+            padding: 24px 0;
+        }
+
+        .mobile-menu-item {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active .mobile-menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(4) {
+            transition-delay: 0.25s;
+        }
+
+        .mobile-menu-link {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            margin: 0 12px;
+            color: #374151;
+            font-weight: 500;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(27, 94, 32, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mobile-menu-link:hover::before {
+            left: 100%;
+        }
+
+        .mobile-menu-link i {
+            margin-right: 12px;
+            font-size: 18px;
+            color: #1B5E20;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-link:hover {
+            background: rgba(27, 94, 32, 0.08);
+            color: #1B5E20;
+            transform: translateX(4px);
+        }
+
+        .mobile-menu-link:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu Footer - Login Button */
+        .mobile-menu-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(27, 94, 32, 0.1);
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        .mobile-login-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.2s ease;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1B5E20 0%, #228B22 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
             border: none;
-            position: relative;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
         }
 
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .mobile-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 94, 32, 0.4);
         }
 
-        .close-btn::before,
-        .close-btn::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 1.5px;
-            background: white;
-            border-radius: 1px;
+        .mobile-login-btn:active {
+            transform: translateY(0);
         }
 
-        .close-btn::before {
-            transform: rotate(45deg);
+        .mobile-login-btn i {
+            margin-right: 8px;
+            font-size: 16px;
         }
 
-        .close-btn::after {
-            transform: rotate(-45deg);
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .mobile-menu {
+                width: 100%;
+                border-radius: 0;
+            }
         }
+
+        /* Dark Mode Support (Optional) */
+        @media (prefers-color-scheme: dark) {
+            .mobile-menu {
+                background: #1f2937;
+                color: #f9fafb;
+            }
+
+            .mobile-menu-header {
+                background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-menu-link {
+                color: #f9fafb;
+            }
+
+            .mobile-menu-link:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: #4CAF50;
+            }
+
+            .mobile-menu-footer {
+                background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* ========== END HAMBURGER MENU STYLES ========== */
 
         .logo-bg {
             border-bottom-right-radius: 150px 100px;
@@ -337,7 +509,7 @@
                     <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
                     <div
                         class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-12 bg-transparent">
-                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama Biomass Energy Logo"
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Biomass Energy Logo"
                             class="w-full h-full object-contain" />
                     </div>
                 </div>
@@ -363,7 +535,7 @@
                     </li>
                 </ul>
 
-                <!-- ✅ SATU-SATUNYA tombol hamburger -->
+                <!-- IMPROVED HAMBURGER BUTTON -->
                 <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -371,47 +543,60 @@
                 </button>
             </div>
 
-            <!-- Overlay -->
+            <!-- Mobile Menu Overlay -->
             <div class="mobile-menu-overlay" id="menu-overlay"></div>
 
-            <!-- Mobile menu -->
+            <!-- IMPROVED MOBILE MENU -->
             <div class="mobile-menu" id="mobile-menu">
-                <div class="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50">
+                <!-- Mobile Menu Header -->
+                <div class="mobile-menu-header">
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama logo"
-                            class="w-8 h-8 object-contain rounded-full" />
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
+                            class="w-10 h-10 object-contain rounded-full" />
+                        <div>
+                            <h3 class="font-bold text-lg text-green-custom">Fujiyama</h3>
+                            <p class="text-xs text-gray-600">Biomass Energy</p>
+                        </div>
                     </div>
                 </div>
 
-                <nav class="px-4 py-6">
+                <!-- Mobile Menu Navigation -->
+                <nav class="mobile-menu-nav">
                     <ul class="space-y-2">
                         <li class="mobile-menu-item">
-                            <a href="#home"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">Home</a>
+                            <a href="#home" class="mobile-menu-link">
+                                <i class="fas fa-home"></i>
+                                Home
+                            </a>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#about"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">About
-                                Us</a>
+                            <a href="#about" class="mobile-menu-link">
+                                <i class="fas fa-info-circle"></i>
+                                About Us
+                            </a>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#products"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">Products</a>
+                            <a href="#products" class="mobile-menu-link">
+                                <i class="fas fa-cube"></i>
+                                Products
+                            </a>
                         </li>
                         <li class="mobile-menu-item">
-                            <a href="#exports"
-                                class="mobile-menu-link flex items-center py-4 px-4 text-gray-800 font-medium hover:text-green-custom hover:bg-green-50 rounded-xl">Exports
-                                & Partnerships</a>
+                            <a href="#exports" class="mobile-menu-link">
+                                <i class="fas fa-globe"></i>
+                                Exports & Partnerships
+                            </a>
                         </li>
                     </ul>
-                    <div class="p-6 border-t border-gray-100 bg-gray-50">
-                        <a href="{{ route('admin.login') }}"
-                            class="block w-full text-center bg-green-custom text-white font-semibold py-3 rounded-lg hover:bg-green-hover transition-all">
-                            <i class="fas fa-sign-in-alt mr-2"></i> Login
-                        </a>
-                    </div>
-
                 </nav>
+
+                <!-- Mobile Menu Footer -->
+                <div class="mobile-menu-footer">
+                    <button class="mobile-login-btn" onclick="window.location.href='{{ route('admin.login') }}'">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </div>
             </div>
         </nav>
     </div>
@@ -426,7 +611,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-12 space-y-6 lg:space-y-0 max-w-4xl">
-            <img src="{{ asset('assets/about.jpg') }}"
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
                 alt="Close-up image of PKS charcoal pellets and a white block product on a wooden pallet"
                 class="w-full lg:w-48 h-48 lg:h-36 object-cover rounded-md flex-shrink-0" />
             <div>
@@ -626,7 +811,7 @@
             <div class="flex flex-col md:flex-row md:justify-between md:space-x-12">
                 <div class="flex flex-col space-y-3 md:flex-1">
                     <div class="flex items-center space-x-2">
-                        <img src="{{ asset('assets/logo.png') }}" alt="Fujiyama logo icon with mountain and leaf"
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
                             class="w-6 h-6 object-contain rounded-full" />
                         <span class="font-bold text-xs md:text-sm">fujiyamabiomassenergy</span>
                     </div>

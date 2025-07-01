@@ -1240,7 +1240,7 @@ hr {
 
 /* ========== LOGIN PAGE ========== */
 .login-page {
-    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    background: linear-gradient(to right, #28a96f, #1b5e20);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1366,7 +1366,7 @@ hr {
 }
 
 .login-btn-dash {
-    background-color: #4308e7;
+    background-color: #1b5e20;
     color: white;
     border: none;
     border-radius: 8px;

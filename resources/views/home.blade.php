@@ -611,7 +611,7 @@
         </div>
 
         <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-12 space-y-6 lg:space-y-0 max-w-4xl">
-            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            <img src="{{ asset('assets/about.jpg') }}"
                 alt="Close-up image of PKS charcoal pellets and a white block product on a wooden pallet"
                 class="w-full lg:w-48 h-48 lg:h-36 object-cover rounded-md flex-shrink-0" />
             <div>
@@ -655,53 +655,58 @@
     <section class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-6 md:mb-10">Why choose us?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-                <div
-                    class="space-y-3 text-center md:text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
-                    <div class="flex justify-center md:justify-start">
-                        <i class="fas fa-award text-green-custom text-2xl"></i>
-                    </div>
-                    <h3 class="font-extrabold text-sm md:text-base">Certified PKS Charcoal</h3>
-                    <p class="text-xs md:text-sm max-w-md mx-auto md:mx-0 text-gray-600">We supply GGL-certified PKS
-                        charcoal, ensuring sustainability and compliance.</p>
-                    <a href="#"
-                        class="text-xs md:text-sm font-semibold text-green-custom hover:text-green-hover hover:underline flex items-center justify-center md:justify-start mx-auto md:mx-0">
-                        See Certification <i class="fas fa-arrow-right ml-1"></i>
-                    </a>
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                        alt="Biomass energy facility certification"
-                        class="rounded-md mt-3 mx-auto md:mx-0 transition-all transform hover:scale-105 w-full h-32 md:h-40 object-cover" />
-                </div>
 
+            <!-- Layout 4 kolom sesuai gambar -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+
+                <!-- Kolom 1: High-Quality PKS Material (Text) -->
                 <div
-                    class="space-y-3 text-center md:text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
-                    <div class="flex justify-center md:justify-start">
+                    class="space-y-3 text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
+                    <div class="flex justify-start">
                         <i class="fas fa-shield-alt text-green-custom text-2xl"></i>
                     </div>
                     <h3 class="font-extrabold text-sm md:text-base">High-Quality PKS Material</h3>
-                    <p class="text-xs md:text-sm max-w-md mx-auto md:mx-0 text-gray-600">Sourced from selected
-                        plantations,
-                        our PKS ensures high calorific value and low ash content.</p>
-                    <div class="h-5"></div>
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                        alt="High quality PKS material"
-                        class="rounded-md mt-3 mx-auto md:mx-0 transition-all transform hover:scale-105 w-full h-32 md:h-40 object-cover" />
+                    <p class="text-xs md:text-sm text-gray-600">Sourced from selected plantations, our PKS ensures high
+                        calorific value and low ash content.</p>
+                    <a href="#"
+                        class="text-xs md:text-sm font-semibold text-green-custom hover:text-green-hover hover:underline flex items-center justify-start">
+                        View Product Specs <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
                 </div>
 
+                <!-- Kolom 2: Gambar High-Quality PKS Material -->
+                <div class="transition-all transform hover:scale-105">
+                    <img src="{{ asset('assets/pks-material.jpg') }}" alt="High quality PKS material"
+                        class="rounded-md w-full h-48 md:h-64 object-cover" />
+                    <div class="text-center mt-2">
+                        <h4 class="font-bold text-sm md:text-base">High-Quality PKS Material</h4>
+                    </div>
+                </div>
+
+                <!-- Kolom 3: Reliable Logistics & Support (Text) -->
                 <div
-                    class="space-y-3 text-center md:text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6 md:col-span-2 lg:col-span-1">
-                    <div class="flex justify-center md:justify-start">
+                    class="space-y-3 text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
+                    <div class="flex justify-start">
                         <i class="fas fa-globe text-green-custom text-2xl"></i>
                     </div>
                     <h3 class="font-extrabold text-sm md:text-base">Reliable Logistics & Support</h3>
-                    <p class="text-xs md:text-sm max-w-md mx-auto md:mx-0 text-gray-600">We provide export-ready
-                        packaging
-                        with global shipping solutions.</p>
-                    <div class="h-5"></div>
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                        alt="Logistics and shipping"
-                        class="rounded-md mt-3 mx-auto md:mx-0 transition-all transform hover:scale-105 w-full h-32 md:h-40 object-cover" />
+                    <p class="text-xs md:text-sm text-gray-600">We provide export-ready packaging with global shipping
+                        support.</p>
+                    <a href="#"
+                        class="text-xs md:text-sm font-semibold text-green-custom hover:text-green-hover hover:underline flex items-center justify-start">
+                        View Product Specs <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
                 </div>
+
+                <!-- Kolom 4: Gambar High-Quality PKS Material -->
+                <div class="transition-all transform hover:scale-105">
+                    <img src="{{ asset('assets/product.png') }}" alt="High quality PKS material"
+                        class="rounded-md w-full h-48 md:h-64 object-cover" />
+                    <div class="text-center mt-2">
+                        <h4 class="font-bold text-sm md:text-base">High-Quality PKS Material</h4>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
