@@ -601,6 +601,61 @@
         </nav>
     </div>
 
+    <section class="bg-beige py-8 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
+            <p class="text-base md:text-lg text-gray-700 text-center mb-8 max-w-3xl mx-auto">
+                Kami berkomitmen pada pengembangan produk arang PKS yang berkelanjutan, memastikan kualitas dan performa
+                terbaik
+                untuk memenuhi kebutuhan energi biomassa global.
+            </p>
+
+            <h2 class="text-xl md:text-2xl font-extrabold text-center mb-6 md:mb-10">Our PKS Charcoal Highlights</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+
+                <div
+                    class="space-y-3 text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
+                    <div class="flex justify-start">
+                        <i class="fas fa-fire text-green-custom text-2xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-sm md:text-base">High Calorific Value</h3>
+                    <p class="text-xs md:text-sm text-gray-600">Arang PKS kami memiliki nilai kalori tinggi,
+                        menghasilkan energi yang efisien dan kuat untuk berbagai aplikasi industri.</p>
+                </div>
+
+                <div
+                    class="space-y-3 text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
+                    <div class="flex justify-start">
+                        <i class="fas fa-water text-green-custom text-2xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-sm md:text-base">Low Ash & Moisture</h3>
+                    <p class="text-xs md:text-sm text-gray-600">Diproses dengan cermat untuk memastikan kandungan abu
+                        dan kelembaban yang minimal, menghasilkan pembakaran yang lebih bersih dan efisien.</p>
+                </div>
+
+                <div
+                    class="space-y-3 text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
+                    <div class="flex justify-start">
+                        <i class="fas fa-globe-americas text-green-custom text-2xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-sm md:text-base">Global Export Quality</h3>
+                    <p class="text-xs md:text-sm text-gray-600">Memenuhi standar internasional yang ketat, arang PKS
+                        kami siap untuk diekspor ke pasar global dan diakui secara kualitas.</p>
+                </div>
+
+                <div
+                    class="space-y-3 text-left transition-all transform hover:scale-105 hover:shadow-lg hover:bg-gray-50 rounded-lg p-4 md:p-6">
+                    <div class="flex justify-start">
+                        <i class="fas fa-cogs text-green-custom text-2xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-sm md:text-base">Continuous Innovation</h3>
+                    <p class="text-xs md:text-sm text-gray-600">Kami terus berinovasi dalam pengembangan produk
+                        biomassa untuk memberikan solusi energi terbarukan yang unggul dan berkelanjutan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- About Section --}}
     <section id="about"
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12 space-y-8 md:space-y-12">
@@ -852,9 +907,16 @@
                     </div>
                     <div class="space-y-1 col-span-2 md:col-span-1">
                         <h4 class="font-semibold text-xs md:text-sm">Office -</h4>
-                        <p class="text-[9px] md:text-xs text-gray-600 max-w-xs">Jakarta, Indonesia</p>
+                        <p class="text-[9px] md:text-xs text-gray-600 max-w-xs">SOHO Podomoro City, Jalan Let. Jend. S.
+                            Parman Kav. 28 Unit 2011 Kelurahan Tanjung Duren Selatan, Kec. Grogol Petamburan
+                            West Jakarta (Jakarta Barat), DKI Jakarta, 11470
+                            Indonesia</p>
+                        </p>
                         <h4 class="font-semibold text-xs md:text-sm mt-3">Contact us -</h4>
-                        <p class="text-[9px] md:text-xs text-gray-600 max-w-xs">support@fujiyamabiomass.com</p>
+                        <p class="text-[9px] md:text-xs text-gray-600 max-w-xs">azmi@fbe.co.id</p>
+                        <h4 class="font-semibold text-xs md:text-sm mt-3">Phone number</h4>
+                        <p class="text-[9px] md:text-xs text-gray-600 max-w-xs">0851 - 2479 - 0253</p>
+                        <p class="text-[9px] md:text-xs text-gray-600 max-w-xs">0822 - 1149 - 9289</p>
                     </div>
                 </div>
             </div>
