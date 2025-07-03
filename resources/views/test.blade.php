@@ -712,23 +712,23 @@
                 </div>
             </div>
 
-            <div class="mb-8">
+            <div class="mb-8 text-center flex flex-col items-center px-4 sm:px-6 md:px-8">
                 <h3 class="text-lg font-bold mb-4">Management Team</h3>
-                <div class="flex gap-4 flex-wrap justify-center sm:justify-start">
-                    <div class="text-center">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="John Doe - CEO"
+                <div class="flex gap-4 flex-wrap justify-center sm:justify-center">
+                    <div class="flex flex-col items-center mx-4">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="John Doe - CEO"
                             class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
                         <p class="text-sm font-medium">John Doe</p>
                         <p class="text-xs text-gray-600">CEO</p>
                     </div>
-                    <div class="text-center">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Jane Smith - CTO"
+                    <div class="flex flex-col items-center mx-4">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Jane Smith - CTO"
                             class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
                         <p class="text-sm font-medium">Jane Smith</p>
                         <p class="text-xs text-gray-600">CTO</p>
                     </div>
-                    <div class="text-center">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Peter Jones - COO"
+                    <div class="flex flex-col items-center mx-4">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Peter Jones - COO"
                             class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
                         <p class="text-sm font-medium">Peter Jones</p>
                         <p class="text-xs text-gray-600">COO</p>
@@ -741,24 +741,23 @@
                 <h3 class="text-lg font-bold mb-4">Our Commitment to SDGs</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                     <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="SDG 7 - Affordable and Clean Energy"
-                            class="w-16 h-16 mb-1 object-contain">
+                        <img src="{{ asset('assets/logo-brand/SDG-7.png') }}"
+                            alt="SDG 7 - Affordable and Clean Energy" class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Affordable & Clean Energy</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="SDG 13 - Climate Action"
+                        <img src="{{ asset('assets/logo-brand/SDG-13.png') }}" alt="SDG 13 - Climate Action"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Climate Action</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="SDG 15 - Life on Land"
+                        <img src="{{ asset('assets/logo-brand/SDG-15.png') }}" alt="SDG 15 - Life on Land"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Life on Land</p>
                     </div>
-                    {{-- Tambahkan ikon SDGs lain yang relevan --}}
                     <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="SDG 8 - Decent Work and Economic Growth"
-                            class="w-16 h-16 mb-1 object-contain">
+                        <img src="{{ asset('assets/logo-brand/SDG-8.png') }}"
+                            alt="SDG 8 - Decent Work and Economic Growth" class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Decent Work & Economic Growth</p>
                     </div>
                 </div>
@@ -772,14 +771,14 @@
         </div>
     </section>
 
-    <section id="products" class="bg-gray-50 py-8 md:py-12">
+    <section id="products" class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Our Products</h2>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="PKS Charcoal"
+                    class="bg-beige rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
+                    <img src="{{ asset('assets/pks-material.jpg') }}" alt="PKS Charcoal"
                         class="w-full h-64 md:h-72 object-cover">
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Premium PKS Charcoal</h3>
@@ -849,7 +848,7 @@
                 </div>
 
                 <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
+                    class="bg-beige rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
                     <img src="{{ asset('assets/about.jpg') }}" alt="Raw PKS"
                         class="w-full h-64 md:h-72 object-cover">
                     <div class="p-6 md:p-8">
@@ -978,7 +977,7 @@
         </div>
     </section>
 
-    <section id="exports" class="bg-gray-50 py-8 md:py-12">
+    <section id="exports" class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Global Exports & Partnerships</h2>
 
@@ -1117,8 +1116,10 @@
 
                     <h4 class="font-semibold text-md mb-3 text-gray-800">Certification Documents:</h4>
                     <div class="grid grid-cols-2 gap-4">
-                        <a href="{{ asset('assets/about.jpg') }}" target="_blank" class="block group relative">
-                            <img src="{{ asset('assets/about.jpg') }}" alt="Certification Document 1 Thumbnail"
+                        <a href="{{ asset('assets/certifications/certificate_1_full.pdf') }}" target="_blank"
+                            class="block group relative">
+                            <img src="{{ asset('assets/certifications/certificate_thumb_1.jpg') }}"
+                                alt="Certification Document 1 Thumbnail"
                                 class="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform">
                             <span
                                 class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">View
@@ -1150,115 +1151,163 @@
             </div>
         </div>
     </section>
+    <section id="contact" class="py-8 sm:py-12 md:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Title -->
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-8 sm:mb-12 text-gray-900">
+                Contact Us
+            </h2>
 
-    <section id="contact" class="py-8 md:py-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
-            <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Get In Touch With Us</h2>
+            <!-- Main Grid -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <div>
-                    <h3 class="text-lg font-bold mb-6 text-green-custom">Direct Contact</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt text-green-custom text-xl mt-1"></i>
-                            <div>
-                                <p class="font-medium">Head Office</p>
-                                <p class="text-gray-600 text-sm">SOHO Podomoro City, Jalan Let. Jend. S. Parman Kav. 28
-                                    Unit 2011
-                                    Kelurahan Tanjung Duren Selatan, Kec. Grogol Petamburan
-                                    West Jakarta (Jakarta Barat), DKI Jakarta, 11470
-                                    Indonesia</p>
+                <!-- Contact Information -->
+                <div class="space-y-6">
+                    <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Direct Contact</h3>
+
+                    <!-- Contact Details -->
+                    <div class="space-y-6">
+                        <!-- Head Office -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <i
+                                class="fas fa-map-marker-alt text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
+                            <div class="min-w-0">
+                                <p class="font-semibold text-gray-900 mb-1">Head Office</p>
+                                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                                    Neo Soho Apartment, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
+                                    Tanjung Duren Selatan Subdistrict, Grogol Petamburan District<br>
+                                    West Jakarta, DKI Jakarta, 11470<br>
+                                    Indonesia
+                                </p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-phone text-green-custom text-xl mt-1"></i>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <i class="fas fa-phone text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
-                                <p class="font-medium">Phone Number</p>
-                                <p class="text-gray-600 text-sm">+62 877 8877 2342</p>
+                                <p class="font-semibold text-gray-900 mb-1">Phone Number</p>
+                                <a href="tel:+6285124790253"
+                                    class="text-gray-600 text-sm sm:text-base hover:text-green-custom transition-colors">
+                                    +62 851 2479 0253
+                                </a>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-envelope text-green-custom text-xl mt-1"></i>
+
+                        <!-- Email -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <i class="fas fa-envelope text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
-                                <p class="font-medium">Email Address</p>
-                                <p class="text-gray-600 text-sm">info@fujiyamabiomass.com</p>
+                                <p class="font-semibold text-gray-900 mb-1">Email Address</p>
+                                <a href="mailto:info@fujiyamabiomass.com"
+                                    class="text-gray-600 text-sm sm:text-base hover:text-green-custom transition-colors">
+                                    info@fujiyamabiomass.com
+                                </a>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-clock text-green-custom text-xl mt-1"></i>
+
+                        <!-- Business Hours -->
+                        <div class="flex items-start gap-3 sm:gap-4">
+                            <i class="fas fa-clock text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
-                                <p class="font-medium">Business Hours</p>
-                                <p class="text-gray-600 text-sm">Mon - Fri: 8:00 AM - 5:00 PM (WIB)</p>
+                                <p class="font-semibold text-gray-900 mb-1">Business Hours</p>
+                                <p class="text-gray-600 text-sm sm:text-base">Monday - Friday: 08:00 - 17:00 WIB</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3 pt-4">
-                            <i class="fab fa-whatsapp text-green-custom text-2xl mt-1"></i>
+
+                        <!-- WhatsApp -->
+                        <div class="flex items-start gap-3 sm:gap-4 p-4 bg-green-50 rounded-lg">
+                            <i class="fab fa-whatsapp text-green-custom text-xl sm:text-2xl mt-1 flex-shrink-0"></i>
                             <div>
-                                <p class="font-medium">Connect via WhatsApp</p>
-                                <a href="https://wa.me/6281234567890" target="_blank"
-                                    class="text-green-custom hover:underline text-sm">+62 877 8877 2342</a>
-                                <p class="text-xs text-gray-500">Fast responses during business hours.</p>
+                                <p class="font-semibold text-gray-900 mb-1">Contact via WhatsApp</p>
+                                <a href="https://wa.me/6285124790253" target="_blank"
+                                    class="text-green-custom hover:text-green-hover transition-colors text-sm sm:text-base font-medium">
+                                    +62 851 2479 0253
+                                </a>
+                                <p class="text-xs sm:text-sm text-gray-500 mt-1">Quick response during business hours
+                                </p>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Office Image -->
+                    <div class="mt-8">
+                        <p class="font-semibold text-gray-900 mb-3">Our Office</p>
+                        <div class="w-full h-48 sm:h-64 md:h-80 bg-gray-200 rounded-lg overflow-hidden shadow-md">
+                            <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Our Office Building"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-2">Modern office space at Neo Soho Apartment</p>
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="text-lg font-bold mb-6 text-green-custom">Send Us a Message</h3>
-                    <form class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <input type="text" placeholder="First Name"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <input type="text" placeholder="Last Name"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                        </div>
-                        <input type="email" placeholder="Email Address"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                        <input type="text" placeholder="Company (Optional)"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                        <select
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-gray-700">
-                            <option value="">Select Inquiry Type</option>
-                            <option value="product">Product Information</option>
-                            <option value="quote">Price Quote</option>
-                            <option value="partnership">Partnership Opportunity</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <textarea placeholder="Your Message" rows="5"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"></textarea>
-                        <button type="submit"
-                            class="w-full bg-green-custom text-white py-3 rounded-lg font-semibold hover:bg-green-hover transition">
-                            Send Message
-                        </button>
-                    </form>
-
-                    <h3 class="text-lg font-bold mb-4 mt-8 text-green-custom">Find Our Office</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <!-- Foto Perusahaan -->
-                        <div class="space-y-3">
-                            <h4 class="font-semibold text-md text-gray-800">Our Office & Facilities</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="Fujiyama Office Building"
-                                    class="w-full h-24 object-cover rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="Office Reception Area"
-                                    class="w-full h-24 object-cover rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="Meeting Room"
-                                    class="w-full h-24 object-cover rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="Work Environment"
-                                    class="w-full h-24 object-cover rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer">
+                <!-- Contact Form and Map -->
+                <div class="space-y-8">
+                    <!-- Contact Form -->
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Send a Message</h3>
+                        <form class="space-y-4" onsubmit="handleSubmit(event)">
+                            <!-- Name Fields -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="First Name" required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
+                                <input type="text" placeholder="Last Name"
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
                             </div>
-                            <p class="text-xs text-gray-600">Professional environment in the heart of Jakarta</p>
-                        </div>
 
-                        <!-- Google Maps -->
-                        <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden shadow-md">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.101359050126!2d106.79368961476886!3d-6.173865795507345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f166b58b5d33%3A0x1b88ac61cc1a903!2sNeo%20Soho%20Apartemen!5e0!3m2!1sen!2sid!4v1678901234567!5m2!1sen!2sid"
-                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <!-- Email -->
+                            <input type="email" placeholder="Email Address" required
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
+
+                            <!-- Company -->
+                            <input type="text" placeholder="Company (Optional)"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
+
+                            <!-- Inquiry Type -->
+                            <select required
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-gray-700 text-sm sm:text-base">
+                                <option value="">Select Inquiry Type</option>
+                                <option value="product">Product Information</option>
+                                <option value="quote">Request for Quotation</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+
+                            <!-- Message -->
+                            <textarea placeholder="Your Message" rows="4" required
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base resize-none"></textarea>
+
+                            <!-- Submit Button -->
+                            <button type="submit"
+                                class="w-full bg-green-custom text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-hover transition-colors text-sm sm:text-base">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Map Section -->
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 text-green-custom">Office Location</h3>
+                        <div class="w-full">
+                            <div class="w-full h-64 sm:h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136532199!2d106.78738997458905!3d-6.174763660506777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1751515557555!5m2!1sid!2sid"
+                                    width="100%" height="100%" style="border:0;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
+                                </iframe>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 gap-2">
+                                <p class="text-xs sm:text-sm text-gray-600">
+                                    Click the map for directions to Neo Soho Central Park
+                                </p>
+                                <a href="https://maps.app.goo.gl/3JPcUpRDfP28vtj6A" target="_blank"
+                                    class="text-green-custom hover:text-green-hover transition-colors text-xs sm:text-sm flex items-center gap-1 font-medium">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Open in Google Maps
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-600 mt-2">Click on the map for directions.</p>
                 </div>
             </div>
         </div>
@@ -1406,6 +1455,11 @@
                 alert('Thank you for your message! We will get back to you soon.');
                 this.reset(); // Clear form fields
             });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
         }
     </script>
 </body>

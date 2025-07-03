@@ -777,7 +777,7 @@
                 <h3 class="text-lg font-bold mb-4">Our Commitment to SDGs</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
                     <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
-                        <img src="{{ asset('assets/sdgs/sdg_7.png') }}" alt="SDG 7 - Affordable and Clean Energy"
+                        <img src="{{ asset('assets/logo-brand/SDG.png') }}" alt="SDG 7 - Affordable and Clean Energy"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Affordable & Clean Energy</p>
                     </div>

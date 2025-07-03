@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login']);
