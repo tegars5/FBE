@@ -1,453 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/fujiyama-logo.png') }}" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/fujiyama-logo.svg') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/fujiyama-logo-32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/fujiyama-logo-96.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/fujiyama-logo-apple.png') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/fujiyama-logo.ico') }}" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <title>Fujiyama Biomass Energy</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap"
-        rel="stylesheet" />
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'green-custom': '#1B5E20',
-                        'green-hover': '#228B22',
-                        'green-light': '#4CAF50',
-                        'beige': '#F5F5DC',
-                        'toner': '#926a2d'
-                    },
-                    boxShadow: {
-                        'green-custom': '0 4px 15px rgba(46, 125, 50, 0.4)',
-                        'green-hover': '0 6px 20px rgba(46, 125, 50, 0.6)',
-                        'white-custom': '0 6px 20px rgba(255, 255, 255, 0.3)'
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            padding-top: 80px;
-        }
-
-        @media (min-width: 768px) {
-            body {
-                padding-top: 100px;
-            }
-        }
-
-        .logo-image-container {
-            transition: top 0.3s ease-in-out;
-        }
-
-        nav.scrolled .logo-image-container {
-            position: relative;
-            top: 0 !important;
-            width: 4rem;
-            height: 4rem;
-        }
-
-        nav.scrolled .logo-image-container img {
-            object-fit: contain;
-        }
-
-        nav.scrolled .logo-bg {
-            display: none;
-        }
-
-        nav.scrolled {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-        }
-
-        .text-shadow-hero {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .text-shadow-hero-sub {
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #4CAF50;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Hamburger Menu Styles */
-        .hamburger {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 1001;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .hamburger:hover {
-            background: rgba(27, 94, 32, 0.08);
-            transform: scale(1.05);
-        }
-
-        .hamburger:active {
-            transform: scale(0.95);
-        }
-
-        .hamburger-line {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #1B5E20;
-            border-radius: 2px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            transform-origin: center;
-            position: relative;
-        }
-
-        .hamburger-line:nth-child(1) {
-            transform: translateY(-6px);
-        }
-
-        .hamburger-line:nth-child(2) {
-            transform: translateY(0);
-            width: 20px;
-        }
-
-        .hamburger-line:nth-child(3) {
-            transform: translateY(6px);
-        }
-
-        .hamburger.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translateY(0);
-            width: 24px;
-        }
-
-        .hamburger.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-            transform: scale(0) rotate(180deg);
-        }
-
-        .hamburger.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translateY(0);
-            width: 24px;
-        }
-
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0);
-            backdrop-filter: blur(0px);
-            z-index: 998;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .mobile-menu-overlay.active {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 320px;
-            max-width: 85vw;
-            height: 100vh;
-            background: #ffffff;
-            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
-            transform: translateX(100%);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 999;
-            overflow-y: auto;
-            visibility: hidden;
-            border-radius: 24px 0 0 24px;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-            visibility: visible;
-        }
-
-        .mobile-menu-header {
-            position: relative;
-            background: linear-gradient(135deg, #F5F5DC 0%, #ffffff 100%);
-            border-bottom: 1px solid rgba(27, 94, 32, 0.1);
-            padding: 24px;
-        }
-
-        .mobile-menu-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #1B5E20, #4CAF50);
-        }
-
-        .mobile-menu-nav {
-            padding: 24px 0;
-        }
-
-        .mobile-menu-item {
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu.active .mobile-menu-item {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(2) {
-            transition-delay: 0.15s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(3) {
-            transition-delay: 0.2s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(4) {
-            transition-delay: 0.25s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(5) {
-            transition-delay: 0.3s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(6) {
-            transition-delay: 0.35s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(7) {
-            transition-delay: 0.4s;
-        }
-
-        .mobile-menu.active .mobile-menu-item:nth-child(8) {
-            transition-delay: 0.45s;
-        }
-
-        .mobile-menu-link {
-            display: flex;
-            align-items: center;
-            padding: 16px 24px;
-            margin: 0 12px;
-            color: #374151;
-            font-weight: 500;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mobile-menu-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(27, 94, 32, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .mobile-menu-link:hover::before {
-            left: 100%;
-        }
-
-        .mobile-menu-link i {
-            margin-right: 12px;
-            font-size: 18px;
-            color: #1B5E20;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-link:hover {
-            background: rgba(27, 94, 32, 0.08);
-            color: #1B5E20;
-            transform: translateX(4px);
-        }
-
-        .mobile-menu-link:hover i {
-            transform: scale(1.1);
-        }
-
-        .mobile-menu-footer {
-            padding: 24px;
-            border-top: 1px solid rgba(27, 94, 32, 0.1);
-            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-        }
-
-        .mobile-login-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #1B5E20 0%, #228B22 100%);
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            border: none;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
-        }
-
-        .mobile-login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(27, 94, 32, 0.4);
-        }
-
-        .mobile-login-btn:active {
-            transform: translateY(0);
-        }
-
-        .mobile-login-btn i {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-
-        @media (max-width: 480px) {
-            .mobile-menu {
-                width: 100%;
-                border-radius: 0;
-            }
-        }
-
-        .logo-bg {
-            border-bottom-right-radius: 150px 100px;
-        }
-
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%),
-                url('{{ asset('assets/background-hero.jpg') }}') center/cover;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .hero-content {
-                padding: 0 1.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .hero-content {
-                padding: 0 3rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-content {
-                padding: 0 5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .hero-buttons a {
-                width: 100%;
-                max-width: 200px;
-                text-align: center;
-            }
-        }
-
-        .news-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-left: 4px solid #1B5E20;
-        }
-
-        .co2-diagram {
-            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c8 100%);
-        }
-
-        /* Dropdown styles */
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-    </style>
-</head>
+<x-layout.head title="Homes" />
 
 <body class="font-sans leading-relaxed overflow-x-hidden">
     <div class="relative min-h-screen">
         <!-- Hero Section -->
-        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home">
+        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home"
+            style="background: linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%), url('{{ asset('assets/hero-section.jpg') }}') center/cover; background-size: cover; background-position: center;">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
@@ -465,6 +24,7 @@
                 </div>
             </div>
         </header>
+
 
         <!-- Navbar yang diperbaiki -->
         <nav class="bg-beige py-3 md:py-5 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out shadow-md">
@@ -545,7 +105,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#login"
+                        <a href="{{ route('admin.login') }}"
                             class="px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
                             Login
                         </a>
@@ -621,7 +181,7 @@
                 </nav>
 
                 <div class="mobile-menu-footer">
-                    <button class="mobile-login-btn" onclick="window.location.href='#login'">
+                    <button class="mobile-login-btn" onclick="window.location.href='{{ route('admin.login') }}'">
                         <i class="fas fa-sign-in-alt"></i>Login
                     </button>
                 </div>
@@ -824,14 +384,15 @@
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Specification Sheets:</h4>
                         <div class="flex flex-wrap gap-3 mb-6 justify-center sm:justify-start">
                             <a href="{{ asset('assets/about.jpg') }}" target="_blank" class="block group relative">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="PKS Charcoal Spec 1"
+                                <img src="{{ asset('assets/Palm kernel shell charcoal.jpg') }}"
+                                    alt="PKS Charcoal Spec 1"
                                     class="w-20 h-28 object-cover border border-gray-300 rounded-md shadow-sm group-hover:shadow-md transition">
                                 <span
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
                                     1</span>
                             </a>
                             <a href="{{ asset('assets/about.jpg') }}" target="_blank" class="block group relative">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="PKS Charcoal Spec 2"
+                                <img src="{{ asset('assets/Palm-Oil-Good.jpg') }}" alt="PKS Charcoal Spec 2"
                                     class="w-20 h-28 object-cover border border-gray-300 rounded-md shadow-sm group-hover:shadow-md transition">
                                 <span
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
@@ -1016,6 +577,93 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    {{--  Articles Section --}}
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pb-8 md:pb-12" id="articles">
+        <div class="flex justify-between items-center mb-4 md:mb-6">
+            <h3 class="font-extrabold text-sm md:text-lg max-w-xs leading-tight">The latest articles and industry
+                insights</h3>
+            <a href="{{ route('articles.index') }}"
+                class="text-xs md:text-sm text-blue-700 font-semibold hover:underline">View All →</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            @if (!empty($articles) && $articles->isNotEmpty())
+                @php $featured = $articles->first(); @endphp
+                <article
+                    class="md:col-span-2 lg:col-span-1 space-y-2 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
+                    <a href="{{ route('articles.show', $featured->id) }}" class="block">
+                        @if ($featured->photo)
+                            <img src="{{ Storage::disk('s3')->url($featured->photo) }}" alt="{{ $featured->title }}"
+                                class="rounded-md w-full object-cover h-40 md:h-48 transition-all hover:scale-105" />
+                        @else
+                            <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
+                                class="rounded-md w-full object-cover h-40 md:h-48 transition-all hover:scale-105" />
+                        @endif
+                        <h4 class="font-semibold text-sm md:text-base leading-tight mt-2">{{ $featured->title }}</h4>
+                        <p class="text-xs md:text-sm text-gray-600">Article —
+                            {{ $featured->created_at->format('F j, Y') }}</p>
+                    </a>
+                </article>
+
+                @if ($articles->count() > 1)
+                    <div class="space-y-6 md:space-y-8">
+                        @foreach ($articles->skip(1)->take(2) as $article)
+                            <article
+                                class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
+                                <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
+                                    @if ($article->photo)
+                                        <img src="{{ Storage::disk('s3')->url($article->photo) }}"
+                                            alt="{{ $article->title }}"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @else
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @endif
+                                    <div class="flex flex-col justify-between">
+                                        <h4 class="font-semibold text-xs md:text-sm leading-tight">
+                                            {{ $article->title }}</h4>
+                                        <p class="text-xs text-gray-600">Article —
+                                            {{ $article->created_at->format('F j, Y') }}</p>
+                                    </div>
+                                </a>
+                            </article>
+                        @endforeach
+                    </div>
+                @endif
+
+                @if ($articles->count() > 3)
+                    <div class="space-y-6 md:space-y-8">
+                        @foreach ($articles->skip(3)->take(2) as $article)
+                            <article
+                                class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
+                                <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
+                                    @if ($article->photo)
+                                        <img src="{{ Storage::disk('s3')->url($article->photo) }}"
+                                            alt="{{ $article->title }}"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @else
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @endif
+                                    <div class="flex flex-col justify-between">
+                                        <h4 class="font-semibold text-xs md:text-sm leading-tight">
+                                            {{ $article->title }}</h4>
+                                        {{-- <p class="text-xs text-gray-600">Article —
+                                            {{ $article->created_at->format('F j, Y') }}</p> --}}
+                                    </div>
+                                </a>
+                            </article>
+                        @endforeach
+                    </div>
+                @endif
+            @else
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
+                </div>
+            @endif
         </div>
     </section>
 
@@ -1287,12 +935,12 @@
 
                     <!-- Map Section -->
                     <div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-4 text-green-custom">Office Location</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-11 text-green-custom">Office Location</h3>
                         <div class="w-full">
-                            <div class="w-full h-64 sm:h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                            <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136532199!2d106.78738997458905!3d-6.174763660506777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1751515557555!5m2!1sid!2sid"
-                                    width="100%" height="100%" style="border:0;" allowfullscreen=""
+                                    width="100%" height="100%" style="border: none;" allowfullscreen=""
                                     loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
                                 </iframe>
                             </div>

@@ -604,9 +604,9 @@
     <section class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <p class="text-base md:text-lg text-gray-700 text-center mb-8 max-w-3xl mx-auto">
-                Kami berkomitmen pada pengembangan produk arang PKS yang berkelanjutan, memastikan kualitas dan performa
-                terbaik
-                untuk memenuhi kebutuhan energi biomassa global.
+                We are committed to the development of sustainable PKS charcoal products, ensuring the best quality and
+                performance
+                to meet global biomass energy needs.
             </p>
 
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-6 md:mb-10">Our PKS Charcoal Highlights</h2>
@@ -619,8 +619,8 @@
                         <i class="fas fa-fire text-green-custom text-2xl"></i>
                     </div>
                     <h3 class="font-extrabold text-sm md:text-base">High Calorific Value</h3>
-                    <p class="text-xs md:text-sm text-gray-600">Arang PKS kami memiliki nilai kalori tinggi,
-                        menghasilkan energi yang efisien dan kuat untuk berbagai aplikasi industri.</p>
+                    <p class="text-xs md:text-sm text-gray-600">Our PKS charcoal has a high calorific value, providing
+                        efficient and powerful energy for various industrial applications.</p>
                 </div>
 
                 <div
@@ -629,8 +629,8 @@
                         <i class="fas fa-water text-green-custom text-2xl"></i>
                     </div>
                     <h3 class="font-extrabold text-sm md:text-base">Low Ash & Moisture</h3>
-                    <p class="text-xs md:text-sm text-gray-600">Diproses dengan cermat untuk memastikan kandungan abu
-                        dan kelembaban yang minimal, menghasilkan pembakaran yang lebih bersih dan efisien.</p>
+                    <p class="text-xs md:text-sm text-gray-600">Carefully processed to ensure minimal ash and moisture
+                        content, resulting in cleaner and more efficient combustion.</p>
                 </div>
 
                 <div
@@ -639,8 +639,8 @@
                         <i class="fas fa-globe-americas text-green-custom text-2xl"></i>
                     </div>
                     <h3 class="font-extrabold text-sm md:text-base">Global Export Quality</h3>
-                    <p class="text-xs md:text-sm text-gray-600">Memenuhi standar internasional yang ketat, arang PKS
-                        kami siap untuk diekspor ke pasar global dan diakui secara kualitas.</p>
+                    <p class="text-xs md:text-sm text-gray-600">Meeting strict international standards, our PKS
+                        charcoal is ready for export to global markets and recognized for its quality.</p>
                 </div>
 
                 <div
@@ -649,8 +649,8 @@
                         <i class="fas fa-cogs text-green-custom text-2xl"></i>
                     </div>
                     <h3 class="font-extrabold text-sm md:text-base">Continuous Innovation</h3>
-                    <p class="text-xs md:text-sm text-gray-600">Kami terus berinovasi dalam pengembangan produk
-                        biomassa untuk memberikan solusi energi terbarukan yang unggul dan berkelanjutan.</p>
+                    <p class="text-xs md:text-sm text-gray-600">We continuously innovate in the development of biomass
+                        products to provide superior and sustainable renewable energy solutions.</p>
                 </div>
             </div>
         </div>

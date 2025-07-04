@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GalleryController;
 use App\Models\Admin;
 
 Route::get('/', function () {
@@ -22,7 +23,7 @@ Route::resource('articles', ArticleController::class);
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
 
-
+Route::resource('gallery', GalleryController::class)->except(['show', 'edit', 'update']);
 
 
 
