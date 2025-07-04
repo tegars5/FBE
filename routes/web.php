@@ -11,10 +11,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login']);
@@ -22,8 +18,6 @@ Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin
 Route::resource('articles', ArticleController::class);
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
-
-Route::resource('gallery', GalleryController::class)->except(['show', 'edit', 'update']);
 
 
 
