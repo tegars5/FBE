@@ -246,7 +246,7 @@
 
     <section id="about"
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12 space-y-8 md:space-y-12">
-        <div class="max-w-4xl">
+        <div class="max-w-7xl">
             <h2 class="text-xl md:text-2xl font-extrabold mb-4">About Us</h2>
             <p class="text-sm md:text-base font-normal max-w-3xl mb-6">
                 PT Fujiyama Biomass Energy is dedicated to sustainable energy solutions through premium PKS charcoal
@@ -410,7 +410,7 @@
 
                 <div
                     class="bg-beige rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="Raw PKS"
+                    <img src="{{ asset('assets/kelapa-sawit.jpg') }}" alt="Raw PKS"
                         class="w-full h-64 md:h-72 object-cover">
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Raw PKS (Palm Kernel Shell)
@@ -457,8 +457,9 @@
 
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Specification Sheets:</h4>
                         <div class="flex flex-wrap gap-3 mb-6 justify-center sm:justify-start">
-                            <a href="{{ asset('assets/about.jpg') }}" target="_blank" class="block group relative">
-                                <img src="{{ asset('assets/about.jpg') }}" alt="Raw PKS Spec 1"
+                            <a href="{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}" target="_blank"
+                                class="block group relative">
+                                <img src="{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}" alt="Raw PKS Spec 1"
                                     class="w-20 h-28 object-cover border border-gray-300 rounded-md shadow-sm group-hover:shadow-md transition">
                                 <span
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
@@ -505,7 +506,7 @@
 
                     <div class="mt-8">
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Certified Sustainable:</h4>
-                        <img src="{{ asset('assets/about.jpg') }}" alt="GGL Certification Logo"
+                        <img src="{{ asset('assets/logo-brand/logo-ggl.png') }}" alt="GGL Certification Logo"
                             class="w-32 h-auto object-contain">
                         <p class="text-xs text-gray-600 mt-2">Proudly certified with Green Gold Label (GGL) for
                             sustainable biomass practices.</p>
@@ -515,7 +516,7 @@
                 <div>
                     <div class="co2-diagram p-6 rounded-lg shadow-md mb-8">
                         <h4 class="text-lg font-bold text-center mb-4 text-green-custom">CO₂ Emission Comparison</h4>
-                        <img src="{{ asset('assets/about.jpg') }}" alt="CO2 Reduction Diagram"
+                        <img src="{{ asset('assets/diagram-co.png') }}" alt="CO2 Reduction Diagram"
                             class="w-full h-auto object-contain rounded-lg mb-4">
                         <p class="text-xs text-gray-700 text-center">Comparative CO₂ emissions for different fuel
                             types.</p>
@@ -523,13 +524,14 @@
 
                     <h3 class="font-bold text-lg mb-4 text-green-custom">Environmental Initiatives in Action</h3>
                     <div class="grid grid-cols-2 gap-4">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Environmental Initiative 1"
+                        <img src="{{ asset('assets/cangkang-sawit.jpg') }}" alt="Environmental Initiative 1"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Environmental Initiative 2"
+                        <img src="{{ asset('assets/produksi-cangkang.png') }}" alt="Environmental Initiative 2"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Environmental Initiative 3"
+                        <img src="{{ asset('assets/palm-trees-palm-oil.jpg') }}" alt="Environmental Initiative 3"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Environmental Initiative 4"
+                        <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-project.jpg') }}"
+                            alt="Environmental Initiative 4"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         {{-- Tambahkan lebih banyak foto inisiatif lingkungan jika ada --}}
                     </div>
@@ -555,11 +557,11 @@
                     <p class="text-gray-700 mb-6">We collaborate with leading companies worldwide, ensuring seamless
                         distribution and reliable supply of our biomass products.</p>
                     <div class="flex flex-wrap items-center justify-center gap-6 mb-8">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Partner Company 1 Logo"
+                        <img src="{{ asset('assets/business-handshake-global.jpg') }}" alt="Partner Company 1 Logo"
                             class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Partner Company 2 Logo"
+                        <img src="{{ asset('assets/ekspor.jpg') }}" alt="Partner Company 2 Logo"
                             class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Partner Company 3 Logo"
+                        <img src="{{ asset('assets/diskusi.jpg') }}" alt="Partner Company 3 Logo"
                             class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
                         {{-- Tambahkan lebih banyak logo partner --}}
                     </div>
@@ -568,9 +570,9 @@
                     <p class="text-gray-700 mb-6">Our dedicated team ensures smooth and efficient container loading
                         operations, guaranteeing timely and secure delivery to our international clients.</p>
                     <div class="grid grid-cols-2 gap-4">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Container Loading Operation 1"
+                        <img src="{{ asset('assets/transport-logistics.jpg') }}" alt="Container Loading Operation 1"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/about.jpg') }}" alt="Container Loading Operation 2"
+                        <img src="{{ asset('assets/background.jpg') }}" alt="Container Loading Operation 2"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         {{-- Tambahkan lebih banyak foto operasi loading --}}
                     </div>
@@ -673,7 +675,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="Large Stockpile of PKS Charcoal"
+                    <img src="{{ asset('assets/kumpulan-cangkang.png') }}" alt="Large Stockpile of PKS Charcoal"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -682,7 +684,7 @@
                 </div>
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="Raw PKS Material Stock"
+                    <img src="{{ asset('assets/Raw PKS .png') }}" alt="Raw PKS Material Stock"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -692,7 +694,7 @@
 
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="PKS Charcoal Production Line"
+                    <img src="{{ asset('assets/alat.png') }}" alt="PKS Charcoal Production Line"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -701,7 +703,7 @@
                 </div>
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="Quality Control Area"
+                    <img src="{{ asset('assets/quality-control.jpg') }}" alt="Quality Control Area"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -711,7 +713,7 @@
 
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="Container Loading for Export"
+                    <img src="{{ asset('assets/container.jpg') }}" alt="Container Loading for Export"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -720,7 +722,7 @@
                 </div>
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/about.jpg') }}" alt="PKS Charcoal Ready for Shipment"
+                    <img src="{{ asset('assets/PKS Charcoal Ready.png') }}" alt="PKS Charcoal Ready for Shipment"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -744,11 +746,11 @@
 
                     <h4 class="font-semibold text-md mb-3 text-gray-800">Download Spec Sheets:</h4>
                     <div class="space-y-4">
-                        <a href="{{ asset('assets/specs/pks_charcoal_full_spec.pdf') }}" download
+                        <a href="{{ asset('assets/specs/pks_charcoal_full_spec1.pdf') }}" download
                             class="inline-flex items-center px-6 py-3 border-none rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 bg-green-custom text-white shadow-green-custom hover:bg-green-hover hover:-translate-y-0.5 hover:shadow-green-hover">
                             <i class="fas fa-file-download mr-2"></i> PKS Charcoal Spec Sheet
                         </a>
-                        <a href="{{ asset('assets/specs/raw_pks_full_spec.pdf') }}" download
+                        <a href="{{ asset('assets/specs/raw_pks_full_spec1.pdf') }}" download
                             class="inline-flex items-center px-6 py-3 border-none rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 bg-green-custom text-white shadow-green-custom hover:bg-green-hover hover:-translate-y-0.5 hover:shadow-green-hover">
                             <i class="fas fa-file-download mr-2"></i> Raw PKS Spec Sheet
                         </a>
@@ -763,7 +765,7 @@
 
                     <h4 class="font-semibold text-md mb-3 text-gray-800">Certification Documents:</h4>
                     <div class="grid grid-cols-2 gap-4">
-                        <a href="{{ asset('assets/certifications/certificate_1_full.pdf') }}" target="_blank"
+                        <a href="{{ asset('assets/certifications/certificate_1_full_1.pdf') }}" target="_blank"
                             class="block group relative">
                             <img src="{{ asset('assets/certifications/certificate_thumb_1.jpg') }}"
                                 alt="Certification Document 1 Thumbnail"
@@ -772,7 +774,7 @@
                                 class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">View
                                 Document</span>
                         </a>
-                        <a href="{{ asset('assets/certifications/certificate_2_full.pdf') }}" target="_blank"
+                        <a href="{{ asset('assets/certifications/certificate_2_full_1.pdf') }}" target="_blank"
                             class="block group relative">
                             <img src="{{ asset('assets/certifications/certificate_thumb_2.jpg') }}"
                                 alt="Certification Document 2 Thumbnail"
