@@ -6,7 +6,7 @@
     <div class="relative min-h-screen">
         <!-- Hero Section -->
         <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home"
-            style="background: url('{{ asset('assets/section-hero.png') }}')center/cover;">
+            style="background: url('{{ asset('assets/bg-hero.png') }}')center/cover;">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
@@ -244,6 +244,8 @@
         </div>
     </section>
 
+
+
     <section id="about"
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12 space-y-8 md:space-y-12">
         <div class="max-w-7xl">
@@ -259,9 +261,9 @@
                     <h3 class="text-lg font-bold mb-3">Company History</h3>
                     <p class="text-sm text-gray-600 mb-4">
                         Founded in 2025 with a vision to transform agricultural waste into a valuable energy resource,
-                        our company is a new but ambitious player committed to contributing solutions to the world’s
+                        our company is a new but ambitious player committed to contributing solutions to the world's
                         pressing energy challenges. We are rapidly establishing ourselves as a trusted partner in the
-                        global biomass industry
+                        global biomass industry
                     </p>
                 </div>
                 <div>
@@ -299,39 +301,79 @@
             </div>
 
             <div>
-                <h3 class="text-lg font-bold mb-4">Our Commitment to SDGs</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                    <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
+                <h3 class="text-lg font-bold mb-6">Our Commitment to SDGs</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
+                        onclick="toggleSDG('sdg7')">
                         <img src="{{ asset('assets/logo-brand/SDG-7.png') }}"
                             alt="SDG 7 - Affordable and Clean Energy" class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Affordable & Clean Energy</p>
+                        <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
-                    <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
+                        onclick="toggleSDG('sdg13')">
                         <img src="{{ asset('assets/logo-brand/SDG-13.png') }}" alt="SDG 13 - Climate Action"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Climate Action</p>
+                        <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
-                    <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
+                        onclick="toggleSDG('sdg15')">
                         <img src="{{ asset('assets/logo-brand/SDG-15.png') }}" alt="SDG 15 - Life on Land"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Life on Land</p>
+                        <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
-                    <div class="flex flex-col items-center text-center p-2 rounded-lg hover:bg-gray-50 transition">
+                    <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
+                        onclick="toggleSDG('sdg8')">
                         <img src="{{ asset('assets/logo-brand/SDG-8.png') }}"
                             alt="SDG 8 - Decent Work and Economic Growth" class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Decent Work & Economic Growth</p>
+                        <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
                 </div>
-                <p class="text-sm text-gray-600">
-                    We actively contribute to several UN Sustainable Development Goals, including ensuring access to
-                    affordable and clean energy, taking urgent action to combat climate change, promoting sustainable
-                    use
-                    of terrestrial ecosystems, and fostering decent work and economic growth.
-                </p>
+
+                <!-- Detailed SDG Descriptions -->
+                <div class="space-y-4 mb-6">
+                    <div id="sdg7"
+                        class="sdg-detail hidden bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg transition-all duration-300">
+                        <h4 class="font-bold text-yellow-800 mb-2">SDG 7 – Affordable and Clean Energy</h4>
+                        <p class="text-sm text-gray-700">
+                            We aim to promote the use of renewable energy by offering high-efficiency, cost-effective
+                            PKS charcoal products, ensuring access to affordable and clean energy for all.
+                        </p>
+                    </div>
+
+                    <div id="sdg13"
+                        class="sdg-detail hidden bg-green-50 border-l-4 border-green-600 p-4 rounded-r-lg transition-all duration-300">
+                        <h4 class="font-bold text-green-800 mb-2">SDG 13 – Climate Action</h4>
+                        <p class="text-sm text-gray-700">
+                            Through utilizing PKS to reduce CO₂ emissions and contribute to carbon neutrality, we are
+                            committed to urgent and effective measures to combat climate change.
+                        </p>
+                    </div>
+
+                    <div id="sdg15"
+                        class="sdg-detail hidden bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg transition-all duration-300">
+                        <h4 class="font-bold text-green-800 mb-2">SDG 15 – Life on Land</h4>
+                        <p class="text-sm text-gray-700">
+                            By transforming agricultural waste into energy resources and promoting sustainable resource
+                            use, we help prevent deforestation and protect terrestrial ecosystems.
+                        </p>
+                    </div>
+
+                    <div id="sdg8"
+                        class="sdg-detail hidden bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg transition-all duration-300">
+                        <h4 class="font-bold text-red-800 mb-2">SDG 8 – Decent Work and Economic Growth</h4>
+                        <p class="text-sm text-gray-700">
+                            We strive to create local employment opportunities, ensure safe and fulfilling work
+                            environments, and pursue economic growth in harmony with environmental sustainability.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
     <section id="products" class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Our Products</h2>
@@ -851,7 +893,7 @@
                                 <p class="font-semibold text-gray-900 mb-1">Email Address</p>
                                 <a href="mailto:info@fujiyamabiomass.com"
                                     class="text-gray-600 text-sm sm:text-base hover:text-green-custom transition-colors">
-                                    info@fujiyamabiomass.com
+                                    info@fbe.co.id
                                 </a>
                             </div>
                         </div>
@@ -1110,6 +1152,31 @@
         function handleSubmit(event) {
             event.preventDefault();
             alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
+        }
+
+        function toggleSDG(sdgId) {
+            const element = document.getElementById(sdgId);
+            const allSDGs = document.querySelectorAll('.sdg-detail');
+
+            // Hide all other SDGs
+            allSDGs.forEach(sdg => {
+                if (sdg.id !== sdgId) {
+                    sdg.classList.add('hidden');
+                }
+            });
+
+            // Toggle the clicked SDG
+            element.classList.toggle('hidden');
+
+            // Smooth scroll to the detail if it's being shown
+            if (!element.classList.contains('hidden')) {
+                setTimeout(() => {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 100);
+            }
         }
     </script>
 </body>
