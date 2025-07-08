@@ -958,7 +958,7 @@
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
 
                             <!-- Company -->
-                            <input type="text" placeholder="Company"
+                            <input type="text" placeholder="Company Name"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
 
                             <!-- Inquiry Type -->
