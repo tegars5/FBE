@@ -946,13 +946,19 @@
                                 <input type="text" placeholder="Last Name"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
                             </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="email" placeholder="Email Address" required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
+                                <input type="phone" placeholder="Phone Number" required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
+                            </div>
 
                             <!-- Email -->
                             <input type="email" placeholder="Email Address" required
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
 
                             <!-- Company -->
-                            <input type="text" placeholder="Company (Optional)"
+                            <input type="text" placeholder="Company"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
 
                             <!-- Inquiry Type -->
@@ -966,7 +972,7 @@
                             </select>
 
                             <!-- Message -->
-                            <textarea placeholder="Your Message" rows="4" required
+                            <textarea placeholder="Please enter your message" rows="4" required
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base resize-none"></textarea>
 
                             <!-- Submit Button -->
