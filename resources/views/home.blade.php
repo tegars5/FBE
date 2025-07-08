@@ -952,11 +952,6 @@
                                 <input type="phone" placeholder="Phone Number" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
                             </div>
-
-                            <!-- Email -->
-                            <input type="email" placeholder="Email Address" required
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
-
                             <!-- Company -->
                             <input type="text" placeholder="Company Name"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
