@@ -6,7 +6,7 @@
     <div class="relative min-h-screen">
         <!-- Hero Section -->
         <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home"
-            style="background: linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%), url('{{ asset('assets/hero.png') }}') center/cover; background-size: cover; background-position: center;">
+            style="background: url('{{ asset('assets/background-hero-section.png') }}')center/cover;">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
@@ -258,9 +258,10 @@
                 <div>
                     <h3 class="text-lg font-bold mb-3">Company History</h3>
                     <p class="text-sm text-gray-600 mb-4">
-                        Founded in 20XX with a vision to transform agricultural waste into valuable energy resources, we
-                        have
-                        grown to become a trusted partner in the global biomass industry.
+                        Founded in 2025 with a vision to transform agricultural waste into a valuable energy resource,
+                        our company is a new but ambitious player committed to contributing solutions to the world’s
+                        pressing energy challenges. We are rapidly establishing ourselves as a trusted partner in the
+                        global biomass industry
                     </p>
                 </div>
                 <div>
@@ -1005,7 +1006,7 @@
                     <div class="space-y-2 text-sm">
                         <p class="opacity-80">Jakarta, Indonesia</p>
                         <p class="opacity-80">info@fujiyamabiomass.com</p>
-                        <p class="opacity-80">+62 877 8877 2342</p>
+                        <p class="opacity-80">+62 851 2479 02 53</p>
                     </div>
 
                     <div class="flex gap-3 mt-4">
