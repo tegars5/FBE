@@ -6,7 +6,7 @@
     <div class="relative min-h-screen">
         <!-- Hero Section -->
         <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home"
-            style="background: url('{{ asset('assets/background-hero-section.png') }}')center/cover;">
+            style="background: url('{{ asset('assets/section-hero.png') }}')center/cover;">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
