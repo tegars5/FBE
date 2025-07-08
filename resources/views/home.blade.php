@@ -1047,7 +1047,7 @@
                     <h4 class="font-bold mb-4">Contact</h4>
                     <div class="space-y-2 text-sm">
                         <p class="opacity-80">Jakarta, Indonesia</p>
-                        <p class="opacity-80">info@fujiyamabiomass.com</p>
+                        <p class="opacity-80">info@fbe.co.id</p>
                         <p class="opacity-80">+62 851 2479 02 53</p>
                     </div>
 
