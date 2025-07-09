@@ -4,9 +4,7 @@
 
 <body class="font-sans leading-relaxed overflow-x-hidden">
     <div class="relative min-h-screen">
-        <!-- Hero Section -->
-        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home"
-            style="background: url('{{ asset('assets/bg-hero.png') }}')center/cover;">
+        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home-hero">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
@@ -22,25 +20,21 @@
                         Contact Us
                     </a>
                 </div>
-            </div>
+                <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-10 flex space-x-3" id="hero-dots">
+                </div>
         </header>
-
-
-        <!-- Navbar yang diperbaiki -->
         <nav class="bg-beige py-3 md:py-5 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out shadow-md">
-            <div class="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-5">
-                <!-- Logo Section -->
+            <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-5">
                 <div class="relative flex items-center gap-4 z-[100]">
                     <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
                     <div
-                        class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-12 bg-transparent">
+                        class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-8 bg-transparent">
                         <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Biomass Energy Logo"
                             class="w-full h-full object-contain" />
                     </div>
                 </div>
 
-                <!-- Desktop Navigation -->
-                <ul class="hidden lg:flex list-none gap-6 xl:gap-8 items-center">
+                <ul class="hidden lg:flex list-none gap-6 xl:gap-8 items-center ml-auto">
                     <li>
                         <a href="#home"
                             class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
@@ -65,13 +59,12 @@
                             Exports & Partnerships
                         </a>
                     </li>
-                    <!-- Dropdown More -->
                     <li class="relative dropdown">
                         <button
                             class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
                             More
-                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
@@ -99,20 +92,25 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#contact"
+                        <a href="#supplier-info"
                             class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                            Contact
+                            Supplier
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.login') }}"
+                        <a href="#"
                             class="px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Login
+                            Buyers&nbsp;Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
+                            Supplier&nbsp;Login
                         </a>
                     </li>
                 </ul>
 
-                <!-- Mobile Menu Button -->
                 <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -120,12 +118,9 @@
                 </button>
             </div>
 
-            <!-- Mobile Menu Overlay -->
             <div class="mobile-menu-overlay" id="menu-overlay"></div>
 
-            <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
-                <!-- Mobile Menu Header -->
                 <div class="mobile-menu-header">
                     <div class="flex items-center gap-3">
                         <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
@@ -178,11 +173,19 @@
                             <i class="fas fa-envelope"></i>Contact
                         </a>
                     </div>
+                    <div class="mobile-menu-item">
+                        <a href="#supplier-info" class="mobile-menu-link">
+                            <i class="fas fa-handshake"></i>Supplier Info
+                        </a>
+                    </div>
                 </nav>
 
                 <div class="mobile-menu-footer">
-                    <button class="mobile-login-btn" onclick="window.location.href='{{ route('admin.login') }}'">
-                        <i class="fas fa-sign-in-alt"></i>Login
+                    <button class="mobile-login-btn" onclick="window.location.href='#'">
+                        <i class="fas fa-sign-in-alt"></i>Buyers&nbsp;Login
+                    </button>
+                    <button class="mobile-login-btn mt-2" onclick="window.location.href='#'">
+                        <i class="fas fa-sign-in-alt"></i>Supplier&nbsp;Login
                     </button>
                 </div>
             </div>
@@ -296,7 +299,6 @@
                         <p class="text-sm font-medium">Peter Jones</p>
                         <p class="text-xs text-gray-600">COO</p>
                     </div>
-                    {{-- Tambahkan lebih banyak thumbnail anggota tim sesuai kebutuhan --}}
                 </div>
             </div>
 
@@ -333,7 +335,6 @@
                     </div>
                 </div>
 
-                <!-- Detailed SDG Descriptions -->
                 <div class="space-y-4 mb-6">
                     <div id="sdg7"
                         class="sdg-detail hidden bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg transition-all duration-300">
@@ -387,7 +388,6 @@
                         <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Premium PKS Charcoal</h3>
                         <p class="text-gray-600 mb-6">High-quality charcoal made from palm kernel shells, processed
                             with advanced carbonization technology for optimal energy output.</p>
-
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Key Specifications:</h4>
                         <div class="grid grid-cols-2 gap-4 mb-6">
                             <div class="text-center p-3 bg-green-50 rounded-lg">
@@ -395,11 +395,13 @@
                                 <div class="text-xs text-gray-600">kcal/kg (min)</div>
                             </div>
                             <div class="text-center p-3 bg-green-50 rounded-lg">
-                                <div class="text-2xl font-bold text-green-custom">&lt;8%</div>
+                                <div class="text-2xl font-bold text-green-custom">
+                                    &lt;8%</div>
                                 <div class="text-xs text-gray-600">Moisture</div>
                             </div>
                             <div class="text-center p-3 bg-green-50 rounded-lg">
-                                <div class="text-2xl font-bold text-green-custom">&lt;4%</div>
+                                <div class="text-2xl font-bold text-green-custom">
+                                    &lt;4%</div>
                                 <div class="text-xs text-gray-600">Ash Content</div>
                             </div>
                             <div class="text-center p-3 bg-green-50 rounded-lg">
@@ -456,9 +458,11 @@
                     <img src="{{ asset('assets/kelapa-sawit.jpg') }}" alt="Raw PKS"
                         class="w-full h-64 md:h-72 object-cover">
                     <div class="p-6 md:p-8">
-                        <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Raw PKS (Palm Kernel Shell)
+                        <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Raw PKS (Palm Kernel
+                            Shell)
                         </h3>
-                        <p class="text-gray-600 mb-6">Unprocessed palm kernel shells, a versatile biomass feedstock
+                        <p class="text-gray-600 mb-6">Unprocessed palm kernel shells, a versatile biomass
+                            feedstock
                             ideal
                             for direct combustion or further processing into higher-value products.</p>
 
@@ -530,7 +534,16 @@
                     <h3 class="text-lg font-bold mb-4 text-green-custom">Our Eco-Friendly Process</h3>
                     <p class="text-gray-600 mb-6">Our PKS charcoal production process is designed to minimize
                         environmental impact while maximizing energy efficiency. By utilizing agricultural waste, we
-                        contribute to a circular economy and a greener future.</p>
+                        contribute to a circular economy and a greener future.
+
+                        We carefully select raw materials to ensure high-quality biomass fuel while preventing
+                        unnecessary waste. Our advanced carbonization technology allows for low-emission processing and
+                        optimized energy conversion. Additionally, our operations support sustainable agricultural
+                        practices by transforming palm kernel shells, which would otherwise be discarded, into valuable
+                        renewable energy resources.
+
+                        Through these efforts, we help reduce dependence on fossil fuels, lower greenhouse gas
+                        emissions, and promote cleaner energy solutions for industries and communities alike.</p>
 
                     <div class="space-y-4">
                         <div class="flex items-center gap-3">
@@ -623,8 +636,121 @@
             </div>
         </div>
     </section>
+    <section id="supplier-info"
+        class="py-16 md:py-24 bg-gradient-to-br from-green-50 to-beige-100 relative overflow-hidden">
+        <div class="absolute inset-0 bg-pattern-subtle opacity-20 z-0"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-center text-green-700 mb-12 leading-tight">
+                Information for Suppliers
+            </h2>
 
-    {{--  Articles Section --}}
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+                <div
+                    class="bg-white p-6 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center text-green-custom mb-4">
+                        <i class="fas fa-building text-3xl md:text-4xl mr-4"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Who We Are</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed border-l-4 border-green-300 pl-4 py-2">
+                        We are PT Fujiyama Biomass Energy, a company specializing in the procurement and trading of
+                        sustainable biomass products, including Palm Kernel Shell (PKS). Our mission is to forge
+                        long-term partnerships with reliable suppliers and contribute to the global renewable energy
+                        market.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white p-6 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center text-green-custom mb-4">
+                        <i class="fas fa-search-dollar text-3xl md:text-4xl mr-4"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">What We Are Looking For</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4 border-l-4 border-green-300 pl-4 py-2">
+                        We are seeking mill partners who can consistently supply high-quality PKS that meets the
+                        following specifications:
+                    </p>
+                    <ul class="text-gray-700 space-y-2 list-none pl-0">
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Moisture content:
+                            &lt;15%</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Size: 5–20 mm</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Ash content: &lt;5%</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Calorific value: 4,000
+                            kcal/kg and above</li>
+                        <li class="flex items-center"><i
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Free from foreign
+                            materials (stones, soil, metal)</li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        We welcome suppliers who can offer consistent supply volumes and stable quality.
+                    </p>
+                </div>
+
+                <div
+                    class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center
+                            transform hover:scale-102 transition-all duration-300">
+                    <div class="flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-handshake text-3xl md:text-4xl mr-4"></i>
+                        <h3 class="text-xl md:text-2xl font-bold">Partnership Benefits</h3>
+                    </div>
+                    <p class="leading-relaxed mb-6 opacity-90">
+                        Forge a sustainable future with us. As a valued supplier, you'll benefit from:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                        <div class="flex items-start text-white"><i
+                                class="fas fa-award text-yellow-300 mr-3 mt-1 text-lg"></i>Long-term business
+                            relationships</div>
+                        <div class="flex items-start text-white"><i
+                                class="fas fa-balance-scale text-yellow-300 mr-3 mt-1 text-lg"></i>Fair and transparent
+                            transactions</div>
+                        <div class="flex items-start text-white"><i
+                                class="fas fa-chart-line text-yellow-300 mr-3 mt-1 text-lg"></i>Opportunities to expand
+                            into new markets</div>
+                        <div class="flex items-start text-white"><i
+                                class="fas fa-file-alt text-yellow-300 mr-3 mt-1 text-lg"></i>Support in logistics and
+                            documentation</div>
+                        <div class="flex items-start text-white"><i
+                                class="fas fa-money-check-alt text-yellow-300 mr-3 mt-1 text-lg"></i>Prompt payment
+                            terms</div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 bg-beige-200 p-6 md:p-8 rounded-lg shadow-lg text-center">
+                    <div class="flex items-center justify-center text-green-custom mb-4">
+                        <i class="fas fa-envelope-open-text text-3xl md:text-4xl mr-4"></i>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">How to Apply / Contact Us</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Interested in partnering with us? If you meet our criteria and are ready to contribute to
+                        sustainable energy, please reach out to our team:
+                    </p>
+                    <ul class="list-none space-y-3 mb-8 text-lg font-medium">
+                        <li><i class="fas fa-envelope text-green-custom mr-3"></i>Email: <a
+                                href="mailto:info@fbe.co.id" class="text-blue-600 hover:underline">info@fbe.co.id</a>
+                        </li>
+                        <li><i class="fas fa-phone-alt text-green-custom mr-3"></i>Phone: <a href="tel:+6285124790253"
+                                class="text-blue-600 hover:underline">+62 851 2479 0253</a></li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed mb-8">
+                        Or simply fill out the form on our <a href="#contact"
+                            class="text-blue-600 hover:underline font-semibold">Contact Us</a> page.
+                    </p>
+                    <a href="#contact"
+                        class="inline-flex items-center px-8 py-4 bg-green-custom text-white font-semibold rounded-lg shadow-md hover:bg-green-hover transition-all duration-300 transform hover:-translate-y-1">
+                        <i class="fas fa-comment-dots mr-3"></i> Contact Our Team Now!
+                    </a>
+                    <p class="text-gray-700 leading-relaxed font-semibold mt-8">
+                        We look forward to building a successful collaboration with you!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- Articles Section --}}
     <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pb-8 md:pb-12" id="articles">
         <div class="flex justify-between items-center mb-4 md:mb-6">
             <h3 class="font-extrabold text-sm md:text-lg max-w-xs leading-tight">The latest articles and industry
@@ -696,7 +822,7 @@
                                         <h4 class="font-semibold text-xs md:text-sm leading-tight">
                                             {{ $article->title }}</h4>
                                         {{-- <p class="text-xs text-gray-600">Article —
-                                            {{ $article->created_at->format('F j, Y') }}</p> --}}
+                                                {{ $article->created_at->format('F j, Y') }}</p> --}}
                                     </div>
                                 </a>
                             </article>
@@ -845,21 +971,16 @@
     </section>
     <section id="contact" class="py-8 sm:py-12 md:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Title -->
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-8 sm:mb-12 text-gray-900">
                 Contact Us
             </h2>
 
-            <!-- Main Grid -->
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
 
-                <!-- Contact Information -->
                 <div class="space-y-6">
                     <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Direct Contact</h3>
 
-                    <!-- Contact Details -->
                     <div class="space-y-6">
-                        <!-- Head Office -->
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i
                                 class="fas fa-map-marker-alt text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
@@ -874,7 +995,6 @@
                             </div>
                         </div>
 
-                        <!-- Phone -->
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-phone text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
@@ -886,7 +1006,6 @@
                             </div>
                         </div>
 
-                        <!-- Email -->
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-envelope text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
@@ -898,7 +1017,6 @@
                             </div>
                         </div>
 
-                        <!-- Business Hours -->
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-clock text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
@@ -907,7 +1025,6 @@
                             </div>
                         </div>
 
-                        <!-- WhatsApp -->
                         <div class="flex items-start gap-3 sm:gap-4 p-4 bg-green-50 rounded-lg">
                             <i class="fab fa-whatsapp text-green-custom text-xl sm:text-2xl mt-1 flex-shrink-0"></i>
                             <div>
@@ -922,7 +1039,6 @@
                         </div>
                     </div>
 
-                    <!-- Office Image -->
                     <div class="mt-8">
                         <p class="font-semibold text-gray-900 mb-3">Our Office</p>
                         <div class="w-full h-48 sm:h-64 md:h-80 bg-gray-200 rounded-lg overflow-hidden shadow-md">
@@ -933,13 +1049,10 @@
                     </div>
                 </div>
 
-                <!-- Contact Form and Map -->
                 <div class="space-y-8">
-                    <!-- Contact Form -->
                     <div>
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Send a Message</h3>
                         <form class="space-y-4" onsubmit="handleSubmit(event)">
-                            <!-- Name Fields -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <input type="text" placeholder="First Name" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
@@ -952,11 +1065,9 @@
                                 <input type="phone" placeholder="Phone Number" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
                             </div>
-                            <!-- Company -->
                             <input type="text" placeholder="Company Name"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
 
-                            <!-- Inquiry Type -->
                             <select required
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-gray-700 text-sm sm:text-base">
                                 <option value="">Select Inquiry Type</option>
@@ -966,11 +1077,9 @@
                                 <option value="other">Other</option>
                             </select>
 
-                            <!-- Message -->
                             <textarea placeholder="Please enter your message" rows="4" required
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base resize-none"></textarea>
 
-                            <!-- Submit Button -->
                             <button type="submit"
                                 class="w-full bg-green-custom text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-hover transition-colors text-sm sm:text-base">
                                 Send Message
@@ -978,13 +1087,12 @@
                         </form>
                     </div>
 
-                    <!-- Map Section -->
                     <div>
                         <h3 class="text-lg sm:text-xl font-bold mb-11 text-green-custom">Office Location</h3>
                         <div class="w-full">
                             <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136532199!2d106.78738997458905!3d-6.174763660506777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1751515557555!5m2!1sid!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5218005391986!2d106.78652617507797!3d-6.194770293796859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6bb7f1a3e6f%3A0x7d2e071e62a1f1a0!2sNeo%20Soho%20Apartment!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
                                     width="100%" height="100%" style="border: none;" allowfullscreen=""
                                     loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
                                 </iframe>
@@ -993,7 +1101,7 @@
                                 <p class="text-xs sm:text-sm text-gray-600">
                                     Click the map for directions to Neo Soho Central Park
                                 </p>
-                                <a href="https://maps.app.goo.gl/3JPcUpRDfP28vtj6A" target="_blank"
+                                <a href="https://maps.app.goo.gl/YourGoogleMapsLinkHere" target="_blank"
                                     class="text-green-custom hover:text-green-hover transition-colors text-xs sm:text-sm flex items-center gap-1 font-medium">
                                     <i class="fas fa-external-link-alt"></i>
                                     Open in Google Maps
@@ -1179,6 +1287,53 @@
                 }, 100);
             }
         }
+
+        // Slider Hero (Revisi 6)
+        const heroImages = [
+            '{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}', // Gambar pertama
+            '{{ asset('assets/background-hero-section.png') }}', // Ganti dengan path gambar slider ke-2 Anda
+            '{{ asset('assets/background.jpg') }}' // Ganti dengan path gambar slider ke-3 Anda
+        ];
+
+        const homeHero = document.getElementById('home-hero');
+        const heroDotsContainer = document.getElementById('hero-dots');
+        let currentHeroImageIndex = 0;
+
+        function createHeroDots() {
+            heroDotsContainer.innerHTML = ''; // Hapus titik-titik yang ada
+            heroImages.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('w-2', 'h-2', 'bg-white', 'rounded-full', 'opacity-50', 'cursor-pointer',
+                    'hover:opacity-100', 'transition');
+                if (index === currentHeroImageIndex) {
+                    dot.classList.remove('opacity-50');
+                    dot.classList.add('opacity-100');
+                }
+                dot.addEventListener('click', () => {
+                    currentHeroImageIndex = index;
+                    updateHeroSlider();
+                });
+                heroDotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateHeroSlider() {
+            // Atur background-image pada elemen header
+            homeHero.style.backgroundImage =
+                `linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%), url('${heroImages[currentHeroImageIndex]}')`;
+            createHeroDots(); // Perbarui titik-titik agar sesuai dengan gambar saat ini
+        }
+
+        function nextHeroImage() {
+            currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
+            updateHeroSlider();
+        }
+
+        // Inisialisasi slider saat halaman dimuat
+        updateHeroSlider();
+
+        // Auto-advance slider setiap 5 detik (contoh)
+        setInterval(nextHeroImage, 5000);
     </script>
 </body>
 
