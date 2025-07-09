@@ -658,7 +658,7 @@
                     <div class="grid grid-cols-2 gap-4">
                         <img src="{{ asset('assets/transport-logistics.jpg') }}" alt="Container Loading Operation 1"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/background.jpg') }}" alt="Container Loading Operation 2"
+                        <img src="{{ asset('assets/container.jpg') }}" alt="Container Loading Operation 2"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                     </div>
                 </div>
@@ -1214,7 +1214,7 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle (kode yang sudah ada)
+        // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuOverlay = document.getElementById('menu-overlay');
@@ -1344,18 +1344,22 @@
         }
 
         function updateHeroSlider() {
-            homeHero.style.backgroundImage =
-                ` url('${heroImages[currentHeroImageIndex]}')`;
-            createHeroDots();
-
-            // Logika untuk menampilkan/menyembunyikan teks dan tombol
-            if (currentHeroImageIndex === 0) { // Jika slide pertama
-                heroTitle.style.display = 'block'; // Tampilkan teks
-                heroButtons.style.display = 'flex'; // Tampilkan tombol (gunakan flex karena itu display aslinya)
-            } else { // Jika slide kedua atau ketiga (indeks 1 atau 2)
-                heroTitle.style.display = 'none'; // Sembunyikan teks
-                heroButtons.style.display = 'none'; // Sembunyikan tombol
+            // Check if the current slide is the first one (index 0)
+            if (currentHeroImageIndex === 0) {
+                homeHero.style.backgroundImage =
+                    `url('${heroImages[currentHeroImageIndex]}')`;
+                heroTitle.style.display = 'block';
+                heroButtons.style.display = 'flex';
+            } else {
+                // For subsequent slides, show only the image without gradient, hide text/buttons
+                homeHero.style.backgroundImage = `url('${heroImages[currentHeroImageIndex]}')`;
+                heroTitle.style.display = 'none';
+                heroButtons.style.display = 'none';
             }
+
+            homeHero.style.backgroundSize = 'cover';
+            homeHero.style.backgroundPosition = 'center';
+            createHeroDots();
         }
 
         function nextHeroImage() {
