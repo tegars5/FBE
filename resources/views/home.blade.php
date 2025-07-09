@@ -24,7 +24,7 @@
                 </div>
         </header>
         <nav class="bg-beige py-3 md:py-5 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out shadow-md">
-            <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-5">
+            <div class="mx-auto flex justify-between items-center px-4 md:px-5">
                 <div class="relative flex items-center gap-4 z-[100]">
                     <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
                     <div
@@ -109,6 +109,13 @@
                             Supplier&nbsp;Login
                         </a>
                     </li>
+                    <li class="relative flex items-center">
+                        <a href="#"
+                            class="text-sm xl:text-base font-semibold text-gray-800 hover:text-green-light transition duration-300">
+                            <i class="fas fa-globe"></i><i class="fas fa-sync-alt"></i>
+                            Language
+                        </a>
+                    </li>
                 </ul>
 
                 <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
@@ -176,6 +183,11 @@
                     <div class="mobile-menu-item">
                         <a href="#supplier-info" class="mobile-menu-link">
                             <i class="fas fa-handshake"></i>Supplier Info
+                        </a>
+                    </div>
+                    <div class="mobile-menu-item">
+                        <a href="#" class="mobile-menu-link">
+                            <i class="fas fa-globe"></i>language
                         </a>
                     </div>
                 </nav>
@@ -387,26 +399,34 @@
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Premium PKS Charcoal</h3>
                         <p class="text-gray-600 mb-6">High-quality charcoal made from palm kernel shells, processed
-                            with advanced carbonization technology for optimal energy output.</p>
+                            with advanced carbonization technology for optimal energy output.
+                        </p>
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Key Specifications:</h4>
                         <div class="grid grid-cols-2 gap-4 mb-6">
                             <div class="text-center p-3 bg-green-50 rounded-lg">
-                                <div class="text-2xl font-bold text-green-custom">4,200+</div>
-                                <div class="text-xs text-gray-600">kcal/kg (min)</div>
+                                <div class="text-2xl font-bold text-green-custom">7,710</div>
+                                <div class="text-xs text-gray-600">kcal/kg (min)<br>Gross Calorific Value (as received)
+                                </div>
                             </div>
                             <div class="text-center p-3 bg-green-50 rounded-lg">
                                 <div class="text-2xl font-bold text-green-custom">
-                                    &lt;8%</div>
-                                <div class="text-xs text-gray-600">Moisture</div>
+                                    1.74%
+                                </div>
+                                <div class="text-xs text-gray-600">Moisture(as received)
+                                </div>
                             </div>
                             <div class="text-center p-3 bg-green-50 rounded-lg">
                                 <div class="text-2xl font-bold text-green-custom">
-                                    &lt;4%</div>
-                                <div class="text-xs text-gray-600">Ash Content</div>
+                                    4.10%
+                                </div>
+                                <div class="text-xs text-gray-600">Ash Content(as received)
+                                </div>
                             </div>
                             <div class="text-center p-3 bg-green-50 rounded-lg">
-                                <div class="text-2xl font-bold text-green-custom">85%+</div>
-                                <div class="text-xs text-gray-600">Fixed Carbon</div>
+                                <div class="text-2xl font-bold text-green-custom">
+                                    86.49%
+                                </div>
+                                <div class="text-xs text-gray-600">Fixed Carbon (as received)</div>
                             </div>
                         </div>
 
@@ -443,7 +463,6 @@
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
                                     2</span>
                             </a>
-                            {{-- Tambahkan lebih banyak thumbnail spec sheets jika ada --}}
                         </div>
 
                         <a href="#contact"
@@ -512,7 +531,6 @@
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
                                     1</span>
                             </a>
-                            {{-- Tambahkan lebih banyak thumbnail spec sheets jika ada --}}
                         </div>
 
                         <a href="#contact"
@@ -529,48 +547,58 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Sustainability & Environmental Impact</h2>
 
-            <div class="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 text-green-custom">Our Eco-Friendly Process</h3>
-                    <p class="text-gray-600 mb-6">Our PKS charcoal production process is designed to minimize
-                        environmental impact while maximizing energy efficiency. By utilizing agricultural waste, we
-                        contribute to a circular economy and a greener future.
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-6xl mx-auto">
+                <!-- Kolom Kiri: Eco-Friendly Process dan Certification -->
+                <div class="space-y-6">
+                    <!-- Eco-Friendly Process -->
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg mb-9">
+                        <h3 class="text-lg font-bold mb-4 text-green-custom">Our Eco-Friendly Process</h3>
+                        <p class="text-gray-600 mb-6">
+                            Our PKS charcoal production process is designed to minimize environmental impact while
+                            maximizing energy efficiency. By utilizing agricultural waste, we contribute to a circular
+                            economy and a greener future.
 
-                        We carefully select raw materials to ensure high-quality biomass fuel while preventing
-                        unnecessary waste. Our advanced carbonization technology allows for low-emission processing and
-                        optimized energy conversion. Additionally, our operations support sustainable agricultural
-                        practices by transforming palm kernel shells, which would otherwise be discarded, into valuable
-                        renewable energy resources.
+                            We carefully select raw materials to ensure high-quality biomass fuel while preventing
+                            unnecessary waste. Our advanced carbonization technology allows for low-emission processing
+                            and optimized energy conversion. Additionally, our operations support sustainable
+                            agricultural practices by transforming palm kernel shells, which would otherwise be
+                            discarded, into valuable renewable energy resources.
 
-                        Through these efforts, we help reduce dependence on fossil fuels, lower greenhouse gas
-                        emissions, and promote cleaner energy solutions for industries and communities alike.</p>
+                            Through these efforts, we help reduce dependence on fossil fuels, lower greenhouse gas
+                            emissions, and promote cleaner energy solutions for industries and communities alike.
 
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-recycle text-green-custom text-xl"></i>
-                            <span class="text-sm text-gray-700">100% Agricultural Waste Utilization</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-leaf text-green-custom text-xl"></i>
-                            <span class="text-sm text-gray-700">Significant Carbon Footprint Reduction</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-solar-panel text-green-custom text-xl"></i>
-                            <span class="text-sm text-gray-700">Renewable & Sustainable Energy Alternative</span>
+                        </p>
+
+                        <div class="space-y-4 mt-20">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-recycle text-green-custom text-xl"></i>
+                                <span class="text-sm text-gray-700">100% Agricultural Waste Utilization</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-leaf text-green-custom text-xl"></i>
+                                <span class="text-sm text-gray-700">Significant Carbon Footprint Reduction</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-solar-panel text-green-custom text-xl"></i>
+                                <span class="text-sm text-gray-700">Renewable & Sustainable Energy Alternative</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mt-8">
+                    <!-- Certification -->
+                    <div class="p-6 bg-white rounded-lg shadow-lg mt-30">
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Certified Sustainable:</h4>
                         <img src="{{ asset('assets/logo-brand/logo-ggl.png') }}" alt="GGL Certification Logo"
-                            class="w-32 h-auto object-contain">
-                        <p class="text-xs text-gray-600 mt-2">Proudly certified with Green Gold Label (GGL) for
-                            sustainable biomass practices.</p>
+                            class="w-32 h-auto object-contain mb-2">
+                        <p class="text-xs text-gray-600">Proudly certified with Green Gold Label (GGL) for sustainable
+                            biomass practices.</p>
                     </div>
                 </div>
 
-                <div>
-                    <div class="co2-diagram p-6 rounded-lg shadow-md mb-8">
+                <!-- Kolom Kanan: CO₂ Diagram dan Environmental Initiatives -->
+                <div class="space-y-6">
+                    <!-- CO₂ Emission Comparison -->
+                    <div class="co2-diagram p-6 rounded-lg shadow-md">
                         <h4 class="text-lg font-bold text-center mb-4 text-green-custom">CO₂ Emission Comparison</h4>
                         <img src="{{ asset('assets/diagram-co.png') }}" alt="CO2 Reduction Diagram"
                             class="w-full h-auto object-contain rounded-lg mb-4">
@@ -578,18 +606,20 @@
                             types.</p>
                     </div>
 
-                    <h3 class="font-bold text-lg mb-4 text-green-custom">Environmental Initiatives in Action</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="{{ asset('assets/cangkang-sawit.jpg') }}" alt="Environmental Initiative 1"
-                            class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/produksi-cangkang.png') }}" alt="Environmental Initiative 2"
-                            class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/palm-trees-palm-oil.jpg') }}" alt="Environmental Initiative 3"
-                            class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-project.jpg') }}"
-                            alt="Environmental Initiative 4"
-                            class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        {{-- Tambahkan lebih banyak foto inisiatif lingkungan jika ada --}}
+                    <!-- Environmental Initiatives in Action -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-5 text-green-custom">Environmental Initiatives in Action</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="{{ asset('assets/cangkang-sawit.jpg') }}" alt="Environmental Initiative 1"
+                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                            <img src="{{ asset('assets/produksi-cangkang.png') }}" alt="Environmental Initiative 2"
+                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                            <img src="{{ asset('assets/palm-trees-palm-oil.jpg') }}" alt="Environmental Initiative 3"
+                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                            <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-project.jpg') }}"
+                                alt="Environmental Initiative 4"
+                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -630,7 +660,6 @@
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         <img src="{{ asset('assets/background.jpg') }}" alt="Container Loading Operation 2"
                             class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        {{-- Tambahkan lebih banyak foto operasi loading --}}
                     </div>
                 </div>
             </div>
@@ -1185,7 +1214,7 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (kode yang sudah ada)
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuOverlay = document.getElementById('menu-overlay');
@@ -1200,7 +1229,7 @@
         menuBtn.addEventListener('click', toggleMobileMenu);
         menuOverlay.addEventListener('click', toggleMobileMenu);
 
-        // Close menu when clicking on menu links
+        // Close menu when clicking on mobile menu links
         document.querySelectorAll('.mobile-menu-link').forEach(link => {
             link.addEventListener('click', toggleMobileMenu);
         });
@@ -1249,18 +1278,10 @@
         });
 
         // Simple Form submission alert (for demonstration)
-        const contactForm = document.querySelector('#contact form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset(); // Clear form fields
-            });
-        }
-
         function handleSubmit(event) {
             event.preventDefault();
             alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
+            event.target.reset(); // Clear form fields
         }
 
         function toggleSDG(sdgId) {
@@ -1288,19 +1309,23 @@
             }
         }
 
-        // Slider Hero (Revisi 6)
+        // Slider Hero with Touch Swipe
         const heroImages = [
-            '{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}', // Gambar pertama
-            '{{ asset('assets/background-hero-section.png') }}', // Ganti dengan path gambar slider ke-2 Anda
-            '{{ asset('assets/background.jpg') }}' // Ganti dengan path gambar slider ke-3 Anda
+            '{{ asset('assets/bg-hero.png') }}', // Slide 1: dengan teks
+            '{{ asset('assets/stock.JPG') }}', // Slide 2: hanya gambar
+            '{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}' // Slide 3: hanya gambar
         ];
 
         const homeHero = document.getElementById('home-hero');
         const heroDotsContainer = document.getElementById('hero-dots');
+        const heroTitle = document.querySelector('.hero-title'); // Seleksi elemen title
+        const heroButtons = document.querySelector('.hero-buttons'); // Seleksi elemen buttons
+
         let currentHeroImageIndex = 0;
+        let autoSlideInterval;
 
         function createHeroDots() {
-            heroDotsContainer.innerHTML = ''; // Hapus titik-titik yang ada
+            heroDotsContainer.innerHTML = '';
             heroImages.forEach((_, index) => {
                 const dot = document.createElement('span');
                 dot.classList.add('w-2', 'h-2', 'bg-white', 'rounded-full', 'opacity-50', 'cursor-pointer',
@@ -1312,16 +1337,25 @@
                 dot.addEventListener('click', () => {
                     currentHeroImageIndex = index;
                     updateHeroSlider();
+                    resetAutoSlide(); // Reset timer when dot is clicked
                 });
                 heroDotsContainer.appendChild(dot);
             });
         }
 
         function updateHeroSlider() {
-            // Atur background-image pada elemen header
             homeHero.style.backgroundImage =
-                `linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%), url('${heroImages[currentHeroImageIndex]}')`;
-            createHeroDots(); // Perbarui titik-titik agar sesuai dengan gambar saat ini
+                ` url('${heroImages[currentHeroImageIndex]}')`;
+            createHeroDots();
+
+            // Logika untuk menampilkan/menyembunyikan teks dan tombol
+            if (currentHeroImageIndex === 0) { // Jika slide pertama
+                heroTitle.style.display = 'block'; // Tampilkan teks
+                heroButtons.style.display = 'flex'; // Tampilkan tombol (gunakan flex karena itu display aslinya)
+            } else { // Jika slide kedua atau ketiga (indeks 1 atau 2)
+                heroTitle.style.display = 'none'; // Sembunyikan teks
+                heroButtons.style.display = 'none'; // Sembunyikan tombol
+            }
         }
 
         function nextHeroImage() {
@@ -1329,11 +1363,44 @@
             updateHeroSlider();
         }
 
-        // Inisialisasi slider saat halaman dimuat
-        updateHeroSlider();
+        function prevHeroImage() {
+            currentHeroImageIndex = (currentHeroImageIndex - 1 + heroImages.length) % heroImages.length;
+            updateHeroSlider();
+        }
 
-        // Auto-advance slider setiap 5 detik (contoh)
-        setInterval(nextHeroImage, 5000);
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextHeroImage, 5000);
+        }
+
+        // Touch Swipe for Hero Slider
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        homeHero.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            clearInterval(autoSlideInterval); // Pause auto-slide on touch start
+        });
+
+        homeHero.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+        });
+
+        homeHero.addEventListener('touchend', () => {
+            if (touchEndX < touchStartX - 50) { // Swiped left
+                nextHeroImage();
+            } else if (touchEndX > touchStartX + 50) { // Swiped right
+                prevHeroImage();
+            }
+            // Reset touch coordinates
+            touchStartX = 0;
+            touchEndX = 0;
+            resetAutoSlide(); // Resume auto-slide after touch ends
+        });
+
+        // Initialize slider and auto-advance
+        updateHeroSlider();
+        resetAutoSlide(); // Start auto-slide when page loads
     </script>
 </body>
 
