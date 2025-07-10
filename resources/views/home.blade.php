@@ -111,8 +111,8 @@
                     </li>
                     <li class="relative flex items-center">
                         <a href="#"
-                            class="text-sm xl:text-base font-semibold text-gray-800 hover:text-green-light transition duration-300">
-                            <i class="fas fa-globe"></i><i class="fas fa-sync-alt"></i>
+                            class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
+                            <i class="fas fa-globe mr-1"></i>
                             Language
                         </a>
                     </li>
@@ -551,8 +551,8 @@
                 <!-- Kolom Kiri: Eco-Friendly Process dan Certification -->
                 <div class="space-y-6">
                     <!-- Eco-Friendly Process -->
-                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg mb-9">
-                        <h3 class="text-lg font-bold mb-4 text-green-custom">Our Eco-Friendly Process</h3>
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg">
+                        <h3 class="text-lg md:text-xl font-bold mb-4 text-green-custom">Our Eco-Friendly Process</h3>
                         <p class="text-gray-600 mb-6">
                             Our PKS charcoal production process is designed to minimize environmental impact while
                             maximizing energy efficiency. By utilizing agricultural waste, we contribute to a circular
@@ -565,64 +565,77 @@
                             discarded, into valuable renewable energy resources.
 
                             Through these efforts, we help reduce dependence on fossil fuels, lower greenhouse gas
-                            emissions, and promote cleaner energy solutions for industries and communities alike.
-
+                            emissions, and promote cleaner energy solutions for industries and communities alike.
                         </p>
+                    </div>
 
-                        <div class="space-y-4 mt-20">
+                    <!-- Benefits and Certification -->
+                    <div class="p-6 bg-white rounded-lg shadow-lg">
+                        <div class="space-y-3 mb-6">
+                            <!-- Perbesar teks bagian ini -->
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-recycle text-green-custom text-xl"></i>
-                                <span class="text-sm text-gray-700">100% Agricultural Waste Utilization</span>
+                                <i class="fas fa-recycle text-green-custom text-sm"></i>
+                                <span class="text-base md:text-lg text-gray-700">100% Agricultural Waste
+                                    Utilization</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-leaf text-green-custom text-xl"></i>
-                                <span class="text-sm text-gray-700">Significant Carbon Footprint Reduction</span>
+                                <i class="fas fa-leaf text-green-custom text-sm"></i>
+                                <span class="text-base md:text-lg text-gray-700">Significant Carbon Footprint
+                                    Reduction</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-solar-panel text-green-custom text-xl"></i>
-                                <span class="text-sm text-gray-700">Renewable & Sustainable Energy Alternative</span>
+                                <i class="fas fa-solar-panel text-green-custom text-sm"></i>
+                                <span class="text-base md:text-lg text-gray-700">Renewable & Sustainable Energy
+                                    Alternative</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Certification -->
-                    <div class="p-6 bg-white rounded-lg shadow-lg mt-30">
-                        <h4 class="font-semibold text-md mb-3 text-gray-800">Certified Sustainable:</h4>
-                        <img src="{{ asset('assets/logo-brand/logo-ggl.png') }}" alt="GGL Certification Logo"
-                            class="w-32 h-auto object-contain mb-2">
-                        <p class="text-xs text-gray-600">Proudly certified with Green Gold Label (GGL) for sustainable
-                            biomass practices.</p>
+                        <!-- Certification -->
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-lg mb-3 text-gray-800">Certified Sustainable:</h4>
+                            <img src="{{ asset('assets/logo-brand/logo-ggl.png') }}" alt="GGL Certification Logo"
+                                class="w-48 h-auto object-contain mb-2">
+                            <p class="text-base md:text-lg text-gray-600">Proudly certified with
+                                Green Gold Label (GGL) for sustainable biomass practices.</p>
+                        </div>
                     </div>
                 </div>
-
                 <!-- Kolom Kanan: CO₂ Diagram dan Environmental Initiatives -->
                 <div class="space-y-6">
                     <!-- CO₂ Emission Comparison -->
                     <div class="co2-diagram p-6 rounded-lg shadow-md">
-                        <h4 class="text-lg font-bold text-center mb-4 text-green-custom">CO₂ Emission Comparison</h4>
+                        <h4 class="text-lg font-bold text-center mb-4 text-green-custom">CO₂
+                            Emission Comparison</h4>
                         <img src="{{ asset('assets/diagram-co.png') }}" alt="CO2 Reduction Diagram"
                             class="w-full h-auto object-contain rounded-lg mb-4">
-                        <p class="text-xs text-gray-700 text-center">Comparative CO₂ emissions for different fuel
-                            types.</p>
+                        <p class="text-xs md:text-sm text-gray-700 text-center">Comparative CO₂
+                            emissions for different
+                            fuel types.</p>
                     </div>
-
                     <!-- Environmental Initiatives in Action -->
-                    <div>
-                        <h3 class="font-bold text-lg mb-5 text-green-custom">Environmental Initiatives in Action</h3>
-                        <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-6">
+                        <h3 class="font-bold text-lg md:text-xl mb-5 text-green-custom">
+                            Environmental Initiatives in
+                            Action</h3>
+                        <div class="grid grid-cols-2 gap-6">
                             <img src="{{ asset('assets/cangkang-sawit.jpg') }}" alt="Environmental Initiative 1"
-                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                                class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                             <img src="{{ asset('assets/produksi-cangkang.png') }}" alt="Environmental Initiative 2"
-                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                                class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                             <img src="{{ asset('assets/palm-trees-palm-oil.jpg') }}" alt="Environmental Initiative 3"
-                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                                class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                             <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-project.jpg') }}"
                                 alt="Environmental Initiative 4"
-                                class="w-full h-30 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                                class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         </div>
+
                     </div>
+
                 </div>
+
+
             </div>
+        </div>
         </div>
     </section>
 
@@ -669,7 +682,7 @@
         class="py-16 md:py-24 bg-gradient-to-br from-green-50 to-beige-100 relative overflow-hidden">
         <div class="absolute inset-0 bg-pattern-subtle opacity-20 z-0"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-center text-green-700 mb-12 leading-tight">
+            <h2 class="text-2xl md:text-4xl font-extrabold text-center text-green-700 mb-12 leading-tight">
                 Information for Suppliers
             </h2>
 
@@ -1121,10 +1134,9 @@
                         <div class="w-full">
                             <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5218005391986!2d106.78652617507797!3d-6.194770293796859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6bb7f1a3e6f%3A0x7d2e071e62a1f1a0!2sNeo%20Soho%20Apartment!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
-                                    width="100%" height="100%" style="border: none;" allowfullscreen=""
-                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
-                                </iframe>
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6710965388825!2d106.7899649!3d-6.1747689999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1752120268639!5m2!1sid!2sid"
+                                    width="600" height="450" style="border:0;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 gap-2">
                                 <p class="text-xs sm:text-sm text-gray-600">
@@ -1374,7 +1386,7 @@
 
         function resetAutoSlide() {
             clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(nextHeroImage, 5000);
+            autoSlideInterval = setInterval(nextHeroImage, 20000);
         }
 
         // Touch Swipe for Hero Slider
