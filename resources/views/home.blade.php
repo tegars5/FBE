@@ -1312,7 +1312,7 @@
 
         // Slider Hero with Touch Swipe
         const heroImages = [
-            '{{ asset('assets/bg-hero.png') }}', // Slide 1: dengan teks
+            '{{ asset('assets/bg-hero.png') }}',
             '{{ asset('assets/stock.JPG') }}', // Slide 2: hanya gambar
             '{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}' // Slide 3: hanya gambar
         ];
@@ -1348,7 +1348,7 @@
             // Check if the current slide is the first one (index 0)
             if (currentHeroImageIndex === 0) {
                 homeHero.style.backgroundImage =
-                    `linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%), url('${heroImages[currentHeroImageIndex]}')`;
+                    `url('${heroImages[currentHeroImageIndex]}')`;
                 heroTitle.style.display = 'block';
                 heroButtons.style.display = 'flex';
             } else {
