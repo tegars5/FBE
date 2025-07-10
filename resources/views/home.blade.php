@@ -194,10 +194,10 @@
 
                 <div class="mobile-menu-footer">
                     <button class="mobile-login-btn" onclick="window.location.href='#'">
-                        <i class="fas fa-sign-in-alt"></i>Buyers&nbsp;Login
+                        <i class="fas fa-sign-in-alt"></i>Buyers Login
                     </button>
                     <button class="mobile-login-btn mt-2" onclick="window.location.href='#'">
-                        <i class="fas fa-sign-in-alt"></i>Supplier&nbsp;Login
+                        <i class="fas fa-sign-in-alt"></i>Supplier Login
                     </button>
                 </div>
             </div>
@@ -426,7 +426,7 @@
                                 <div class="text-2xl font-bold text-green-custom">
                                     86.49%
                                 </div>
-                                <div class="text-xs text-gray-600">Fixed Carbon (as received)</div>
+                                <div class="text-xs text-gray-600">Fixed Carbon (as received)</div>
                             </div>
                         </div>
 
@@ -702,11 +702,11 @@
                     <ul class="text-gray-700 space-y-2 list-none pl-0">
                         <li class="flex items-center"><i
                                 class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Moisture content:
-                            &lt;15%</li>
+                            <15%< /li>
                         <li class="flex items-center"><i
                                 class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Size: 5–20 mm</li>
                         <li class="flex items-center"><i
-                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Ash content: &lt;5%</li>
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Ash content: <5%< /li>
                         <li class="flex items-center"><i
                                 class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Calorific value: 4,000
                             kcal/kg and above</li>
@@ -852,7 +852,7 @@
                                         <h4 class="font-semibold text-xs md:text-sm leading-tight">
                                             {{ $article->title }}</h4>
                                         {{-- <p class="text-xs text-gray-600">Article —
-                                                {{ $article->created_at->format('F j, Y') }}</p> --}}
+                                             {{ $article->created_at->format('F j, Y') }}</p> --}}
                                     </div>
                                 </a>
                             </article>
@@ -1347,7 +1347,7 @@
             // Check if the current slide is the first one (index 0)
             if (currentHeroImageIndex === 0) {
                 homeHero.style.backgroundImage =
-                    `url('${heroImages[currentHeroImageIndex]}')`;
+                    `linear-gradient(135deg, rgba(37, 41, 37, 0.8) 0%, rgba(32, 36, 32, 0.9) 100%), url('${heroImages[currentHeroImageIndex]}')`;
                 heroTitle.style.display = 'block';
                 heroButtons.style.display = 'flex';
             } else {

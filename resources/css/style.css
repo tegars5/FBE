@@ -18,8 +18,8 @@ body {
 .logo-image-container {
     transition: top 0.3s ease-in-out;
     /* Revisi 2: Ukuran logo lebih besar saat tidak di-scroll */
-    width: 10rem; /* Sesuaikan ukuran logo di navbar */
-    height: 10rem; /* Sesuaikan ukuran logo di navbar */
+    width: 12rem; /* Sesuaikan ukuran logo di navbar */
+    height: 12rem; /* Sesuaikan ukuran logo di navbar */
 }
 
 nav.scrolled .logo-image-container {
@@ -336,25 +336,13 @@ nav.scrolled {
 }
 
 .logo-bg {
-    /* Revisi 1: Sesuaikan posisi dan ukuran agar selaras dengan logo yang diperbesar */
-    top: 1rem; /* Sesuaikan nilai ini */
-    left: -18rem; /* Sesuaikan nilai ini */
-    width: 15rem; /* Sesuaikan nilai ini */
-    height: 8rem; /* Sesuaikan nilai ini */
-    border-bottom-right-radius: 150px 100px; /* Tetap sama untuk garis halus */
+    /* Adjusted top and left for larger logo */
+    top: 2rem; /* Adjusted from 1rem */
+    left: -20rem; /* Adjusted from -18rem */
+    width: 18rem; /* Adjusted from 15rem */
+    height: 10rem; /* Adjusted from 8rem */
+    border-bottom-right-radius: 100px;
 }
-
-/* Hapus background-image statis dari .hero-bg karena akan diatur oleh JS */
-.hero-bg {
-    background: linear-gradient(
-        135deg,
-        rgba(37, 41, 37, 0.8) 0%,
-        rgba(32, 36, 32, 0.9) 100%
-    ); /* Hanya overlay, gambar akan diset JS */
-    background-size: cover;
-    background-position: center;
-}
-
 .hero-content {
     max-width: 1280px;
     margin: 0 auto;
@@ -371,11 +359,101 @@ nav.scrolled {
     .hero-content {
         padding: 0 3rem;
     }
+    .logo-image-container {
+        width: 16rem; /* Ukuran logo lebih besar pada layar besar */
+        height: 16rem;
+    }
+    nav.scrolled .logo-image-container {
+        width: 6rem; /* Ukuran logo kecil saat di-scroll di layar besar */
+        height: 6rem;
+    }
 }
 
 @media (min-width: 1024px) {
     .hero-content {
         padding: 0 5rem;
+    }
+}
+
+/* New media query for 16-inch MacBook Pro (1536px viewport width) and larger screens */
+@media (min-width: 1536px) {
+    .hero-content {
+        padding: 0 6rem; /* Sedikit kurangi padding agar tidak terlalu lebar */
+    }
+
+    .hero-title {
+        font-size: 3.8rem; /* Kurangi sedikit ukuran font dari 4rem */
+        line-height: 1.15; /* Sesuaikan line-height */
+    }
+
+    .hero-buttons a {
+        padding: 0.9rem 2.2rem; /* Sedikit kecilkan padding tombol */
+        font-size: 1.05rem; /* Sedikit kecilkan ukuran font tombol */
+    }
+
+    .logo-image-container {
+        width: 18rem; /* Sedikit kurangi dari 20rem */
+        height: 18rem; /* Sedikit kurangi dari 20rem */
+    }
+
+    nav.scrolled .logo-image-container {
+        width: 6rem; /* Pertahankan ukuran yang konsisten saat discroll */
+        height: 6rem;
+    }
+
+    .max-w-7xl {
+        max-width: 1300px; /* Sesuaikan max-width agar lebih optimal */
+    }
+
+    .max-w-6xl {
+        max-width: 1100px; /* Sesuaikan max-width untuk blok konten spesifik */
+    }
+
+    .news-card,
+    .co2-diagram,
+    .sdg-detail,
+    .mobile-login-btn {
+        padding: 1.75rem; /* Sedikit kurangi padding */
+    }
+
+    .mobile-menu {
+        width: 350px; /* Sedikit kurangi lebar mobile menu */
+    }
+
+    .mobile-menu-link {
+        padding: 16px 24px; /* Pertahankan padding link mobile */
+        font-size: 16px; /* Pertahankan ukuran font mobile */
+    }
+
+    .logo-bg {
+        top: 2.5rem; /* Sesuaikan posisi top */
+        left: -22rem; /* Sesuaikan posisi left */
+        width: 17rem; /* Sedikit kurangi lebar background */
+        height: 10rem;
+    }
+}
+
+/* Tambahan breakpoint untuk layar yang lebih besar dari 16 inci MacBook Pro */
+@media (min-width: 1920px) {
+    .hero-content {
+        padding: 0 8rem; /* Kembali ke padding lebih besar untuk layar ultra-lebar */
+    }
+
+    .hero-title {
+        font-size: 4.5rem; /* Ukuran font lebih besar untuk layar ultra-lebar */
+        line-height: 1.1;
+    }
+
+    .logo-image-container {
+        width: 20rem; /* Ukuran logo lebih besar lagi */
+        height: 20rem;
+    }
+
+    .logo-bg {
+        top: 3rem;
+        left: -25rem;
+        width: 20rem;
+        height: 12rem;
     }
 }
 
