@@ -567,7 +567,7 @@
                         </p>
                     </div>
 
-                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[680px] lg:min-h-[456px]">
                         <div class="space-y-3 mb-6">
                             <div class="flex items-center gap-3">
                                 <i class="fas fa-recycle text-green-custom text-sm"></i>
@@ -607,7 +607,7 @@
                             fuel types.</p>
                     </div>
 
-                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[680px] lg:min-h-[456px]">
                         <h3 class="font-bold text-lg md:text-xl mb-5 text-green-custom">
                             Environmental Initiatives in Action
                         </h3>
@@ -702,11 +702,12 @@
                     <ul class="text-gray-700 space-y-2 list-none pl-0">
                         <li class="flex items-center"><i
                                 class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Moisture content:
-                            <15%< /li>
+                            15%
+                        </li>
                         <li class="flex items-center"><i
                                 class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Size: 5–20 mm</li>
                         <li class="flex items-center"><i
-                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Ash content: <5%< /li>
+                                class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Ash content <5% </li>
                         <li class="flex items-center"><i
                                 class="fas fa-check-circle text-green-custom mr-3 text-lg"></i>Calorific value: 4,000
                             kcal/kg and above</li>
