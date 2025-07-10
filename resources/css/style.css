@@ -1,53 +1,116 @@
-* {
+/*
+ * =========================================
+ * Global Styles & Reset
+ * =========================================
+ */
+:root {
+    /* Colors */
+    --color-green-dark: #1b5e20; /* Primary Green */
+    --color-green-medium: #228b22; /* Green for hover states */
+    --color-green-light: #4caf50; /* Light green accent */
+    --color-beige-light: #f8f8e8; /* Light beige for sections */
+    --color-beige-medium: #f5f5dc; /* Medium beige for accents */
+    --color-text-dark: #374151; /* Dark gray for general text */
+    --color-text-medium: #6b7280; /* Medium gray for secondary text */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Spacing & Sizes (if not using Tailwind's default spacing scale directly) */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 1rem; /* 16px */
+    --spacing-lg: 1.5rem; /* 24px */
+    --spacing-xl: 2rem; /* 32px */
+}
+
+/* Universal box-sizing for consistent layout */
+*,
+*::before,
+*::after {
     margin: 0;
-    box-sizing: border-box;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: "Roboto", sans-serif;
-    padding-top: 80px;
+    padding-top: 80px; /* Base padding for mobile/default */
+    overflow-x: hidden; /* Prevent horizontal scroll issues */
 }
 
+/* Adjust body padding for larger screens to accommodate fixed navbar */
 @media (min-width: 768px) {
     body {
         padding-top: 100px;
     }
 }
 
-.logo-image-container {
-    transition: top 0.3s ease-in-out;
-    /* Revisi 2: Ukuran logo lebih besar saat tidak di-scroll */
-    width: 12rem; /* Sesuaikan ukuran logo di navbar */
-    height: 12rem; /* Sesuaikan ukuran logo di navbar */
+/*
+ * =========================================
+ * Navbar & Header Styles
+ * =========================================
+ */
+/* Navbar transition for fixed state */
+nav {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Default shadow for non-scrolled */
 }
 
+nav.scrolled {
+    padding-top: 0.75rem; /* Reduced padding when scrolled */
+    padding-bottom: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow when scrolled */
+}
+
+/* Logo container styling */
+.logo-image-container {
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+        top 0.3s ease-in-out;
+    width: 12rem; /* Default size */
+    height: 12rem;
+}
+
+/* Logo size when navbar is scrolled */
 nav.scrolled .logo-image-container {
-    position: relative;
-    top: 0 !important;
+    position: relative; /* Maintain position relative to parent */
+    top: 0 !important; /* Ensure no unwanted top offset */
     width: 4rem;
     height: 4rem;
 }
 
 nav.scrolled .logo-image-container img {
-    object-fit: contain;
+    object-fit: contain; /* Ensure image fits within container */
 }
 
+/* Decorative background behind logo (desktop-only) */
+.logo-bg {
+    top: 2rem; /* Adjusted from 1rem */
+    left: -20rem; /* Adjusted from -18rem */
+    width: 18rem; /* Adjusted from 15rem */
+    height: 10rem; /* Adjusted from 8rem */
+    border-bottom-right-radius: 100px;
+    background-color: var(--color-beige-light); /* Using CSS variable */
+    z-index: -10; /* Ensure it's behind content */
+}
+
+/* Hide logo-bg on smaller screens */
+@media (max-width: 767px) {
+    .logo-bg {
+        display: none;
+    }
+}
+
+/* Hide logo-bg when navbar is scrolled */
 nav.scrolled .logo-bg {
     display: none;
 }
 
-nav.scrolled {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-}
-
-.text-shadow-hero {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.text-shadow-hero-sub {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+/* Nav link hover effect */
+.nav-link {
+    position: relative;
+    color: var(--color-text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-link::after {
@@ -57,7 +120,7 @@ nav.scrolled {
     left: 0;
     width: 0;
     height: 2px;
-    background: #4caf50;
+    background: var(--color-green-light); /* Using CSS variable */
     transition: width 0.3s ease;
 }
 
@@ -65,7 +128,30 @@ nav.scrolled {
     width: 100%;
 }
 
-/* Hamburger Menu Styles */
+.nav-link:hover {
+    color: var(--color-green-light); /* Using CSS variable */
+}
+
+/* Dropdown menu styling */
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    /* Tailwind classes should handle most of this: absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 */
+}
+
+/*
+ * =========================================
+ * Hamburger Menu Styles (Mobile)
+ * =========================================
+ */
 .hamburger {
     position: relative;
     display: flex;
@@ -79,13 +165,13 @@ nav.scrolled {
     background: transparent;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 1001;
+    z-index: 1001; /* Ensure it's above other content */
     outline: none;
     -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger:hover {
-    background: rgba(27, 94, 32, 0.08);
+    background: rgba(27, 94, 32, 0.08); /* Using rgba for transparency */
     transform: scale(1.05);
 }
 
@@ -97,7 +183,7 @@ nav.scrolled {
     display: block;
     width: 24px;
     height: 2px;
-    background: #1b5e20;
+    background: var(--color-green-dark); /* Using CSS variable */
     border-radius: 2px;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
@@ -138,8 +224,8 @@ nav.scrolled {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(0px);
+    background: rgba(0, 0, 0, 0); /* Start transparent */
+    backdrop-filter: blur(0px); /* No blur initially */
     z-index: 998;
     visibility: hidden;
     opacity: 0;
@@ -147,7 +233,7 @@ nav.scrolled {
 }
 
 .mobile-menu-overlay.active {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6); /* Darker overlay when active */
     backdrop-filter: blur(8px);
     visibility: visible;
     opacity: 1;
@@ -157,27 +243,31 @@ nav.scrolled {
     position: fixed;
     top: 0;
     right: 0;
-    width: 320px;
-    max-width: 85vw;
+    width: 320px; /* Fixed width, adjusted for smaller screens */
+    max-width: 85vw; /* Max width relative to viewport */
     height: 100vh;
-    background: #ffffff;
+    background: var(--color-white); /* Using CSS variable */
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
-    transform: translateX(100%);
+    transform: translateX(100%); /* Hidden by default */
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 999;
-    overflow-y: auto;
+    overflow-y: auto; /* Allow scrolling for long menus */
     visibility: hidden;
-    border-radius: 24px 0 0 24px;
+    border-radius: 24px 0 0 24px; /* Rounded corners on left */
 }
 
 .mobile-menu.active {
-    transform: translateX(0);
+    transform: translateX(0); /* Slide in */
     visibility: visible;
 }
 
 .mobile-menu-header {
     position: relative;
-    background: linear-gradient(135deg, #f5f5dc 0%, #ffffff 100%);
+    background: linear-gradient(
+        135deg,
+        var(--color-beige-medium) 0%,
+        var(--color-white) 100%
+    ); /* Using CSS variables */
     border-bottom: 1px solid rgba(27, 94, 32, 0.1);
     padding: 24px;
 }
@@ -189,13 +279,18 @@ nav.scrolled {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #1b5e20, #4caf50);
+    background: linear-gradient(
+        90deg,
+        var(--color-green-dark),
+        var(--color-green-light)
+    ); /* Using CSS variables */
 }
 
 .mobile-menu-nav {
     padding: 24px 0;
 }
 
+/* Mobile menu item animations */
 .mobile-menu-item {
     opacity: 0;
     transform: translateX(20px);
@@ -206,35 +301,28 @@ nav.scrolled {
     opacity: 1;
     transform: translateX(0);
 }
-
+/* Staggered delay for menu items */
 .mobile-menu.active .mobile-menu-item:nth-child(1) {
     transition-delay: 0.1s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(2) {
     transition-delay: 0.15s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(3) {
     transition-delay: 0.2s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(4) {
     transition-delay: 0.25s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(5) {
     transition-delay: 0.3s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(6) {
     transition-delay: 0.35s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(7) {
     transition-delay: 0.4s;
 }
-
 .mobile-menu.active .mobile-menu-item:nth-child(8) {
     transition-delay: 0.45s;
 }
@@ -244,21 +332,21 @@ nav.scrolled {
     align-items: center;
     padding: 16px 24px;
     margin: 0 12px;
-    color: #374151;
+    color: var(--color-text-dark); /* Using CSS variable */
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
     border-radius: 16px;
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* For pseudo-element transition */
 }
 
 .mobile-menu-link::before {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
+    left: -100%; /* Start off-screen */
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -271,19 +359,19 @@ nav.scrolled {
 }
 
 .mobile-menu-link:hover::before {
-    left: 100%;
+    left: 100%; /* Slide across */
 }
 
 .mobile-menu-link i {
     margin-right: 12px;
     font-size: 18px;
-    color: #1b5e20;
+    color: var(--color-green-dark); /* Using CSS variable */
     transition: all 0.3s ease;
 }
 
 .mobile-menu-link:hover {
     background: rgba(27, 94, 32, 0.08);
-    color: #1b5e20;
+    color: var(--color-green-dark); /* Using CSS variable */
     transform: translateX(4px);
 }
 
@@ -294,7 +382,11 @@ nav.scrolled {
 .mobile-menu-footer {
     padding: 24px;
     border-top: 1px solid rgba(27, 94, 32, 0.1);
-    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+    background: linear-gradient(
+        135deg,
+        #f9f9f9 0%,
+        var(--color-white) 100%
+    ); /* Using CSS variable */
 }
 
 .mobile-login-btn {
@@ -303,8 +395,12 @@ nav.scrolled {
     justify-content: center;
     width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, #1b5e20 0%, #228b22 100%);
-    color: white;
+    background: linear-gradient(
+        135deg,
+        var(--color-green-dark) 0%,
+        var(--color-green-medium) 100%
+    ); /* Using CSS variables */
+    color: var(--color-white);
     font-weight: 600;
     font-size: 16px;
     border: none;
@@ -328,27 +424,35 @@ nav.scrolled {
     font-size: 16px;
 }
 
+/* Responsive adjustments for mobile menu width */
 @media (max-width: 480px) {
     .mobile-menu {
-        width: 100%;
+        width: 100%; /* Full width on very small screens */
         border-radius: 0;
     }
 }
 
-.logo-bg {
-    /* Adjusted top and left for larger logo */
-    top: 2rem; /* Adjusted from 1rem */
-    left: -20rem; /* Adjusted from -18rem */
-    width: 18rem; /* Adjusted from 15rem */
-    height: 10rem; /* Adjusted from 8rem */
-    border-bottom-right-radius: 100px;
-}
+/*
+ * =========================================
+ * Hero Section Specific Styles
+ * =========================================
+ */
 .hero-content {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1rem; /* Base padding */
 }
 
+/* Text shadow for hero title */
+.text-shadow-hero {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-hero-sub {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero content responsive padding */
 @media (min-width: 640px) {
     .hero-content {
         padding: 0 1.5rem;
@@ -360,11 +464,11 @@ nav.scrolled {
         padding: 0 3rem;
     }
     .logo-image-container {
-        width: 16rem; /* Ukuran logo lebih besar pada layar besar */
+        width: 16rem; /* Larger logo on larger screens */
         height: 16rem;
     }
     nav.scrolled .logo-image-container {
-        width: 6rem; /* Ukuran logo kecil saat di-scroll di layar besar */
+        width: 6rem; /* Smaller logo when scrolled on larger screens */
         height: 6rem;
     }
 }
@@ -375,77 +479,150 @@ nav.scrolled {
     }
 }
 
-/* New media query for 16-inch MacBook Pro (1536px viewport width) and larger screens */
+/* Hero title and buttons responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .hero-buttons a {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
+}
+
+/*
+ * =========================================
+ * Section Specific Styles
+ * =========================================
+ */
+.news-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-left: 4px solid var(--color-green-dark); /* Using CSS variable */
+}
+
+.co2-diagram {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c8 100%);
+}
+
+.sdg-detail {
+    /* Base styles, colors handled by inline bg and border classes */
+    transition: all 0.3s ease;
+}
+
+/*
+ * =========================================
+ * Contact Section Enhancements
+ * =========================================
+ */
+#contact iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Ensure form elements are consistently styled and responsive */
+#contact form input,
+#contact form select,
+#contact form textarea {
+    /* Tailwind classes: w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base */
+    /* Ensuring consistency if not fully relying on Tailwind utility classes for basic styles */
+    display: block; /* Ensure they take full width */
+    margin-bottom: var(--spacing-md); /* Consistent vertical spacing */
+}
+
+/* Fine-tune spacing in contact info list */
+#contact .space-y-6 > div.flex {
+    margin-bottom: 1.5rem; /* Explicit margin to ensure consistent spacing */
+}
+
+/*
+ * =========================================
+ * Large Screen Optimizations (16-inch MacBook Pro and above)
+ * =========================================
+ */
 @media (min-width: 1536px) {
     .hero-content {
-        padding: 0 6rem; /* Sedikit kurangi padding agar tidak terlalu lebar */
+        padding: 0 6rem;
     }
 
     .hero-title {
-        font-size: 3.8rem; /* Kurangi sedikit ukuran font dari 4rem */
-        line-height: 1.15; /* Sesuaikan line-height */
+        font-size: 3.8rem;
+        line-height: 1.15;
     }
 
     .hero-buttons a {
-        padding: 0.9rem 2.2rem; /* Sedikit kecilkan padding tombol */
-        font-size: 1.05rem; /* Sedikit kecilkan ukuran font tombol */
+        padding: 0.9rem 2.2rem;
+        font-size: 1.05rem;
     }
 
     .logo-image-container {
-        width: 18rem; /* Sedikit kurangi dari 20rem */
-        height: 18rem; /* Sedikit kurangi dari 20rem */
+        width: 18rem;
+        height: 18rem;
     }
 
     nav.scrolled .logo-image-container {
-        width: 6rem; /* Pertahankan ukuran yang konsisten saat discroll */
+        width: 6rem;
         height: 6rem;
     }
 
+    /* Max-width adjustments for overall layout */
     .max-w-7xl {
-        max-width: 1300px; /* Sesuaikan max-width agar lebih optimal */
+        max-width: 1300px;
     }
 
     .max-w-6xl {
-        max-width: 1100px; /* Sesuaikan max-width untuk blok konten spesifik */
+        max-width: 1100px;
     }
 
+    /* Padding adjustments for various cards/blocks */
     .news-card,
     .co2-diagram,
     .sdg-detail,
     .mobile-login-btn {
-        padding: 1.75rem; /* Sedikit kurangi padding */
+        padding: 1.75rem;
     }
 
     .mobile-menu {
-        width: 350px; /* Sedikit kurangi lebar mobile menu */
+        width: 350px;
     }
 
     .mobile-menu-link {
-        padding: 16px 24px; /* Pertahankan padding link mobile */
-        font-size: 16px; /* Pertahankan ukuran font mobile */
+        padding: 16px 24px;
+        font-size: 16px;
     }
 
     .logo-bg {
-        top: 2.5rem; /* Sesuaikan posisi top */
-        left: -22rem; /* Sesuaikan posisi left */
-        width: 17rem; /* Sedikit kurangi lebar background */
+        top: 2.5rem;
+        left: -22rem;
+        width: 17rem;
         height: 10rem;
     }
 }
 
-/* Tambahan breakpoint untuk layar yang lebih besar dari 16 inci MacBook Pro */
+/*
+ * =========================================
+ * Ultra-Wide Screen Optimizations (1920px and above)
+ * =========================================
+ */
 @media (min-width: 1920px) {
     .hero-content {
-        padding: 0 8rem; /* Kembali ke padding lebih besar untuk layar ultra-lebar */
+        padding: 0 8rem;
     }
 
     .hero-title {
-        font-size: 4.5rem; /* Ukuran font lebih besar untuk layar ultra-lebar */
+        font-size: 4.5rem;
         line-height: 1.1;
     }
 
     .logo-image-container {
-        width: 20rem; /* Ukuran logo lebih besar lagi */
+        width: 20rem;
         height: 20rem;
     }
 
@@ -455,46 +632,4 @@ nav.scrolled {
         width: 20rem;
         height: 12rem;
     }
-}
-
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
-        line-height: 1.2;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .hero-buttons a {
-        width: 100%;
-        max-width: 200px;
-        text-align: center;
-    }
-}
-
-.news-card {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-left: 4px solid #1b5e20;
-}
-
-.co2-diagram {
-    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c8 100%);
-}
-
-/* Dropdown styles */
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
 }

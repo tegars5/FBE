@@ -1123,7 +1123,7 @@
                         <div class="w-full">
                             <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6710965388825!2d106.7899649!3d-6.1747689999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1752120268639!5m2!1sid!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576887556943!2d106.78280637409252!3d-6.186064993800632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6bb7f1b745b%3A0xc3f1a0b0d0c3f1a!2sNeo%20Soho%20Apartment!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
                                     width="600" height="450" style="border:0;" allowfullscreen=""
                                     loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
@@ -1131,7 +1131,8 @@
                                 <p class="text-xs sm:text-sm text-gray-600">
                                     Click the map for directions to Neo Soho Central Park
                                 </p>
-                                <a href="https://maps.app.goo.gl/YourGoogleMapsLinkHere" target="_blank"
+                                <a href="https://www.google.com/maps/place/Neo+Soho+Apartment/@-6.186065,106.7828064,17z/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e69f6bb7f1b745b:0xc3f1a0b0d0c3f1a!8m2!3d-6.1860649!4d106.7853813!16s%2Fg%2F1227s51p?entry=ttu"
+                                    target="_blank"
                                     class="text-green-custom hover:text-green-hover transition-colors text-xs sm:text-sm flex items-center gap-1 font-medium">
                                     <i class="fas fa-external-link-alt"></i>
                                     Open in Google Maps
@@ -1143,7 +1144,6 @@
             </div>
         </div>
     </section>
-
     <footer class="bg-green-custom text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <div class="grid md:grid-cols-4 gap-6">
