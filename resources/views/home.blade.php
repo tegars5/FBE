@@ -547,11 +547,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Sustainability & Environmental Impact</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-6xl mx-auto">
-                <!-- Kolom Kiri: Eco-Friendly Process dan Certification -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 <div class="space-y-6">
-                    <!-- Eco-Friendly Process -->
-                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg">
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
                         <h3 class="text-lg md:text-xl font-bold mb-4 text-green-custom">Our Eco-Friendly Process</h3>
                         <p class="text-gray-600 mb-6">
                             Our PKS charcoal production process is designed to minimize environmental impact while
@@ -569,10 +567,8 @@
                         </p>
                     </div>
 
-                    <!-- Benefits and Certification -->
-                    <div class="p-6 bg-white rounded-lg shadow-lg">
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
                         <div class="space-y-3 mb-6">
-                            <!-- Perbesar teks bagian ini -->
                             <div class="flex items-center gap-3">
                                 <i class="fas fa-recycle text-green-custom text-sm"></i>
                                 <span class="text-base md:text-lg text-gray-700">100% Agricultural Waste
@@ -590,7 +586,6 @@
                             </div>
                         </div>
 
-                        <!-- Certification -->
                         <div class="mt-6">
                             <h4 class="font-semibold text-lg mb-3 text-gray-800">Certified Sustainable:</h4>
                             <img src="{{ asset('assets/logo-brand/logo-ggl.png') }}" alt="GGL Certification Logo"
@@ -600,23 +595,22 @@
                         </div>
                     </div>
                 </div>
-                <!-- Kolom Kanan: CO₂ Diagram dan Environmental Initiatives -->
+
                 <div class="space-y-6">
-                    <!-- CO₂ Emission Comparison -->
-                    <div class="co2-diagram p-6 rounded-lg shadow-md">
-                        <h4 class="text-lg font-bold text-center mb-4 text-green-custom">CO₂
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
+                        <h4 class="text-lg md:text-xl font-bold text-center mb-4 text-green-custom">CO₂
                             Emission Comparison</h4>
                         <img src="{{ asset('assets/diagram-co.png') }}" alt="CO2 Reduction Diagram"
                             class="w-full h-auto object-contain rounded-lg mb-4">
-                        <p class="text-xs md:text-sm text-gray-700 text-center">Comparative CO₂
+                        <p class="text-base md:text-l text-gray-700 text-center">Comparative CO₂
                             emissions for different
                             fuel types.</p>
                     </div>
-                    <!-- Environmental Initiatives in Action -->
-                    <div class="space-y-6">
+
+                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
                         <h3 class="font-bold text-lg md:text-xl mb-5 text-green-custom">
-                            Environmental Initiatives in
-                            Action</h3>
+                            Environmental Initiatives in Action
+                        </h3>
                         <div class="grid grid-cols-2 gap-6">
                             <img src="{{ asset('assets/cangkang-sawit.jpg') }}" alt="Environmental Initiative 1"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
@@ -628,17 +622,11 @@
                                 alt="Environmental Initiative 4"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         </div>
-
                     </div>
-
                 </div>
-
-
             </div>
         </div>
-        </div>
     </section>
-
     <section id="exports" class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Global Exports & Partnerships</h2>
