@@ -1305,9 +1305,9 @@
 
         // Slider Hero with Touch Swipe
         const heroImages = [
-            '{{ asset('assets/bg-hero.png') }}',
-            '{{ asset('assets/stock.JPG') }}', // Slide 2: hanya gambar
-            '{{ asset('assets/tumpukan-kelapa-sawit.jpg') }}' // Slide 3: hanya gambar
+            '{{ asset('assets/foto-bg/bg-1.png') }}',
+            '{{ asset('assets/foto-bg/bg-2.JPG') }}', // Slide 2: hanya gambar
+            '{{ asset('assets/foto-bg/bg-3.jpg') }}' // Slide 3: hanya gambar
         ];
 
         const homeHero = document.getElementById('home-hero');
