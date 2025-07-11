@@ -1112,7 +1112,7 @@
                         <div class="w-full">
                             <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576887556943!2d106.78280637409252!3d-6.186064993800632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6bb7f1b745b%3A0xc3f1a0b0d0c3f1a!2sNeo%20Soho%20Apartment!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136532199!2d106.78738997458905!3d-6.174763660506777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1752225709101!5m2!1sid!2sid"
                                     width="600" height="450" style="border:0;" allowfullscreen=""
                                     loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>

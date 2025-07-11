@@ -715,4 +715,9 @@ nav.scrolled .logo-bg {
         width: 20rem;
         height: 12rem;
     }
+    /* START of new additions for home-hero background position */
+    #home-hero {
+        background-position: center 25%; /* Adjust this value as needed */
+    }
+    /* END of new additions for home-hero background position */
 }
