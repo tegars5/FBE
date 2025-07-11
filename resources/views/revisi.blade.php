@@ -583,30 +583,31 @@
                         </p>
                     </div>
 
-                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[680px] lg:min-h-[456px]">
-                        <div class="space-y-3 mb-6">
+                    <div class="p-6 md:p-8 bg-white md:min-h-[680px] lg:min-h-[456px]">
+                        <div class="space-y-4 mb-8">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-recycle text-green-custom text-sm"></i>
-                                <span class="text-base md:text-lg text-gray-700">100% Agricultural Waste
+                                <i class="fas fa-recycle text-green-custom text-lg"></i>
+                                <span class="text-lg md:text-xl text-gray-700">100% Agricultural Waste
                                     Utilization</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-leaf text-green-custom text-sm"></i>
-                                <span class="text-base md:text-lg text-gray-700">Significant Carbon Footprint
+                                <i class="fas fa-leaf text-green-custom text-lg"></i>
+                                <span class="text-lg md:text-xl text-gray-700">Significant Carbon Footprint
                                     Reduction</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-solar-panel text-green-custom text-sm"></i>
-                                <span class="text-base md:text-lg text-gray-700">Renewable & Sustainable Energy
+                                <i class="fas fa-solar-panel text-green-custom text-lg"></i>
+                                <span class="text-lg md:text-xl text-gray-700">Renewable & Sustainable Energy
                                     Alternative</span>
                             </div>
                         </div>
 
-                        <div class="mt-6">
-                            <h4 class="font-semibold text-lg mb-3 text-gray-800">Certified Sustainable:</h4>
+                        {{-- Certified Sustainable - border, shadow, and rounded removed --}}
+                        <div class="mt-8">
+                            <h4 class="font-semibold text-xl mb-4 text-gray-800">Certified Sustainable:</h4>
                             <img src="{{ asset('assets/logo-brand/logo-ggl.png') }}" alt="GGL Certification Logo"
-                                class="w-48 h-auto object-contain mb-2">
-                            <p class="text-base md:text-lg text-gray-600">Proudly certified with
+                                class="w-56 h-auto object-contain mb-4">
+                            <p class="text-lg md:text-xl text-gray-600">Proudly certified with
                                 Green Gold Label (GGL) for sustainable biomass practices.</p>
                         </div>
                     </div>
@@ -623,7 +624,7 @@
                             fuel types.</p>
                     </div>
 
-                    <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[680px] lg:min-h-[456px]">
+                    <div class="p-6 md:p-8 bg-white md:min-h-[680px] lg:min-h-[456px]">
                         <h3 class="font-bold text-lg md:text-xl mb-5 text-green-custom">
                             Environmental Initiatives in Action
                         </h3>
@@ -637,61 +638,6 @@
                             <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-project.jpg') }}"
                                 alt="Environmental Initiative 4"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="exports" class="bg-beige py-8 md:py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
-            <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Global Exports & Partnerships</h2>
-
-            {{-- Main Grid Container: Ensures both columns are of equal height --}}
-            <div class="grid md:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
-
-                {{-- Left Column Content --}}
-                <div class="flex flex-col"> {{-- Make this a flex column to stretch its direct children --}}
-                    <div class="flex-grow"> {{-- Use flex-grow on a wrapper if content within isn't directly the flex item --}}
-                        <h3 class="font-bold text-lg mb-4 text-green-custom">Our Global Export Reach</h3>
-                        <p class="text-gray-700 mb-6">We proudly serve a wide network of international clients. Our PKS
-                            charcoal reaches key markets across the globe, supported by efficient logistics.</p>
-                        <img src="{{ asset('assets/map-indonesia.png') }}"
-                            alt="World Map Highlighting Export Countries"
-                            class="w-full h-auto object-contain rounded-lg shadow-md mb-8">
-                    </div>
-                </div>
-
-                {{-- Right Column Content --}}
-                <div class="flex flex-col"> {{-- Make this a flex column to stretch its direct children --}}
-                    <div class="flex-grow"> {{-- This div contains the first group of content in the right column --}}
-                        <h3 class="font-bold text-lg mb-4 text-green-custom">Strategic Partnerships</h3>
-                        <p class="text-gray-700 mb-6">We collaborate with leading companies worldwide, ensuring
-                            seamless
-                            distribution and reliable supply of our biomass products.</p>
-                        <div class="flex flex-wrap items-center justify-center gap-6 mb-8">
-                            <img src="{{ asset('assets/business-handshake-global.jpg') }}"
-                                alt="Partner Company 1 Logo"
-                                class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                            <img src="{{ asset('assets/ekspor.jpg') }}" alt="Partner Company 2 Logo"
-                                class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                            <img src="{{ asset('assets/diskusi.jpg') }}" alt="Partner Company 3 Logo"
-                                class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                            {{-- Tambahkan lebih banyak logo partner --}}
-                        </div>
-                    </div>
-
-                    {{-- Second group of content in the right column --}}
-                    <div class="flex-grow"> {{-- This div contains the second group of content in the right column --}}
-                        <h3 class="font-bold text-lg mb-4 text-green-custom">Efficient Export Operations</h3>
-                        <p class="text-gray-700 mb-6">Our dedicated team ensures smooth and efficient container loading
-                            operations, guaranteeing timely and secure delivery to our international clients.</p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <img src="{{ asset('assets/transport-logistics.jpg') }}"
-                                alt="Container Loading Operation 1"
-                                class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                            <img src="{{ asset('assets/container.jpg') }}" alt="Container Loading Operation 2"
-                                class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         </div>
                     </div>
                 </div>
