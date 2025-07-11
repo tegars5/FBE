@@ -5,22 +5,34 @@
  */
 :root {
     /* Colors */
-    --color-green-dark: #1b5e20; /* Primary Green */
-    --color-green-medium: #228b22; /* Green for hover states */
-    --color-green-light: #4caf50; /* Light green accent */
-    --color-beige-light: #f8f8e8; /* Light beige for sections */
-    --color-beige-medium: #f5f5dc; /* Medium beige for accents */
-    --color-text-dark: #374151; /* Dark gray for general text */
-    --color-text-medium: #6b7280; /* Medium gray for secondary text */
+    --color-green-dark: #1b5e20;
+    /* Primary Green */
+    --color-green-medium: #228b22;
+    /* Green for hover states */
+    --color-green-light: #4caf50;
+    /* Light green accent */
+    --color-beige-light: #f8f8e8;
+    /* Light beige for sections */
+    --color-beige-medium: #f5f5dc;
+    /* Medium beige for accents */
+    --color-text-dark: #374151;
+    /* Dark gray for general text */
+    --color-text-medium: #6b7280;
+    /* Medium gray for secondary text */
     --color-white: #ffffff;
     --color-black: #000000;
 
     /* Spacing & Sizes (if not using Tailwind's default spacing scale directly) */
-    --spacing-xs: 0.25rem; /* 4px */
-    --spacing-sm: 0.5rem; /* 8px */
-    --spacing-md: 1rem; /* 16px */
-    --spacing-lg: 1.5rem; /* 24px */
-    --spacing-xl: 2rem; /* 32px */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 1rem;
+    /* 16px */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
 }
 
 /* Universal box-sizing for consistent layout */
@@ -34,8 +46,10 @@
 
 body {
     font-family: "Roboto", sans-serif;
-    padding-top: 80px; /* Base padding for mobile/default */
-    overflow-x: hidden; /* Prevent horizontal scroll issues */
+    padding-top: 80px;
+    /* Base padding for mobile/default */
+    overflow-x: hidden;
+    /* Prevent horizontal scroll issues */
 }
 
 /* Adjust body padding for larger screens to accommodate fixed navbar */
@@ -53,44 +67,70 @@ body {
 /* Navbar transition for fixed state */
 nav {
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Default shadow for non-scrolled */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Default shadow for non-scrolled */
 }
 
 nav.scrolled {
-    padding-top: 0.75rem; /* Reduced padding when scrolled */
+    padding-top: 0.75rem;
+    /* Reduced padding when scrolled */
     padding-bottom: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow when scrolled */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Stronger shadow when scrolled */
+}
+
+/* NEW: Inner container for navbar content to control left alignment on large screens */
+.navbar-inner-container {
+    max-width: 100%; /* Remove max-width for full stretch */
+    margin: 0; /* Remove auto margins to align left */
+    justify-content: flex-start; /* Align content to the start (left) */
+    gap: 2rem; /* Add some space between logo and nav links */
+}
+
+/* NEW: Adjust spacing for nav links */
+.navbar-links-left {
+    margin-left: 2rem; /* Add some margin to push links from the logo */
 }
 
 /* Logo container styling */
 .logo-image-container {
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
         top 0.3s ease-in-out;
-    width: 12rem; /* Default size */
+    width: 12rem;
+    /* Default size */
     height: 12rem;
 }
 
 /* Logo size when navbar is scrolled */
 nav.scrolled .logo-image-container {
-    position: relative; /* Maintain position relative to parent */
-    top: 0 !important; /* Ensure no unwanted top offset */
+    position: relative;
+    /* Maintain position relative to parent */
+    top: 0 !important;
+    /* Ensure no unwanted top offset */
     width: 4rem;
     height: 4rem;
 }
 
 nav.scrolled .logo-image-container img {
-    object-fit: contain; /* Ensure image fits within container */
+    object-fit: contain;
+    /* Ensure image fits within container */
 }
 
 /* Decorative background behind logo (desktop-only) */
 .logo-bg {
-    top: 2rem; /* Adjusted from 1rem */
-    left: -20rem; /* Adjusted from -18rem */
-    width: 18rem; /* Adjusted from 15rem */
-    height: 10rem; /* Adjusted from 8rem */
+    top: 2rem;
+    /* Adjusted from 1rem */
+    left: -20rem;
+    /* Adjusted from -18rem */
+    width: 18rem;
+    /* Adjusted from 15rem */
+    height: 10rem;
+    /* Adjusted from 8rem */
     border-bottom-right-radius: 100px;
-    background-color: var(--color-beige-light); /* Using CSS variable */
-    z-index: -10; /* Ensure it's behind content */
+    background-color: var(--color-beige-light);
+    /* Using CSS variable */
+    z-index: -10;
+    /* Ensure it's behind content */
 }
 
 /* Hide logo-bg on smaller screens */
@@ -120,7 +160,8 @@ nav.scrolled .logo-bg {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--color-green-light); /* Using CSS variable */
+    background: var(--color-green-light);
+    /* Using CSS variable */
     transition: width 0.3s ease;
 }
 
@@ -129,7 +170,8 @@ nav.scrolled .logo-bg {
 }
 
 .nav-link:hover {
-    color: var(--color-green-light); /* Using CSS variable */
+    color: var(--color-green-light);
+    /* Using CSS variable */
 }
 
 /* Dropdown menu styling */
@@ -165,13 +207,15 @@ nav.scrolled .logo-bg {
     background: transparent;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 1001; /* Ensure it's above other content */
+    z-index: 1001;
+    /* Ensure it's above other content */
     outline: none;
     -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger:hover {
-    background: rgba(27, 94, 32, 0.08); /* Using rgba for transparency */
+    background: rgba(27, 94, 32, 0.08);
+    /* Using rgba for transparency */
     transform: scale(1.05);
 }
 
@@ -183,7 +227,8 @@ nav.scrolled .logo-bg {
     display: block;
     width: 24px;
     height: 2px;
-    background: var(--color-green-dark); /* Using CSS variable */
+    background: var(--color-green-dark);
+    /* Using CSS variable */
     border-radius: 2px;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
@@ -224,8 +269,10 @@ nav.scrolled .logo-bg {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0); /* Start transparent */
-    backdrop-filter: blur(0px); /* No blur initially */
+    background: rgba(0, 0, 0, 0);
+    /* Start transparent */
+    backdrop-filter: blur(0px);
+    /* No blur initially */
     z-index: 998;
     visibility: hidden;
     opacity: 0;
@@ -233,7 +280,8 @@ nav.scrolled .logo-bg {
 }
 
 .mobile-menu-overlay.active {
-    background: rgba(0, 0, 0, 0.6); /* Darker overlay when active */
+    background: rgba(0, 0, 0, 0.6);
+    /* Darker overlay when active */
     backdrop-filter: blur(8px);
     visibility: visible;
     opacity: 1;
@@ -243,21 +291,28 @@ nav.scrolled .logo-bg {
     position: fixed;
     top: 0;
     right: 0;
-    width: 320px; /* Fixed width, adjusted for smaller screens */
-    max-width: 85vw; /* Max width relative to viewport */
+    width: 320px;
+    /* Fixed width, adjusted for smaller screens */
+    max-width: 85vw;
+    /* Max width relative to viewport */
     height: 100vh;
-    background: var(--color-white); /* Using CSS variable */
+    background: var(--color-white);
+    /* Using CSS variable */
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
-    transform: translateX(100%); /* Hidden by default */
+    transform: translateX(100%);
+    /* Hidden by default */
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 999;
-    overflow-y: auto; /* Allow scrolling for long menus */
+    overflow-y: auto;
+    /* Allow scrolling for long menus */
     visibility: hidden;
-    border-radius: 24px 0 0 24px; /* Rounded corners on left */
+    border-radius: 24px 0 0 24px;
+    /* Rounded corners on left */
 }
 
 .mobile-menu.active {
-    transform: translateX(0); /* Slide in */
+    transform: translateX(0);
+    /* Slide in */
     visibility: visible;
 }
 
@@ -267,7 +322,8 @@ nav.scrolled .logo-bg {
         135deg,
         var(--color-beige-medium) 0%,
         var(--color-white) 100%
-    ); /* Using CSS variables */
+    );
+    /* Using CSS variables */
     border-bottom: 1px solid rgba(27, 94, 32, 0.1);
     padding: 24px;
 }
@@ -283,7 +339,8 @@ nav.scrolled .logo-bg {
         90deg,
         var(--color-green-dark),
         var(--color-green-light)
-    ); /* Using CSS variables */
+    );
+    /* Using CSS variables */
 }
 
 .mobile-menu-nav {
@@ -332,21 +389,24 @@ nav.scrolled .logo-bg {
     align-items: center;
     padding: 16px 24px;
     margin: 0 12px;
-    color: var(--color-text-dark); /* Using CSS variable */
+    color: var(--color-text-dark);
+    /* Using CSS variable */
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
     border-radius: 16px;
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden; /* For pseudo-element transition */
+    overflow: hidden;
+    /* For pseudo-element transition */
 }
 
 .mobile-menu-link::before {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%; /* Start off-screen */
+    left: -100%;
+    /* Start off-screen */
     width: 100%;
     height: 100%;
     background: linear-gradient(
@@ -359,19 +419,22 @@ nav.scrolled .logo-bg {
 }
 
 .mobile-menu-link:hover::before {
-    left: 100%; /* Slide across */
+    left: 100%;
+    /* Slide across */
 }
 
 .mobile-menu-link i {
     margin-right: 12px;
     font-size: 18px;
-    color: var(--color-green-dark); /* Using CSS variable */
+    color: var(--color-green-dark);
+    /* Using CSS variable */
     transition: all 0.3s ease;
 }
 
 .mobile-menu-link:hover {
     background: rgba(27, 94, 32, 0.08);
-    color: var(--color-green-dark); /* Using CSS variable */
+    color: var(--color-green-dark);
+    /* Using CSS variable */
     transform: translateX(4px);
 }
 
@@ -382,11 +445,8 @@ nav.scrolled .logo-bg {
 .mobile-menu-footer {
     padding: 24px;
     border-top: 1px solid rgba(27, 94, 32, 0.1);
-    background: linear-gradient(
-        135deg,
-        #f9f9f9 0%,
-        var(--color-white) 100%
-    ); /* Using CSS variable */
+    background: linear-gradient(135deg, #f9f9f9 0%, var(--color-white) 100%);
+    /* Using CSS variable */
 }
 
 .mobile-login-btn {
@@ -399,7 +459,8 @@ nav.scrolled .logo-bg {
         135deg,
         var(--color-green-dark) 0%,
         var(--color-green-medium) 100%
-    ); /* Using CSS variables */
+    );
+    /* Using CSS variables */
     color: var(--color-white);
     font-weight: 600;
     font-size: 16px;
@@ -427,7 +488,8 @@ nav.scrolled .logo-bg {
 /* Responsive adjustments for mobile menu width */
 @media (max-width: 480px) {
     .mobile-menu {
-        width: 100%; /* Full width on very small screens */
+        width: 100%;
+        /* Full width on very small screens */
         border-radius: 0;
     }
 }
@@ -440,7 +502,8 @@ nav.scrolled .logo-bg {
 .hero-content {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1rem; /* Base padding */
+    padding: 0 1rem;
+    /* Base padding */
 }
 
 /* Text shadow for hero title */
@@ -464,11 +527,13 @@ nav.scrolled .logo-bg {
         padding: 0 3rem;
     }
     .logo-image-container {
-        width: 16rem; /* Larger logo on larger screens */
+        width: 16rem;
+        /* Larger logo on larger screens */
         height: 16rem;
     }
     nav.scrolled .logo-image-container {
-        width: 6rem; /* Smaller logo when scrolled on larger screens */
+        width: 6rem;
+        /* Smaller logo when scrolled on larger screens */
         height: 6rem;
     }
 }
@@ -476,6 +541,20 @@ nav.scrolled .logo-bg {
 @media (min-width: 1024px) {
     .hero-content {
         padding: 0 5rem;
+    }
+    /* NEW: For larger screens, remove centering and add left padding/margin */
+    .navbar-inner-container {
+        max-width: none; /* Override any max-width */
+        margin-left: 5rem; /* Adjust this value as needed for left alignment */
+        margin-right: 5rem; /* Keep some right margin for balance */
+    }
+
+    .navbar-links-left {
+        /* This keeps the nav links to the left of login buttons */
+        margin-left: auto; /* Push login buttons to the right */
+        display: flex; /* Ensure flex behavior */
+        gap: 6px; /* Adjust gap between elements if needed */
+        margin-right: 10px; /* Adjust spacing before login buttons */
     }
 }
 
@@ -504,7 +583,8 @@ nav.scrolled .logo-bg {
  */
 .news-card {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-left: 4px solid var(--color-green-dark); /* Using CSS variable */
+    border-left: 4px solid var(--color-green-dark);
+    /* Using CSS variable */
 }
 
 .co2-diagram {
@@ -533,13 +613,16 @@ nav.scrolled .logo-bg {
 #contact form textarea {
     /* Tailwind classes: w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base */
     /* Ensuring consistency if not fully relying on Tailwind utility classes for basic styles */
-    display: block; /* Ensure they take full width */
-    margin-bottom: var(--spacing-md); /* Consistent vertical spacing */
+    display: block;
+    /* Ensure they take full width */
+    margin-bottom: var(--spacing-md);
+    /* Consistent vertical spacing */
 }
 
 /* Fine-tune spacing in contact info list */
 #contact .space-y-6 > div.flex {
-    margin-bottom: 1.5rem; /* Explicit margin to ensure consistent spacing */
+    margin-bottom: 1.5rem;
+    /* Explicit margin to ensure consistent spacing */
 }
 
 /*

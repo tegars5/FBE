@@ -646,38 +646,53 @@
     <section id="exports" class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
             <h2 class="text-xl md:text-2xl font-extrabold text-center mb-8">Global Exports & Partnerships</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-                <div>
-                    <h3 class="font-bold text-lg mb-4 text-green-custom">Our Global Export Reach</h3>
-                    <p class="text-gray-700 mb-6">We proudly serve a wide network of international clients. Our PKS
-                        charcoal reaches key markets across the globe, supported by efficient logistics.</p>
-                    <img src="{{ asset('assets/map-indonesia.png') }}" alt="World Map Highlighting Export Countries"
-                        class="w-full h-auto object-contain rounded-lg shadow-md mb-8">
+
+            {{-- Main Grid Container: Ensures both columns are of equal height --}}
+            <div class="grid md:grid-cols-2 gap-8 items-stretch max-w-6xl mx-auto">
+
+                {{-- Left Column Content --}}
+                <div class="flex flex-col"> {{-- Make this a flex column to stretch its direct children --}}
+                    <div class="flex-grow"> {{-- Use flex-grow on a wrapper if content within isn't directly the flex item --}}
+                        <h3 class="font-bold text-lg mb-4 text-green-custom">Our Global Export Reach</h3>
+                        <p class="text-gray-700 mb-6">We proudly serve a wide network of international clients. Our PKS
+                            charcoal reaches key markets across the globe, supported by efficient logistics.</p>
+                        <img src="{{ asset('assets/map-indonesia.png') }}"
+                            alt="World Map Highlighting Export Countries"
+                            class="w-full h-auto object-contain rounded-lg shadow-md mb-8">
+                    </div>
                 </div>
 
-                <div>
-                    <h3 class="font-bold text-lg mb-4 text-green-custom">Strategic Partnerships</h3>
-                    <p class="text-gray-700 mb-6">We collaborate with leading companies worldwide, ensuring
-                        seamless
-                        distribution and reliable supply of our biomass products.</p>
-                    <div class="flex flex-wrap items-center justify-center gap-6 mb-8">
-                        <img src="{{ asset('assets/business-handshake-global.jpg') }}" alt="Partner Company 1 Logo"
-                            class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                        <img src="{{ asset('assets/ekspor.jpg') }}" alt="Partner Company 2 Logo"
-                            class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                        <img src="{{ asset('assets/diskusi.jpg') }}" alt="Partner Company 3 Logo"
-                            class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
-                        {{-- Tambahkan lebih banyak logo partner --}}
+                {{-- Right Column Content --}}
+                <div class="flex flex-col"> {{-- Make this a flex column to stretch its direct children --}}
+                    <div class="flex-grow"> {{-- This div contains the first group of content in the right column --}}
+                        <h3 class="font-bold text-lg mb-4 text-green-custom">Strategic Partnerships</h3>
+                        <p class="text-gray-700 mb-6">We collaborate with leading companies worldwide, ensuring
+                            seamless
+                            distribution and reliable supply of our biomass products.</p>
+                        <div class="flex flex-wrap items-center justify-center gap-6 mb-8">
+                            <img src="{{ asset('assets/business-handshake-global.jpg') }}"
+                                alt="Partner Company 1 Logo"
+                                class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <img src="{{ asset('assets/ekspor.jpg') }}" alt="Partner Company 2 Logo"
+                                class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <img src="{{ asset('assets/diskusi.jpg') }}" alt="Partner Company 3 Logo"
+                                class="h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            {{-- Tambahkan lebih banyak logo partner --}}
+                        </div>
                     </div>
 
-                    <h3 class="font-bold text-lg mb-4 text-green-custom">Efficient Export Operations</h3>
-                    <p class="text-gray-700 mb-6">Our dedicated team ensures smooth and efficient container loading
-                        operations, guaranteeing timely and secure delivery to our international clients.</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="{{ asset('assets/transport-logistics.jpg') }}" alt="Container Loading Operation 1"
-                            class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                        <img src="{{ asset('assets/container.jpg') }}" alt="Container Loading Operation 2"
-                            class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                    {{-- Second group of content in the right column --}}
+                    <div class="flex-grow"> {{-- This div contains the second group of content in the right column --}}
+                        <h3 class="font-bold text-lg mb-4 text-green-custom">Efficient Export Operations</h3>
+                        <p class="text-gray-700 mb-6">Our dedicated team ensures smooth and efficient container loading
+                            operations, guaranteeing timely and secure delivery to our international clients.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="{{ asset('assets/transport-logistics.jpg') }}"
+                                alt="Container Loading Operation 1"
+                                class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                            <img src="{{ asset('assets/container.jpg') }}" alt="Container Loading Operation 2"
+                                class="w-full h-48 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
+                        </div>
                     </div>
                 </div>
             </div>

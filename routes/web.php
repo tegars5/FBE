@@ -10,6 +10,12 @@ use App\Models\Admin;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/test', function () {
+    return view('test');
+});
+Route::get('/revisi', function () {
+    return view('revisi');
+});
 
 
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
