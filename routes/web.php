@@ -5,27 +5,32 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\SupplierController;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/test', function () {
-    return view('test');
+
+
+// Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+// Route::post('admin/login', [AdminAuthController::class, 'login']);
+// Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+// Route::resource('articles', ArticleController::class);
+// Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+Route::prefix('supplier')->group(function () {
+    // Rute untuk halaman Mill Factory
+    Route::get('/mill-factory-form', function () {
+        return view('supplier.mill-factory-form');
+    })->name('supplier.formFactory');
+
+    // Rute untuk halaman Collector
+    Route::get('/collector-form', function () {
+        return view('supplier.collector-form');
+    })->name('supplier.formCollector');
 });
-Route::get('/revisi', function () {
-    return view('revisi');
-});
-
-
-Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('admin/login', [AdminAuthController::class, 'login']);
-Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-Route::resource('articles', ArticleController::class);
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
-
-
-
 
 // Route untuk menampilkan dashboard admin
 Route::middleware('auth')->group(function () {
@@ -56,3 +61,8 @@ Route::middleware('auth')->group(function () {
 // Route resource untuk artikel
 
 Route::get('/', [ArticleController::class, 'home']);
+
+Auth::routes(); // Ini akan membuat route untuk login dan register secara otomatis
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/supplier-initial-registration', [SupplierController::class, 'initialRegistration'])->name('supplier.register.initial');

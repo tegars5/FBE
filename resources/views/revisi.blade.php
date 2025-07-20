@@ -92,11 +92,31 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#supplier-info"
-                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
+                    <li class="relative dropdown">
+                        <button
+                            class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
                             Supplier
-                        </a>
+                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <ul
+                            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
+                            <li>
+                                <a href="{{ route('supplier.formFactory') }}"
+                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                    Mill Factory
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('supplier.formCollector') }}"
+                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                    Collector
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#"

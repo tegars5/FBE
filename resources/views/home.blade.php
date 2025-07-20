@@ -24,185 +24,7 @@
                 </div>
             </div>
         </header>
-        <nav class="bg-beige py-3 md:py-5 fixed top-0 w-full z-50 transition-all duration-300 ease-in-out shadow-md">
-            <div class="navbar-inner-container flex justify-between items-center px-4 md:px-5">
-                <div class="relative flex items-center gap-4 z-[100]">
-                    <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
-                    <div
-                        class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-8 bg-transparent">
-                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Biomass Energy Logo"
-                            class="w-full h-full object-contain" />
-                    </div>
-                </div>
-
-                <ul class="hidden lg:flex list-none gap-6 xl:gap-8 items-center navbar-links-left">
-                    <li>
-                        <a href="#home"
-                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#about"
-                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                            About Us
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#sustainability"
-                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                            Sustainability
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#exports"
-                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                            Exports & Partnerships
-                        </a>
-                    </li>
-                    <li class="relative dropdown">
-                        <button
-                            class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
-                            More
-                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <ul
-                            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
-                            <li>
-                                <a href="#products"
-                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                    Products
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#gallery"
-                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                    Gallery
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#technical"
-                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                    Technical Data
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#supplier-info"
-                            class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                            Supplier
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Buyers&nbsp;Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Supplier&nbsp;Login
-                        </a>
-                    </li>
-                    <li class="relative flex items-center">
-                        <a href="#"
-                            class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
-                            <i class="fas fa-globe mr-1"></i>
-                            Language
-                        </a>
-                    </li>
-                </ul>
-
-                <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
-            </div>
-
-            <div class="mobile-menu-overlay" id="menu-overlay"></div>
-
-            <div class="mobile-menu" id="mobile-menu">
-                <div class="mobile-menu-header">
-                    <div class="flex items-center gap-3">
-                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
-                            class="w-10 h-10 object-contain rounded-full" />
-                        <div>
-                            <h3 class="font-bold text-lg text-green-custom">Fujiyama</h3>
-                            <p class="text-xs text-gray-600">Biomass Energy</p>
-                        </div>
-                    </div>
-                </div>
-
-                <nav class="mobile-menu-nav">
-                    <div class="mobile-menu-item">
-                        <a href="#home" class="mobile-menu-link">
-                            <i class="fas fa-home"></i>Home
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#about" class="mobile-menu-link">
-                            <i class="fas fa-info-circle"></i>About Us
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#sustainability" class="mobile-menu-link">
-                            <i class="fas fa-leaf"></i>Sustainability
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#exports" class="mobile-menu-link">
-                            <i class="fas fa-globe"></i>Exports & Partnerships
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#products" class="mobile-menu-link">
-                            <i class="fas fa-boxes"></i>Products
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#gallery" class="mobile-menu-link">
-                            <i class="fas fa-images"></i>Gallery
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#technical" class="mobile-menu-link">
-                            <i class="fas fa-chart-bar"></i>Technical Data
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#contact" class="mobile-menu-link">
-                            <i class="fas fa-envelope"></i>Contact
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#supplier-info" class="mobile-menu-link">
-                            <i class="fas fa-handshake"></i>Supplier Info
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="#" class="mobile-menu-link">
-                            <i class="fas fa-globe"></i>language
-                        </a>
-                    </div>
-                </nav>
-
-                <div class="mobile-menu-footer">
-                    <button class="mobile-login-btn" onclick="window.location.href='#'">
-                        <i class="fas fa-sign-in-alt"></i>Buyers Login
-                    </button>
-                    <button class="mobile-login-btn mt-2" onclick="window.location.href='#'">
-                        <i class="fas fa-sign-in-alt"></i>Supplier Login
-                    </button>
-                </div>
-            </div>
-        </nav>
+        <x-layout.navbar />
     </div>
     <section class="bg-beige py-8 md:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
@@ -244,7 +66,6 @@
             </div>
         </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12">
         <div class="news-card rounded-lg p-6 md:p-8 text-center">
             <div class="flex justify-center mb-4">
@@ -256,15 +77,12 @@
                 the
                 best performance for your biomass energy needs.
             </p>
-            <a href="{{ route('articles.show', 'scovindo-certification-news-id') }}" {{-- Ganti 'scovindo-certification-news-id' dengan ID/slug artikel aktual --}}
+            <a href="#"
                 class="inline-block mt-6 bg-green-custom text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-green-hover transition">
                 Read Full Report
             </a>
         </div>
     </section>
-
-
-
     <section id="about"
         class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12 space-y-8 md:space-y-12">
         <div class="max-w-7xl">
@@ -327,8 +145,8 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
                     <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                         onclick="toggleSDG('sdg7')">
-                        <img src="{{ asset('assets/logo-brand/SDG-7.png') }}"
-                            alt="SDG 7 - Affordable and Clean Energy" class="w-16 h-16 mb-1 object-contain">
+                        <img src="{{ asset('assets/logo-brand/SDG-7.png') }}" alt="SDG 7 - Affordable and Clean Energy"
+                            class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Affordable & Clean Energy</p>
                         <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
@@ -764,7 +582,7 @@
     </section>
 
     {{-- Articles Section --}}
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pb-8 md:pb-12" id="articles">
+    {{-- <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 pb-8 md:pb-12" id="articles">
         <div class="flex justify-between items-center mb-4 md:mb-6">
             <h3 class="font-extrabold text-sm md:text-lg max-w-xs leading-tight">The latest articles and industry
                 insights</h3>
@@ -811,45 +629,43 @@
                                             {{ $article->title }}</h4>
                                         {{-- <p class="text-xs text-gray-600">Article —
                                                     {{ $article->created_at->format('F j, Y') }}</p> --}}
-                                    </div>
-                                </a>
-                            </article>
-                        @endforeach
-                    </div>
-                @endif
+    {{-- </div>
+    </a>
+    </article> --}}
+    {{-- @endforeach
+    </div>
+    @endif --}}
 
-                @if ($articles->count() > 3)
-                    <div class="space-y-6 md:space-y-8">
-                        @foreach ($articles->skip(3)->take(2) as $article)
-                            <article
-                                class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
-                                <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
-                                    @if ($article->photo)
-                                        <img src="{{ Storage::disk('s3')->url($article->photo) }}"
-                                            alt="{{ $article->title }}"
-                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
-                                    @else
-                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
-                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
-                                    @endif
-                                    <div class="flex flex-col justify-between">
-                                        <h4 class="font-semibold text-xs md:text-sm leading-tight">
-                                            {{ $article->title }}</h4>
-                                        {{-- <p class="text-xs text-gray-600">Article —
+    {{-- @if ($articles->count() > 3)
+        <div class="space-y-6 md:space-y-8">
+            @foreach ($articles->skip(3)->take(2) as $article)
+                <article class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
+                    <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
+                        @if ($article->photo)
+                            <img src="{{ Storage::disk('s3')->url($article->photo) }}" alt="{{ $article->title }}"
+                                class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                        @else
+                            <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
+                                class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                        @endif
+                        <div class="flex flex-col justify-between">
+                            <h4 class="font-semibold text-xs md:text-sm leading-tight">
+                                {{ $article->title }}</h4>
+                            {{-- <p class="text-xs text-gray-600">Article —
                                                     {{ $article->created_at->format('F j, Y') }}</p> --}}
-                                    </div>
-                                </a>
-                            </article>
-                        @endforeach
-                    </div>
-                @endif
-            @else
-                <div class="col-span-full text-center py-8">
-                    <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
-                </div>
-            @endif
+    {{-- </div>
+                    </a>
+                </article>
+            @endforeach
         </div>
-    </section>
+    @endif --}}
+    {{-- @else --}}
+    {{-- <div class="col-span-full text-center py-8">
+        <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
+    </div>
+    @endif
+    </div>
+    </section> --}}
 
     <section id="gallery" class="py-8 md:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
@@ -1399,6 +1215,16 @@
         // Initialize slider and auto-advance
         updateHeroSlider();
         resetAutoSlide(); // Start auto-slide when page loads
+
+        // Handle clicks on supplier form links
+        document.querySelectorAll('.mill-factory-link, .collector-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                            @guest
+                            e.preventDefault(); // Mencegah navigasi langsung
+                            alert('Please login first to fill out the form.'); // Tampilkan pop-up
+                            window.location.href = "{{ route('login') }}"; // Opsional: redirect ke halaman login
+                        @endguest
+                    });
     </script>
 </body>
 
