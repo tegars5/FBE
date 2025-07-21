@@ -257,7 +257,7 @@
                             <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Our Office Building"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-2">Modern office space at Neo Soho Apartment
+                        <p class="text-xs sm:text-sm text-gray-500 mt-2">Modern office space at Neo Soho
                         </p>
                     </div>
                 </div>

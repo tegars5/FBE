@@ -3,8 +3,9 @@
 <x-layout.head title="Homes" />
 
 <body class="font-sans leading-relaxed overflow-x-hidden">
-    <div class="relative min-h-screen">
-        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center" id="home-hero">
+    <div class="relative min-h-[80vh]">
+        <header class="absolute top-0 left-0 w-full h-screen hero-bg flex items-center justify-center max-h-[80vh]"
+            id="home-hero">
             <div class="z-30 hero-content w-full animate-fadeInUp">
                 <h1
                     class="hero-title text-3xl md:text-5xl font-bold mb-5 text-white text-shadow-hero leading-tight text-center md:text-left">
@@ -880,7 +881,7 @@
                             <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Our Office Building"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-2">Modern office space at Neo Soho Apartment
+                        <p class="text-xs sm:text-sm text-gray-500 mt-2">Modern office space at Neo Soho
                         </p>
                     </div>
                 </div>
@@ -1120,11 +1121,7 @@
         }
 
         // Slider Hero with Touch Swipe
-        const heroImages = [
-            '{{ asset('assets/foto-bg/bg-1.png') }}',
-            '{{ asset('assets/foto-bg/bg-2.JPG') }}', // Slide 2: hanya gambar
-            '{{ asset('assets/foto-bg/bg-3.jpg') }}' // Slide 3: hanya gambar
-        ];
+        const heroImages = [];
 
         const homeHero = document.getElementById('home-hero');
         const heroDotsContainer = document.getElementById('hero-dots');

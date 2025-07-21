@@ -102,14 +102,14 @@
                     <li>
                         <a href="{{ route('login') }}"
                             class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Sign In
+                            Sign&nbsp;In
                         </a>
                     </li>
                     {{-- Link registrasi hanya muncul jika belum login --}}
                     <li>
                         <a href="{{ route('register') }}"
                             class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Sign Up
+                            Sign&nbsp;Up
                         </a>
                     </li>
                 @endguest

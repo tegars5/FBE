@@ -17,7 +17,6 @@ class SupplierController extends Controller
      */
     public function initialRegistration(Request $request)
     {
-
         // 1. Validasi data formulir
         $validatedData = $request->validate([
             'mill_region' => 'required|string|max:255',
@@ -48,60 +47,56 @@ class SupplierController extends Controller
             'contact_phone' => $validatedData['mill_contact_phone'],
             'type' => 'Mill Factory', // Set tipe supplier
         ];
+
         // Cek apakah ada supplier dengan email yang sama.
         $existingSupplierByEmail = Supplier::where('contact_email', $supplierData['contact_email'])->first();
 
         if (Auth::check()) {
-            // User sudah login
+            // Pengguna sudah login
             if ($existingSupplierByEmail && $existingSupplierByEmail->user_id !== Auth::id()) {
-                return redirect()->back()->withInput()->withErrors(['mill_contact_email' => 'Email ini sudah terdaftar sebagai supplier oleh akun lain.']);
+                // Email ini sudah terdaftar sebagai supplier oleh akun lain.
+                return redirect()->back()->withInput()->withErrors(['mill_contact_email' => 'Email ini sudah terdaftar sebagai supplier oleh akun lain. Jika ini adalah data baru, gunakan email yang berbeda atau hapus entri lama.']);
             } elseif ($existingSupplierByEmail && $existingSupplierByEmail->user_id === Auth::id()) {
-                $supplier = $existingSupplierByEmail;
+                // Email ini sudah terdaftar dan terkait dengan akun yang sedang login.
+                // Dalam kasus ini, kita update entri yang ada karena ini kemungkinan adalah pembaruan data yang sama.
                 try {
-                    $supplier->update($supplierData); // Update data yang ada
-                    // DEBUG 4a: Jika update berhasil
-                    dd('Supplier data updated successfully for logged-in user.');
+                    $existingSupplierByEmail->update($supplierData);
                 } catch (\Exception $e) {
-                    // DEBUG 4b: Jika update gagal
-                    dd('Error updating supplier data for logged-in user: ' . $e->getMessage());
+                    return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui informasi supplier: ' . $e->getMessage()]);
                 }
                 return redirect()->route('supplier.dashboard')->with('success', 'Informasi Mill Factory Anda berhasil diperbarui!');
             } else {
-                // Email belum terdaftar sebagai supplier. Buat supplier baru dan langsung hubungkan.
-                $supplierData['user_id'] = Auth::id(); // Langsung hubungkan dengan user yang login
+                // Email belum terdaftar sebagai supplier, atau terdaftar tapi user_id-nya null.
+                // Buat supplier baru dan hubungkan dengan pengguna yang login.
+                $supplierData['user_id'] = Auth::id(); // Langsung hubungkan dengan pengguna yang login
                 try {
-                    $supplier = Supplier::create($supplierData);
-                    // DEBUG 4c: Jika create berhasil
-                    dd('New supplier created successfully for logged-in user.');
+                    Supplier::create($supplierData);
                 } catch (\Exception $e) {
-                    // DEBUG 4d: Jika create gagal
-                    dd('Error creating new supplier for logged-in user: ' . $e->getMessage());
+                    return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan informasi supplier baru: ' . $e->getMessage()]);
                 }
                 return redirect()->route('supplier.dashboard')->with('success', 'Informasi Mill Factory Anda berhasil dikirimkan!');
             }
         } else {
-            // User belum login
+            // Pengguna belum login
             if ($existingSupplierByEmail) {
+                // Email sudah terdaftar sebagai supplier oleh siapapun (termasuk yang belum terhubung user_id).
+                // Arahkan ke halaman login.
                 return redirect()->route('login')->withErrors(['email' => 'Email ini sudah terdaftar sebagai supplier. Silakan login.'])->withInput(['email' => $supplierData['contact_email']]);
             } else {
+                // Email belum terdaftar. Buat record supplier tanpa user_id dulu, lalu arahkan ke pendaftaran.
                 try {
-                    $supplier = Supplier::create($supplierData); // Buat record supplier tanpa user_id dulu
-                    // DEBUG 4e: Jika create berhasil (belum login)
-                    dd('New supplier created successfully for non-logged-in user.');
+                    $supplier = Supplier::create($supplierData);
                 } catch (\Exception $e) {
-                    // DEBUG 4f: Jika create gagal (belum login)
-                    dd('Error creating new supplier for non-logged-in user: ' . $e->getMessage());
+                    return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan informasi supplier: ' . $e->getMessage()]);
                 }
 
                 Session::put('pending_supplier_id', $supplier->id);
                 return redirect()->route('register')->with([
                     'email' => $supplierData['contact_email'],
-                    'name' => $supplierData['contact_name'],
-                    'message' => 'Silakan lengkapi pendaftaran Anda untuk membuat akun.'
+                    'name' => $supplierData['contact_name'], // Pastikan ini sesuai dengan field di form register Anda
+                    'message' => 'Silakan lengkapi pendaftaran Anda untuk membuat akun dan menghubungkan informasi supplier Anda.'
                 ]);
             }
         }
     }
-
-    // ... metode collectorRegistration (tidak perlu diubah sekarang)
 }
