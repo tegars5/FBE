@@ -84,14 +84,12 @@
                     <ul
                         class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
                         <li>
-                            {{-- PENTING: Hapus @guest dari sini. Link ini sekarang bisa diakses guest. --}}
                             <a href="{{ route('supplier.formFactory') }}"
                                 class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
                                 Mill Factory
                             </a>
                         </li>
                         <li>
-                            {{-- PENTING: Hapus @guest dari sini. Link ini sekarang bisa diakses guest. --}}
                             <a href="{{ route('supplier.formCollector') }}"
                                 class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition collector-link">
                                 Collector
@@ -119,18 +117,55 @@
                 <li class="relative flex items-center">
                     {{-- Check if the user is logged in --}}
                     @auth
-                        {{-- If logged in, show user's name and person icon, and logout link --}}
-                        <a href="{{ route('home') }}"
-                            class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
-                            <i class="fas fa-user-circle mr-1"></i> {{ Auth::user()->name }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="inline ml-4">
-                            @csrf
-                            <button type="submit"
-                                class="text-sm xl:text-base font-semibold text-red-600 hover:text-red-800 transition duration-300">
-                                Logout
+                        {{-- ---------------------------------------------- --}}
+                        {{-- START: Perubahan untuk Dropdown Profil --}}
+                        {{-- ---------------------------------------------- --}}
+                        <div class="relative dropdown group"> {{-- Menggunakan kelas group untuk Tailwind dropdown --}}
+                            <button
+                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none"
+                                id="profile-dropdown-btn">
+                                <i class="fas fa-user-circle mr-1"></i> {{ Auth::user()->name }}
+                                <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
                             </button>
-                        </form>
+                            <ul
+                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 hidden group-hover:block">
+                                {{-- hidden dan group-hover:block untuk Tailwind --}}
+                                <li>
+                                    {{-- Link ke Dashboard berdasarkan role --}}
+                                    @php
+                                        $dashboardRoute = 'dashboard'; // Default ke rute dashboard umum
+                                        if (Auth::user()->role === 'admin') {
+                                            $dashboardRoute = 'admin.dashboard';
+                                        } elseif (Auth::user()->role === 'supplier') {
+                                            $dashboardRoute = 'supplier.dashboard';
+                                        } elseif (Auth::user()->role === 'buyer') {
+                                            $dashboardRoute = 'buyer.dashboard';
+                                        }
+                                    @endphp
+                                    <a href="{{ route($dashboardRoute) }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <form id="logout-form-desktop" action="{{ route('logout') }}" method="POST"
+                                        class="w-full">
+                                        @csrf
+                                        <button type="submit"
+                                            class="block w-full text-left px-6 py-3 text-red-600 hover:bg-red-50 hover:text-red-800 transition">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        {{-- ---------------------------------------------- --}}
+                        {{-- END: Perubahan untuk Dropdown Profil --}}
+                        {{-- ---------------------------------------------- --}}
                     @else
                         {{-- If not logged in, show language option --}}
                         <a href="#"
@@ -203,11 +238,11 @@
                     <a href="{{ url('/') }}#contact" class="mobile-menu-link">
                         <i class="fas fa-envelope"></i>Contact
                     </a>
-                </div>
-                <div class="mobile-menu-item">
-                    <a href="{{ url('/') }}#supplier-info" class="mobile-menu-link">
-                        <i class="fas fa-handshake"></i>Supplier Info
-                    </a>
+                    <div class="mobile-menu-item">
+                        <a href="{{ url('/') }}#supplier-info" class="mobile-menu-link">
+                            <i class="fas fa-handshake"></i>Supplier Info
+                        </a>
+                    </div>
                 </div>
                 {{-- Tambahkan link Mill Factory dan Collector di mobile menu --}}
                 <div class="mobile-menu-item">
@@ -223,9 +258,25 @@
                 <div class="mobile-menu-item">
                     {{-- Check if the user is logged in for mobile menu --}}
                     @auth
+                        {{-- Ini adalah bagian untuk mobile menu ketika user sudah login --}}
                         <a href="{{ route('home') }}" class="mobile-menu-link">
                             <i class="fas fa-user-circle"></i>{{ Auth::user()->name }}
                         </a>
+                        {{-- Link Dashboard untuk Mobile Menu --}}
+                        @php
+                            $dashboardRoute = 'dashboard'; // Default ke rute dashboard umum
+                            if (Auth::user()->role === 'admin') {
+                                $dashboardRoute = 'admin.dashboard';
+                            } elseif (Auth::user()->role === 'supplier') {
+                                $dashboardRoute = 'supplier.dashboard';
+                            } elseif (Auth::user()->role === 'buyer') {
+                                $dashboardRoute = 'buyer.dashboard';
+                            }
+                        @endphp
+                        <a href="{{ route($dashboardRoute) }}" class="mobile-menu-link">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        {{-- Link Logout untuk Mobile Menu --}}
                         <a href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();"
                             class="mobile-menu-link text-red-600 hover:text-red-800">
@@ -235,6 +286,7 @@
                             @csrf
                         </form>
                     @else
+                        {{-- If not logged in, show language option --}}
                         <a href="#"
                             class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
                             <i class="fas fa-globe mr-1"></i>
@@ -451,7 +503,6 @@
         // Initialize slider and auto-advance
         updateHeroSlider();
         resetAutoSlide(); // Start auto-slide when page loads
-
     </script>
 </body>
 

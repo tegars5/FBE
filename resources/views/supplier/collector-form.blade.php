@@ -28,7 +28,7 @@
                         experienced PKS collector looking for new business opportunities, please fill out the form
                         below. We would love to learn more about your operations and discuss how we can collaborate.
                     </p>
-                    <form id="collectorForm" class="space-y-4" action="{{ route('supplier.register.collector') }}"
+                    <form id="collectorForm" class="space-y-4" action="{{ route('supplier.register.initial') }}"
                         method="POST">
                         @csrf
                         <div>

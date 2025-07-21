@@ -628,7 +628,11 @@
                                     Login Account
                                 </button>
                             </div>
-
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             <div class="text-center mt-3 register-link-wrapper">
                                 <p class="text-muted mb-0 no-account-text">
                                     Don't have an account?

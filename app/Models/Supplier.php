@@ -22,7 +22,8 @@ class Supplier extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id', // Opsional: jika Anda ingin menghubungkan ke user yang terdaftar
+        'user_id',
+        'type',
         'region',
         'monthly_capacity',
         'dura_composition',

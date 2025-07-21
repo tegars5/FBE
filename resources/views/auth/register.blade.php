@@ -87,6 +87,30 @@
                                     placeholder="Confirm Password">
                             </div>
 
+                            {{-- ---------------------------------------------- --}}
+                            {{-- START: Perubahan untuk Pilihan Role --}}
+                            {{-- ---------------------------------------------- --}}
+                            <div class="mb-4 position-relative form-group-custom">
+                                <label for="role" class="form-label visually-hidden">{{ __('Daftar Sebagai') }}</label>
+                                <i class="fas fa-user-tag icon-left"></i>
+                                <select id="role" name="role" required
+                                    class="form-control form-control-lg @error('role') is-invalid @enderror">
+                                    <option value="">{{ __('Select Account Type') }}</option>
+                                    <option value="buyer" {{ old('role') == 'buyer' ? 'selected' : '' }}>
+                                        {{ __('buyer') }}
+                                    </option>
+                                    <option value="supplier" {{ old('role') == 'supplier' ? 'selected' : '' }}>
+                                        {{ __('Supplier') }}
+                                    </option>
+                                </select>
+                                @error('role')
+                                    <div class="invalid-feedback d-block">
+                                        <i class="fas fa-exclamation-circle me-1"></i>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
+                            </div>
+
                             <div class="d-grid gap-2 mb-4">
                                 <button type="submit" class="btn btn-primary btn-lg fw-semibold login-button">
                                     {{ __('Register Account') }}
@@ -130,26 +154,25 @@
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.getElementById('togglePasswordIcon');
 
-            // Jika tipe input saat ini adalah 'password' (sedang tersembunyi)
             if (passwordInput.type === 'password') {
-                passwordInput.type = 'text'; // Ubah menjadi 'text' (sehingga password terlihat)
-                toggleIcon.classList.remove('fa-eye'); // Hapus ikon mata terbuka
-                toggleIcon.classList.add('fa-eye-slash'); // Tambahkan ikon mata tercoret (menandakan bisa disembunyikan)
-            } else { // Jika tipe input saat ini adalah 'text' (sedang terlihat)
-                passwordInput.type = 'password'; // Ubah menjadi 'password' (sehingga password tersembunyi)
-                toggleIcon.classList.remove('fa-eye-slash'); // Hapus ikon mata tercoret
-                toggleIcon.classList.add('fa-eye'); // Tambahkan ikon mata terbuka (menandakan bisa dilihat)
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
             }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             // Form input effects
-            const inputs = document.querySelectorAll('.form-control');
+            // Memilih semua input dan select dengan kelas .form-control atau .form-select
+            const inputs = document.querySelectorAll('.form-control, .form-select');
             inputs.forEach(input => {
                 input.addEventListener('focus', function() {
                     this.style.borderColor = 'var(--input-focus-border)';
-                    this.style.boxShadow =
-                        '0 0 0 3px rgba(var(--primary-green-rgb), 0.15)';
+                    this.style.boxShadow = '0 0 0 3px rgba(var(--primary-green-rgb), 0.15)';
                     this.style.backgroundColor = 'var(--white)';
                 });
 
@@ -181,5 +204,4 @@
             @endif
         });
     </script>
-    {{-- Tidak perlu tag <style> di sini lagi karena semua CSS sudah di layout utama --}}
 @endsection
