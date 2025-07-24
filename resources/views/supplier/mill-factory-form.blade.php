@@ -5,6 +5,19 @@
 
 <body>
     <x-layout.navbar />
+    @if ($errors->any())
+        <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
+            <strong>Error:</strong> Please fix the errors below.
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2">
+                @foreach ($errors->all() as $error)
+                    <li class="text-red-600">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <section id="supplier-info"
         class="py-16 md:py-24 bg-gradient-to-br from-green-50 to-beige-100 relative overflow-hidden">
         <div class="absolute inset-0 bg-pattern-subtle opacity-20 z-0"></div>
@@ -28,7 +41,8 @@
                         We look forward to exploring potential cooperation.
                     </p>
                     <form class="space-y-4" action="{{ route('supplier.register.initial') }}" method="POST"
-                        enctype="multipart/form-data">
+                        enctype="multipart/form-data" id="supplierForm">
+                        @csrf
 
                         <div class="mb-4">
                             <label for="supplier_type" class="block text-sm font-medium text-gray-700 mb-1">Supplier
@@ -37,11 +51,14 @@
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
                                 <option value="">Select Supplier Type</option>
                                 <option value="mill_factory"
-                                    {{ (Auth::user()->role ?? '') == 'mill_factory' ? 'selected' : '' }}>Mill Factory
+                                    {{ old('supplier_type') == 'mill_factory' ? 'selected' : '' }}>Mill Factory
                                 </option>
-                                <option value="collector"
-                                    {{ (Auth::user()->role ?? '') == 'collector' ? 'selected' : '' }}>Collector</option>
+                                <option value="collector" {{ old('supplier_type') == 'collector' ? 'selected' : '' }}>
+                                    Collector</option>
                             </select>
+                            @error('supplier_type')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         {{-- Region (Province, City) --}}
                         <div>
@@ -49,8 +66,12 @@
                                 class="block text-sm font-medium text-gray-700 mb-1">Region</label>
                             <input type="text" id="region_input" name="region"
                                 placeholder="Province, City (e.g., North Sumatra / Medan)"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                value="{{ old('region') }}">
                             <p class="text-xs text-gray-500 mt-1">e.g., North Sumatra / Medan</p>
+                            @error('region')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Annual Production Volume (tons) --}}
@@ -60,8 +81,12 @@
                                 (tons)</label>
                             <input type="number" id="annual_production_volume" name="annual_production_volume"
                                 placeholder="e.g., 6000"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                value="{{ old('annual_production_volume') }}">
                             <p class="text-xs text-gray-500 mt-1">Annual PKS production volume (e.g., 6,000 tons)</p>
+                            @error('annual_production_volume')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Monthly Available Volume (tons) --}}
@@ -71,9 +96,13 @@
                                 (tons)</label>
                             <input type="number" id="monthly_available_volume" name="monthly_available_volume"
                                 placeholder="e.g., 500"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                value="{{ old('monthly_available_volume') }}">
                             <p class="text-xs text-gray-500 mt-1">Estimated sellable quantity for the current month
                                 (e.g., 500 tons)</p>
+                            @error('monthly_available_volume')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Palm Kernel Type Composition (%) --}}
@@ -82,20 +111,32 @@
                                 <label for="dura_composition" class="block text-xs font-medium text-gray-600 mb-1">Dura
                                     (%)</label>
                                 <input type="number" id="dura_composition" name="dura_composition" placeholder="30"
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                    value="{{ old('dura_composition') }}">
+                                @error('dura_composition')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div>
                                 <label for="tenera_composition"
                                     class="block text-xs font-medium text-gray-600 mb-1">Tenera (%)</label>
                                 <input type="number" id="tenera_composition" name="tenera_composition" placeholder="60"
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                    value="{{ old('tenera_composition') }}">
+                                @error('tenera_composition')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div>
                                 <label for="pisifera_composition"
                                     class="block text-xs font-medium text-gray-600 mb-1">Pisifera (%)</label>
                                 <input type="number" id="pisifera_composition" name="pisifera_composition"
                                     placeholder="10"
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                    value="{{ old('pisifera_composition') }}">
+                                @error('pisifera_composition')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <p class="col-span-3 text-xs text-gray-500 mt-1">Enter as percentages (e.g., Dura: 30,
                                 Tenera: 60, Pisifera: 10)</p>
@@ -107,8 +148,12 @@
                                 (past 1 year, tons)</label>
                             <input type="text" id="sales_record" name="sales_record"
                                 placeholder="e.g., 20000 (total annual PKS sales in tons)"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                value="{{ old('sales_record') }}">
                             <p class="text-xs text-gray-500 mt-1">Sales performance including domestic and export</p>
+                            @error('sales_record')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Desired Selling Price (USD/ton) --}}
@@ -118,8 +163,12 @@
                                 (USD/ton)</label>
                             <input type="text" id="desired_selling_price" name="desired_selling_price"
                                 placeholder="e.g., 120 FOB or 115 EXW"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                value="{{ old('desired_selling_price') }}">
                             <p class="text-xs text-gray-500 mt-1">Indicate FOB or EXW price (e.g., 120 FOB)</p>
+                            @error('desired_selling_price')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Minimum Order Quantity (tons) --}}
@@ -129,8 +178,12 @@
                                 (tons)</label>
                             <input type="number" id="minimum_order_quantity" name="minimum_order_quantity"
                                 placeholder="e.g., 100"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent"
+                                value="{{ old('minimum_order_quantity') }}">
                             <p class="text-xs text-gray-500 mt-1">e.g., 100 tons</p>
+                            @error('minimum_order_quantity')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Product Photos (optional) --}}
@@ -140,7 +193,11 @@
                             <input type="file" id="product_photos" name="product_photos[]" multiple
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
                             <p class="text-xs text-gray-500 mt-1">Photos of PKS, storage facilities, packaging, etc.
+                                <strong class="text-red-500">Maksimal 2MB per foto.</strong>
                             </p>
+                            @error('product_photos.*')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Notes (optional) --}}
@@ -148,17 +205,24 @@
                             <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Notes
                                 (optional)</label>
                             <textarea id="notes" name="notes" rows="3" placeholder="e.g., Supply may decrease during rainy season"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent resize-none"></textarea>
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent resize-none">{{ old('notes') }}</textarea>
                             <p class="text-xs text-gray-500 mt-1">e.g., “Supply may decrease during rainy season”</p>
+                            @error('notes')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Urgent Sale Available Checkbox --}}
                         <div class="mb-6">
                             <label class="inline-flex items-center text-sm font-medium text-gray-700">
                                 <input type="checkbox" name="urgent_sale_available"
-                                    class="mr-2 h-4 w-4 text-green-custom rounded focus:ring-green-custom">
+                                    class="mr-2 h-4 w-4 text-green-custom rounded focus:ring-green-custom"
+                                    {{ old('urgent_sale_available') ? 'checked' : '' }}>
                                 Urgent Sale Available
                             </label>
+                            @error('urgent_sale_available')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         {{-- Upload Section --}}
@@ -170,20 +234,31 @@
                                 factory / warehouse (up to 5 images)</label>
                             <input type="file" id="factory_photos" name="factory_photos[]" multiple
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Maksimal 2MB per foto.</p>
+                            @error('factory_photos.*')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="sample_pks_photos" class="block text-sm font-medium text-gray-700 mb-1">Sample
                                 PKS photos</label>
                             <input type="file" id="sample_pks_photos" name="sample_pks_photos[]" multiple
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Maksimal 2MB per foto.</p>
+                            @error('sample_pks_photos.*')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="lab_test_report" class="block text-sm font-medium text-gray-700 mb-1">Lab test
                                 report (if available)</label>
                             <input type="file" id="lab_test_report" name="lab_test_report"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Maksimal 2MB.</p>
+                            @error('lab_test_report')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
-                        @csrf
                         <button type="submit"
                             class="w-full bg-green-custom text-white py-3 rounded-lg font-semibold hover:bg-green-hover transition">
                             Submit Information
@@ -340,7 +415,7 @@
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Send a Message</h3>
-                        <form class="space-y-4" onsubmit="handleSubmit(event)">
+                        <form class="space-y-4" onsubmit="handleContactSubmit(event)">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <input type="text" placeholder="First Name" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
@@ -403,21 +478,137 @@
     </section>
     <x-layout.footer />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.0/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         // Memastikan script ini hanya berjalan jika user belum login
         @guest
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector(
-                '#supplier-info form'); // Select the form by its parent section's ID and then form
+            const form = document.getElementById('supplierForm'); // Pastikan ID form sudah benar
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault(); // Mencegah submit form
-                    alert('Please login first to fill out the form.'); // Tampilkan pop-up
-                    window.location.href = "{{ route('login') }}";
+                    Swal.fire({
+                        title: 'Harap Login Terlebih Dahulu',
+                        text: 'Anda harus login untuk mengisi formulir ini.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Login Sekarang!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{{ route('login') }}";
+                        }
+                    });
                 });
             }
         });
         @endguest
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('supplierForm');
+            const fileInputs = ['product_photos', 'factory_photos', 'sample_pks_photos'];
+            const maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
+
+            // Fungsi untuk menampilkan SweetAlert dengan Lottie untuk sukses
+            function showSuccessAlert(message) {
+                Swal.fire({
+                    title: 'Sukses!',
+                    html: `<div id="lottie-success-modal" style="width: 100px; height: 100px; margin: auto;"></div><p>${message}</p>`,
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 4000, // Otomatis tutup setelah 4 detik
+                    didOpen: () => {
+                        const lottieContainer = document.getElementById('lottie-success-modal');
+                        lottie.loadAnimation({
+                            container: lottieContainer,
+                            renderer: 'svg',
+                            loop: false,
+                            autoplay: true,
+                            path: 'https://assets5.lottiefiles.com/packages/lf20_gapl3t.json' // Ganti dengan URL Lottie animasi sukses Anda
+                        });
+                    }
+                });
+            }
+
+            // Fungsi untuk menampilkan SweetAlert untuk error
+            function showDangerAlert(message) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Oke'
+                });
+            }
+
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    let hasFileError = false;
+
+                    fileInputs.forEach(inputId => {
+                        const inputElement = document.getElementById(inputId);
+                        if (inputElement && inputElement.files.length > 0) {
+                            for (const file of inputElement.files) {
+                                if (file.size > maxFileSize) {
+                                    showDangerAlert(
+                                        `Ukuran foto "${file.name}" melebihi 2MB. Harap upload foto di bawah 2MB.`
+                                    );
+                                    hasFileError = true;
+                                    break; // Stop checking further files for this input
+                                }
+                            }
+                        }
+                        if (hasFileError) {
+                            event.preventDefault(); // Hentikan submit form
+                            return; // Keluar dari forEach
+                        }
+                    });
+
+                    // For single file upload (lab_test_report)
+                    const labTestReportInput = document.getElementById('lab_test_report');
+                    if (!hasFileError && labTestReportInput && labTestReportInput.files.length > 0) {
+                        const file = labTestReportInput.files[0];
+                        if (file.size > maxFileSize) {
+                            showDangerAlert(
+                                `Ukuran file laporan lab "${file.name}" melebihi 2MB. Harap upload file di bawah 2MB.`
+                            );
+                            hasFileError = true;
+                        }
+                    }
+
+                    if (hasFileError) {
+                        event.preventDefault(); // Hentikan submit form jika ada error file
+                    }
+                });
+
+                // Cek pesan sukses dari session (setelah submit dari backend)
+                @if (session('success'))
+                    showSuccessAlert("{{ session('success') }}");
+                @endif
+
+                // Cek pesan error validasi dari Laravel (jika ada field yang wajib diisi dan belum terisi)
+                @if ($errors->any())
+                    showDangerAlert("Harap lengkapi semua bidang yang diperlukan dan perbaiki kesalahan input.");
+                @endif
+            }
+        });
+
+        // Function to handle contact form submission (unchanged, but renamed to avoid conflict)
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Pesan Terkirim!',
+                text: 'Terima kasih atas pesan Anda. Kami akan segera menghubungi Anda.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Oke'
+            });
+            // Anda bisa menambahkan logika pengiriman form sebenarnya di sini jika diperlukan
+            event.target.reset(); // Kosongkan form setelah submit
+        }
     </script>
 </body>
 
