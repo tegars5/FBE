@@ -184,7 +184,6 @@
                             PKS charcoal products, ensuring access to affordable and clean energy for all.
                         </p>
                     </div>
-
                     <div id="sdg13"
                         class="sdg-detail hidden bg-green-50 border-l-4 border-green-600 p-4 rounded-r-lg transition-all duration-300">
                         <h4 class="font-bold text-green-800 mb-2">SDG 13 – Climate Action</h4>
@@ -628,44 +627,46 @@
                                     <div class="flex flex-col justify-between">
                                         <h4 class="font-semibold text-xs md:text-sm leading-tight">
                                             {{ $article->title }}</h4>
-                                        {{-- <p class="text-xs text-gray-600">Article —
-                                                    {{ $article->created_at->format('F j, Y') }}</p> --}}
-    {{-- </div>
-    </a>
-    </article> --}}
-    {{-- @endforeach
-    </div>
-    @endif --}}
+                                        <p class="text-xs text-gray-600">Article —
+                                            {{ $article->created_at->format('F j, Y') }}</p>
+                                    </div>
+                                </a>
+                            </article> 
+                        @endforeach
+                    </div>
+                @endif
 
-    {{-- @if ($articles->count() > 3)
-        <div class="space-y-6 md:space-y-8">
-            @foreach ($articles->skip(3)->take(2) as $article)
-                <article class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
-                    <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
-                        @if ($article->photo)
-                            <img src="{{ Storage::disk('s3')->url($article->photo) }}" alt="{{ $article->title }}"
-                                class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
-                        @else
-                            <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
-                                class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
-                        @endif
-                        <div class="flex flex-col justify-between">
-                            <h4 class="font-semibold text-xs md:text-sm leading-tight">
-                                {{ $article->title }}</h4>
-                            {{-- <p class="text-xs text-gray-600">Article —
-                                                    {{ $article->created_at->format('F j, Y') }}</p> --}}
-    {{-- </div>
-                    </a>
-                </article>
-            @endforeach
+                @if ($articles->count() > 3)
+                    <div class="space-y-6 md:space-y-8">
+                        @foreach ($articles->skip(3)->take(2) as $article)
+                            <article
+                                class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
+                                <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
+                                    @if ($article->photo)
+                                        <img src="{{ Storage::disk('s3')->url($article->photo) }}"
+                                            alt="{{ $article->title }}"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @else
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @endif
+                                    <div class="flex flex-col justify-between">
+                                        <h4 class="font-semibold text-xs md:text-sm leading-tight">
+                                            {{ $article->title }}</h4>
+                                        <p class="text-xs text-gray-600">Article —
+                                            {{ $article->created_at->format('F j, Y') }}</p>
+                                    </div>
+                                </a>
+                            </article>
+                        @endforeach
+                    </div>
+                @endif
+            @else
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
+                </div>
+            @endif
         </div>
-    @endif --}}
-    {{-- @else --}}
-    {{-- <div class="col-span-full text-center py-8">
-        <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
-    </div>
-    @endif
-    </div>
     </section> --}}
 
     <section id="gallery" class="py-8 md:py-12 bg-white">
@@ -729,7 +730,7 @@
                         <p class="text-white text-sm font-bold">Ready for Shipment</p>
                     </div>
                 </div>
-                {{-- Tambahkan lebih banyak thumbnail gambar untuk setiap kategori --}}
+                Tambahkan lebih banyak thumbnail gambar untuk setiap kategori --}}
             </div>
         </div>
     </section>
@@ -821,7 +822,7 @@
                             <div class="min-w-0">
                                 <p class="font-semibold text-gray-900 mb-1">Head Office</p>
                                 <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                                    Neo Soho Apartment, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
+                                    Neo Soho, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
                                     Tanjung Duren Selatan Subdistrict, Grogol Petamburan District<br>
                                     West Jakarta, DKI Jakarta, 11470<br>
                                     Indonesia

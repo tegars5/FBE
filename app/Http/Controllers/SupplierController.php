@@ -2,101 +2,200 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Models\Supplier;
-use Illuminate\Support\Facades\Auth; // Penting: Pastikan Auth diimpor
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log; // Import Log Facade
 
 class SupplierController extends Controller
 {
     /**
-     * Handle the initial supplier information submission (Mill Factory).
+     * Store a newly created supplier in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function initialRegistration(Request $request)
+    public function store(Request $request)
     {
-        // 1. Validasi data formulir
-        $validatedData = $request->validate([
-            'mill_region' => 'required|string|max:255',
-            'mill_monthly_capacity' => 'required|numeric',
-            'mill_dura' => 'nullable|numeric|min:0|max:100',
-            'mill_tenera' => 'nullable|numeric|min:0|max:100',
-            'mill_pisifera' => 'nullable|numeric|min:0|max:100',
-            'mill_annual_sales' => 'required|numeric',
-            'mill_desired_price' => 'required|numeric',
-            'mill_years_operation' => 'required|numeric|integer|min:0',
-            'mill_contact_name' => 'required|string|max:255',
-            'mill_contact_email' => 'required|email|max:255',
-            'mill_contact_phone' => 'required|string|max:255',
-        ]);
+        Log::info('Supplier submission attempt initiated.', ['user_id' => Auth::id()]); // Log awal
 
-        // Mapping validated data keys to model fillable keys
+        // Pastikan hanya pengguna yang terautentikasi yang dapat mengirim formulir
+        if (!Auth::check()) {
+            Log::warning('Unauthorized supplier submission attempt (user not logged in).');
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk mengirim informasi supplier.');
+        }
+
+        try {
+            // 1. Validasi data formulir
+            $validatedData = $request->validate([
+                'supplier_type' => 'required|string|in:mill_factory,collector',
+                'region' => 'required|string|max:255',
+                'annual_production_volume' => 'nullable|numeric|min:0',
+                'monthly_available_volume' => 'required|numeric|min:0',
+                'dura_composition' => 'nullable|numeric|min:0|max:100',
+                'tenera_composition' => 'nullable|numeric|min:0|max:100',
+                'pisifera_composition' => 'nullable|numeric|min:0|max:100',
+                'sales_record' => 'nullable|numeric|min:0',
+                'desired_selling_price' => 'nullable|string|max:255',
+                'minimum_order_quantity' => 'nullable|numeric|min:0',
+                'product_photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'notes' => 'nullable|string|max:1000',
+                'urgent_sale_available' => 'nullable|in:on',
+                'factory_photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'sample_pks_photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'lab_test_report' => 'nullable|file|mimes:pdf,doc,docx,jpeg,png,jpg|max:5120',
+            ]);
+            Log::info('Validation successful for supplier data.', ['user_id' => Auth::id(), 'data' => array_keys($validatedData)]);
+        } catch (ValidationException $e) {
+            Log::error('Validation failed for supplier submission.', [
+                'user_id' => Auth::id(),
+                'errors' => $e->errors(),
+                'input' => $request->all() // Log semua input yang diterima
+            ]);
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
+
+        // 2. Tangani unggahan file ke Cloudflare R2 (melalui driver S3)
+        $productPhotoUrls = [];
+        if ($request->hasFile('product_photos')) {
+            Log::info('Processing product_photos upload.', ['user_id' => Auth::id()]);
+            foreach ($request->file('product_photos') as $photo) {
+                try {
+                    $path = 'supplier_product_photos';
+                    $fileName = uniqid() . '.' . $photo->getClientOriginalExtension();
+                    $filePath = Storage::disk('s3')->putFileAs($path, $photo, $fileName, 'public');
+                    $productPhotoUrls[] = env('AWS_URL') . '/' . $filePath;
+                    Log::info('Product photo uploaded successfully to R2.', ['user_id' => Auth::id(), 'path' => $filePath, 'url' => end($productPhotoUrls)]);
+                } catch (\Exception $e) {
+                    Log::error('Failed to upload product photo to R2.', [
+                        'user_id' => Auth::id(),
+                        'file_name' => $photo->getClientOriginalName(),
+                        'error' => $e->getMessage(),
+                        'trace' => $e->getTraceAsString()
+                    ]);
+                    return redirect()->back()->withErrors(['product_photos' => 'Gagal mengunggah foto produk: ' . $e->getMessage()])->withInput();
+                }
+            }
+        }
+
+        $factoryPhotoUrls = [];
+        if ($request->hasFile('factory_photos')) {
+            Log::info('Processing factory_photos upload.', ['user_id' => Auth::id()]);
+            if (count($request->file('factory_photos')) > 5) {
+                Log::warning('Factory photos upload exceeded limit of 5.', ['user_id' => Auth::id(), 'count' => count($request->file('factory_photos'))]);
+                return redirect()->back()->withErrors(['factory_photos' => 'Anda hanya dapat mengunggah maksimal 5 foto pabrik/gudang.'])->withInput();
+            }
+            foreach ($request->file('factory_photos') as $photo) {
+                try {
+                    $path = 'supplier_factory_photos';
+                    $fileName = uniqid() . '.' . $photo->getClientOriginalExtension();
+                    $filePath = Storage::disk('s3')->putFileAs($path, $photo, $fileName, 'public');
+                    $factoryPhotoUrls[] = env('AWS_URL') . '/' . $filePath;
+                    Log::info('Factory photo uploaded successfully to R2.', ['user_id' => Auth::id(), 'path' => $filePath, 'url' => end($factoryPhotoUrls)]);
+                } catch (\Exception $e) {
+                    Log::error('Failed to upload factory photo to R2.', [
+                        'user_id' => Auth::id(),
+                        'file_name' => $photo->getClientOriginalName(),
+                        'error' => $e->getMessage(),
+                        'trace' => $e->getTraceAsString()
+                    ]);
+                    return redirect()->back()->withErrors(['factory_photos' => 'Gagal mengunggah foto pabrik: ' . $e->getMessage()])->withInput();
+                }
+            }
+        }
+
+        $samplePksPhotoUrls = [];
+        if ($request->hasFile('sample_pks_photos')) {
+            Log::info('Processing sample_pks_photos upload.', ['user_id' => Auth::id()]);
+            foreach ($request->file('sample_pks_photos') as $photo) {
+                try {
+                    $path = 'supplier_sample_pks_photos';
+                    $fileName = uniqid() . '.' . $photo->getClientOriginalExtension();
+                    $filePath = Storage::disk('s3')->putFileAs($path, $photo, $fileName, 'public');
+                    $samplePksPhotoUrls[] = env('AWS_URL') . '/' . $filePath;
+                    Log::info('Sample PKS photo uploaded successfully to R2.', ['user_id' => Auth::id(), 'path' => $filePath, 'url' => end($samplePksPhotoUrls)]);
+                } catch (\Exception $e) {
+                    Log::error('Failed to upload sample PKS photo to R2.', [
+                        'user_id' => Auth::id(),
+                        'file_name' => $photo->getClientOriginalName(),
+                        'error' => $e->getMessage(),
+                        'trace' => $e->getTraceAsString()
+                    ]);
+                    return redirect()->back()->withErrors(['sample_pks_photos' => 'Gagal mengunggah foto sample PKS: ' . $e->getMessage()])->withInput();
+                }
+            }
+        }
+
+        $labTestReportUrl = null;
+        if ($request->hasFile('lab_test_report')) {
+            Log::info('Processing lab_test_report upload.', ['user_id' => Auth::id()]);
+            try {
+                $file = $request->file('lab_test_report');
+                $path = 'supplier_lab_reports';
+                $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+                $filePath = Storage::disk('s3')->putFileAs($path, $file, $fileName, 'public');
+                $labTestReportUrl = env('AWS_URL') . '/' . $filePath;
+                Log::info('Lab test report uploaded successfully to R2.', ['user_id' => Auth::id(), 'path' => $filePath, 'url' => $labTestReportUrl]);
+            } catch (\Exception $e) {
+                Log::error('Failed to upload lab test report to R2.', [
+                    'user_id' => Auth::id(),
+                    'file_name' => $file->getClientOriginalName(),
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+                return redirect()->back()->withErrors(['lab_test_report' => 'Gagal mengunggah laporan lab: ' . $e->getMessage()])->withInput();
+            }
+        }
+
+        // 3. Siapkan data untuk disimpan atau diperbarui
         $supplierData = [
-            'region' => $validatedData['mill_region'],
-            'monthly_capacity' => $validatedData['mill_monthly_capacity'],
-            'dura_composition' => $validatedData['mill_dura'] ?? 0,
-            'tenera_composition' => $validatedData['mill_tenera'] ?? 0,
-            'pisifera_composition' => $validatedData['mill_pisifera'] ?? 0,
-            'annual_sales' => $validatedData['mill_annual_sales'],
-            'desired_price' => $validatedData['mill_desired_price'],
-            'years_operation' => $validatedData['mill_years_operation'],
-            'contact_name' => $validatedData['mill_contact_name'],
-            'contact_email' => $validatedData['mill_contact_email'],
-            'contact_phone' => $validatedData['mill_contact_phone'],
-            'type' => 'Mill Factory', // Set tipe supplier
+            'user_id' => Auth::id(),
+            'supplier_type' => $validatedData['supplier_type'],
+            'region' => $validatedData['region'],
+            'annual_production_volume' => $validatedData['annual_production_volume'] ?? null,
+            'monthly_available_volume' => $validatedData['monthly_available_volume'],
+            'dura_composition' => $validatedData['dura_composition'] ?? null,
+            'tenera_composition' => $validatedData['tenera_composition'] ?? null,
+            'pisifera_composition' => $validatedData['pisifera_composition'] ?? null,
+            'sales_record' => $validatedData['sales_record'] ?? null,
+            'desired_selling_price' => $validatedData['desired_selling_price'] ?? null,
+            'minimum_order_quantity' => $validatedData['minimum_order_quantity'] ?? null,
+            // Penting: Karena model sudah menggunakan casting 'array', JANGAN json_encode() di sini.
+            // Biarkan Laravel yang otomatis mengkonversi array ke JSON saat menyimpan ke database.
+            'product_photos' => !empty($productPhotoUrls) ? $productPhotoUrls : null,
+            'notes' => $validatedData['notes'] ?? null,
+            'urgent_sale_available' => $request->has('urgent_sale_available') && $request->urgent_sale_available === 'on',
+            'factory_photos' => !empty($factoryPhotoUrls) ? $factoryPhotoUrls : null,
+            'sample_pks_photos' => !empty($samplePksPhotoUrls) ? $samplePksPhotoUrls : null,
+            'lab_test_report' => $labTestReportUrl,
         ];
 
-        // Cek apakah ada supplier dengan email yang sama.
-        $existingSupplierByEmail = Supplier::where('contact_email', $supplierData['contact_email'])->first();
+        Log::info('Attempting to save supplier data to database.', [
+            'user_id' => Auth::id(),
+            'data_to_save' => $supplierData // Log data yang akan disimpan
+        ]);
 
-        if (Auth::check()) {
-            // Pengguna sudah login
-            if ($existingSupplierByEmail && $existingSupplierByEmail->user_id !== Auth::id()) {
-                // Email ini sudah terdaftar sebagai supplier oleh akun lain.
-                return redirect()->back()->withInput()->withErrors(['mill_contact_email' => 'Email ini sudah terdaftar sebagai supplier oleh akun lain. Jika ini adalah data baru, gunakan email yang berbeda atau hapus entri lama.']);
-            } elseif ($existingSupplierByEmail && $existingSupplierByEmail->user_id === Auth::id()) {
-                // Email ini sudah terdaftar dan terkait dengan akun yang sedang login.
-                // Dalam kasus ini, kita update entri yang ada karena ini kemungkinan adalah pembaruan data yang sama.
-                try {
-                    $existingSupplierByEmail->update($supplierData);
-                } catch (\Exception $e) {
-                    return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui informasi supplier: ' . $e->getMessage()]);
-                }
-                return redirect()->route('supplier.dashboard')->with('success', 'Informasi Mill Factory Anda berhasil diperbarui!');
-            } else {
-                // Email belum terdaftar sebagai supplier, atau terdaftar tapi user_id-nya null.
-                // Buat supplier baru dan hubungkan dengan pengguna yang login.
-                $supplierData['user_id'] = Auth::id(); // Langsung hubungkan dengan pengguna yang login
-                try {
-                    Supplier::create($supplierData);
-                } catch (\Exception $e) {
-                    return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan informasi supplier baru: ' . $e->getMessage()]);
-                }
-                return redirect()->route('supplier.dashboard')->with('success', 'Informasi Mill Factory Anda berhasil dikirimkan!');
-            }
-        } else {
-            // Pengguna belum login
-            if ($existingSupplierByEmail) {
-                // Email sudah terdaftar sebagai supplier oleh siapapun (termasuk yang belum terhubung user_id).
-                // Arahkan ke halaman login.
-                return redirect()->route('login')->withErrors(['email' => 'Email ini sudah terdaftar sebagai supplier. Silakan login.'])->withInput(['email' => $supplierData['contact_email']]);
-            } else {
-                // Email belum terdaftar. Buat record supplier tanpa user_id dulu, lalu arahkan ke pendaftaran.
-                try {
-                    $supplier = Supplier::create($supplierData);
-                } catch (\Exception $e) {
-                    return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan informasi supplier: ' . $e->getMessage()]);
-                }
-
-                Session::put('pending_supplier_id', $supplier->id);
-                return redirect()->route('register')->with([
-                    'email' => $supplierData['contact_email'],
-                    'name' => $supplierData['contact_name'], // Pastikan ini sesuai dengan field di form register Anda
-                    'message' => 'Silakan lengkapi pendaftaran Anda untuk membuat akun dan menghubungkan informasi supplier Anda.'
-                ]);
-            }
+        // 4. Buat atau perbarui record Supplier
+        try {
+            // Gunakan updateOrCreate untuk mencari supplier berdasarkan user_id,
+            // jika ada update, jika tidak ada buat baru.
+            $supplier = Supplier::updateOrCreate(
+                ['user_id' => Auth::id()], // Kondisi pencarian
+                $supplierData              // Data yang akan diisi/diperbarui
+            );
+            Log::info('Supplier information saved successfully.', ['user_id' => Auth::id(), 'supplier_id' => $supplier->id]);
+            return redirect()->back()->with('success', 'Informasi supplier berhasil dikirim!');
+        } catch (\Exception $e) {
+            Log::error('Failed to save supplier information to database.', [
+                'user_id' => Auth::id(),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'data_attempted_to_save' => $supplierData // Log data yang gagal disimpan
+            ]);
+            return redirect()->back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan informasi supplier: ' . $e->getMessage()]);
         }
     }
 }

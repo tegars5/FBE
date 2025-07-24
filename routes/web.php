@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
 
     // Rute untuk SUBMIT formulir supplier (HARUS LOGIN DULU)
     // Ini adalah rute POST yang akan menerima data dari form Mill Factory dan Collector.
-    Route::post('/supplier-initial-registration', [SupplierController::class, 'initialRegistration'])
+    Route::post('/supplier-initial-registration', [SupplierController::class, 'store'])
         ->name('supplier.register.initial');
 
     Route::post('/supplier-collector-registration', [SupplierController::class, 'collectorRegistration'])

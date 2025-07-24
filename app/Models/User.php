@@ -15,19 +15,18 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'role',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -45,5 +44,41 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Relationship: User has one Supplier
+     * Setiap user hanya bisa punya satu data supplier
+     */
+    public function supplier()
+    {
+        return $this->hasOne(Supplier::class);
+    }
+
+    /**
+     * Relationship: User has many Suppliers
+     * Jika ingin user bisa punya banyak supplier, uncomment ini dan comment yang hasOne
+     */
+    // public function suppliers()
+    // {
+    // return $this->hasMany(Supplier::class);
+    // }
+
+    /**
+     * Check if user has supplier data
+     * Helper method untuk cek apakah user sudah punya data supplier
+     */
+    public function hasSupplier()
+    {
+        return $this->supplier()->exists();
+    }
+
+    /**
+     * Get supplier data with default values
+     * Helper method untuk ambil data supplier dengan fallback
+     */
+    public function getSupplierData()
+    {
+        return $this->supplier ?: new Supplier();
     }
 }

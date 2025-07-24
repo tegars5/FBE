@@ -27,96 +27,163 @@
                         expanding your market reach and contributing to sustainability, please fill out the form below.
                         We look forward to exploring potential cooperation.
                     </p>
-                    <form class="space-y-4" action="{{ route('supplier.register.initial') }}" method="POST">
-                        @csrf
-                        <div>
-                            <label for="mill_region" class="block text-sm font-medium text-gray-700 mb-1">Region</label>
-                            <input type="text" id="mill_region" name="mill_region"
-                                placeholder="Kalimantan Tengah, Riau"
+                    <form class="space-y-4" action="{{ route('supplier.register.initial') }}" method="POST"
+                        enctype="multipart/form-data">
+
+                        <div class="mb-4">
+                            <label for="supplier_type" class="block text-sm font-medium text-gray-700 mb-1">Supplier
+                                Type</label>
+                            <select id="supplier_type" name="supplier_type"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: Kalimantan Tengah, Riau</p>
+                                <option value="">Select Supplier Type</option>
+                                <option value="mill_factory"
+                                    {{ (Auth::user()->role ?? '') == 'mill_factory' ? 'selected' : '' }}>Mill Factory
+                                </option>
+                                <option value="collector"
+                                    {{ (Auth::user()->role ?? '') == 'collector' ? 'selected' : '' }}>Collector</option>
+                            </select>
                         </div>
+                        {{-- Region (Province, City) --}}
                         <div>
-                            <label for="mill_monthly_capacity"
-                                class="block text-sm font-medium text-gray-700 mb-1">Monthly Production Capacity
-                                (ton/month)</label>
-                            <input type="text" id="mill_monthly_capacity" name="mill_monthly_capacity"
-                                placeholder="2000"
+                            <label for="region_input"
+                                class="block text-sm font-medium text-gray-700 mb-1">Region</label>
+                            <input type="text" id="region_input" name="region"
+                                placeholder="Province, City (e.g., North Sumatra / Medan)"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: 2000 (kapasitas produksi bulanan PKS dalam
-                                ton)</p>
+                            <p class="text-xs text-gray-500 mt-1">e.g., North Sumatra / Medan</p>
                         </div>
-                        <p class="block text-sm font-medium text-gray-700 pt-2">Palm Variety Composition (%)</p>
+
+                        {{-- Annual Production Volume (tons) --}}
+                        <div>
+                            <label for="annual_production_volume"
+                                class="block text-sm font-medium text-gray-700 mb-1">Annual Production Volume
+                                (tons)</label>
+                            <input type="number" id="annual_production_volume" name="annual_production_volume"
+                                placeholder="e.g., 6000"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Annual PKS production volume (e.g., 6,000 tons)</p>
+                        </div>
+
+                        {{-- Monthly Available Volume (tons) --}}
+                        <div>
+                            <label for="monthly_available_volume"
+                                class="block text-sm font-medium text-gray-700 mb-1">Monthly Available Volume
+                                (tons)</label>
+                            <input type="number" id="monthly_available_volume" name="monthly_available_volume"
+                                placeholder="e.g., 500"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Estimated sellable quantity for the current month
+                                (e.g., 500 tons)</p>
+                        </div>
+
+                        {{-- Palm Kernel Type Composition (%) --}}
                         <div class="grid grid-cols-3 gap-4">
                             <div>
-                                <label for="mill_dura" class="block text-xs font-medium text-gray-600 mb-1">Dura</label>
-                                <input type="text" id="mill_dura" name="mill_dura" placeholder="30"
+                                <label for="dura_composition" class="block text-xs font-medium text-gray-600 mb-1">Dura
+                                    (%)</label>
+                                <input type="number" id="dura_composition" name="dura_composition" placeholder="30"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                                <p class="text-xs text-gray-500 mt-1">Contoh: 30 (persentase varietas Dura)</p>
                             </div>
                             <div>
-                                <label for="mill_tenera"
-                                    class="block text-xs font-medium text-gray-600 mb-1">Tenera</label>
-                                <input type="text" id="mill_tenera" name="mill_tenera" placeholder="60"
+                                <label for="tenera_composition"
+                                    class="block text-xs font-medium text-gray-600 mb-1">Tenera (%)</label>
+                                <input type="number" id="tenera_composition" name="tenera_composition" placeholder="60"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                                <p class="text-xs text-gray-500 mt-1">Contoh: 60 (persentase varietas Tenera)</p>
                             </div>
                             <div>
-                                <label for="mill_pisifera"
-                                    class="block text-xs font-medium text-gray-600 mb-1">Pisifera</label>
-                                <input type="text" id="mill_pisifera" name="mill_pisifera" placeholder="10"
+                                <label for="pisifera_composition"
+                                    class="block text-xs font-medium text-gray-600 mb-1">Pisifera (%)</label>
+                                <input type="number" id="pisifera_composition" name="pisifera_composition"
+                                    placeholder="10"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                                <p class="text-xs text-gray-500 mt-1">Contoh: 10 (persentase varietas Pisifera)</p>
                             </div>
+                            <p class="col-span-3 text-xs text-gray-500 mt-1">Enter as percentages (e.g., Dura: 30,
+                                Tenera: 60, Pisifera: 10)</p>
                         </div>
+
+                        {{-- Sales Record (past 1 year, tons) --}}
                         <div>
-                            <label for="mill_annual_sales" class="block text-sm font-medium text-gray-700 mb-1">Annual
-                                Sales Record (ton/year)</label>
-                            <input type="text" id="mill_annual_sales" name="mill_annual_sales" placeholder="20000"
+                            <label for="sales_record" class="block text-sm font-medium text-gray-700 mb-1">Sales Record
+                                (past 1 year, tons)</label>
+                            <input type="text" id="sales_record" name="sales_record"
+                                placeholder="e.g., 20000 (total annual PKS sales in tons)"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: 20000 (total penjualan PKS tahunan dalam ton)
+                            <p class="text-xs text-gray-500 mt-1">Sales performance including domestic and export</p>
+                        </div>
+
+                        {{-- Desired Selling Price (USD/ton) --}}
+                        <div>
+                            <label for="desired_selling_price"
+                                class="block text-sm font-medium text-gray-700 mb-1">Desired Selling Price
+                                (USD/ton)</label>
+                            <input type="text" id="desired_selling_price" name="desired_selling_price"
+                                placeholder="e.g., 120 FOB or 115 EXW"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Indicate FOB or EXW price (e.g., 120 FOB)</p>
+                        </div>
+
+                        {{-- Minimum Order Quantity (tons) --}}
+                        <div>
+                            <label for="minimum_order_quantity"
+                                class="block text-sm font-medium text-gray-700 mb-1">Minimum Order Quantity
+                                (tons)</label>
+                            <input type="number" id="minimum_order_quantity" name="minimum_order_quantity"
+                                placeholder="e.g., 100"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">e.g., 100 tons</p>
+                        </div>
+
+                        {{-- Product Photos (optional) --}}
+                        <div>
+                            <label for="product_photos" class="block text-sm font-medium text-gray-700 mb-1">Product
+                                Photos (optional)</label>
+                            <input type="file" id="product_photos" name="product_photos[]" multiple
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
+                            <p class="text-xs text-gray-500 mt-1">Photos of PKS, storage facilities, packaging, etc.
                             </p>
                         </div>
+
+                        {{-- Notes (optional) --}}
                         <div>
-                            <label for="mill_desired_price" class="block text-sm font-medium text-gray-700 mb-1">Desired
-                                Sales Price
-                                (USD/ton)</label>
-                            <input type="text" id="mill_desired_price" name="mill_desired_price" placeholder="120"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: 120 (harga yang diharapkan per ton PKS)</p>
+                            <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Notes
+                                (optional)</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="e.g., Supply may decrease during rainy season"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent resize-none"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">e.g., “Supply may decrease during rainy season”</p>
                         </div>
-                        <div>
-                            <label for="mill_years_operation" class="block text-sm font-medium text-gray-700 mb-1">Years
-                                in Operation</label>
-                            <input type="text" id="mill_years_operation" name="mill_years_operation" placeholder="5"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: 5 (jumlah tahun pabrik beroperasi)</p>
+
+                        {{-- Urgent Sale Available Checkbox --}}
+                        <div class="mb-6">
+                            <label class="inline-flex items-center text-sm font-medium text-gray-700">
+                                <input type="checkbox" name="urgent_sale_available"
+                                    class="mr-2 h-4 w-4 text-green-custom rounded focus:ring-green-custom">
+                                Urgent Sale Available
+                            </label>
                         </div>
-                        <div>
-                            <label for="mill_contact_name" class="block text-sm font-medium text-gray-700 mb-1">Contact
-                                Person Name</label>
-                            <input type="text" id="mill_contact_name" name="mill_contact_name"
-                                placeholder="Budi Santoso"
+
+                        {{-- Upload Section --}}
+                        <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-6 text-center">Upload Section
+                        </h3>
+
+                        <div class="mb-4">
+                            <label for="factory_photos" class="block text-sm font-medium text-gray-700 mb-1">Photos of
+                                factory / warehouse (up to 5 images)</label>
+                            <input type="file" id="factory_photos" name="factory_photos[]" multiple
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: Budi Santoso</p>
                         </div>
-                        <div>
-                            <label for="mill_contact_email" class="block text-sm font-medium text-gray-700 mb-1">Contact
-                                Person Email</label>
-                            <input type="email" id="mill_contact_email" name="mill_contact_email"
-                                placeholder="budi.santoso@example.com"
+                        <div class="mb-4">
+                            <label for="sample_pks_photos" class="block text-sm font-medium text-gray-700 mb-1">Sample
+                                PKS photos</label>
+                            <input type="file" id="sample_pks_photos" name="sample_pks_photos[]" multiple
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: budi.santoso@example.com</p>
                         </div>
-                        <div>
-                            <label for="mill_contact_phone" class="block text-sm font-medium text-gray-700 mb-1">Contact
-                                Person Phone
-                                Number</label>
-                            <input type="tel" id="mill_contact_phone" name="mill_contact_phone"
-                                placeholder="+6281234567890"
+                        <div class="mb-4">
+                            <label for="lab_test_report" class="block text-sm font-medium text-gray-700 mb-1">Lab test
+                                report (if available)</label>
+                            <input type="file" id="lab_test_report" name="lab_test_report"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent">
-                            <p class="text-xs text-gray-500 mt-1">Contoh: +6281234567890</p>
                         </div>
+                        @csrf
                         <button type="submit"
                             class="w-full bg-green-custom text-white py-3 rounded-lg font-semibold hover:bg-green-hover transition">
                             Submit Information
@@ -126,8 +193,7 @@
             </div>
 
             <div
-                class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center
-                                transform hover:scale-102 transition-all duration-300 mt-12">
+                class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center transform hover:scale-102 transition-all duration-300 mt-12">
                 <div class="flex items-center justify-center text-white mb-4">
                     <i class="fas fa-handshake text-3xl md:text-4xl mr-4"></i>
                     <h3 class="text-xl md:text-2xl font-bold">Partnership Benefits</h3>
@@ -206,7 +272,7 @@
                             <div class="min-w-0">
                                 <p class="font-semibold text-gray-900 mb-1">Head Office</p>
                                 <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                                    Neo Soho Apartment, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
+                                    Neo Soho, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
                                     Tanjung Duren Selatan Subdistrict, Grogol Petamburan District<br>
                                     West Jakarta, DKI Jakarta, 11470<br>
                                     Indonesia
@@ -347,7 +413,7 @@
                 form.addEventListener('submit', function(e) {
                     e.preventDefault(); // Mencegah submit form
                     alert('Please login first to fill out the form.'); // Tampilkan pop-up
-                    window.location.href = "{{ route('login') }}"; // Redirect ke halaman login
+                    window.location.href = "{{ route('login') }}";
                 });
             }
         });

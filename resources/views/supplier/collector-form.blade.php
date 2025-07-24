@@ -197,7 +197,7 @@
                             <div class="min-w-0">
                                 <p class="font-semibold text-gray-900 mb-1">Head Office</p>
                                 <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                                    Neo Soho Apartment, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
+                                    Neo Soho, Jalan Let. Jend. S. Parman Kav. 28 Unit 2011<br>
                                     Tanjung Duren Selatan Subdistrict, Grogol Petamburan District<br>
                                     West Jakarta, DKI Jakarta, 11470<br>
                                     Indonesia
