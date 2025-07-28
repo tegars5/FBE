@@ -858,7 +858,7 @@
             </h2>
 
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-
+                <!-- Left Column - Direct Contact -->
                 <div class="space-y-6">
                     <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Direct Contact</h3>
 
@@ -876,6 +876,7 @@
                                 </p>
                             </div>
                         </div>
+
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-phone text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
@@ -891,7 +892,7 @@
                             <i class="fas fa-envelope text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
                                 <p class="font-semibold text-gray-900 mb-1">Email Address</p>
-                                <a href="mailto:info@fujiyamabiomass.com"
+                                <a href="mailto:info@fbe.co.id"
                                     class="text-gray-600 text-sm sm:text-base hover:text-green-custom transition-colors">
                                     info@fbe.co.id
                                 </a>
@@ -902,8 +903,7 @@
                             <i class="fas fa-clock text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
                                 <p class="font-semibold text-gray-900 mb-1">Business Hours</p>
-                                <p class="text-gray-600 text-sm sm:text-base">Monday - Friday: 08:00 - 17:00 WIB
-                                </p>
+                                <p class="text-gray-600 text-sm sm:text-base">Monday - Friday: 08:00 - 17:00 WIB</p>
                             </div>
                         </div>
 
@@ -915,25 +915,27 @@
                                     class="text-green-custom hover:text-green-hover transition-colors text-sm sm:text-base font-medium">
                                     +62 851 2479 0253
                                 </a>
-                                <p class="text-xs sm:text-sm text-gray-500 mt-1">Quick response during business
-                                    hours
+                                <p class="text-xs sm:text-sm text-gray-500 mt-1">Quick response during business hours
                                 </p>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Our Office Section - Moved and Improved -->
                     <div class="mt-8">
-                        <p class="font-semibold text-gray-900 mb-3">Our Office</p>
-                        <div class="w-full h-48 sm:h-64 md:h-80 bg-gray-200 rounded-lg overflow-hidden shadow-md">
-                            <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Our Office Building"
+                        <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Our Office</h3>
+                        <div class="w-full h-48 sm:h-64 md:h-72 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                            <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Neo Soho Office Building"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
-                        <p class="text-xs sm:text-sm text-gray-500 mt-2">Modern office space at Neo Soho
+                        <p class="text-xs sm:text-sm text-gray-500 mt-3 text-center">Modern office space at Neo Soho
                         </p>
                     </div>
                 </div>
 
+                <!-- Right Column - Contact Form and Map -->
                 <div class="space-y-8">
+                    <!-- Contact Form -->
                     <div>
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Send a Message</h3>
                         <form class="space-y-4" onsubmit="handleSubmit(event)">
@@ -972,16 +974,18 @@
                         </form>
                     </div>
 
+                    <!-- Office Location Map -->
                     <div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-11 text-green-custom">Office Location</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Office Location</h3>
                         <div class="w-full">
-                            <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
+                            <div class="w-full h-64 sm:h-72 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136651886!2d106.78509397610306!3d-6.174763644527437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1753431520442!5m2!1sid!2sid"
-                                    width="600" height="450" style="border:0;" allowfullscreen=""
-                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    width="100%" height="100%" style="border:0;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg">
+                                </iframe>
                             </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 gap-2">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 gap-2">
                                 <p class="text-xs sm:text-sm text-gray-600">
                                     Click the map for directions to Neo Soho Central Park
                                 </p>
