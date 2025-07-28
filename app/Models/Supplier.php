@@ -36,27 +36,15 @@ class Supplier extends Model
     protected $casts = [
         'annual_production_volume' => 'float',
         'monthly_available_volume' => 'float',
-        'dura_composition' => 'float',        
-        'tenera_composition' => 'float',      
-        'pisifera_composition' => 'float',    
+        'dura_composition' => 'float',
+        'tenera_composition' => 'float',
+        'pisifera_composition' => 'float',
         'sales_record' => 'float',
         'minimum_order_quantity' => 'integer',
         'urgent_sale_available' => 'boolean',
-        // PERBAIKAN: Hilangkan casting 'array' untuk field yang sudah dikonversi ke JSON string di controller
-        // Karena di controller sudah menggunakan json_encode(), maka di model tidak perlu casting 'array'
-        // 'product_photos' => 'array',     // HAPUS ini
-        // 'factory_photos' => 'array',     // HAPUS ini
-        // 'sample_pks_photos' => 'array',  // HAPUS ini
-
-        // Atau jika Anda ingin tetap menggunakan casting array, maka di controller jangan pakai json_encode()
-        // dan biarkan Laravel yang otomatis mengkonversi ke JSON saat menyimpan ke database.
-        // Uncomment baris di bawah jika ingin menggunakan auto JSON casting:
         'product_photos' => 'array',
         'factory_photos' => 'array',
         'sample_pks_photos' => 'array',
-
-        // 'desired_selling_price' tetap string karena bisa mengandung 'FOB'/'EXW'
-        // 'lab_test_report' tetap string karena URL tunggal
     ];
 
     /**

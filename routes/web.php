@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\SupplierController; // Pastikan ini diimpor
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -39,6 +40,8 @@ Route::prefix('supplier')->group(function () {
         return view('supplier.collector-form');
     })->name('supplier.formCollector');
 });
+// Route untuk mengirim contact form
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 // Rute untuk melihat artikel individual (jika publik)
 Route::resource('articles', ArticleController::class)->except(['create', 'store', 'edit', 'update', 'destroy']); // Hanya untuk publik (read-only)

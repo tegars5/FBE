@@ -375,12 +375,12 @@
             });
         });
 
-        // Simple Form submission alert (for demonstration)
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
-            event.target.reset(); // Clear form fields
-        }
+        // // Simple Form submission alert (for demonstration)
+        // function handleSubmit(event) {
+        //     event.preventDefault();
+        //     alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
+        //     event.target.reset(); // Clear form fields
+        // }
 
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);

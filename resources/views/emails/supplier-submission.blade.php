@@ -149,7 +149,6 @@
             border: 1px solid #e0e0e0;
             object-fit: cover;
             aspect-ratio: 1 / 1;
-            /* Keep images square */
         }
 
         .technical-info {
@@ -195,7 +194,7 @@
     <div class="container">
         <div class="header">
             <span class="icon">📝</span>
-            <h1>New Supplier Form Submission</h1>
+            <h1>Form Submission</h1>
             <p>Received on {{ $submissionTime->format('d M Y, H:i:s') }} WIB</p>
         </div>
 

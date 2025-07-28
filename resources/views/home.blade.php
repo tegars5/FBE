@@ -117,27 +117,75 @@
                 </div>
             </div>
 
-            <div class="mb-8 text-center flex flex-col items-center px-4 sm:px-6 md:px-8">
-                <h3 class="text-lg font-bold mb-4">Management Team</h3>
-                <div class="flex gap-4 flex-wrap justify-center sm:justify-center">
-                    <div class="flex flex-col items-center mx-4">
-                        <img src="{{ asset('assets/foto.jpg') }}" alt="John Doe - CEO"
-                            class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
-                        <p class="text-sm font-medium">John Doe</p>
-                        <p class="text-xs text-gray-600">CEO</p>
+            <div class="mb-8 px-4 sm:px-6 md:px-8">
+                <h3 class="text-lg font-bold text-center mb-8">Management Team</h3>
+                <div class="space-y-10">
+
+                    <!-- Left Item -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Yoshihiro Nakagawa - CEO"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Yoshihiro Nakagawa</p>
+                            <p class="text-sm font-medium">CEO</p>
+                            <p class="text-sm mt-2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut
+                                aliquip ex ea commodo consequat.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center mx-4">
-                        <img src="{{ asset('assets/foto.jpg') }}" alt="Jane Smith - CTO"
-                            class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
-                        <p class="text-sm font-medium">Jane Smith</p>
-                        <p class="text-xs text-gray-600">CTO</p>
+
+                    <!-- Right Item -->
+                    <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Azmi Roza - COO"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Azmi Roza</p>
+                            <p class="text-sm font-medium">COO</p>
+                            <p class="text-sm mt-2">
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center mx-4">
-                        <img src="{{ asset('assets/foto.jpg') }}" alt="Peter Jones - COO"
-                            class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
-                        <p class="text-sm font-medium">Peter Jones</p>
-                        <p class="text-xs text-gray-600">COO</p>
+
+                    <!-- Left Item -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Naoki Yoshida - Direktur"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Naoki Yoshida</p>
+                            <p class="text-sm font-medium">Direktur</p>
+                            <p class="text-sm mt-2">
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                eu fugiat nulla pariatur.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- Right Item -->
+                    <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Takaki Morita - Director"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Takaki Morita</p>
+                            <p class="text-sm font-medium">Director</p>
+                            <p class="text-sm mt-2">
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent
+                                libero. Sed cursus ante dapibus diam.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -516,9 +564,9 @@
                     </p>
                 </div>
 
-                <div
-                    class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center
-                                transform hover:scale-102 transition-all duration-300">
+                <div class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center
+                                transform hover:scale-102 transition-all duration-300"
+                    id="exports">
                     <div class="flex items-center justify-center text-white mb-4">
                         <i class="fas fa-handshake text-3xl md:text-4xl mr-4"></i>
                         <h3 class="text-xl md:text-2xl font-bold">Partnership Benefits</h3>
@@ -730,7 +778,6 @@
                         <p class="text-white text-sm font-bold">Ready for Shipment</p>
                     </div>
                 </div>
-                Tambahkan lebih banyak thumbnail gambar untuk setiap kategori --}}
             </div>
         </div>
     </section>
@@ -829,7 +876,6 @@
                                 </p>
                             </div>
                         </div>
-
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-phone text-green-custom text-lg sm:text-xl mt-1 flex-shrink-0"></i>
                             <div>
@@ -892,21 +938,21 @@
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Send a Message</h3>
                         <form class="space-y-4" onsubmit="handleSubmit(event)">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" placeholder="First Name" required
+                                <input type="text" name="first_name" placeholder="First Name" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
-                                <input type="text" placeholder="Last Name"
+                                <input type="text" name="last_name" placeholder="Last Name"
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="email" placeholder="Email Address" required
+                                <input type="email" name="email_address" placeholder="Email Address" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
-                                <input type="phone" placeholder="Phone Number" required
+                                <input type="tel" name="phone_number" placeholder="Phone Number" required
                                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
                             </div>
-                            <input type="text" placeholder="Company Name"
+                            <input type="text" name="company_name" placeholder="Company Name"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base">
 
-                            <select required
+                            <select name="inquiry_type" required
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-gray-700 text-sm sm:text-base">
                                 <option value="">Select Inquiry Type</option>
                                 <option value="product">Product Information</option>
@@ -915,13 +961,14 @@
                                 <option value="other">Other</option>
                             </select>
 
-                            <textarea placeholder="Please enter your message" rows="4" required
+                            <textarea name="message" placeholder="Please enter your message" rows="4" required
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-custom focus:border-transparent text-sm sm:text-base resize-none"></textarea>
 
-                            <button type="submit"
+                            <button type="submit" id="submitButton"
                                 class="w-full bg-green-custom text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-hover transition-colors text-sm sm:text-base">
                                 Send Message
                             </button>
+                            <div id="formMessage" class="mt-4 text-center text-sm"></div>
                         </form>
                     </div>
 
@@ -930,7 +977,7 @@
                         <div class="w-full">
                             <div class="w-full h-64 sm:h-80 bg-transparent rounded-lg overflow-hidden shadow-lg">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136532199!2d106.78738997458905!3d-6.174763660506777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1752225709101!5m2!1sid!2sid"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.671136651886!2d106.78509397610306!3d-6.174763644527437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7002212556b%3A0xd553386b470af88!2sNEO%20SOHO%20APARTEMENT!5e0!3m2!1sid!2sid!4v1753431520442!5m2!1sid!2sid"
                                     width="600" height="450" style="border:0;" allowfullscreen=""
                                     loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
@@ -938,8 +985,7 @@
                                 <p class="text-xs sm:text-sm text-gray-600">
                                     Click the map for directions to Neo Soho Central Park
                                 </p>
-                                <a href="https://www.google.com/maps/place/Neo+Soho+Apartment/@-6.186065,106.7828064,17z/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e69f6bb7f1b745b:0xc3f1a0b0d0c3f1a!8m2!3d-6.1860649!4d106.7853813!16s%2Fg%2F1227s51p?entry=ttu"
-                                    target="_blank"
+                                <a href="https://www.google.com/maps/search/Neo+Soho" target="_blank"
                                     class="text-green-custom hover:text-green-hover transition-colors text-xs sm:text-sm flex items-center gap-1 font-medium">
                                     <i class="fas fa-external-link-alt"></i>
                                     Open in Google Maps
@@ -1089,12 +1135,6 @@
             });
         });
 
-        // Simple Form submission alert (for demonstration)
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
-            event.target.reset(); // Clear form fields
-        }
 
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
@@ -1216,13 +1256,238 @@
 
         // Handle clicks on supplier form links
         document.querySelectorAll('.mill-factory-link, .collector-link').forEach(link => {
-                    link.addEventListener('click', function(e) {
-                            @guest
-                            e.preventDefault(); // Mencegah navigasi langsung
-                            alert('Please login first to fill out the form.'); // Tampilkan pop-up
-                            window.location.href = "{{ route('login') }}"; // Opsional: redirect ke halaman login
-                        @endguest
+            link.addEventListener('click', function(e) {
+                    @guest
+                    e.preventDefault(); // Mencegah navigasi langsung
+                    alert('Please login first to fill out the form.'); // Tampilkan pop-up
+                    window.location.href = "{{ route('login') }}"; // Opsional: redirect ke halaman login
+                @endguest
+            });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const submitButton = document.getElementById('submitButton');
+            const messageDiv = document.getElementById('formMessage');
+
+            // Disable button dan ubah teks
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
+            messageDiv.innerHTML = '';
+
+            // Ambil data form TANPA token
+            const formData = new FormData(form);
+
+            // Konversi ke object dan hapus token
+            const formObject = {};
+            formData.forEach((value, key) => {
+                if (key !== '_token') { // Skip token CSRF
+                    formObject[key] = value;
+                }
+            });
+
+            console.log('Sending form data:', formObject);
+
+            // Validasi client-side tambahan
+            if (!validateForm(formObject)) {
+                resetSubmitButton(submitButton);
+                return;
+            }
+
+            // Buat FormData baru tanpa token untuk dikirim
+            const cleanFormData = new FormData();
+            Object.keys(formObject).forEach(key => {
+                cleanFormData.append(key, formObject[key]);
+            });
+
+            // Kirim AJAX request dengan timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+            fetch('/contact/send', {
+                    method: 'POST',
+                    body: cleanFormData, // FormData tanpa token
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content'), // Token di header
+                    },
+                    signal: controller.signal
+                })
+                .then(response => {
+                    clearTimeout(timeoutId);
+                    console.log('Response status:', response.status);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+
+                    if (data.success) {
+                        showSuccessMessage(messageDiv, data.message);
+                        form.reset();
+                        messageDiv.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        // Auto-hide success message setelah 10 detik
+                        setTimeout(() => {
+                            fadeOutMessage(messageDiv);
+                        }, 10000);
+
+                    } else {
+                        showErrorMessage(messageDiv, data.message, data.errors);
+
+                        if (data.errors) {
+                            console.log('Validation errors:', data.errors);
+                            highlightErrorFields(form, data.errors);
+                        }
+                    }
+                })
+                .catch(error => {
+                    clearTimeout(timeoutId);
+                    console.error('Error:', error);
+
+                    let errorMessage = 'Terjadi kesalahan saat mengirim pesan. ';
+
+                    if (error.name === 'AbortError') {
+                        errorMessage += 'Permintaan terlalu lama. Silakan coba lagi.';
+                    } else if (error.message.includes('Failed to fetch')) {
+                        errorMessage += 'Masalah koneksi internet. Periksa koneksi Anda dan coba lagi.';
+                    } else {
+                        errorMessage += 'Silakan coba lagi atau hubungi kami langsung via WhatsApp.';
+                    }
+
+                    showErrorMessage(messageDiv, errorMessage);
+                })
+                .finally(() => {
+                    resetSubmitButton(submitButton);
+                });
+        }
+
+        // Fungsi validasi form (tidak berubah)
+        function validateForm(formData) {
+            const errors = [];
+
+            // Validasi email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email_address)) {
+                errors.push('Format email tidak valid');
+            }
+
+            // Validasi nomor telepon Indonesia
+            const phoneRegex = /^(\+62|62|0)[0-9]{9,13}$/;
+            if (!phoneRegex.test(formData.phone_number.replace(/[\s-]/g, ''))) {
+                errors.push('Format nomor telepon tidak valid');
+            }
+
+            // Validasi panjang pesan
+            if (formData.message.length < 10) {
+                errors.push('Pesan terlalu pendek (minimal 10 karakter)');
+            }
+
+            if (errors.length > 0) {
+                showErrorMessage(document.getElementById('formMessage'),
+                    'Silakan perbaiki kesalahan berikut:\n• ' + errors.join('\n• '));
+                return false;
+            }
+
+            return true;
+        }
+
+        // Fungsi helper lainnya tetap sama...
+        function showSuccessMessage(messageDiv, message) {
+            messageDiv.innerHTML = `
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle text-xl mr-3"></i>
+                <div>
+                    <strong class="font-semibold">Berhasil!</strong>
+                    <p class="mt-1">${message}</p>
+                </div>
+            </div>
+        </div>
+    `;
+        }
+
+        function showErrorMessage(messageDiv, message, errors = null) {
+            let errorDetails = '';
+            if (errors) {
+                errorDetails = '<ul class="mt-2 text-sm list-disc list-inside">';
+                Object.keys(errors).forEach(field => {
+                    errors[field].forEach(error => {
+                        errorDetails += `<li>${error}</li>`;
                     });
+                });
+                errorDetails += '</ul>';
+            }
+
+            messageDiv.innerHTML = `
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-md">
+            <div class="flex items-start">
+                <i class="fas fa-exclamation-circle text-xl mr-3 mt-1 flex-shrink-0"></i>
+                <div class="flex-grow">
+                    <strong class="font-semibold">Terjadi Kesalahan!</strong>
+                    <p class="mt-1">${message}</p>
+                    ${errorDetails}
+                </div>
+            </div>
+        </div>
+    `;
+        }
+
+        function resetSubmitButton(submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Send Message';
+        }
+
+        function highlightErrorFields(form, errors) {
+            // Reset semua field
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                field.classList.remove('border-red-500', 'focus:ring-red-500');
+                field.classList.add('border-gray-300', 'focus:ring-green-custom');
+            });
+
+            // Highlight field yang error
+            Object.keys(errors).forEach(fieldName => {
+                const field = form.querySelector(`[name="${fieldName}"]`);
+                if (field) {
+                    field.classList.remove('border-gray-300', 'focus:ring-green-custom');
+                    field.classList.add('border-red-500', 'focus:ring-red-500');
+                }
+            });
+        }
+
+        function fadeOutMessage(messageDiv) {
+            messageDiv.style.transition = 'opacity 0.5s';
+            messageDiv.style.opacity = '0';
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+                messageDiv.style.opacity = '1';
+            }, 500);
+        }
+
+        // Event listener untuk reset error highlight saat user mengetik
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[onsubmit="handleSubmit(event)"]');
+            if (form) {
+                form.querySelectorAll('input, select, textarea').forEach(field => {
+                    field.addEventListener('input', function() {
+                        if (this.classList.contains('border-red-500')) {
+                            this.classList.remove('border-red-500', 'focus:ring-red-500');
+                            this.classList.add('border-gray-300', 'focus:ring-green-custom');
+                        }
+                    });
+                });
+            }
+        });
+        });
     </script>
 </body>
 
