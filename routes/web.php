@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\SupplierController; // Pastikan ini diimpor
+use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController; // Tambahkan ini
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -22,15 +24,8 @@ use Illuminate\Support\Facades\Auth;
 // Halaman Utama
 Route::get('/', [ArticleController::class, 'home'])->name('home');
 
-// Rute Test (opsional, bisa dihapus setelah testing)
-Route::get('/test', function () {
-    return view('test');
-});
-Route::get('/revisi', function () {
-    return view('revisi');
-});
-
 // Rute untuk menampilkan halaman Mill Factory dan Collector (Bisa diakses oleh guest/belum login)
+// Catatan: Akses ke form ini oleh guest akan meminta login jika ada validasi di JS/Controller
 Route::prefix('supplier')->group(function () {
     Route::get('/mill-factory-form', function () {
         return view('supplier.mill-factory-form');
@@ -40,6 +35,15 @@ Route::prefix('supplier')->group(function () {
         return view('supplier.collector-form');
     })->name('supplier.formCollector');
 });
+Route::middleware(['auth', 'role:buyer'])->prefix('buyer')->group(function () {
+    // Corrected route for Purchase Orders
+    Route::get('/purchase-orders', [BuyerController::class, 'purchaseOrders'])->name('buyer.purchase-orders');
+
+    Route::get('/request-quote', function () {
+        return view('buyer.request-quote');
+    })->name('buyer.formRequestQuote'); // Keep this name if 'buyer.formRequestQuote' is used elsewhere
+});
+
 // Route untuk mengirim contact form
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
@@ -47,7 +51,6 @@ Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.
 Route::resource('articles', ArticleController::class)->except(['create', 'store', 'edit', 'update', 'destroy']); // Hanya untuk publik (read-only)
 
 // --- Rute Autentikasi Laravel (Login, Register, Logout, dll.) ---
-// Ini akan membuat rute-rute seperti /login, /register, /logout, /password/reset, dll.
 Auth::routes();
 
 
@@ -63,8 +66,13 @@ Route::middleware('auth')->group(function () {
         } elseif (Auth::user()->role === 'buyer') {
             return redirect()->route('buyer.dashboard');
         }
-        return view('home'); // Halaman default jika role tidak dikenal
-    })->name('dashboard'); // Nama rute umum untuk dashboard
+        // Fallback jika role tidak dikenal atau belum diatur (jarang terjadi jika role selalu ada)
+        return view('home');
+    })->name('dashboard');
+
+    // Rute umum untuk Profile (Bisa diakses oleh Admin, Supplier, Buyer)
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Rute untuk SUBMIT formulir supplier (HARUS LOGIN DULU)
     // Ini adalah rute POST yang akan menerima data dari form Mill Factory dan Collector.
@@ -99,7 +107,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:supplier'])->prefix('supplier-dashboard')->group(function () {
     Route::get('/dashboard', function () {
         // Logika untuk dashboard supplier
-        return view('supplier.dashboard'); // Kamu perlu membuat view ini
+        // Anda mungkin ingin menampilkan data supplier di sini juga,
+        // seperti pada halaman 'My Page' yang Anda deskripsikan.
+        return view('supplier.dashboard'); // Pastikan view ini ada
     })->name('supplier.dashboard');
 
     // Contoh rute lain untuk supplier, misalnya melihat data yang mereka submit.
@@ -109,11 +119,16 @@ Route::middleware(['auth', 'role:supplier'])->prefix('supplier-dashboard')->grou
 
 // --- Rute Khusus Buyer ---
 // Hanya bisa diakses oleh user yang login DAN memiliki role 'buyer'.
-Route::middleware(['auth', 'role:buyer'])->prefix('buyer-dashboard')->group(function () {
+Route::middleware(['auth', 'role:buyer'])->prefix('buyer')->group(function () { // Menggunakan prefix 'buyer'
     Route::get('/dashboard', function () {
-        // Logika untuk dashboard buyer
-        return view('buyer.dashboard'); // Kamu perlu membuat view ini
+        $buyer = Auth::user()->buyer; // Dapatkan data buyer dari user yang login
+        return view('buyer.dashboard', compact('buyer'));
     })->name('buyer.dashboard');
+
+    // Rute buyer yang ada di daftar revisi bos
+    Route::get('/purchase-orders', [BuyerController::class, 'purchaseOrders'])->name('buyer.purchase-orders');
+    Route::get('/request-quote', [BuyerController::class, 'requestQuote'])->name('buyer.request-quote'); // Jika ini untuk halaman, bukan form publik
+    Route::get('/order-history', [BuyerController::class, 'orderHistory'])->name('buyer.order-history');
 
     // Contoh rute lain untuk buyer.
     Route::get('/products-catalog', function () {

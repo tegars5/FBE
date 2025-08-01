@@ -11,7 +11,6 @@ class Supplier extends Model
 
     protected $table = 'suppliers';
 
-    // Sesuaikan ini dengan nama input di formulir HTML Anda dan kolom di tabel database
     protected $fillable = [
         'user_id',
         'supplier_type',

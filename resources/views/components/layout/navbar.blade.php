@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <x.layout.head :styles="true" title="Homes" />
 
@@ -73,31 +73,110 @@
                     </ul>
                 </li>
                 <li class="relative dropdown">
-                    <button
-                        class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
-                        Supplier
-                        <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <ul
-                        class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
-                        <li>
-                            <a href="{{ route('supplier.formFactory') }}"
-                                class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
-                                Mill Factory
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('supplier.formCollector') }}"
-                                class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition collector-link">
-                                Collector
-                            </a>
-                        </li>
-                    </ul>
+                    @auth
+                        @if (Auth::user()->role === 'buyer')
+                            <button
+                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
+                                Buyer
+                                <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <ul
+                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
+                                <li>
+                                    <a href="{{ route('buyer.purchase-orders') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        Purchase Orders
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('buyer.request-quote') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        Request Quote
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        Order History
+                                    </a>
+                                </li>
+                            </ul>
+                        @elseif(Auth::user()->role === 'supplier')
+                            <button
+                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
+                                Supplier
+                                <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <ul
+                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
+                                <li>
+                                    <a href="{{ route('supplier.formFactory') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
+                                        Mill Factory
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('supplier.formCollector') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition collector-link">
+                                        Collector
+                                    </a>
+                                </li>
+                            </ul>
+                        @else
+                            <button
+                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
+                                Options
+                                <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <ul
+                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
+                                <li>
+                                    <a href="#"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        Admin Panel
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
+                    @else
+                        <button
+                            class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
+                            Supplier
+                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <ul
+                            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
+                            <li>
+                                <a href="{{ route('supplier.formFactory') }}"
+                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
+                                    Mill Factory
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('supplier.formCollector') }}"
+                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition collector-link">
+                                    Collector
+                                </a>
+                            </li>
+                        </ul>
+                    @endauth
                 </li>
-                {{-- Bagian ini akan disembunyikan jika user sudah login --}}
+                {{-- This section will be hidden if the user is logged in --}}
                 @guest
                     <li>
                         <a href="{{ route('login') }}"
@@ -105,7 +184,7 @@
                             Sign&nbsp;In
                         </a>
                     </li>
-                    {{-- Link registrasi hanya muncul jika belum login --}}
+                    {{-- Registration link only appears if not logged in --}}
                     <li>
                         <a href="{{ route('register') }}"
                             class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
@@ -118,9 +197,9 @@
                     {{-- Check if the user is logged in --}}
                     @auth
                         {{-- ---------------------------------------------- --}}
-                        {{-- START: Perubahan untuk Dropdown Profil --}}
+                        {{-- START: Changes for Profile Dropdown --}}
                         {{-- ---------------------------------------------- --}}
-                        <div class="relative dropdown group"> {{-- Menggunakan kelas group untuk Tailwind dropdown --}}
+                        <div class="relative dropdown group"> {{-- Using group class for Tailwind dropdown --}}
                             <button
                                 class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none"
                                 id="profile-dropdown-btn">
@@ -133,11 +212,17 @@
                             </button>
                             <ul
                                 class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 hidden group-hover:block">
-                                {{-- hidden dan group-hover:block untuk Tailwind --}}
+                                {{-- hidden and group-hover:block for Tailwind --}}
                                 <li>
-                                    {{-- Link ke Dashboard berdasarkan role --}}
+                                    <a href="{{ route('profile.show') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    {{-- Link to Dashboard based on role --}}
                                     @php
-                                        $dashboardRoute = 'dashboard'; // Default ke rute dashboard umum
+                                        $dashboardRoute = 'dashboard'; // Default to general dashboard route
                                         if (Auth::user()->role === 'admin') {
                                             $dashboardRoute = 'admin.dashboard';
                                         } elseif (Auth::user()->role === 'supplier') {
@@ -164,7 +249,7 @@
                             </ul>
                         </div>
                         {{-- ---------------------------------------------- --}}
-                        {{-- END: Perubahan untuk Dropdown Profil --}}
+                        {{-- END: Changes for Profile Dropdown --}}
                         {{-- ---------------------------------------------- --}}
                     @else
                         {{-- If not logged in, show language option --}}
@@ -244,27 +329,58 @@
                         </a>
                     </div>
                 </div>
-                {{-- Tambahkan link Mill Factory dan Collector di mobile menu --}}
-                <div class="mobile-menu-item">
-                    <a href="{{ route('supplier.formFactory') }}" class="mobile-menu-link mill-factory-link">
-                        <i class="fas fa-industry"></i>Mill Factory Form
-                    </a>
-                </div>
-                <div class="mobile-menu-item">
-                    <a href="{{ route('supplier.formCollector') }}" class="mobile-menu-link collector-link">
-                        <i class="fas fa-hard-hat"></i>Collector Form
-                    </a>
-                </div>
+                {{-- Add Mill Factory and Collector links in mobile menu --}}
+                @auth
+                    @if (Auth::user()->role === 'buyer')
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('buyer.purchase-orders') }}" class="mobile-menu-link">
+                                <i class="fas fa-shopping-cart"></i>Purchase Orders
+                            </a>
+                        </div>
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('buyer.request-quote') }}" class="mobile-menu-link">
+                                <i class="fas fa-quote-right"></i>Request Quote
+                            </a>
+                        </div>
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('buyer.order-history') }}" class="mobile-menu-link">
+                                <i class="fas fa-history"></i>Order History
+                            </a>
+                        </div>
+                    @elseif(Auth::user()->role === 'supplier')
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('supplier.formFactory') }}" class="mobile-menu-link mill-factory-link">
+                                <i class="fas fa-industry"></i>Mill Factory Form
+                            </a>
+                        </div>
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('supplier.formCollector') }}" class="mobile-menu-link collector-link">
+                                <i class="fas fa-hard-hat"></i>Collector Form
+                            </a>
+                        </div>
+                    @endif
+                @else
+                    <div class="mobile-menu-item">
+                        <a href="{{ route('supplier.formFactory') }}" class="mobile-menu-link mill-factory-link">
+                            <i class="fas fa-industry"></i>Mill Factory Form
+                        </a>
+                    </div>
+                    <div class="mobile-menu-item">
+                        <a href="{{ route('supplier.formCollector') }}" class="mobile-menu-link collector-link">
+                            <i class="fas fa-hard-hat"></i>Collector Form
+                        </a>
+                    </div>
+                @endauth
                 <div class="mobile-menu-item">
                     {{-- Check if the user is logged in for mobile menu --}}
                     @auth
-                        {{-- Ini adalah bagian untuk mobile menu ketika user sudah login --}}
+                        {{-- This is the section for the mobile menu when the user is logged in --}}
                         <a href="{{ route('home') }}" class="mobile-menu-link">
                             <i class="fas fa-user-circle"></i>{{ Auth::user()->name }}
                         </a>
-                        {{-- Link Dashboard untuk Mobile Menu --}}
+                        {{-- Dashboard Link for Mobile Menu --}}
                         @php
-                            $dashboardRoute = 'dashboard'; // Default ke rute dashboard umum
+                            $dashboardRoute = 'dashboard'; // Default to general dashboard route
                             if (Auth::user()->role === 'admin') {
                                 $dashboardRoute = 'admin.dashboard';
                             } elseif (Auth::user()->role === 'supplier') {
@@ -273,10 +389,17 @@
                                 $dashboardRoute = 'buyer.dashboard';
                             }
                         @endphp
+                        {{-- NEW PROFILE LINK FOR MOBILE --}}
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('profile.show') }}" class="mobile-menu-link">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                        </div>
+                        {{-- END NEW PROFILE LINK FOR MOBILE --}}
                         <a href="{{ route($dashboardRoute) }}" class="mobile-menu-link">
                             <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
-                        {{-- Link Logout untuk Mobile Menu --}}
+                        {{-- Logout Link for Mobile Menu --}}
                         <a href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();"
                             class="mobile-menu-link text-red-600 hover:text-red-800">
@@ -295,8 +418,6 @@
                     @endauth
                 </div>
             </nav>
-
-            {{-- Bagian ini akan disembunyikan jika user sudah login di mobile menu --}}
             @guest
                 <div class="mobile-menu-footer">
                     <button class="mobile-login-btn w-full min-w-[120px]"
@@ -377,9 +498,9 @@
 
         // // Simple Form submission alert (for demonstration)
         // function handleSubmit(event) {
-        //     event.preventDefault();
-        //     alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
-        //     event.target.reset(); // Clear form fields
+        //      event.preventDefault();
+        //      alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
+        //      event.target.reset(); // Clear form fields
         // }
 
         function toggleSDG(sdgId) {
@@ -410,14 +531,14 @@
         // Slider Hero with Touch Swipe
         const heroImages = [
             '{{ asset('assets/foto-bg/bg-1.png') }}',
-            '{{ asset('assets/foto-bg/bg-2.JPG') }}', // Slide 2: hanya gambar
-            '{{ asset('assets/foto-bg/bg-3.jpg') }}' // Slide 3: hanya gambar
+            '{{ asset('assets/foto-bg/bg-2.JPG') }}', // Slide 2: only image
+            '{{ asset('assets/foto-bg/bg-3.jpg') }}' // Slide 3: only image
         ];
 
         const homeHero = document.getElementById('home-hero');
         const heroDotsContainer = document.getElementById('hero-dots');
-        const heroTitle = document.querySelector('.hero-title'); // Seleksi elemen title
-        const heroButtons = document.querySelector('.hero-buttons'); // Seleksi elemen buttons
+        const heroTitle = document.querySelector('.hero-title'); // Select title element
+        const heroButtons = document.querySelector('.hero-buttons'); // Select buttons element
 
         let currentHeroImageIndex = 0;
         let autoSlideInterval;

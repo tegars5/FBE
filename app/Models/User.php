@@ -2,83 +2,63 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'is_verified', // Harus ada di fillable
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_verified' => 'boolean', // Penting untuk casts
         ];
     }
 
-    /**
-     * Relationship: User has one Supplier
-     * Setiap user hanya bisa punya satu data supplier
-     */
     public function supplier()
     {
         return $this->hasOne(Supplier::class);
     }
 
-    /**
-     * Relationship: User has many Suppliers
-     * Jika ingin user bisa punya banyak supplier, uncomment ini dan comment yang hasOne
-     */
-    // public function suppliers()
-    // {
-    // return $this->hasMany(Supplier::class);
-    // }
-
-    /**
-     * Check if user has supplier data
-     * Helper method untuk cek apakah user sudah punya data supplier
-     */
-    public function hasSupplier()
+    public function buyer()
     {
-        return $this->supplier()->exists();
+        return $this->hasOne(Buyer::class);
     }
 
-    /**
-     * Get supplier data with default values
-     * Helper method untuk ambil data supplier dengan fallback
-     */
-    public function getSupplierData()
+    public function isBuyer()
     {
-        return $this->supplier ?: new Supplier();
+        return $this->role === 'buyer';
+    }
+
+    public function isSupplier()
+    {
+        return $this->role === 'supplier';
+    }
+
+    public function hasBuyer()
+    {
+        return $this->buyer()->exists();
+    }
+
+    public function getBuyerData()
+    {
+        return $this->buyer ?: new Buyer();
     }
 }
