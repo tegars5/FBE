@@ -117,27 +117,75 @@
                 </div>
             </div>
 
-            <div class="mb-8 text-center flex flex-col items-center px-4 sm:px-6 md:px-8">
-                <h3 class="text-lg font-bold mb-4">Management Team</h3>
-                <div class="flex gap-4 flex-wrap justify-center sm:justify-center">
-                    <div class="flex flex-col items-center mx-4">
-                        <img src="{{ asset('assets/foto.jpg') }}" alt="John Doe - CEO"
-                            class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
-                        <p class="text-sm font-medium">John Doe</p>
-                        <p class="text-xs text-gray-600">CEO</p>
+            <div class="mb-8 px-4 sm:px-6 md:px-8">
+                <h3 class="text-lg font-bold text-center mb-8">Management Team</h3>
+                <div class="space-y-10">
+
+                    <!-- Left Item -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Yoshihiro Nakagawa - CEO"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Yoshihiro Nakagawa</p>
+                            <p class="text-sm font-medium">CEO</p>
+                            <p class="text-sm mt-2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut
+                                aliquip ex ea commodo consequat.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center mx-4">
-                        <img src="{{ asset('assets/foto.jpg') }}" alt="Jane Smith - CTO"
-                            class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
-                        <p class="text-sm font-medium">Jane Smith</p>
-                        <p class="text-xs text-gray-600">CTO</p>
+
+                    <!-- Right Item -->
+                    <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Azmi Roza - COO"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Azmi Roza</p>
+                            <p class="text-sm font-medium">COO</p>
+                            <p class="text-sm mt-2">
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex flex-col items-center mx-4">
-                        <img src="{{ asset('assets/foto.jpg') }}" alt="Peter Jones - COO"
-                            class="w-24 h-24 object-cover rounded-full mb-2 shadow-md hover:scale-105 transition-transform">
-                        <p class="text-sm font-medium">Peter Jones</p>
-                        <p class="text-xs text-gray-600">COO</p>
+
+                    <!-- Left Item -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Naoki Yoshida - Direktur"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Naoki Yoshida</p>
+                            <p class="text-sm font-medium">Direktur</p>
+                            <p class="text-sm mt-2">
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                                eu fugiat nulla pariatur.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- Right Item -->
+                    <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
+                        <img src="{{ asset('assets/foto.jpg') }}" alt="Takaki Morita - Director"
+                            class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
+                        <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
+                            <p class="text-lg font-semibold mb-1 text-gray-800">Takaki Morita</p>
+                            <p class="text-sm font-medium">Director</p>
+                            <p class="text-sm mt-2">
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent
+                                libero. Sed cursus ante dapibus diam.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -184,7 +232,6 @@
                             PKS charcoal products, ensuring access to affordable and clean energy for all.
                         </p>
                     </div>
-
                     <div id="sdg13"
                         class="sdg-detail hidden bg-green-50 border-l-4 border-green-600 p-4 rounded-r-lg transition-all duration-300">
                         <h4 class="font-bold text-green-800 mb-2">SDG 13 – Climate Action</h4>
