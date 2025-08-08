@@ -332,7 +332,6 @@ body {
 .data-table th,
 .data-table td {
     padding: 12px 15px;
-    text-align: left;
 }
 
 .data-table thead th {

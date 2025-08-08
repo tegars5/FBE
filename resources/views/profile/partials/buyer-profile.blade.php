@@ -8,7 +8,6 @@
     </div>
     <div class="px-6 py-6">
         <dl class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
-
             {{-- Bagian Informasi Perusahaan --}}
             <div class="md:col-span-2">
                 <dt class="text-sm font-medium text-gray-600">Company Name</dt>

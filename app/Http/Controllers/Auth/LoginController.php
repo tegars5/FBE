@@ -14,8 +14,13 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    // Arahkan user ke halaman home (/) setelah login berhasil
-    protected $redirectTo = '/'; // <-- Perubahan di sini!
+    /**
+     * Where to redirect users after login.
+     * Dihapus dari sini karena akan ditangani oleh method redirectTo() di bawah.
+     *
+     * @var string
+     */
+    // protected $redirectTo = '/'; // <-- Dihapus
 
     public function __construct()
     {
@@ -23,11 +28,30 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    // ... metode login lainnya (tidak ada perubahan di metode login itu sendiri)
+    /**
+     * Mendefinisikan ke mana pengguna akan diarahkan setelah login berdasarkan peran mereka.
+     *
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case 'admin':
+                return route('admin.dashboard'); // Arahkan ke dasbor admin
+            case 'supplier':
+                return route('supplier.dashboard'); // Arahkan ke dasbor supplier
+            case 'buyer':
+                return route('buyer.dashboard'); // Arahkan ke dasbor buyer
+            default:
+                return '/'; // Halaman default jika peran tidak dikenali
+        }
+    }
 
     /**
      * Send the response after the user was authenticated.
-     * Overrides the method from AuthenticatesUsers trait.
+     * (Tidak ada perubahan di sini, logika ini tetap penting)
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
@@ -55,21 +79,9 @@ class LoginController extends Controller
             }
         }
 
-        // Pengalihan ke halaman yang dituju oleh $redirectTo = '/';
+        // Pengalihan sekarang akan menggunakan path dari method redirectTo()
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect()->intended($this->redirectPath()); // redirectPath() akan menggunakan $redirectTo
+            : redirect()->intended($this->redirectPath());
     }
-
-    /*
-     * Hapus atau komen out metode redirectTo() di sini jika ada.
-     * Cukup gunakan properti $redirectTo = '/'; di atas.
-     *
-    protected function redirectTo()
-    {
-        // Logika pengalihan sebelumnya (ke dashboard) tidak lagi digunakan di sini.
-        // Cukup hapus atau komentari seluruh metode ini jika ada.
-        // return '/';
-    }
-    */
 }

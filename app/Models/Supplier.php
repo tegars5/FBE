@@ -32,10 +32,11 @@ class Supplier extends Model
         'annual_sales',
         'desired_price',
         'years_operation',
-        'minium_order_quantity',
+        'minimum_order_quantity',
         'contact_name',
         'contact_email',
         'contact_phone',
+        'submission_status',
     ];
 
     /**
