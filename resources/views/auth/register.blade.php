@@ -393,7 +393,6 @@
                                             </div>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3 form-group-custom">
                                         <label for="previous_purchase_records"
                                             class="form-label fw-semibold mb-2">{{ __('Upload Previous Purchase Records (optional)') }}</label>
@@ -415,94 +414,101 @@
                             {{-- Supplier Fields --}}
                             <div id="supplier-fields" style="display: none;">
                                 <div class="bg-light p-4 rounded mb-4">
-                                    <h5 class="mb-3 text-primary border-bottom pb-2">Detail Supplier</h5>
+                                    <h5 class="mb-3 text-primary border-bottom pb-2">Supplier
+                                        Details</h5>
 
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="factory_name_supplier" class="form-label fw-semibold mb-2">Nama
-                                            Pabrik</label>
+                                        <label for="factory_name_supplier" class="form-label fw-semibold mb-2">Factory
+                                            Name</label>
                                         <i class="fas fa-industry icon-left"></i>
                                         <input id="factory_name_supplier" type="text"
                                             class="form-control form-control-lg @error('factory_name_supplier') is-invalid @enderror"
                                             name="factory_name_supplier" value="{{ old('factory_name_supplier') }}"
-                                            placeholder="Masukkan nama pabrik Anda">
+                                            placeholder="Enter your factory name">
                                         @error('factory_name_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
-                                    </div>
 
+                                    </div>
                                     <div class="mb-3 position-relative form-group-custom">
                                         <label for="region_supplier" class="form-label fw-semibold mb-2">Region</label>
                                         <i class="fas fa-map-marker-alt icon-left"></i>
                                         <input id="region_supplier" type="text"
                                             class="form-control form-control-lg @error('region_supplier') is-invalid @enderror"
                                             name="region_supplier" value="{{ old('region_supplier') }}"
-                                            placeholder="contoh: Sumatera Utara / Medan">
+                                            placeholder="e.g., North Sumatra / Medan">
                                         @error('region_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="annual_production_volume" class="form-label fw-semibold mb-2">Volume
-                                            Produksi Tahunan (ton)</label>
+                                        <label for="annual_production_volume" class="form-label fw-semibold mb-2">Annual
+                                            Production
+                                            Volume (ton)</label>
                                         <i class="fas fa-industry icon-left"></i>
                                         <input id="annual_production_volume" type="number" min="0"
                                             class="form-control form-control-lg @error('annual_production_volume') is-invalid @enderror"
                                             name="annual_production_volume" value="{{ old('annual_production_volume') }}"
-                                            placeholder="contoh: 6000">
+                                            placeholder="e.g., 6000">
                                         @error('annual_production_volume')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
-                                                <strong>{{ $message }}</strong>
+                                                _message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="monthly_available_volume" class="form-label fw-semibold mb-2">Volume
-                                            Tersedia Bulanan (ton)</label>
+                                        <label for="monthly_available_volume" class="form-label fw-semibold mb-2">Monthly
+                                            Available
+                                            Volume (ton)</label>
                                         <i class="fas fa-truck-loading icon-left"></i>
                                         <input id="monthly_available_volume" type="number" min="0"
                                             class="form-control form-control-lg @error('monthly_available_volume') is-invalid @enderror"
                                             name="monthly_available_volume" value="{{ old('monthly_available_volume') }}"
-                                            placeholder="contoh: 500">
+                                            placeholder="e.g., 500">
                                         @error('monthly_available_volume')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="dura_percentage" class="form-label fw-semibold mb-2">Persentase Dura
+                                        <label for="dura_percentage" class="form-label fw-semibold mb-2">Dura Percentage
                                             (%)</label>
                                         <i class="fas fa-percentage icon-left"></i>
                                         <input id="dura_percentage" type="number" step="0.01" min="0"
                                             max="100"
                                             class="form-control form-control-lg @error('dura_percentage') is-invalid @enderror"
                                             name="dura_percentage" value="{{ old('dura_percentage') }}"
-                                            placeholder="contoh: 30">
+                                            _placeholder="e.g., 30">
                                         @error('dura_percentage')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="tenera_percentage" class="form-label fw-semibold mb-2">Persentase
-                                            Tenera (%)</label>
+                                        <label for="tenera_percentage" class="form-label fw-semibold mb-2">Tenera
+                                            Percentage (%)</label>
                                         <i class="fas fa-percentage icon-left"></i>
                                         <input id="tenera_percentage" type="number" step="0.01" min="0"
                                             max="100"
                                             class="form-control form-control-lg @error('tenera_percentage') is-invalid @enderror"
                                             name="tenera_percentage" value="{{ old('tenera_percentage') }}"
-                                            placeholder="contoh: 60">
+                                            placeholder="e.g., 60">
                                         @error('tenera_percentage')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
@@ -511,191 +517,213 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="pisifera_percentage" class="form-label fw-semibold mb-2">Persentase
-                                            Pisifera (%)</label>
+                                        <label for="pisifera_percentage" class="form-label fw-semibold mb-2">Pisifera
+                                            Percentage (%)</label>
                                         <i class="fas fa-percentage icon-left"></i>
                                         <input id="pisifera_percentage" type="number" step="0.01" min="0"
                                             max="100"
                                             class="form-control form-control-lg @error('pisifera_percentage') is-invalid @enderror"
                                             name="pisifera_percentage" value="{{ old('pisifera_percentage') }}"
-                                            placeholder="contoh: 10">
+                                            placeholder="e.g., 10">
                                         @error('pisifera_percentage')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="sales_record_past_1_year" class="form-label fw-semibold mb-2">Rekam
-                                            Penjualan (1 tahun terakhir, ton)</label>
+                                        <label for="sales_record_past_1_year" class="form-label fw-semibold mb-2">Sales
+                                            Record (past 1
+                                            year, ton)</label>
                                         <i class="fas fa-chart-line icon-left"></i>
                                         <input id="sales_record_past_1_year" type="number" min="0"
                                             class="form-control form-control-lg @error('sales_record_past_1_year') is-invalid @enderror"
                                             name="sales_record_past_1_year" value="{{ old('sales_record_past_1_year') }}"
-                                            placeholder="contoh: 20000">
+                                            placeholder="e.g., 20000">
                                         @error('sales_record_past_1_year')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="desired_selling_price" class="form-label fw-semibold mb-2">Harga Jual
-                                            yang Diinginkan (USD/ton)</label>
+                                        <label for="desired_selling_price" class="form-label fw-semibold mb-2">Desired
+                                            Selling
+                                            Price (USD/ton)</label>
                                         <i class="fas fa-dollar-sign icon-left"></i>
                                         <input id="desired_selling_price" type="number" step="0.01" min="0"
                                             class="form-control form-control-lg @error('desired_selling_price') is-invalid @enderror"
                                             name="desired_selling_price" value="{{ old('desired_selling_price') }}"
-                                            placeholder="contoh: 120 FOB">
+                                            placeholder="e.g., 120 FOB">
                                         @error('desired_selling_price')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
                                         <label for="minimum_order_quantity" class="form-label fw-semibold mb-2">Minimum
-                                            Order Quantity (ton)</label>
+                                            Order Quantity
+                                            (ton)</label>
                                         <i class="fas fa-sort-amount-down-alt icon-left"></i>
                                         <input id="minimum_order_quantity" type="number" min="0"
                                             class="form-control form-control-lg @error('minimum_order_quantity') is-invalid @enderror"
                                             name="minimum_order_quantity" value="{{ old('minimum_order_quantity') }}"
-                                            placeholder="contoh: 100">
+                                            placeholder="e.g., 100">
                                         @error('minimum_order_quantity')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="years_in_operation_supplier" class="form-label fw-semibold mb-2">Tahun
-                                            Beroperasi</label>
-                                        <i class="fas fa-calendar-alt icon-left"></i>
+                                        <label for="years_in_operation_supplier" class="form-label fw-semibold mb-2">Years
+                                            in
+                                            Operation</label>
+                                        _                           <i class="fas fa-calendar-alt icon-left"></i>
                                         <input id="years_in_operation_supplier" type="number" min="0"
                                             class="form-control form-control-lg @error('years_in_operation_supplier') is-invalid @enderror"
                                             name="years_in_operation_supplier"
-                                            value="{{ old('years_in_operation_supplier') }}" placeholder="contoh: 8">
+                                            value="{{ old('years_in_operation_supplier') }}" placeholder="e.g., 8">
                                         @error('years_in_operation_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="contact_person_supplier" class="form-label fw-semibold mb-2">Nama
-                                            Contact Person</label>
+                                        <label for="contact_person_supplier" class="form-label fw-semibold mb-2">Contact
+                                            Person Name</label>
                                         <i class="fas fa-user-tie icon-left"></i>
                                         <input id="contact_person_supplier" type="text"
                                             class="form-control form-control-lg @error('contact_person_supplier') is-invalid @enderror"
                                             name="contact_person_supplier" value="{{ old('contact_person_supplier') }}"
-                                            placeholder="contoh: Mr. Andi">
+                                            placeholder="e.g., Mr. John Doe">
                                         @error('contact_person_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="email_supplier" class="form-label fw-semibold mb-2">Email Contact
-                                            Person</label>
+                                        <label for="email_supplier" class="form-label fw-semibold mb-2">Contact Person
+                                            Email</label>
                                         <i class="fas fa-at icon-left"></i>
                                         <input id="email_supplier" type="email"
                                             class="form-control form-control-lg @error('email_supplier') is-invalid @enderror"
                                             name="email_supplier" value="{{ old('email_supplier') }}"
-                                            placeholder="contoh: andi@millfactory.com">
+                                            placeholder="e.g., john.doe@millfactory.com">
                                         @error('email_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="phone_supplier" class="form-label fw-semibold mb-2">Nomor Telepon
-                                            Contact Person</label>
+                                        <label for="phone_supplier" class="form-label fw-semibold mb-2">Contact Person
+                                            Phone
+                                            Number</label>
                                         <i class="fas fa-phone icon-left"></i>
                                         <input id="phone_supplier" type="text"
                                             class="form-control form-control-lg @error('phone_supplier') is-invalid @enderror"
                                             name="phone_supplier" value="{{ old('phone_supplier') }}"
-                                            placeholder="contoh: +62 812 3456 789">
+                                            placeholder="e.g., +1 555 123 4567">
                                         @error('phone_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 form-group-custom">
                                         <label for="factory_warehouse_photos"
-                                            class="form-label fw-semibold mb-2">{{ __('Foto Pabrik & Gudang (maksimal 5)') }}</label>
+                                            class="form-label fw-semibold mb-2">{{ __('Factory & Warehouse Photos') }}</label>
                                         <input type="file"
                                             class="form-control @error('factory_warehouse_photos') is-invalid @enderror"
                                             id="factory_warehouse_photos" name="factory_warehouse_photos[]"
                                             accept="image/*" multiple>
-                                        <small class="form-text text-muted">Maksimal 5 foto</small>
+                                        <small class="form-text text-muted">Maximum 5
+                                            photos</small>
                                         @error('factory_warehouse_photos')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 form-group-custom">
                                         <label for="pks_sample_photos"
-                                            class="form-label fw-semibold mb-2">{{ __('Foto Sampel PKS (maksimal 5)') }}</label>
+                                            class="form-label fw-semibold mb-2">{{ __('PKS Sample Photos') }}</label>
                                         <input type="file"
                                             class="form-control @error('pks_sample_photos') is-invalid @enderror"
                                             id="pks_sample_photos" name="pks_sample_photos[]" accept="image/*" multiple>
-                                        <small class="form-text text-muted">Maksimal 5 foto</small>
+                                        <small class="form-text text-muted">Maximum 5
+                                            photos</small>
                                         @error('pks_sample_photos')
-                                            <div class="invalid-feedback d-block">
+                                            _                   <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
+                                                _
                                             </div>
                                         @enderror
                                     </div>
 
                                     <div class="mb-3 form-group-custom">
                                         <label for="lab_test_report"
-                                            class="form-label fw-semibold mb-2">{{ __('Laporan Lab Test (PDF)') }}</label>
+                                            class="form-label fw-semibold mb-2">{{ __('Lab Test Report (PDF)') }}</label>
                                         <input type="file"
                                             class="form-control @error('lab_test_report') is-invalid @enderror"
                                             id="lab_test_report" name="lab_test_report" accept="application/pdf">
-                                        <small class="form-text text-muted">File PDF saja</small>
+                                        <small class="form-text text-muted">PDF file
+                                            only</small>
                                         @error('lab_test_report')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+
                                     </div>
 
                                     <div class="mb-3 form-group-custom">
                                         <label for="notes_supplier"
-                                            class="form-label fw-semibold mb-2">{{ __('Catatan (opsional)') }}</label>
-                                        <textarea class="form-control @error('notes_supplier') is-invalid @enderror" id="notes_supplier"
-                                            name="notes_supplier" rows="3" placeholder="contoh: Pasokan mungkin menurun selama musim hujan">{{ old('notes_supplier') }}</textarea>
+                                            class="form-label fw-semibold mb-2">{{ __('Notes (optional)') }}</label>
+
+                                        <textarea class="form-control @error('notes_supplier') is-invalid @enderror"                                    
+                                            id="notes_supplier" name="notes_supplier" rows="3"                                    
+                                            placeholder="e.g., Supply might decrease during the rainy season">{{ old('notes_supplier') }}</textarea>
                                         @error('notes_supplier')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
+                                            _
                                         @enderror
+
                                     </div>
                                 </div>
                             </div>
-
                             <div class="d-grid gap-2 mb-4">
                                 <button type="submit" class="btn btn-primary btn-lg fw-semibold login-button">
                                     {{ __('Register Account') }}

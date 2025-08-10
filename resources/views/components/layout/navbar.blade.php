@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/') }}#exports"
+                    <a href="{{ url('/') }}#supplier-info"
                         class="nav-link text-gray-800 font-medium text-base py-2.5
                     relative hover:text-green-light transition duration-300">
                         Exports & Partnerships
