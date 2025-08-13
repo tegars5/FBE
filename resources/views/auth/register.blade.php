@@ -24,7 +24,16 @@
                             <h3 class="welcome-title">Join Our Community!</h3>
                             <p class="welcome-subtitle">Create your account to get started.</p>
                         </div>
-
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Oops! Terjadi beberapa kesalahan:</strong>
+                                <ul class="mt-2 mb-0 ps-3">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('register') }}" class="registration-form"
                             enctype="multipart/form-data">
                             @csrf
@@ -418,20 +427,40 @@
                                         Details</h5>
 
                                     <div class="mb-3 position-relative form-group-custom">
-                                        <label for="factory_name_supplier" class="form-label fw-semibold mb-2">Factory
+                                        <label for="supplier_company_name" class="form-label fw-semibold mb-2">Factory
                                             Name</label>
                                         <i class="fas fa-industry icon-left"></i>
-                                        <input id="factory_name_supplier" type="text"
-                                            class="form-control form-control-lg @error('factory_name_supplier') is-invalid @enderror"
-                                            name="factory_name_supplier" value="{{ old('factory_name_supplier') }}"
+                                        {{-- PERBAIKAN 1: Nama input ini sudah benar, yaitu 'supplier_company_name' --}}
+                                        <input id="supplier_company_name" type="text"
+                                            class="form-control form-control-lg @error('supplier_company_name') is-invalid @enderror"
+                                            name="supplier_company_name" value="{{ old('supplier_company_name') }}"
                                             placeholder="Enter your factory name">
-                                        @error('factory_name_supplier')
+                                        @error('supplier_company_name')
                                             <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
+                                    </div>
 
+                                    <div class="mb-3 position-relative form-group-custom">
+                                        <label for="supplier_type" class="form-label fw-semibold mb-2">Type</label>
+                                        <i class="fas fa-list-alt icon-left"></i>
+                                        {{-- PERBAIKAN 2: Ubah 'name' dan 'value' di sini --}}
+                                        <select id="supplier_type" name="supplier_type"
+                                            class="form-control form-control-lg @error('supplier_type') is-invalid @enderror">
+                                            <option value="">Select Type</option>
+                                            <option value="Mill Factory"
+                                                @if (old('supplier_type') == 'Mill Factory') selected @endif>Mill Factory</option>
+                                            <option value="Collector" @if (old('supplier_type') == 'Collector') selected @endif>
+                                                Collector</option>
+                                        </select>
+                                        @error('supplier_type')
+                                            <div class="invalid-feedback d-block">
+                                                <i class="fas fa-exclamation-circle me-1"></i>
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="mb-3 position-relative form-group-custom">
                                         <label for="region_supplier" class="form-label fw-semibold mb-2">Region</label>
@@ -570,7 +599,7 @@
                                     <div class="mb-3 position-relative form-group-custom">
                                         <label for="minimum_order_quantity" class="form-label fw-semibold mb-2">Minimum
                                             Order Quantity
-                                            (ton)</label>
+                                            (100 ton)</label>
                                         <i class="fas fa-sort-amount-down-alt icon-left"></i>
                                         <input id="minimum_order_quantity" type="number" min="0"
                                             class="form-control form-control-lg @error('minimum_order_quantity') is-invalid @enderror"
@@ -588,7 +617,7 @@
                                         <label for="years_in_operation_supplier" class="form-label fw-semibold mb-2">Years
                                             in
                                             Operation</label>
-                                        _                           <i class="fas fa-calendar-alt icon-left"></i>
+                                        <i class="fas fa-calendar-alt icon-left"></i>
                                         <input id="years_in_operation_supplier" type="number" min="0"
                                             class="form-control form-control-lg @error('years_in_operation_supplier') is-invalid @enderror"
                                             name="years_in_operation_supplier"
@@ -681,10 +710,9 @@
                                         <small class="form-text text-muted">Maximum 5
                                             photos</small>
                                         @error('pks_sample_photos')
-                                            _                   <div class="invalid-feedback d-block">
+                                            <div class="invalid-feedback d-block">
                                                 <i class="fas fa-exclamation-circle me-1"></i>
                                                 <strong>{{ $message }}</strong>
-                                                _
                                             </div>
                                         @enderror
                                     </div>

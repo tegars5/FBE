@@ -17,6 +17,21 @@
                 <span>Dashboard</span>
             </a>
         </li>
+        {{-- MENU BARU UNTUK VERIFIKASI USER --}}
+        <li class="nav-item">
+            <a href="{{ route('admin.users.pending') }}"
+                class="nav-link {{ request()->routeIs('admin.users.pending') ? 'active' : '' }}">
+                <i class="fas fa-user-check"></i><span>User Verification</span>
+                @php
+                    $pendingUserCount = \App\Models\User::where('status', 'pending')
+                        ->where('role', '!=', 'admin')
+                        ->count();
+                @endphp
+                @if ($pendingUserCount > 0)
+                    <span class="badge bg-warning ms-auto">{{ $pendingUserCount }}</span>
+                @endif
+            </a>
+        </li>
 
         <li class="nav-item">
             <a href="{{ route('admin.articles.index') }}"

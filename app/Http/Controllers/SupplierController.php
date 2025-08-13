@@ -93,10 +93,18 @@ class SupplierController extends Controller
                 Session::put('pending_supplier_id', $supplier->id);
                 return redirect()->route('register')->with([
                     'email' => $supplierData['contact_email'],
-                    'name' => $supplierData['contact_name'], // Pastikan ini sesuai dengan field di form register Anda
+                    'name' => $supplierData['contact_name'],
                     'message' => 'Silakan lengkapi pendaftaran Anda untuk membuat akun dan menghubungkan informasi supplier Anda.'
                 ]);
             }
         }
+    }
+    public function showForm()
+    {
+        // Cek apakah user sudah login dan memiliki data supplier
+        $supplier = Supplier::where('user_id', Auth::id())->first();
+
+        // Jika supplier ditemukan, tampilkan data supplier di form
+        return view('supplier.mill-factory-form', compact('supplier'));
     }
 }

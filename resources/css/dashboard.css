@@ -896,4 +896,131 @@ textarea.form-control {
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
     }
+    /* --- Submissions for Review layout fix --- */
+    .submission-card {
+        border: 1px solid #e5e7eb;
+        padding: 1.25rem;
+        border-radius: 8px;
+        background: #fafafa;
+    }
+    .submission-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 1.6fr auto; /* info | offered | accept | reject */
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .sub-col .sub-name {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+    }
+    .sub-col .sub-meta {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 0.25rem;
+    }
+    .sub-col .sub-region {
+        font-size: 0.8rem;
+        color: #3b82f6;
+    }
+
+    .sub-offered {
+        text-align: center;
+    }
+    .sub-offered-label {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 0.35rem;
+    }
+    .sub-offered-value {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #059669;
+    }
+
+    .accept-form {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+    }
+    .accept-label {
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+    .accept-input {
+        width: 110px;
+        text-align: center;
+        font-weight: 600;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 0.5rem;
+    }
+    .btn-accept {
+        background: #10b981;
+        color: #fff;
+        padding: 0.55rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .btn-accept:hover {
+        background: #059669;
+    }
+
+    .sub-actions {
+        text-align: right;
+    }
+    .btn-reject {
+        background: #ef4444;
+        color: #fff;
+        padding: 0.55rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .btn-reject:hover {
+        background: #dc2626;
+    }
+
+    /* Responsive: stack rapi di mobile */
+    @media (max-width: 992px) {
+        .submission-grid {
+            grid-template-columns: 1fr 1fr; /* 2 kolom */
+            grid-template-areas:
+                "info offered"
+                "accept actions";
+        }
+        .sub-accept {
+            grid-area: accept;
+        }
+        .sub-actions {
+            grid-area: actions;
+            text-align: left;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .submission-grid {
+            grid-template-columns: 1fr;
+        }
+        .sub-offered {
+            text-align: left;
+        }
+        .accept-form {
+            justify-content: flex-start;
+        }
+        .accept-input {
+            width: 100%;
+            max-width: 190px;
+        }
+    }
 }

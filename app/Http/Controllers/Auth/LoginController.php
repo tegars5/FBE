@@ -14,54 +14,60 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     * Dihapus dari sini karena akan ditangani oleh method redirectTo() di bawah.
-     *
-     * @var string
-     */
-    // protected $redirectTo = '/'; // <-- Dihapus
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
 
-    /**
-     * Mendefinisikan ke mana pengguna akan diarahkan setelah login berdasarkan peran mereka.
-     *
-     * @return string
-     */
     protected function redirectTo()
     {
         $role = Auth::user()->role;
 
         switch ($role) {
             case 'admin':
-                return route('admin.dashboard'); // Arahkan ke dasbor admin
+                return route('admin.dashboard');
             case 'supplier':
-                return route('supplier.dashboard'); // Arahkan ke dasbor supplier
+                return route('supplier.dashboard');
             case 'buyer':
-                return route('buyer.dashboard'); // Arahkan ke dasbor buyer
+                return route('buyer.dashboard');
             default:
-                return '/'; // Halaman default jika peran tidak dikenali
+                return '/';
         }
     }
 
     /**
      * Send the response after the user was authenticated.
-     * (Tidak ada perubahan di sini, logika ini tetap penting)
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
+
         $this->clearLoginAttempts($request);
 
-        // Logika menghubungkan supplier (ini tetap penting)
+        // =================================================================
+        // PERBAIKAN DI SINI: Tambahkan Pengecekan Status Pengguna
+        // =================================================================
+        $user = Auth::user();
+
+        // Cek jika status user BUKAN 'active'
+        if ($user->status !== 'active') {
+            Auth::logout(); // Wajib logout lagi agar session tidak tersimpan
+
+            // Siapkan pesan error sesuai statusnya
+            $message = $user->status === 'pending'
+                ? 'Akun Anda sedang menunggu verifikasi dari admin.'
+                : 'Akun Anda tidak aktif. Silakan hubungi administrator.';
+
+            return redirect('/login')->with('error', $message);
+        }
+        // =================================================================
+
+
+        // Logika menghubungkan supplier (ini tetap penting dan berjalan HANYA JIKA user sudah aktif)
         if (Session::has('pending_supplier_id')) {
             $supplierId = Session::get('pending_supplier_id');
             $supplier = Supplier::find($supplierId);

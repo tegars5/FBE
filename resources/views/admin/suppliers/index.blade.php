@@ -3,10 +3,8 @@
 <x-layout.head title="Manage Suppliers" :styles="false" />
 
 <body>
-    <!-- Sidebar -->
     <x-dashboard.sidebar />
 
-    <!-- Main Content -->
     <div class="main-content">
         <header class="header">
             <button class="menu-toggle" id="dashboard-toggle">
@@ -19,16 +17,28 @@
         </header>
 
         <div class="content">
+            @if (session('success'))
+                <div class="mt-4 mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded"
+                    role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="mt-4 mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="content-card">
                 <div class="card-header">
                     <h2>All Suppliers</h2>
                 </div>
                 <div class="card-body">
-                    {{-- Lottie Success Animation --}}
-                    <div id="lottie-success-container"
-                        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.7); z-index:9999; align-items:center; justify-content:center;">
-                        <div style="width:180px; height:180px; margin:auto;" id="lottie-success"></div>
-                    </div>
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -55,11 +65,9 @@
                                             @if ($user->supplier->submission_status == 'accepted')
                                                 <span class="badge badge-success">Accepted</span>
                                             @elseif($user->supplier->submission_status == 'rejected')
-                                                <span class="badge badge-danger"
-                                                    style="background-color: rgba(231, 76, 60, 0.15); color: #e74c3c;">Rejected</span>
+                                                <span class="badge badge-danger">Rejected</span>
                                             @else
-                                                <span class="badge badge-warning"
-                                                    style="background-color: rgba(243, 156, 18, 0.15); color: #f39c12;">Pending</span>
+                                                <span class="badge badge-warning">Pending</span>
                                             @endif
                                         </td>
                                     @else
@@ -70,47 +78,28 @@
                                     <td class="date">{{ $user->created_at->format('d M Y') }}</td>
                                     <td class="text-center">
                                         <div class="table-actions inline-flex gap-x-2">
+                                            {{-- LOGIKA TOMBOL DIPERBARUI --}}
                                             @if ($user->supplier)
-                                                @if ($user->supplier->submission_status == 'pending' || is_null($user->supplier->submission_status))
-                                                    <form
-                                                        action="{{ route('admin.suppliers.accept', $user->supplier->id) }}"
-                                                        method="POST" class="accept-form" style="display:inline;">
-                                                        @csrf
-                                                        <input type="hidden" name="accepted_volume"
-                                                            value="{{ $user->supplier->monthly_capacity ?? 0 }}">
-                                                        <button type="submit" class="action-btn btn-accept"
-                                                            style="background-color: #2ecc71;" title="Accept"><i
-                                                                class="fas fa-check"></i></button>
-                                                    </form>
-                                                    <form
-                                                        action="{{ route('admin.suppliers.reject', $user->supplier->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button type="submit" class="action-btn delete-btn"
-                                                            title="Reject"><i class="fas fa-times"></i></button>
-                                                    </form>
-                                                @else
-                                                    <a href="{{ route('admin.suppliers.show', $user->supplier->id) }}"
-                                                        class="action-btn view-btn" style="background-color: #3498db;"
-                                                        title="View Details"><i class="fas fa-eye"></i></a>
-                                                    <a href="{{ route('admin.suppliers.edit', $user->supplier->id) }}"
-                                                        class="action-btn edit-btn" title="Edit"><i
-                                                            class="fas fa-edit"></i></a>
+                                                {{-- Tombol Accept & Reject dihapus. Tombol di bawah ini akan selalu tampil. --}}
+                                                <a href="{{ route('admin.suppliers.show', $user->supplier->id) }}"
+                                                    class="action-btn view-btn" style="background-color: #3498db;"
+                                                    title="View Details"><i class="fas fa-eye"></i></a>
 
-                                                    {{-- PERBAIKAN 1: Mengubah form Delete --}}
-                                                    <form id="delete-form-{{ $user->supplier->id }}"
-                                                        action="{{ route('admin.suppliers.destroy', $user->supplier->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        {{-- Tombol ini sekarang memanggil JavaScript, bukan men-submit langsung --}}
-                                                        <button type="button"
-                                                            onclick="showDeleteModal('delete-form-{{ $user->supplier->id }}')"
-                                                            class="action-btn delete-btn" title="Delete">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
+                                                <a href="{{ route('admin.suppliers.edit', $user->supplier->id) }}"
+                                                    class="action-btn edit-btn" title="Edit"><i
+                                                        class="fas fa-edit"></i></a>
+
+                                                <form id="delete-form-{{ $user->supplier->id }}"
+                                                    action="{{ route('admin.suppliers.destroy', $user->supplier->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button"
+                                                        onclick="showDeleteModal('delete-form-{{ $user->supplier->id }}')"
+                                                        class="action-btn delete-btn" title="Delete">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             @else
                                                 <span class="text-xs text-gray-400">No actions available</span>
                                             @endif
@@ -132,7 +121,7 @@
         </footer>
     </div>
 
-    {{-- PERBAIKAN 2: Menambahkan HTML untuk Modal Konfirmasi --}}
+    {{-- Modal Konfirmasi Delete --}}
     <div id="delete-modal" style="display: none;"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-[100] flex items-center justify-center">
         <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
@@ -158,7 +147,6 @@
             </div>
         </div>
     </div>
-
     {{-- Lottie CDN --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script>
@@ -182,7 +170,7 @@
             });
         });
 
-        {{-- PERBAIKAN 3: Menambahkan JavaScript untuk Modal --}}
+        // JavaScript untuk Modal Delete
         const deleteModal = document.getElementById('delete-modal');
         const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
         const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
@@ -207,6 +195,13 @@
                 formToDelete.submit();
             }
             hideDeleteModal();
+        });
+
+        // Close modal when clicking outside
+        deleteModal.addEventListener('click', function(e) {
+            if (e.target === deleteModal) {
+                hideDeleteModal();
+            }
         });
     </script>
 </body>
