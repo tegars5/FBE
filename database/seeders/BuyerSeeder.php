@@ -38,6 +38,7 @@ class BuyerSeeder extends Seeder
             'contact_person_email' => 'tanaka@greenenergy.co.jp',
             'contact_person_phone' => '+819012345678',
             'additional_notes' => 'We require GGL-certified PKS only.',
+            'status' => 'pending', // Menambahkan status pada buyer
         ]);
     }
 }

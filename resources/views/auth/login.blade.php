@@ -10,8 +10,9 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        /* ... CSS Anda tetap sama, tidak perlu diubah ... */
+        /* ==== CSS aslinya kamu (tidak diubah) ==== */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
@@ -26,6 +27,8 @@
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --text-dark: #374151;
             --text-light: #6b7280;
+
+            /* warna bentuk dekoratif */
             --shape-color-palm-brown: #5C4033;
             --shape-color-palm-dark-brown: #36281F;
             --shape-color-fire-orange: #FF8C00;
@@ -34,6 +37,7 @@
             --shape-color-biomass-dark-green: #4D7736;
             --shape-color-ash-gray: #A9A9A9;
             --shape-color-light-ash-gray: #D3D3D3;
+
             --shape-color-1-start: var(--shape-color-fire-orange);
             --shape-color-1-end: var(--shape-color-fire-yellow);
             --shape-color-2-start: var(--shape-color-biomass-green);
@@ -46,12 +50,14 @@
             --shape-color-5-end: var(--beige-light);
             --shape-color-label-start: var(--primary-green);
             --shape-color-label-end: var(--secondary-green-medium);
+
             --shadow-shape-1: rgba(255, 140, 0, 0.4);
             --shadow-shape-2: rgba(108, 159, 78, 0.4);
             --shadow-shape-3: rgba(92, 64, 51, 0.4);
             --shadow-shape-4: rgba(169, 169, 169, 0.4);
             --shadow-shape-5: rgba(245, 245, 220, 0.4);
             --shadow-shape-label: rgba(27, 94, 32, 0.4);
+
             --login-page-bg-top: var(--beige-light);
             --login-page-bg-bottom: var(--beige-medium)
         }
@@ -246,6 +252,7 @@
             font-weight: 600
         }
 
+        /* ==== KANAN (dekoratif) ==== */
         .decorative-column {
             background: linear-gradient(135deg, var(--secondary-green-medium) 0%, var(--primary-green) 100%);
             position: relative;
@@ -272,10 +279,28 @@
             margin-bottom: 40px
         }
 
+        .logo-circle-wrapper {
+            width: 150px;
+            height: 150px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            padding: 10px;
+            flex-shrink: 0
+        }
+
         .brand-image {
-            max-width: 150px;
+            max-width: 120px;
+            max-height: 120px;
+            width: auto;
             height: auto;
-            filter: brightness(1.2) drop-shadow(0 0 10px rgba(0, 0, 0, 0.2))
+            object-fit: contain;
+            filter: none;
+            display: block
         }
 
         .scene-3d {
@@ -362,12 +387,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            font-weight: 700;
             top: 45%;
             left: 25%;
             animation-delay: -5s;
-            content: "PKS";
             font-size: 24px;
             font-weight: 700
         }
@@ -438,40 +460,6 @@
                 font-size: 20px
             }
         }
-
-        .brand-logo {
-            text-align: center;
-            margin-bottom: 40px
-        }
-
-        .brand-logo {
-            text-align: center;
-            margin-bottom: 40px
-        }
-
-        .logo-circle-wrapper {
-            width: 150px;
-            height: 150px;
-            background-color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin: 0 auto;
-            padding: 10px;
-            flex-shrink: 0
-        }
-
-        .brand-image {
-            max-width: 120px;
-            max-height: 120px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            filter: none;
-            display: block
-        }
     </style>
 </head>
 
@@ -479,6 +467,7 @@
     <div class="login-container d-flex align-items-center justify-content-center min-vh-100">
         <div class="login-card-wrapper">
             <div class="login-row g-0 shadow-lg">
+                <!-- ====== KOLOM KIRI (LOGIC TETAP) ====== -->
                 <div class="login-form-column d-flex align-items-center justify-content-center">
                     <div class="login-form-content w-100">
                         <div class="text-center mb-4">
@@ -494,25 +483,16 @@
                             <p class="welcome-subtitle">Sign in by entering the information below</p>
                         </div>
 
-                        {{-- PERBAIKAN 1: Tambahkan blok ini untuk menampilkan pesan error dan status --}}
                         @if (session('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('error') }}
-                            </div>
+                            <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
                         @endif
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
+                            <div class="alert alert-success" role="alert">{{ session('status') }}</div>
                         @endif
                         @if ($errors->has('email'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ $errors->first('email') }}
-                            </div>
+                            <div class="alert alert-danger" role="alert">{{ $errors->first('email') }}</div>
                         @endif
 
-
-                        {{-- PERBAIKAN 2: Ubah action form --}}
                         <form method="POST" action="{{ route('login') }}" class="login-form">
                             @csrf
 
@@ -542,9 +522,7 @@
                                 <div class="form-check remember-me">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                         {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="form-check-label text-muted" for="remember">
-                                        Remember Me
-                                    </label>
+                                    <label class="form-check-label text-muted" for="remember">Remember Me</label>
                                 </div>
                                 @if (Route::has('password.request'))
                                     <a href="{{ route('password.request') }}"
@@ -573,9 +551,56 @@
                     </div>
                 </div>
 
+                <!-- ====== KOLOM KANAN (DISAMAKAN DGN VERSI 2) ====== -->
                 <div class="decorative-column d-none d-lg-flex align-items-center justify-content-center p-0">
-                    {{-- Konten dekoratif di sini --}}
+                    <div
+                        class="decorative-content w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+                        <div class="brand-logo mb-4">
+                            <div class="logo-circle-wrapper">
+                                <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Logo"
+                                    class="brand-image">
+                            </div>
+                        </div>
+
+                        <div class="scene-3d">
+                            <div class="geometric-shapes">
+                                <div class="shape shape-sphere-1" style="width:80px; height:80px; top:20%; left:20%;">
+                                </div>
+                                <div class="shape shape-sphere-2"
+                                    style="width:60px; height:60px; top:60%; right:25%; animation-delay:-2s;"></div>
+                                <div class="shape shape-cube-1"
+                                    style="width:40px; height:40px; border-radius:8px; top:40%; left:60%; animation-delay:-1s;">
+                                </div>
+                                <div class="shape shape-cube-2"
+                                    style="width:35px; height:35px; border-radius:6px; top:25%; right:15%; animation-delay:-3s;">
+                                </div>
+                                <div class="shape shape-cylinder"
+                                    style="width:50px; height:25px; border-radius:25px; top:70%; left:40%; animation-delay:-4s;">
+                                </div>
+                                <div class="shape shape-5g"
+                                    style="width:70px; height:70px; border-radius:12px; top:45%; left:25%; animation-delay:-5s;">
+                                    PKS</div>
+
+                                <div class="floating-elements">
+                                    <div class="element element-1"
+                                        style="width:20px; height:20px; top:15%; left:70%; animation-delay:-6s;"></div>
+                                    <div class="element element-2"
+                                        style="width:20px; height:20px; top:80%; left:15%; animation-delay:-7s;"></div>
+                                    <div class="element element-3"
+                                        style="width:20px; height:20px; top:35%; right:10%; animation-delay:-8s;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="copyright-info">
+                            <p class="mb-0">© {{ date('Y') }} Fujiyama Biomass Energy</p>
+                            <p class="mb-0">All rights reserved.</p>
+                        </div>
+                    </div>
                 </div>
+                <!-- ====== /KOLOM KANAN ====== -->
+
             </div>
         </div>
     </div>
@@ -594,6 +619,21 @@
                 toggleIcon.classList.add('fa-eye');
             }
         }
+        // efek kecil pada input (opsional, non-logik)
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-green)';
+                    this.style.boxShadow = '0 0 0 3px rgba(27, 94, 32, 0.15)';
+                    this.style.backgroundColor = 'var(--white)';
+                });
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = 'var(--gray-200)';
+                    this.style.boxShadow = 'none';
+                    this.style.backgroundColor = 'var(--gray-100)';
+                });
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

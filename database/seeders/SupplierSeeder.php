@@ -39,6 +39,7 @@ class SupplierSeeder extends Seeder
             'contact_email' => 'andi.wijaya@sawitjaya.com',
             'contact_phone' => '+6281234567890',
             'submission_status' => 'pending',
+            'status' => 'active', // Menambahkan status pada supplier
         ]);
     }
 }
