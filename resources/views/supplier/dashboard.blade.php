@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <x-layout.head title="Supplier Dashboard" />
 
 <body class="font-sans leading-relaxed antialiased bg-gray-100">
@@ -24,8 +25,7 @@
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-2xl font-bold text-gray-800">Supplier Profile</h2>
-                        <a href="{{ route('supplier.profile.edit') }}"
-                            class="text-sm font-medium text-green-700 hover:text-green-800">[Edit]</a>
+
                     </div>
 
                     @if (isset($supplier))
@@ -72,10 +72,51 @@
                                     </dd>
                                 </div>
                             </dl>
+
+                            <!-- Photos and Files Section -->
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Factory & Warehouse Photos:</h4>
+                                    @if ($supplier->factory_warehouse_photos)
+                                        <div class="grid grid-cols-2 gap-4">
+                                            @foreach (json_decode($supplier->factory_warehouse_photos) as $photo)
+                                                <img src="{{ Storage::disk('s3')->url($photo) }}" alt="Factory Photo"
+                                                    class="w-full h-32 object-cover rounded-md">
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="text-sm text-gray-500">No photos uploaded.</p>
+                                    @endif
+                                </div>
+
+                                <div>
+                                    <h4 class="font-medium text-gray-700">PKS Sample Photos:</h4>
+                                    @if ($supplier->pks_sample_photos)
+                                        <div class="grid grid-cols-2 gap-4">
+                                            @foreach (json_decode($supplier->pks_sample_photos) as $photo)
+                                                <img src="{{ Storage::disk('s3')->url($photo) }}"
+                                                    alt="PKS Sample Photo" class="w-full h-32 object-cover rounded-md">
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="text-sm text-gray-500">No photos uploaded.</p>
+                                    @endif
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Lab Test Report:</h4>
+                                    @if ($supplier->lab_test_report_path)
+                                        <a href="{{ Storage::disk('s3')->url($supplier->lab_test_report_path) }}"
+                                            class="text-blue-500 hover:text-blue-700" target="_blank">Download PDF</a>
+                                    @else
+                                        <p class="text-sm text-gray-500">No lab test report uploaded.</p>
+                                    @endif
+                                </div>
+                            </div>
+
                         </div>
                         <div class="mt-6 text-right">
                             <a href="{{ route('supplier.profile.edit') }}"
-                                class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Update
+                                class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Edit
                                 Profile</a>
                         </div>
                     @else

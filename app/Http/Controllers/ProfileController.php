@@ -27,7 +27,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user()->load(['supplier', 'buyer']); // Langsung muat relasi
+        $user = Auth::user()->load(['supplier', 'buyer']);
         return view('profile.edit', compact('user'));
     }
 

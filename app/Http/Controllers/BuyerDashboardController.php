@@ -27,4 +27,9 @@ class BuyerDashboardController extends Controller
         // Tampilkan halaman dashboard untuk buyer dan pass data buyer
         return view('buyer.dashboard', compact('buyer'));
     }
+    public function purchaseRequest()
+    {
+        // tampilkan form request quote / purchase request
+        return view('buyer.purchase-request');
+    }
 }

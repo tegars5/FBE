@@ -80,4 +80,6 @@ Route::middleware(['auth', 'role:buyer'])
     ->name('buyer.')
     ->group(function () {
         Route::get('/dashboard', [BuyerDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/purchase-request', [BuyerDashboardController::class, 'purchaseRequest'])
+            ->name('purchaserequest');
     });

@@ -33,13 +33,13 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href="{{ route('admin.articles.index') }}"
                 class="nav-link {{ request()->routeIs('admin.articles.index') ? 'active' : '' }}">
                 <i class="fas fa-list-ul"></i>
                 <span>Articles</span>
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             {{-- Rute ini perlu Anda buat nanti --}}
             <a href="{{ route('admin.suppliers.index') }}" class="nav-link {{-- request()->routeIs('admin.suppliers*') ? 'active' : '' --}}">

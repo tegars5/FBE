@@ -46,8 +46,9 @@ class Supplier extends Model
         'dura_composition' => 'float',
         'tenera_composition' => 'float',
         'pisifera_composition' => 'float',
-        'factory_warehouse_photos' => 'json',
-        'pks_sample_photos' => 'json',
+        'factory_warehouse_photos' => 'array',
+        'pks_sample_photos' => 'array',
+        'lab_test_report_path' => 'string',
     ];
 
     public function user()

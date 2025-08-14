@@ -5,8 +5,6 @@
 <x-layout.head title="Profile" />
 
 <body class="font-sans leading-relaxed overflow-x-hidden bg-gray-50">
-
-    {{-- Memanggil komponen untuk Navbar (kesalahan sudah diperbaiki) --}}
     <x-layout.navbar />
 
     <main>
@@ -35,7 +33,6 @@
                             @endif
                         @endauth
                     </div>
-
                 </div>
             </div>
         </div>

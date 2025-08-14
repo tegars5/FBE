@@ -29,11 +29,11 @@ class RegisterController extends Controller
     {
         // Debug: Log data yang diterima
         Log::info('Registration data received:', $request->all());
-        
+
         $this->validator($request->all())->validate();
         $user = DB::transaction(fn() => $this->create($request));
         event(new Registered($user));
-        return redirect($this->redirectPath())->with('status', 'Registrasi berhasil! Akun Anda akan aktif setelah diverifikasi oleh admin.');
+        return redirect($this->redirectPath())->with('status', 'Registration successful! Your account will be activated after verification by the admin.');
     }
 
     protected function validator(array $data)
@@ -63,7 +63,6 @@ class RegisterController extends Controller
                     'additional_notes' => ['nullable', 'string'],
                 ];
                 $rules = array_merge($rules, $buyerRules);
-                
             } elseif ($data['role'] === 'supplier') {
                 $supplierRules = [
                     // PERBAIKAN: Gunakan nama field yang sesuai dengan form HTML
@@ -83,7 +82,7 @@ class RegisterController extends Controller
                     'email_supplier' => ['required', 'email', 'max:255'],
                     'phone_supplier' => ['required', 'string', 'max:20'],
                     'notes_supplier' => ['nullable', 'string'],
-                    
+
                     // File uploads (optional)
                     'factory_warehouse_photos' => ['nullable', 'array', 'max:5'],
                     'factory_warehouse_photos.*' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
@@ -94,14 +93,14 @@ class RegisterController extends Controller
                 $rules = array_merge($rules, $supplierRules);
             }
         }
-        
+
         return Validator::make($data, $rules);
     }
 
     protected function create(Request $request)
     {
         $data = $request->all();
-        
+
         // Debug: Log semua data sebelum membuat user
         Log::info('Creating user with role: ' . $data['role']);
 
@@ -132,20 +131,19 @@ class RegisterController extends Controller
                 'contact_person_phone' => $data['contact_person_phone'],
                 'additional_notes' => $data['additional_notes'] ?? null,
             ]);
-            
         } elseif ($data['role'] === 'supplier') {
             // PERBAIKAN: Sesuaikan dengan struktur database yang ada
             $supplierData = [
                 'user_id' => $user->id,
-                'type' => $data['supplier_type'], 
-                'company_name' => $data['supplier_company_name'], 
-                'region' => $data['region_supplier'], 
-                'monthly_capacity' => $data['monthly_available_volume'], 
+                'type' => $data['supplier_type'],
+                'company_name' => $data['supplier_company_name'],
+                'region' => $data['region_supplier'],
+                'monthly_capacity' => $data['monthly_available_volume'],
                 'accepted_volume' => $data['annual_production_volume'] ?? null, // Sesuai field database
                 'annual_sales' => $data['sales_record_past_1_year'] ?? null,
-                'contact_name' => $data['contact_person_supplier'], 
-                'contact_email' => $data['email_supplier'], 
-                'contact_phone' => $data['phone_supplier'], 
+                'contact_name' => $data['contact_person_supplier'],
+                'contact_email' => $data['email_supplier'],
+                'contact_phone' => $data['phone_supplier'],
                 'submission_status' => 'pending',
                 'dura_composition' => $data['dura_percentage'] ?? null,
                 'tenera_composition' => $data['tenera_percentage'] ?? null,
@@ -153,20 +151,20 @@ class RegisterController extends Controller
                 'desired_price' => $data['desired_selling_price'] ?? null,
                 'years_operation' => $data['years_in_operation_supplier'] ?? null,
                 'minimum_order_quantity' => $data['minimum_order_quantity'] ?? null,
-                
+
                 // Field untuk file uploads - simpan path nanti setelah upload
                 'factory_warehouse_photos' => null, // Will be processed if files uploaded
                 'pks_sample_photos' => null, // Will be processed if files uploaded  
                 'lab_test_report_path' => null, // Will be processed if file uploaded
             ];
-            
+
             // Debug: Log data supplier sebelum disimpan
             Log::info('Creating supplier with data:', $supplierData);
-            
+
             $supplier = Supplier::create($supplierData);
             Log::info('Supplier created with ID: ' . $supplier->id);
         }
-        
+
         return $user;
     }
 }

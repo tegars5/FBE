@@ -31,7 +31,7 @@
                 <i class="fas fa-boxes text-green-600 text-4xl mb-4"></i>
                 <h2 class="text-xl font-semibold mb-2">Product Catalog</h2>
                 <p class="text-gray-600 mb-4">Explore our various biomass products.</p>
-                <a href="{{ route('buyer.productsCatalog') }}"
+                <a href="#"
                     class="bg-green-custom hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
                     View Catalog
                 </a>

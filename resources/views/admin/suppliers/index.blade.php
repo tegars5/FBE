@@ -52,7 +52,12 @@
                         </thead>
                         <tbody>
                             @forelse ($suppliers as $user)
-                                <tr>
+                                @php($supplier = $user->supplier)
+                                <tr
+                                    @if ($supplier) class="row-dblclick"
+            data-url="{{ route('admin.suppliers.show', $supplier->id) }}"
+            tabindex="0"
+            aria-label="Open supplier {{ $user->name }} details" @endif>
                                     <td>
                                         <div class="font-semibold">{{ $user->name }}</div>
                                         <div class="text-xs text-gray-500">{{ $user->email }}</div>
@@ -147,6 +152,21 @@
             </div>
         </div>
     </div>
+    <style>
+        .row-dblclick {
+            cursor: pointer;
+        }
+
+        .row-dblclick:hover {
+            background: #f9fafb;
+        }
+
+        .row-dblclick:focus {
+            outline: 2px solid rgba(37, 99, 235, .25);
+            outline-offset: 2px;
+        }
+    </style>
+
     {{-- Lottie CDN --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script>
@@ -202,6 +222,39 @@
             if (e.target === deleteModal) {
                 hideDeleteModal();
             }
+        });
+        // DBLCLICK → buka detail; Enter → buka detail; Ctrl/Cmd + (dblclick/Enter) → tab baru
+        document.addEventListener('DOMContentLoaded', function() {
+            function isInsideAction(e) {
+                // hindari trigger saat klik di dalam area tombol/ikon/aksi
+                return e.target.closest('.table-actions, a, button, .action-btn, input, label, i');
+            }
+
+            document.querySelectorAll('tr.row-dblclick').forEach(function(tr) {
+                var url = tr.dataset.url;
+                if (!url) return;
+
+                // Double click = buka detail
+                tr.addEventListener('dblclick', function(e) {
+                    if (isInsideAction(e)) return;
+                    if (e.ctrlKey || e.metaKey) {
+                        window.open(url, '_blank');
+                    } else {
+                        window.location.href = url;
+                    }
+                });
+
+                // Akses keyboard: Enter = buka detail
+                tr.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        if (e.ctrlKey || e.metaKey) {
+                            window.open(url, '_blank');
+                        } else {
+                            window.location.href = url;
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>

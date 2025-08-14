@@ -14,7 +14,7 @@ class SupplierDashboardController extends Controller
         $supplier = $user->supplier;
 
         $currentMonthAvailable = $supplier->monthly_capacity ?? 0;
-        $confirmedOrders       = $supplier->accepted_volume ?? 0; // jangan hardcode 300
+        $confirmedOrders       = $supplier->accepted_volume ?? 0;
         $pendingInquiries      = $supplier->pending_inquiries ?? 0;
 
         return view('supplier.dashboard', compact(
@@ -27,31 +27,35 @@ class SupplierDashboardController extends Controller
 
     public function editProfile()
     {
-        $supplier = Auth::user()->supplier;
-        return view('profile.edit', compact('supplier'));
+        $supplier = Supplier::where('user_id', auth()->id())->first();
+
+        return view('profile.partials.edit-supplier-form', compact('supplier'));
     }
 
     public function updateProfile(Request $request)
     {
-        $user = Auth::user();
-        $supplier = $user->supplier ?? new Supplier(['user_id' => $user->id]);
-
+        // Validasi data yang dikirimkan
         $validatedData = $request->validate([
-            'type' => 'nullable|string|max:255',
-            'region' => 'nullable|string|max:255',
-            'monthly_capacity' => 'nullable|numeric|min:0',
-            'annual_sales' => 'nullable|numeric|min:0',
-            'desired_price' => 'nullable|numeric|min:0',
-            'years_operation' => 'nullable|integer|min:0',
-            'dura_composition' => 'nullable|integer|min:0|max:100',
-            'tenera_composition' => 'nullable|integer|min:0|max:100',
-            'pisifera_composition' => 'nullable|integer|min:0|max:100',
+            'region' => 'required|string|max:255',
+            'annual_sales' => 'required|numeric',
+            'monthly_capacity' => 'required|numeric',
+            'dura_composition' => 'required|numeric',
+            'tenera_composition' => 'required|numeric',
+            'pisifera_composition' => 'required|numeric',
+            'sales_record' => 'required|numeric',
+            'desired_price' => 'required|numeric',
+            'minimum_order_quantity' => 'required|numeric',
+            'contact_name' => 'required|string|max:255',
+            'contact_email' => 'required|email|max:255',
+            'contact_phone' => 'required|string|max:255',
         ]);
 
-        $supplier->fill($validatedData);
-        $supplier->save();
+        $supplier = Supplier::where('user_id', auth()->id())->first(); // Ambil data supplier yang terkait dengan user yang sedang login
 
-        return redirect()->route('supplier.dashboard')->with('success', 'Profil Anda berhasil diperbarui!');
+        // Perbarui data supplier
+        $supplier->update($validatedData);
+
+        return redirect()->route('supplier.dashboard')->with('success', 'Your supplier profile has been updated successfully.');
     }
 
     public function saveProductManagement(Request $request)
@@ -67,10 +71,12 @@ class SupplierDashboardController extends Controller
         ]);
 
         // (Sama seperti punyamu—disingkat)
+        // SupplierDashboardController@saveProductManagement
+
         if ($request->hasFile('factory_warehouse_photos')) {
             $paths = [];
             foreach ($request->file('factory_warehouse_photos') as $photo) {
-                $paths[] = $photo->store('supplier/factory', 'public');
+                $paths[] = $photo->store('supplier/factory', 's3');
             }
             $supplier->factory_warehouse_photos = $paths;
         }
@@ -78,19 +84,18 @@ class SupplierDashboardController extends Controller
         if ($request->hasFile('pks_sample_photos')) {
             $paths = [];
             foreach ($request->file('pks_sample_photos') as $photo) {
-                $paths[] = $photo->store('supplier/pks-samples', 'public');
+                $paths[] = $photo->store('supplier/pks-samples', 's3');
             }
             $supplier->pks_sample_photos = $paths;
         }
 
         if ($request->hasFile('lab_test_report')) {
-            $supplier->lab_test_report_path = $request->file('lab_test_report')->store('supplier/lab-reports', 'public');
+            $supplier->lab_test_report_path = $request->file('lab_test_report')
+                ->store('supplier/lab-reports', 's3');
         }
-
         $supplier->notes = $request->input('notes');
         $supplier->save();
-
-        return redirect()->route('supplier.dashboard')->with('success', 'Data produk berhasil disimpan!');
+        return redirect()->route('supplier.dashboard')->with('success', 'Product management data saved successfully.');
     }
 
     // >>> Orders INDEX: 5 item dari Supplier
@@ -110,7 +115,6 @@ class SupplierDashboardController extends Controller
 
         return view('supplier.orders.index', compact('supplier', 'viewStats'));
     }
-    // Controller method to show the supplier dashboard
     public function showSupplierDashboard()
     {
         $supplier = Supplier::where('user_id', Auth::id())->first();

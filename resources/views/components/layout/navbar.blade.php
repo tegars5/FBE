@@ -156,7 +156,7 @@
                                 class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 hidden group-hover:block">
                                 <li>
                                     @php
-                                        $dashboardRoute = 'dashboard'; // Default general dashboard
+                                        $dashboardRoute = 'dashboard';
                                         if (Auth::user()->role === 'admin') {
                                             $dashboardRoute = 'admin.dashboard';
                                         } elseif (Auth::user()->role === 'supplier') {

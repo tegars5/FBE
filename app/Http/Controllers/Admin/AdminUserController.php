@@ -47,7 +47,7 @@ class AdminUserController extends Controller
         $user->status = 'active';
         $user->save();
 
-        return redirect()->route('admin.users.pending')->with('success', 'User ' . $user->name . ' berhasil disetujui.');
+        return redirect()->route('admin.users.pending')->with('success', 'User ' . $user->name . ' Successfully approved.');
     }
 
     /**
@@ -60,7 +60,7 @@ class AdminUserController extends Controller
         // jika relasi di database sudah diatur dengan onDelete('cascade')
         $user->delete();
 
-        return redirect()->route('admin.users.pending')->with('success', 'User ' . $userName . ' berhasil ditolak dan dihapus.');
+        return redirect()->route('admin.users.pending')->with('success', 'User ' . $userName . ' successfully rejected and deleted');
     }
 
     /**
@@ -73,10 +73,11 @@ class AdminUserController extends Controller
         $request->validate([
             'accepted_volume' => 'required|numeric|min:0|max:' . $supplier->monthly_capacity,
         ], [
-            'accepted_volume.required' => 'Volume yang diterima harus diisi.',
-            'accepted_volume.numeric' => 'Volume harus berupa angka.',
-            'accepted_volume.min' => 'Volume tidak boleh kurang dari 0.',
-            'accepted_volume.max' => 'Volume tidak boleh lebih dari kapasitas yang ditawarkan (' . $supplier->monthly_capacity . ' tons).',
+            'accepted_volume.required' => 'Accepted volume is required.',
+            'accepted_volume.numeric' => 'Volume must be a number.',
+            'accepted_volume.min' => 'Volume cannot be less than 0.',
+            'accepted_volume.max' => 'Volume cannot be more than the offered capacity (' . $supplier->monthly_capacity . ' tons).',
+
         ]);
 
         // Update kapasitas bulanan dengan mengurangi jumlah yang diterima
@@ -86,9 +87,9 @@ class AdminUserController extends Controller
 
         return redirect()->back()->with(
             'success',
-            'Submission dari ' . $supplier->user->name . ' berhasil diterima! ' .
-                'Volume yang diterima: ' . $request->accepted_volume . ' tons. ' .
-                'Kapasitas tersisa: ' . $supplier->monthly_capacity . ' tons.'
+            'Submission from ' . $supplier->user->name . ' has been accepted! ' .
+                'Accepted volume: ' . $request->accepted_volume . ' tons. ' .
+                'Remaining capacity: ' . $supplier->monthly_capacity . ' tons.'
         );
     }
 
@@ -105,7 +106,7 @@ class AdminUserController extends Controller
 
         return redirect()->back()->with(
             'success',
-            'Submission dari ' . $supplierName . ' berhasil ditolak.'
+            'Submission from ' . $supplierName . ' has been rejected.'
         );
     }
 }
