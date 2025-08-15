@@ -339,11 +339,27 @@
                         </form>
                     @else
                         {{-- If not logged in, show language option (mobile menu) --}}
-                        <a href="#"
-                            class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
-                            <i class="fas fa-globe mr-1"></i>
-                            Language
-                        </a>
+                        <div class="w-full">
+                            {{-- Tombol untuk membuka/menutup dropdown --}}
+                            <button id="mobile-lang-toggle"
+                                class="mobile-menu-link w-full text-left flex justify-between items-center">
+                                <span>
+                                    <i class="fas fa-globe"></i> Language
+                                </span>
+                                <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                            </button>
+                            {{-- Wadah untuk pilihan bahasa, tersembunyi secara default --}}
+                            <div id="mobile-lang-options" class="hidden pl-10 pr-4 pt-2 pb-1 space-y-2 bg-gray-50">
+                                <a href="?lang=en"
+                                    class="block text-sm text-gray-700 hover:text-green-custom font-medium">
+                                    English
+                                </a>
+                                <a href="?lang=id"
+                                    class="block text-sm text-gray-700 hover:text-green-custom font-medium">
+                                    Indonesia
+                                </a>
+                            </div>
+                        </div>
                     @endauth
                 </div>
             </nav>
@@ -425,13 +441,14 @@
                     });
                 }
             });
-        }); 
+        });
         // Simple Form submission alert (for demonstration)
         function handleSubmit(event) {
             event.preventDefault();
             alert('Thank you! Your message has been sent. We will respond within 24 hours.');
             event.target.reset(); // Clear form fields
         }
+
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
             const allSDGs = document.querySelectorAll('.sdg-detail');
@@ -553,6 +570,50 @@
         // Initialize slider and auto-advance
         updateHeroSlider();
         resetAutoSlide(); // Start auto-slide when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pilih semua elemen dropdown
+            const dropdowns = document.querySelectorAll('.dropdown');
+            let leaveTimeout;
+
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('button'); // Tombol pemicu
+                const menu = dropdown.querySelector('.dropdown-menu'); // Menu dropdown
+
+                // Saat mouse masuk ke area tombol atau menu
+                const handleMouseEnter = () => {
+                    clearTimeout(leaveTimeout); // Batalkan timer untuk menutup menu
+                    dropdown.classList.add('active'); // Tampilkan menu
+                };
+
+                // Saat mouse keluar dari area tombol atau menu
+                const handleMouseLeave = () => {
+                    // Set timer 200ms sebelum menutup menu
+                    leaveTimeout = setTimeout(() => {
+                        dropdown.classList.remove('active');
+                    }, 200); // Jeda 200 milidetik
+                };
+
+                // Terapkan event listener
+                if (trigger) {
+                    trigger.addEventListener('mouseenter', handleMouseEnter);
+                    trigger.addEventListener('mouseleave', handleMouseLeave);
+                }
+                if (menu) {
+                    menu.addEventListener('mouseenter', handleMouseEnter);
+                    menu.addEventListener('mouseleave', handleMouseLeave);
+                }
+            });
+        });
+        const langToggleBtn = document.getElementById('mobile-lang-toggle');
+        const langOptionsMenu = document.getElementById('mobile-lang-options');
+
+        if (langToggleBtn && langOptionsMenu) {
+            langToggleBtn.addEventListener('click', () => {
+                // Toggle class 'active' untuk memicu animasi CSS
+                langOptionsMenu.classList.toggle('active');
+                langToggleBtn.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 

@@ -91,6 +91,19 @@ nav.scrolled {
 .navbar-links-left {
     margin-left: 2rem; /* Add some margin to push links from the logo */
 }
+#mobile-lang-options {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+#mobile-lang-options.active {
+    max-height: 100px; /* Cukup besar untuk menampung pilihan bahasa */
+}
+
+#mobile-lang-toggle.active .fa-chevron-down {
+    transform: rotate(180deg);
+}
 
 /* Logo container styling */
 .logo-image-container {
@@ -175,7 +188,7 @@ nav.scrolled .logo-bg {
 }
 
 /* Dropdown menu styling */
-.dropdown:hover .dropdown-menu {
+.dropdown:active .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);

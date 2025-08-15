@@ -14,27 +14,37 @@ class SupplierSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Buat User baru dengan peran 'supplier'
-        $supplierUser = User::create([
-            'name' => 'PT. Sawit Jaya (Supplier)',
-            'email' => 'supplier@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'supplier',
-            'status' => 'active', // Status dipindahkan ke tabel user
-        ]);
+        // 1. Buat atau cari User dengan peran 'supplier'
+        $supplierUser = User::firstOrCreate(
+            ['email' => 'supplier@example.com'],
+            [
+                'name' => 'PT. Sawit Jaya (Supplier)',
+                'password' => Hash::make('password'),
+                'role' => 'supplier',
+                'status' => 'pending',
+            ]
+        );
 
         // 2. Buat data Supplier yang terhubung dengan User di atas
         Supplier::create([
-            'user_id' => $supplierUser->id,
-            'type' => 'Mill Factory',
-            'company_name' => 'PT. Sawit Jaya', // Menambahkan company_name
-            'region' => 'Sumatera Utara',
-            'monthly_capacity' => 500.00,
-            'annual_sales' => 20000.00,
-            'desired_selling_price' => '120.00', // Mengubah nama kolom dan tipe jadi string
-            'minimum_order_quantity' => '120', // Mengubah tipe jadi string
-            'submission_status' => 'pending',
-            // Kolom-kolom seperti dura_composition, years_operation, contact_name, dll. dihapus karena sudah tidak ada di skema final.
+            'user_id'                 => $supplierUser->id,
+            'type'                    => 'Mill Factory',
+            'company_name'            => 'PT. Sawit Jaya',
+            'region'                  => 'Sumatera Utara',
+            'monthly_capacity'        => 500.00,
+            'annual_sales'            => 20000.00,
+
+            // ==========================================================
+            // PERBAIKAN: Nama kolom diubah dari 'desired_selling_price' menjadi 'desired_price'
+            'desired_price'           => 120.00,
+            // ==========================================================
+
+            'minimum_order_quantity'  => 120,
+            'years_operation'         => 10, // Menambahkan data dummy untuk kolom yang required
+            'contact_name'            => 'Budi Santoso', // Menambahkan data dummy
+            'contact_email'           => 'budi@sawitjaya.com', // Menambahkan data dummy
+            'contact_phone'           => '08123456789', // Menambahkan data dummy
+            'submission_status'       => 'pending',
         ]);
     }
 }
