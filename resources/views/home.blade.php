@@ -564,9 +564,9 @@
                     </p>
                 </div>
 
-                <div
-                    class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center
-                                transform hover:scale-102 transition-all duration-300">
+                <div class="md:col-span-2 bg-green-700 text-white p-6 md:p-8 rounded-lg shadow-xl text-center
+                                transform hover:scale-102 transition-all duration-300"
+                    id="exports">
                     <div class="flex items-center justify-center text-white mb-4">
                         <i class="fas fa-handshake text-3xl md:text-4xl mr-4"></i>
                         <h3 class="text-xl md:text-2xl font-bold">Partnership Benefits</h3>
@@ -675,44 +675,46 @@
                                     <div class="flex flex-col justify-between">
                                         <h4 class="font-semibold text-xs md:text-sm leading-tight">
                                             {{ $article->title }}</h4>
-                                        {{-- <p class="text-xs text-gray-600">Article —
-                                                    {{ $article->created_at->format('F j, Y') }}</p> --}}
-    {{-- </div>
-    </a>
-    </article> --}}
-    {{-- @endforeach
-    </div>
-    @endif --}}
+                                        <p class="text-xs text-gray-600">Article —
+                                            {{ $article->created_at->format('F j, Y') }}</p>
+                                    </div>
+                                </a>
+                            </article> 
+                        @endforeach
+                    </div>
+                @endif
 
-    {{-- @if ($articles->count() > 3)
-        <div class="space-y-6 md:space-y-8">
-            @foreach ($articles->skip(3)->take(2) as $article)
-                <article class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
-                    <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
-                        @if ($article->photo)
-                            <img src="{{ Storage::disk('s3')->url($article->photo) }}" alt="{{ $article->title }}"
-                                class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
-                        @else
-                            <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
-                                class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
-                        @endif
-                        <div class="flex flex-col justify-between">
-                            <h4 class="font-semibold text-xs md:text-sm leading-tight">
-                                {{ $article->title }}</h4>
-                            {{-- <p class="text-xs text-gray-600">Article —
-                                                    {{ $article->created_at->format('F j, Y') }}</p> --}}
-    {{-- </div>
-                    </a>
-                </article>
-            @endforeach
+                @if ($articles->count() > 3)
+                    <div class="space-y-6 md:space-y-8">
+                        @foreach ($articles->skip(3)->take(2) as $article)
+                            <article
+                                class="flex space-x-3 transition-all hover:scale-105 hover:shadow-lg hover:text-blue-700">
+                                <a href="{{ route('articles.show', $article->id) }}" class="flex space-x-3">
+                                    @if ($article->photo)
+                                        <img src="{{ Storage::disk('s3')->url($article->photo) }}"
+                                            alt="{{ $article->title }}"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @else
+                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image Available"
+                                            class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
+                                    @endif
+                                    <div class="flex flex-col justify-between">
+                                        <h4 class="font-semibold text-xs md:text-sm leading-tight">
+                                            {{ $article->title }}</h4>
+                                        <p class="text-xs text-gray-600">Article —
+                                            {{ $article->created_at->format('F j, Y') }}</p>
+                                    </div>
+                                </a>
+                            </article>
+                        @endforeach
+                    </div>
+                @endif
+            @else
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
+                </div>
+            @endif
         </div>
-    @endif --}}
-    {{-- @else --}}
-    {{-- <div class="col-span-full text-center py-8">
-        <p class="text-gray-500 text-sm md:text-base">No articles available at the moment.</p>
-    </div>
-    @endif
-    </div>
     </section> --}}
 
     <section id="gallery" class="py-8 md:py-12 bg-white">
@@ -776,7 +778,6 @@
                         <p class="text-white text-sm font-bold">Ready for Shipment</p>
                     </div>
                 </div>
-                {{-- Tambahkan lebih banyak thumbnail gambar untuk setiap kategori --}}
             </div>
         </div>
     </section>
@@ -1138,12 +1139,6 @@
             });
         });
 
-        // Simple Form submission alert (for demonstration)
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
-            event.target.reset(); // Clear form fields
-        }
 
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
@@ -1265,13 +1260,238 @@
 
         // Handle clicks on supplier form links
         document.querySelectorAll('.mill-factory-link, .collector-link').forEach(link => {
-                    link.addEventListener('click', function(e) {
-                            @guest
-                            e.preventDefault(); // Mencegah navigasi langsung
-                            alert('Please login first to fill out the form.'); // Tampilkan pop-up
-                            window.location.href = "{{ route('login') }}"; // Opsional: redirect ke halaman login
-                        @endguest
+            link.addEventListener('click', function(e) {
+                    @guest
+                    e.preventDefault(); // Mencegah navigasi langsung
+                    alert('Please login first to fill out the form.'); // Tampilkan pop-up
+                    window.location.href = "{{ route('login') }}"; // Opsional: redirect ke halaman login
+                @endguest
+            });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const submitButton = document.getElementById('submitButton');
+            const messageDiv = document.getElementById('formMessage');
+
+            // Disable button dan ubah teks
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
+            messageDiv.innerHTML = '';
+
+            // Ambil data form TANPA token
+            const formData = new FormData(form);
+
+            // Konversi ke object dan hapus token
+            const formObject = {};
+            formData.forEach((value, key) => {
+                if (key !== '_token') { // Skip token CSRF
+                    formObject[key] = value;
+                }
+            });
+
+            console.log('Sending form data:', formObject);
+
+            // Validasi client-side tambahan
+            if (!validateForm(formObject)) {
+                resetSubmitButton(submitButton);
+                return;
+            }
+
+            // Buat FormData baru tanpa token untuk dikirim
+            const cleanFormData = new FormData();
+            Object.keys(formObject).forEach(key => {
+                cleanFormData.append(key, formObject[key]);
+            });
+
+            // Kirim AJAX request dengan timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+            fetch('/contact/send', {
+                    method: 'POST',
+                    body: cleanFormData, // FormData tanpa token
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content'), // Token di header
+                    },
+                    signal: controller.signal
+                })
+                .then(response => {
+                    clearTimeout(timeoutId);
+                    console.log('Response status:', response.status);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+
+                    if (data.success) {
+                        showSuccessMessage(messageDiv, data.message);
+                        form.reset();
+                        messageDiv.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        // Auto-hide success message setelah 10 detik
+                        setTimeout(() => {
+                            fadeOutMessage(messageDiv);
+                        }, 10000);
+
+                    } else {
+                        showErrorMessage(messageDiv, data.message, data.errors);
+
+                        if (data.errors) {
+                            console.log('Validation errors:', data.errors);
+                            highlightErrorFields(form, data.errors);
+                        }
+                    }
+                })
+                .catch(error => {
+                    clearTimeout(timeoutId);
+                    console.error('Error:', error);
+
+                    let errorMessage = 'Terjadi kesalahan saat mengirim pesan. ';
+
+                    if (error.name === 'AbortError') {
+                        errorMessage += 'Permintaan terlalu lama. Silakan coba lagi.';
+                    } else if (error.message.includes('Failed to fetch')) {
+                        errorMessage += 'Masalah koneksi internet. Periksa koneksi Anda dan coba lagi.';
+                    } else {
+                        errorMessage += 'Silakan coba lagi atau hubungi kami langsung via WhatsApp.';
+                    }
+
+                    showErrorMessage(messageDiv, errorMessage);
+                })
+                .finally(() => {
+                    resetSubmitButton(submitButton);
+                });
+        }
+
+        // Fungsi validasi form (tidak berubah)
+        function validateForm(formData) {
+            const errors = [];
+
+            // Validasi email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email_address)) {
+                errors.push('Format email tidak valid');
+            }
+
+            // Validasi nomor telepon Indonesia
+            const phoneRegex = /^(\+62|62|0)[0-9]{9,13}$/;
+            if (!phoneRegex.test(formData.phone_number.replace(/[\s-]/g, ''))) {
+                errors.push('Format nomor telepon tidak valid');
+            }
+
+            // Validasi panjang pesan
+            if (formData.message.length < 10) {
+                errors.push('Pesan terlalu pendek (minimal 10 karakter)');
+            }
+
+            if (errors.length > 0) {
+                showErrorMessage(document.getElementById('formMessage'),
+                    'Silakan perbaiki kesalahan berikut:\n• ' + errors.join('\n• '));
+                return false;
+            }
+
+            return true;
+        }
+
+        // Fungsi helper lainnya tetap sama...
+        function showSuccessMessage(messageDiv, message) {
+            messageDiv.innerHTML = `
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle text-xl mr-3"></i>
+                <div>
+                    <strong class="font-semibold">Berhasil!</strong>
+                    <p class="mt-1">${message}</p>
+                </div>
+            </div>
+        </div>
+    `;
+        }
+
+        function showErrorMessage(messageDiv, message, errors = null) {
+            let errorDetails = '';
+            if (errors) {
+                errorDetails = '<ul class="mt-2 text-sm list-disc list-inside">';
+                Object.keys(errors).forEach(field => {
+                    errors[field].forEach(error => {
+                        errorDetails += `<li>${error}</li>`;
                     });
+                });
+                errorDetails += '</ul>';
+            }
+
+            messageDiv.innerHTML = `
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-md">
+            <div class="flex items-start">
+                <i class="fas fa-exclamation-circle text-xl mr-3 mt-1 flex-shrink-0"></i>
+                <div class="flex-grow">
+                    <strong class="font-semibold">Terjadi Kesalahan!</strong>
+                    <p class="mt-1">${message}</p>
+                    ${errorDetails}
+                </div>
+            </div>
+        </div>
+    `;
+        }
+
+        function resetSubmitButton(submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Send Message';
+        }
+
+        function highlightErrorFields(form, errors) {
+            // Reset semua field
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                field.classList.remove('border-red-500', 'focus:ring-red-500');
+                field.classList.add('border-gray-300', 'focus:ring-green-custom');
+            });
+
+            // Highlight field yang error
+            Object.keys(errors).forEach(fieldName => {
+                const field = form.querySelector(`[name="${fieldName}"]`);
+                if (field) {
+                    field.classList.remove('border-gray-300', 'focus:ring-green-custom');
+                    field.classList.add('border-red-500', 'focus:ring-red-500');
+                }
+            });
+        }
+
+        function fadeOutMessage(messageDiv) {
+            messageDiv.style.transition = 'opacity 0.5s';
+            messageDiv.style.opacity = '0';
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+                messageDiv.style.opacity = '1';
+            }, 500);
+        }
+
+        // Event listener untuk reset error highlight saat user mengetik
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[onsubmit="handleSubmit(event)"]');
+            if (form) {
+                form.querySelectorAll('input, select, textarea').forEach(field => {
+                    field.addEventListener('input', function() {
+                        if (this.classList.contains('border-red-500')) {
+                            this.classList.remove('border-red-500', 'focus:ring-red-500');
+                            this.classList.add('border-gray-300', 'focus:ring-green-custom');
+                        }
+                    });
+                });
+            }
+        });
+        });
     </script>
 </body>
 

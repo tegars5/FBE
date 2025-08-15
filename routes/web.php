@@ -23,6 +23,8 @@ Route::prefix('supplier')->middleware('auth')->group(function () {
     Route::get('/mill-factory-form', [SupplierController::class, 'showForm'])->name('supplier.formFactory');
     Route::get('/collector-form', [SupplierController::class, 'showCollectorForm'])->name('supplier.formCollector');
 });
+// Route untuk mengirim contact form
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 
 
@@ -32,7 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');  // Menampilkan Profil Pengguna
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');  // Edit Profil
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');  // Update Profil
-
     // Dashboard berdasarkan peran (Supplier / Buyer / Admin)
     Route::get('/dashboard', function () {
         $role = Auth::user()->role;

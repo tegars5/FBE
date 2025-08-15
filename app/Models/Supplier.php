@@ -10,7 +10,6 @@ class Supplier extends Model
     use HasFactory;
 
     protected $table = 'suppliers';
-
     protected $fillable = [
         'user_id',
         'type',
@@ -50,7 +49,6 @@ class Supplier extends Model
         'pks_sample_photos' => 'array',
         'lab_test_report_path' => 'string',
     ];
-
     public function user()
     {
         return $this->belongsTo(User::class);

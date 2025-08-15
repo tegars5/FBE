@@ -425,15 +425,13 @@
                     });
                 }
             });
-        });
-
+        }); 
         // Simple Form submission alert (for demonstration)
         function handleSubmit(event) {
             event.preventDefault();
             alert('Thank you! Your message has been sent. We will respond within 24 hours.');
             event.target.reset(); // Clear form fields
         }
-
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
             const allSDGs = document.querySelectorAll('.sdg-detail');
