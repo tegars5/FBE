@@ -184,7 +184,7 @@
             display: flex;
         }
 
-        /* === Layout & Basic Elements (Sama seperti sebelumnya) === */
+        /* === Layout & Basic Elements === */
         .main-content {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
@@ -203,6 +203,20 @@
             z-index: 99;
         }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
         .content {
             padding: 30px;
         }
@@ -218,12 +232,15 @@
         .sidebar {
             width: var(--sidebar-width);
             background: #fff;
-            /* ... sisa style sidebar bisa disamakan ... */
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
         }
 
-        /* === Konten Utama (Gaya yang Anda Sukai) === */
-
-        /* Stats Row */
+        /* === Stats Row === */
         .stats-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -264,7 +281,7 @@
             opacity: 0.3;
         }
 
-        /* Alerts */
+        /* === Alerts === */
         .alert {
             padding: 1rem;
             margin-bottom: 1.5rem;
@@ -284,7 +301,7 @@
             border-color: #f5c6cb;
         }
 
-        /* Content Card & Submission List */
+        /* === Content Card & Submission List === */
         .content-card {
             background: #fff;
             padding: 1.5rem;
@@ -320,12 +337,11 @@
             align-items: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            /* Agar responsif di layar kecil */
         }
 
         .sub-info {
             flex: 2;
-            min-width: 250px;
+            min-width: 200px;
         }
 
         .sub-name {
@@ -343,6 +359,7 @@
         .sub-offered {
             flex: 1;
             text-align: center;
+            min-width: 150px;
         }
 
         .sub-offered-label {
@@ -361,15 +378,15 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            /* Aksi rata kanan */
             gap: .75rem;
-            /* Jarak antara form accept dan reject */
+            min-width: 250px;
         }
 
         .accept-form {
             display: flex;
             align-items: center;
             gap: .75rem;
+            flex-wrap: wrap;
         }
 
         .accept-label {
@@ -401,7 +418,6 @@
             transition: background-color .2s;
         }
 
-        /* WARNA KESUKAAN ANDA DIKEMBALIKAN */
         .btn-accept {
             background: #10b981;
             color: #fff;
@@ -436,7 +452,55 @@
             font-size: 1rem;
         }
 
+        /* === RESPONSIVE DESIGN === */
+
+        /* Tablet landscape dan desktop kecil */
+        @media (max-width: 1200px) {
+            .stats-row {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-icon {
+                font-size: 2rem;
+            }
+        }
+
+        /* Tablet */
         @media (max-width: 992px) {
+            :root {
+                --sidebar-width: 0px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .header {
+                padding: 0 20px;
+            }
+
             .submission-card {
                 flex-direction: column;
                 align-items: stretch;
@@ -449,6 +513,192 @@
             .sub-actions {
                 align-items: flex-start;
             }
+
+            .stats-row {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+        }
+
+        /* Mobile landscape */
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+                height: auto;
+                min-height: var(--header-height);
+                padding: 15px 20px;
+            }
+
+            .page-title {
+                font-size: 1.3rem;
+                order: 1;
+                flex: 1;
+            }
+
+            .menu-toggle {
+                order: 0;
+                margin-right: 15px;
+            }
+
+            .header-actions {
+                order: 2;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .date {
+                font-size: 0.8rem;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .stat-icon {
+                font-size: 1.5rem;
+            }
+
+            .content-card {
+                padding: 1rem;
+            }
+
+            .card-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .submission-card {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .sub-info {
+                min-width: unset;
+            }
+
+            .sub-offered {
+                min-width: unset;
+            }
+
+            .sub-actions {
+                min-width: unset;
+                width: 100%;
+            }
+
+            .accept-form {
+                justify-content: space-between;
+            }
+
+            .accept-input {
+                width: 80px;
+            }
+        }
+
+        /* Mobile portrait */
+        @media (max-width: 480px) {
+            .content {
+                padding: 15px;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .stat-card {
+                padding: 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 10px 15px;
+            }
+
+            .page-title {
+                font-size: 1.2rem;
+            }
+
+            .content-card {
+                padding: 0.8rem;
+            }
+
+            .card-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .card-header p {
+                font-size: 0.8rem;
+            }
+
+            .submission-card {
+                padding: 0.8rem;
+            }
+
+            .accept-form {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            .accept-label {
+                text-align: center;
+            }
+
+            .accept-input {
+                width: 100%;
+            }
+
+            .btn-accept,
+            .btn-reject {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sub-actions {
+                gap: 0.5rem;
+            }
+
+            .footer {
+                padding: 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Very small mobile */
+        @media (max-width: 320px) {
+            .content {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            .page-title {
+                font-size: 1.1rem;
+            }
+
+            .stat-number {
+                font-size: 1.3rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+            }
         }
     </style>
 
@@ -460,6 +710,15 @@
             if (menuToggle) {
                 menuToggle.addEventListener('click', () => {
                     sidebar.classList.toggle('active');
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 992) {
+                        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                            sidebar.classList.remove('active');
+                        }
+                    }
                 });
             }
 

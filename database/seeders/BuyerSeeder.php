@@ -18,8 +18,9 @@ class BuyerSeeder extends Seeder
         $buyerUser = User::create([
             'name' => 'Green Energy Trading (Buyer)',
             'email' => 'buyer@example.com',
-            'password' => Hash::make('password'), // password default: "password"
+            'password' => Hash::make('password'),
             'role' => 'buyer',
+            'status' => 'pending', // Status dikelola di tabel user
         ]);
 
         // 2. Membuat data Buyer yang terhubung dengan User di atas
@@ -33,12 +34,12 @@ class BuyerSeeder extends Seeder
             'monthly_purchase_volume' => 4000.00,
             'preferred_trade_terms' => 'FOB',
             'target_price' => 120.00,
-            'products_of_interest' => ['PKS (Raw)', 'PKS Charcoal'], // Ini akan disimpan sebagai JSON
+            'products_of_interest' => json_encode(['PKS (Raw)', 'PKS Charcoal']), // Pastikan di-encode ke JSON
             'contact_person_name' => 'Mr. Tanaka',
             'contact_person_email' => 'tanaka@greenenergy.co.jp',
             'contact_person_phone' => '+819012345678',
             'additional_notes' => 'We require GGL-certified PKS only.',
-            'status' => 'pending', // Menambahkan status pada buyer
+            // Kolom 'status' dihapus dari sini karena tidak ada di tabel buyers
         ]);
     }
 }
