@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+// Hapus 'use App\Models\Admin;' karena tidak kita gunakan lagi
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,12 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        Admin::create([
+        // Ganti Admin::create menjadi User::create dan tambahkan role
+        User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
+            'role' => 'admin',
+            'status' => 'active',
+        ]);
+
+        // Memanggil seeder lain (ini sudah benar)
+        $this->call([
+            SupplierSeeder::class,
+            BuyerSeeder::class,
         ]);
     }
 }
+    

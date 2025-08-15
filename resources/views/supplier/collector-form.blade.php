@@ -28,7 +28,7 @@
                         experienced PKS collector looking for new business opportunities, please fill out the form
                         below. We would love to learn more about your operations and discuss how we can collaborate.
                     </p>
-                    <form id="collectorForm" class="space-y-4" action="{{ route('supplier.register.initial') }}"
+                    <form id="collectorForm" class="space-y-4" action="{{ route('supplier.formCollector') }}"
                         method="POST">
                         @csrf
                         <div>
@@ -345,7 +345,6 @@
                         charcoal
                         solutions.</p>
                 </div>
-
                 <div>
                     <h4 class="font-bold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">

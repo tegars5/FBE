@@ -30,7 +30,7 @@
 
     <!-- Conditionally load styles -->
     @if ($styles)
-        @vite(['resources/css/style.css'])
+        @vite(entrypoints: ['resources/css/style.css'])
     @else
         @vite(['resources/css/dashboard.css'])
     @endif

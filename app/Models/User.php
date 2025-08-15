@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Buyer;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'status',
     ];
 
     /**
@@ -47,38 +50,20 @@ class User extends Authenticatable
     }
 
     /**
-     * Relationship: User has one Supplier
-     * Setiap user hanya bisa punya satu data supplier
+     * Get the supplier record associated with the user.
      */
     public function supplier()
     {
-        return $this->hasOne(Supplier::class);
+        return $this->hasOne(\App\Models\Supplier::class, 'user_id');
     }
 
     /**
-     * Relationship: User has many Suppliers
-     * Jika ingin user bisa punya banyak supplier, uncomment ini dan comment yang hasOne
+     * Get the buyer record associated with the user.
      */
-    // public function suppliers()
-    // {
-    // return $this->hasMany(Supplier::class);
-    // }
-
-    /**
-     * Check if user has supplier data
-     * Helper method untuk cek apakah user sudah punya data supplier
-     */
-    public function hasSupplier()
+    public function buyer()
     {
-        return $this->supplier()->exists();
-    }
-
-    /**
-     * Get supplier data with default values
-     * Helper method untuk ambil data supplier dengan fallback
-     */
-    public function getSupplierData()
-    {
-        return $this->supplier ?: new Supplier();
+        // Pastikan Anda sudah memiliki model Buyer
+        // Ganti \App\Models\Buyer::class jika path atau nama modelnya berbeda
+        return $this->hasOne(\App\Models\Buyer::class, 'user_id');
     }
 }

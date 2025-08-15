@@ -40,7 +40,7 @@
                         expanding your market reach and contributing to sustainability, please fill out the form below.
                         We look forward to exploring potential cooperation.
                     </p>
-                    <form class="space-y-4" action="{{ route('supplier.register.initial') }}" method="POST"
+                    <form class="space-y-4" action="{{ route('supplier.formFactory') }}" method="POST"
                         enctype="multipart/form-data" id="supplierForm">
                         @csrf
 
