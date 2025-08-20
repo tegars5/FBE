@@ -1123,23 +1123,27 @@
             }
         });
 
-        // INI KODE LAMA - PASTIKAN SUDAH DIHAPUS
+        // Smooth Scroll for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId); // <- Menggunakan 'target'
-                if (target) {
+                e.preventDefault(); // Mencegah default scroll
+
+                const targetId = this.getAttribute('href'); // Ambil target id
+                const targetElement = document.querySelector(targetId); // Cari elemen target
+
+                if (targetElement) {
+                    // Tambahkan offset untuk memastikan konten tidak tertutup oleh navbar
                     const navbarHeight = document.querySelector('nav').offsetHeight;
-                    const offset = target.offsetTop - navbarHeight; // <- Berdasarkan 'target'
+                    const offsetTop = targetElement.offsetTop - navbarHeight;
 
                     window.scrollTo({
-                        top: offset,
-                        behavior: 'smooth'
+                        top: offsetTop, // Scroll ke posisi target
+                        behavior: 'smooth' // Smooth scroll
                     });
                 }
             });
         });
+
 
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);

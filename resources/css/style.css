@@ -106,6 +106,7 @@ nav.scrolled {
 }
 html {
     scroll-padding-top: 80px; /* Menambahkan jarak agar tidak tertutup oleh navbar */
+    scroll-behavior: smooth;
 }
 
 section {
