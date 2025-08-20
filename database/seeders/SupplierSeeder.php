@@ -40,10 +40,10 @@ class SupplierSeeder extends Seeder
             // ==========================================================
 
             'minimum_order_quantity'  => 120,
-            'years_operation'         => 10, // Menambahkan data dummy untuk kolom yang required
-            'contact_name'            => 'Budi Santoso', // Menambahkan data dummy
-            'contact_email'           => 'budi@sawitjaya.com', // Menambahkan data dummy
-            'contact_phone'           => '08123456789', // Menambahkan data dummy
+            'years_operation'         => 10,
+            'contact_name'            => 'Budi Santoso', 
+            'contact_email'           => 'budi@sawitjaya.com', 
+            'contact_phone'           => '08123456789', 
             'submission_status'       => 'pending',
         ]);
     }

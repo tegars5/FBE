@@ -35,6 +35,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ url('/') }}#company"
+                        class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
+                        Company
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/') }}#supplier-info"
                         class="nav-link text-gray-800 font-medium text-base py-2.5
                     relative hover:text-green-light transition duration-300">
@@ -248,6 +254,11 @@
                 <div class="mobile-menu-item">
                     <a href="{{ url('/') }}#sustainability" class="mobile-menu-link">
                         <i class="fas fa-leaf"></i>Sustainability
+                    </a>
+                </div>
+                <div class="mobile-menu-item">
+                    <a href="{{ url('/') }}#company" class="mobile-menu-link">
+                        <i class="fas fa-leaf"></i>Company Name
                     </a>
                 </div>
                 <div class="mobile-menu-item">

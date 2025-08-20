@@ -104,6 +104,13 @@ nav.scrolled {
 #mobile-lang-toggle.active .fa-chevron-down {
     transform: rotate(180deg);
 }
+html {
+    scroll-padding-top: 80px; /* Menambahkan jarak agar tidak tertutup oleh navbar */
+}
+
+section {
+    padding-top: 50px; /* Memberikan jarak lebih dari bagian atas halaman */
+}
 
 /* Logo container styling */
 .logo-image-container {
