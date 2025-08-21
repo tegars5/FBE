@@ -168,6 +168,12 @@
                             Sign&nbsp;Up
                         </a>
                     </li>
+                    <li class="desktop-language">
+                        <a href="#"
+                            class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
+                            <i class="fas fa-globe mr-1"></i> Language
+                        </a>
+                    </li>
                 @endauth
                 {{-- END: Link Kondisional --}}
             </ul>
@@ -240,6 +246,7 @@
                     </a>
                 </div>
 
+
                 {{-- START: Conditional Links based on User Role (Mobile Navbar) --}}
                 @auth
                     {{-- If user is logged in, show personalized dashboard link --}}
@@ -275,7 +282,6 @@
                         </div>
                     @endif
                 @endauth
-                {{-- END: Conditional Links based on User Role (Mobile Navbar) --}}
 
                 <div class="mobile-menu-item">
                     @auth
@@ -344,52 +350,103 @@
         </div>
     </nav>
     <script>
-        // Menjalankan semua skrip setelah seluruh konten halaman (HTML) selesai dimuat
         document.addEventListener('DOMContentLoaded', function() {
-
             // ===============================================================
             // BAGIAN 1: FUNGSI DROPDOWN NAVIGASI DESKTOP (DIPERBAIKI)
             // ===============================================================
-            const dropdowns = document.querySelectorAll('.dropdown');
+            const dropdowns = document.querySelectorAll('nav .dropdown');
             let leaveTimeout;
 
             dropdowns.forEach(dropdown => {
-                const trigger = dropdown.querySelector('button');
-                const menu = dropdown.querySelector('.dropdown-menu');
+                const handleMouseEnter = () => {
+                    clearTimeout(leaveTimeout);
+                    dropdowns.forEach(d => d.classList.remove('active'));
+                    dropdown.classList.add('active');
+                };
 
-                // Pastikan elemen pemicu dan menu ada sebelum menambahkan event
-                if (trigger && menu) {
-                    // Fungsi untuk menampilkan dropdown
-                    const handleMouseEnter = () => {
-                        // Hapus timer penutup jika mouse kembali masuk ke area dropdown
-                        clearTimeout(leaveTimeout);
-                        // Tutup dulu semua dropdown lain yang mungkin terbuka
-                        dropdowns.forEach(d => {
-                            if (d !== dropdown) {
-                                d.classList.remove('active');
-                            }
-                        });
-                        // Tampilkan dropdown yang sedang di-hover
-                        dropdown.classList.add('active');
-                    };
+                const handleMouseLeave = () => {
+                    leaveTimeout = setTimeout(() => {
+                        dropdown.classList.remove('active');
+                    }, 300);
+                };
 
-                    // Fungsi untuk menyembunyikan dropdown dengan jeda
-                    const handleMouseLeave = () => {
-                        // Setel timer untuk menutup dropdown setelah jeda waktu
-                        leaveTimeout = setTimeout(() => {
-                            dropdown.classList.remove('active');
-                        }, 300); // Jeda 0.3 detik, bisa diubah jika perlu (misal: 400)
-                    };
-
-                    // Terapkan event listener ke seluruh area dropdown (<li>)
-                    // Ini membuat perpindahan mouse dari tombol ke menu lebih mulus
-                    dropdown.addEventListener('mouseenter', handleMouseEnter);
-                    dropdown.addEventListener('mouseleave', handleMouseLeave);
-                }
+                dropdown.addEventListener('mouseenter', handleMouseEnter);
+                dropdown.addEventListener('mouseleave', handleMouseLeave);
             });
+            const heroImages = [
+                '{{ asset('assets/foto-bg/bg-1.png') }}',
+                '{{ asset('assets/foto-bg/bg-2.JPG') }}',
+                '{{ asset('assets/foto-bg/bg-3.jpg') }}'
+            ];
+            const homeHero = document.getElementById('home-hero');
+            const heroDotsContainer = document.getElementById('hero-dots');
+            const heroTitle = document.querySelector('.hero-title');
+            const heroButtons = document.querySelector('.hero-buttons');
+
+            if (homeHero && heroDotsContainer && heroTitle && heroButtons) {
+                let currentHeroImageIndex = 0;
+                let autoSlideInterval;
+
+                function createHeroDots() {
+                    heroDotsContainer.innerHTML = '';
+                    heroImages.forEach((_, index) => {
+                        const dot = document.createElement('span');
+                        dot.className =
+                            'w-2 h-2 bg-white rounded-full opacity-50 cursor-pointer hover:opacity-100 transition';
+                        if (index === currentHeroImageIndex) dot.classList.replace('opacity-50',
+                            'opacity-100');
+                        dot.addEventListener('click', () => {
+                            currentHeroImageIndex = index;
+                            updateHeroSlider();
+                            resetAutoSlide();
+                        });
+                        heroDotsContainer.appendChild(dot);
+                    });
+                }
+
+                function updateHeroSlider() {
+                    homeHero.style.backgroundImage = `url('${heroImages[currentHeroImageIndex]}')`;
+                    const isFirstSlide = currentHeroImageIndex === 0;
+                    heroTitle.style.display = isFirstSlide ? 'block' : 'none';
+                    heroButtons.style.display = isFirstSlide ? 'flex' : 'none';
+                    homeHero.style.backgroundSize = 'cover';
+                    homeHero.style.backgroundPosition = 'center';
+                    createHeroDots();
+                }
+
+                function nextHeroImage() {
+                    currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
+                    updateHeroSlider();
+                }
+
+                function prevHeroImage() {
+                    currentHeroImageIndex = (currentHeroImageIndex - 1 + heroImages.length) % heroImages.length;
+                    updateHeroSlider();
+                }
+
+                function resetAutoSlide() {
+                    clearInterval(autoSlideInterval);
+                    autoSlideInterval = setInterval(nextHeroImage, 20000);
+                }
+
+                updateHeroSlider();
+                resetAutoSlide();
+
+                let touchStartX = 0;
+                homeHero.addEventListener('touchstart', e => {
+                    touchStartX = e.touches[0].clientX;
+                    clearInterval(autoSlideInterval);
+                });
+                homeHero.addEventListener('touchend', e => {
+                    const touchEndX = e.changedTouches[0].clientX;
+                    if (touchEndX < touchStartX - 50) nextHeroImage();
+                    if (touchEndX > touchStartX + 50) prevHeroImage();
+                    resetAutoSlide();
+                });
+            }
 
             // ===============================================================
-            // BAGIAN 2: FUNGSI MENU MOBILE (TETAP SAMA, HANYA DIRAPIKAN)
+            // BAGIAN 3: FUNGSI MENU MOBILE DAN LAINNYA
             // ===============================================================
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -402,69 +459,33 @@
                     menuOverlay.classList.toggle('active');
                     document.body.classList.toggle('overflow-hidden');
                 };
-
                 menuBtn.addEventListener('click', toggleMobileMenu);
                 menuOverlay.addEventListener('click', toggleMobileMenu);
-
-                // Menutup menu mobile saat link di dalamnya diklik
-                document.querySelectorAll('.mobile-menu-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (mobileMenu.classList.contains('active')) {
-                            toggleMobileMenu();
-                        }
-                    });
-                });
-
-                // Menutup menu mobile dengan tombol 'Escape'
-                document.addEventListener('keydown', e => {
-                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                        toggleMobileMenu();
-                    }
-                });
-
-                // Menutup menu mobile jika ukuran layar menjadi desktop
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
-                        toggleMobileMenu();
-                    }
-                });
+                document.querySelectorAll('.mobile-menu-link').forEach(link => link.addEventListener('click', () =>
+                    mobileMenu.classList.contains('active') && toggleMobileMenu()));
+                document.addEventListener('keydown', e => e.key === 'Escape' && mobileMenu.classList.contains(
+                    'active') && toggleMobileMenu());
+                window.addEventListener('resize', () => window.innerWidth >= 1024 && mobileMenu.classList.contains(
+                    'active') && toggleMobileMenu());
             }
 
-            const langToggleBtn = document.getElementById('mobile-lang-toggle');
-            const langOptionsMenu = document.getElementById('mobile-lang-options');
-
-            if (langToggleBtn && langOptionsMenu) {
-                langToggleBtn.addEventListener('click', () => {
-                    langOptionsMenu.classList.toggle('active');
-                    langToggleBtn.classList.toggle('active');
-                });
-            }
-
-            // ===============================================================
-            // BAGIAN 3: FUNGSI-FUNGSI LAINNYA (TETAP SAMA)
-            // ===============================================================
-
-            // Efek scroll pada Navbar
+            // Navbar scroll effect
             window.addEventListener('scroll', function() {
                 const nav = document.querySelector('nav');
-                if (nav) {
-                    if (window.scrollY > 100) {
-                        nav.classList.add('scrolled');
-                    } else {
-                        nav.classList.remove('scrolled');
-                    }
+                if (window.scrollY > 100) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
                 }
             });
 
-            // Smooth scrolling untuk link anchor (#)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const target = document.querySelector(targetId);
+                    const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
-                        const navbarHeight = document.querySelector('nav').offsetHeight;
-                        const offset = target.offsetTop - navbarHeight;
+                        const offset = target.offsetTop - document.querySelector('nav')
+                            .offsetHeight;
                         window.scrollTo({
                             top: offset,
                             behavior: 'smooth'
@@ -472,11 +493,8 @@
                     }
                 });
             });
+        });
 
-        }); // Akhir dari event listener DOMContentLoaded
-
-        // Fungsi-fungsi global yang mungkin dipanggil dari HTML (seperti onclick)
-        // Sebaiknya tetap di luar DOMContentLoaded
         function handleSubmit(event) {
             event.preventDefault();
             alert('Thank you! Your message has been sent. We will respond within 24 hours.');
@@ -486,25 +504,55 @@
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
             if (!element) return;
+            document.querySelectorAll('.sdg-detail').forEach(sdg => sdg.id !== sdgId && sdg.classList.add('hidden'));
+            element.classList.toggle('hidden');
+            if (!element.classList.contains('hidden')) {
+                setTimeout(() => element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                }), 100);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOverlay = document.getElementById('menu-overlay');
 
-            const allSDGs = document.querySelectorAll('.sdg-detail');
-            allSDGs.forEach(sdg => {
-                if (sdg.id !== sdgId) {
-                    sdg.classList.add('hidden');
+            // Toggle mobile menu
+            function toggleMobileMenu() {
+                menuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.classList.toggle('overflow-hidden'); // Prevent body scroll
+            }
+
+            // Add event listeners
+            menuBtn.addEventListener('click', toggleMobileMenu);
+            menuOverlay.addEventListener('click', toggleMobileMenu);
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // Close mobile menu when the escape key is pressed
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
                 }
             });
 
-            element.classList.toggle('hidden');
-
-            if (!element.classList.contains('hidden')) {
-                setTimeout(() => {
-                    element.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }, 100);
-            }
-        }
+            // Close mobile menu on window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
     </script>
 </body>
 

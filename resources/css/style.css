@@ -739,3 +739,23 @@ nav.scrolled .logo-bg {
     }
     /* END of new additions for home-hero background position */
 }
+
+/* Hanya tampilkan pada mode mobile */
+@media (max-width: 768px) {
+    .desktop-language {
+        display: none; /* Menyembunyikan di desktop */
+    }
+    .mobile-language {
+        display: block; /* Menampilkan di mobile */
+    }
+}
+
+/* Hanya tampilkan pada desktop */
+@media (min-width: 768px) {
+    .desktop-language {
+        display: block; /* Menampilkan di desktop */
+    }
+    .mobile-language {
+        display: none; /* Menyembunyikan di mobile */
+    }
+}
