@@ -21,7 +21,6 @@
                         Home
                     </a>
                 </li>
-
                 <li>
                     <a href="{{ url('/') }}#about"
                         class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
@@ -42,11 +41,12 @@
                 </li>
                 <li>
                     <a href="{{ url('/') }}#supplier-info"
-                        class="nav-link text-gray-800 font-medium text-base py-2.5
-                    relative hover:text-green-light transition duration-300">
+                        class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
                         Exports & Partnerships
                     </a>
                 </li>
+
+                {{-- Dropdown "More" --}}
                 <li class="relative dropdown">
                     <button
                         class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
@@ -79,9 +79,9 @@
                     </ul>
                 </li>
 
-                {{-- START: Conditional Links based on User Role (Desktop Navbar) --}}
+                {{-- START: Link Kondisional Berdasarkan Role & Status Login --}}
                 @auth
-                    {{-- If user is logged in, show personalized dashboard link --}}
+                    {{-- Link spesifik untuk role 'supplier' --}}
                     @if (Auth::user()->role === 'supplier')
                         <li class="relative dropdown">
                             <button
@@ -97,104 +97,65 @@
                                 class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
                                 <li>
                                     <a href="{{ route('supplier.formFactory') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
                                         Mill Factory
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('supplier.formCollector') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition collector-link">
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
                                         Collector
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                    @elseif(Auth::user()->role === 'buyer')
-                        {{-- Add specific buyer links here if needed, e.g., "Browse Suppliers" --}}
-                        <li class="relative dropdown">
-                            <button
-                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
-                                Buyer
-                                <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <ul
-                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
-                                <li>
-                                    <a href="{{ route('buyer.purchaserequest') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
-                                        Purchase Request
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    @elseif(Auth::user()->role === 'admin')
-                        {{-- Add specific admin links here if needed --}}
-                        <li>
-                            <a href="{{ route('admin.dashboard') }}"
-                                class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
-                                Admin Panel
-                            </a>
-                        </li>
                     @endif
-                @endauth
-                {{-- END: Conditional Links based on User Role (Desktop Navbar) --}}
 
-                {{-- Dynamic User/Language Section & Auth Buttons (Desktop) --}}
-                <li class="relative flex items-center">
-                    @auth
-                        {{-- User is logged in: Show profile dropdown --}}
-                        <div class="relative dropdown group">
-                            <button
-                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none"
-                                id="profile-dropdown-btn">
-                                <i class="fas fa-user-circle mr-1"></i> {{ Auth::user()->name }}
-                                <svg class="w-3 h-3 ml-1 transition-transform duration-200 group-hover:rotate-180"
-                                    fill="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <ul
-                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 hidden group-hover:block">
-                                <li>
-                                    @php
-                                        $dashboardRoute = 'dashboard';
-                                        if (Auth::user()->role === 'admin') {
-                                            $dashboardRoute = 'admin.dashboard';
-                                        } elseif (Auth::user()->role === 'supplier') {
-                                            $dashboardRoute = 'supplier.dashboard';
-                                        } elseif (Auth::user()->role === 'buyer') {
-                                            $dashboardRoute = 'buyer.dashboard';
-                                        }
-                                    @endphp
-                                    <a href="{{ route('profile.show') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        My Profile
-                                    </a>
-                                    <a href="{{ route($dashboardRoute) }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        Dashboard
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <form id="logout-form-desktop" action="{{ route('logout') }}" method="POST"
-                                        class="w-full">
-                                        @csrf
-                                        <button type="submit"
-                                            class="block w-full text-left px-6 py-3 text-red-600 hover:bg-red-50 hover:text-red-800 transition">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    @else
-                        {{-- User is not logged in: Show Sign In/Sign Up buttons and Language --}}
+                    {{-- Dropdown Profil Pengguna (Struktur sudah konsisten) --}}
+                    <li class="relative dropdown">
+                        <button
+                            class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
+                            <i class="fas fa-user-circle mr-1"></i> {{ Auth::user()->name }}
+                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <ul
+                            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
+                            <li>
+                                @php
+                                    $dashboardRoute = 'dashboard'; // Default
+                                    if (Auth::user()->role === 'admin') {
+                                        $dashboardRoute = 'admin.dashboard';
+                                    } elseif (Auth::user()->role === 'supplier') {
+                                        $dashboardRoute = 'supplier.dashboard';
+                                    } elseif (Auth::user()->role === 'buyer') {
+                                        $dashboardRoute = 'buyer.dashboard';
+                                    }
+                                @endphp
+                                <a href="{{ route('profile.show') }}"
+                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                    My Profile
+                                </a>
+                                <a href="{{ route($dashboardRoute) }}"
+                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="w-full">
+                                    @csrf
+                                    <button type="submit"
+                                        class="block w-full text-left px-6 py-3 text-red-600 hover:bg-red-50 hover:text-red-800 transition">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    {{-- Tombol untuk Pengguna yang Belum Login --}}
                     <li>
                         <a href="{{ route('login') }}"
                             class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
@@ -207,16 +168,8 @@
                             Sign&nbsp;Up
                         </a>
                     </li>
-                    {{-- Language button is static, can be nested within a dropdown if multiple languages are supported --}}
-                    <li>
-                        <a href="#"
-                            class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
-                            <i class="fas fa-globe mr-1"></i>
-                            Language
-                        </a>
-                    </li>
                 @endauth
-                </li>
+                {{-- END: Link Kondisional --}}
             </ul>
 
             <button class="lg:hidden hamburger" id="menu-btn" aria-label="Toggle mobile menu">
@@ -391,90 +344,158 @@
         </div>
     </nav>
     <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuOverlay = document.getElementById('menu-overlay');
+        // Menjalankan semua skrip setelah seluruh konten halaman (HTML) selesai dimuat
+        document.addEventListener('DOMContentLoaded', function() {
 
-        function toggleMobileMenu() {
-            menuBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            document.body.classList.toggle('overflow-hidden');
-        }
+            // ===============================================================
+            // BAGIAN 1: FUNGSI DROPDOWN NAVIGASI DESKTOP (DIPERBAIKI)
+            // ===============================================================
+            const dropdowns = document.querySelectorAll('.dropdown');
+            let leaveTimeout;
 
-        menuBtn.addEventListener('click', toggleMobileMenu);
-        menuOverlay.addEventListener('click', toggleMobileMenu);
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('button');
+                const menu = dropdown.querySelector('.dropdown-menu');
 
-        // Close menu when clicking on mobile menu links
-        document.querySelectorAll('.mobile-menu-link').forEach(link => {
-            link.addEventListener('click', toggleMobileMenu);
-        });
+                // Pastikan elemen pemicu dan menu ada sebelum menambahkan event
+                if (trigger && menu) {
+                    // Fungsi untuk menampilkan dropdown
+                    const handleMouseEnter = () => {
+                        // Hapus timer penutup jika mouse kembali masuk ke area dropdown
+                        clearTimeout(leaveTimeout);
+                        // Tutup dulu semua dropdown lain yang mungkin terbuka
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                d.classList.remove('active');
+                            }
+                        });
+                        // Tampilkan dropdown yang sedang di-hover
+                        dropdown.classList.add('active');
+                    };
 
-        // Close menu on Escape key
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        });
+                    // Fungsi untuk menyembunyikan dropdown dengan jeda
+                    const handleMouseLeave = () => {
+                        // Setel timer untuk menutup dropdown setelah jeda waktu
+                        leaveTimeout = setTimeout(() => {
+                            dropdown.classList.remove('active');
+                        }, 300); // Jeda 0.3 detik, bisa diubah jika perlu (misal: 400)
+                    };
 
-        // Close menu on resize for desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
-                if (target) {
-                    // Adjust scroll position by subtracting navbar height
-                    const navbarHeight = document.querySelector('nav').offsetHeight;
-                    const offset = target.offsetTop - navbarHeight;
-
-                    window.scrollTo({
-                        top: offset,
-                        behavior: 'smooth'
-                    });
+                    // Terapkan event listener ke seluruh area dropdown (<li>)
+                    // Ini membuat perpindahan mouse dari tombol ke menu lebih mulus
+                    dropdown.addEventListener('mouseenter', handleMouseEnter);
+                    dropdown.addEventListener('mouseleave', handleMouseLeave);
                 }
             });
-        });
-        // Simple Form submission alert (for demonstration)
+
+            // ===============================================================
+            // BAGIAN 2: FUNGSI MENU MOBILE (TETAP SAMA, HANYA DIRAPIKAN)
+            // ===============================================================
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOverlay = document.getElementById('menu-overlay');
+
+            if (menuBtn && mobileMenu && menuOverlay) {
+                const toggleMobileMenu = () => {
+                    menuBtn.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    menuOverlay.classList.toggle('active');
+                    document.body.classList.toggle('overflow-hidden');
+                };
+
+                menuBtn.addEventListener('click', toggleMobileMenu);
+                menuOverlay.addEventListener('click', toggleMobileMenu);
+
+                // Menutup menu mobile saat link di dalamnya diklik
+                document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mobileMenu.classList.contains('active')) {
+                            toggleMobileMenu();
+                        }
+                    });
+                });
+
+                // Menutup menu mobile dengan tombol 'Escape'
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+
+                // Menutup menu mobile jika ukuran layar menjadi desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+            }
+
+            const langToggleBtn = document.getElementById('mobile-lang-toggle');
+            const langOptionsMenu = document.getElementById('mobile-lang-options');
+
+            if (langToggleBtn && langOptionsMenu) {
+                langToggleBtn.addEventListener('click', () => {
+                    langOptionsMenu.classList.toggle('active');
+                    langToggleBtn.classList.toggle('active');
+                });
+            }
+
+            // ===============================================================
+            // BAGIAN 3: FUNGSI-FUNGSI LAINNYA (TETAP SAMA)
+            // ===============================================================
+
+            // Efek scroll pada Navbar
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (nav) {
+                    if (window.scrollY > 100) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                }
+            });
+
+            // Smooth scrolling untuk link anchor (#)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const navbarHeight = document.querySelector('nav').offsetHeight;
+                        const offset = target.offsetTop - navbarHeight;
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+        }); // Akhir dari event listener DOMContentLoaded
+
+        // Fungsi-fungsi global yang mungkin dipanggil dari HTML (seperti onclick)
+        // Sebaiknya tetap di luar DOMContentLoaded
         function handleSubmit(event) {
             event.preventDefault();
             alert('Thank you! Your message has been sent. We will respond within 24 hours.');
-            event.target.reset(); // Clear form fields
+            event.target.reset();
         }
 
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
-            const allSDGs = document.querySelectorAll('.sdg-detail');
+            if (!element) return;
 
-            // Hide all other SDGs
+            const allSDGs = document.querySelectorAll('.sdg-detail');
             allSDGs.forEach(sdg => {
                 if (sdg.id !== sdgId) {
                     sdg.classList.add('hidden');
                 }
             });
 
-            // Toggle the clicked SDG
             element.classList.toggle('hidden');
 
-            // Smooth scroll to the detail if it's being shown
             if (!element.classList.contains('hidden')) {
                 setTimeout(() => {
                     element.scrollIntoView({
@@ -483,147 +504,6 @@
                     });
                 }, 100);
             }
-        }
-
-        // Slider Hero with Touch Swipe
-        const heroImages = [
-            '{{ asset('assets/foto-bg/bg-1.png') }}',
-            '{{ asset('assets/foto-bg/bg-2.JPG') }}',
-            '{{ asset('assets/foto-bg/bg-3.jpg') }}'
-        ];
-
-        const homeHero = document.getElementById('home-hero');
-        const heroDotsContainer = document.getElementById('hero-dots');
-        const heroTitle = document.querySelector('.hero-title'); // Select title element
-        const heroButtons = document.querySelector('.hero-buttons'); // Select buttons element
-
-        let currentHeroImageIndex = 0;
-        let autoSlideInterval;
-
-        function createHeroDots() {
-            heroDotsContainer.innerHTML = '';
-            heroImages.forEach((_, index) => {
-                const dot = document.createElement('span');
-                dot.classList.add('w-2', 'h-2', 'bg-white', 'rounded-full', 'opacity-50', 'cursor-pointer',
-                    'hover:opacity-100', 'transition');
-                if (index === currentHeroImageIndex) {
-                    dot.classList.remove('opacity-50');
-                    dot.classList.add('opacity-100');
-                }
-                dot.addEventListener('click', () => {
-                    currentHeroImageIndex = index;
-                    updateHeroSlider();
-                    resetAutoSlide(); // Reset timer when dot is clicked
-                });
-                heroDotsContainer.appendChild(dot);
-            });
-        }
-
-        function updateHeroSlider() {
-            // Check if the current slide is the first one (index 0)
-            if (currentHeroImageIndex === 0) {
-                homeHero.style.backgroundImage =
-                    `url('${heroImages[currentHeroImageIndex]}')`;
-                heroTitle.style.display = 'block';
-                heroButtons.style.display = 'flex';
-            } else {
-                // For subsequent slides, show only the image without gradient, hide text/buttons
-                homeHero.style.backgroundImage = `url('${heroImages[currentHeroImageIndex]}')`;
-                heroTitle.style.display = 'none';
-                heroButtons.style.display = 'none';
-            }
-
-            homeHero.style.backgroundSize = 'cover';
-            homeHero.style.backgroundPosition = 'center';
-            createHeroDots();
-        }
-
-        function nextHeroImage() {
-            currentHeroImageIndex = (currentHeroImageIndex + 1) % heroImages.length;
-            updateHeroSlider();
-        }
-
-        function prevHeroImage() {
-            currentHeroImageIndex = (currentHeroImageIndex - 1 + heroImages.length) % heroImages.length;
-            updateHeroSlider();
-        }
-
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(nextHeroImage, 20000);
-        }
-
-        // Touch Swipe for Hero Slider
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        homeHero.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            clearInterval(autoSlideInterval); // Pause auto-slide on touch start
-        });
-
-        homeHero.addEventListener('touchmove', (e) => {
-            touchEndX = e.touches[0].clientX;
-        });
-
-        homeHero.addEventListener('touchend', () => {
-            if (touchEndX < touchStartX - 50) { // Swiped left
-                nextHeroImage();
-            } else if (touchEndX > touchStartX + 50) { // Swiped right
-                prevHeroImage();
-            }
-            // Reset touch coordinates
-            touchStartX = 0;
-            touchEndX = 0;
-            resetAutoSlide(); // Resume auto-slide after touch ends
-        });
-
-        // Initialize slider and auto-advance
-        updateHeroSlider();
-        resetAutoSlide(); // Start auto-slide when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Pilih semua elemen dropdown
-            const dropdowns = document.querySelectorAll('.dropdown');
-            let leaveTimeout;
-
-            dropdowns.forEach(dropdown => {
-                const trigger = dropdown.querySelector('button'); // Tombol pemicu
-                const menu = dropdown.querySelector('.dropdown-menu'); // Menu dropdown
-
-                // Saat mouse masuk ke area tombol atau menu
-                const handleMouseEnter = () => {
-                    clearTimeout(leaveTimeout); // Batalkan timer untuk menutup menu
-                    dropdown.classList.add('active'); // Tampilkan menu
-                };
-
-                // Saat mouse keluar dari area tombol atau menu
-                const handleMouseLeave = () => {
-                    // Set timer 200ms sebelum menutup menu
-                    leaveTimeout = setTimeout(() => {
-                        dropdown.classList.remove('active');
-                    }, 200); // Jeda 200 milidetik
-                };
-
-                // Terapkan event listener
-                if (trigger) {
-                    trigger.addEventListener('mouseenter', handleMouseEnter);
-                    trigger.addEventListener('mouseleave', handleMouseLeave);
-                }
-                if (menu) {
-                    menu.addEventListener('mouseenter', handleMouseEnter);
-                    menu.addEventListener('mouseleave', handleMouseLeave);
-                }
-            });
-        });
-        const langToggleBtn = document.getElementById('mobile-lang-toggle');
-        const langOptionsMenu = document.getElementById('mobile-lang-options');
-
-        if (langToggleBtn && langOptionsMenu) {
-            langToggleBtn.addEventListener('click', () => {
-                // Toggle class 'active' untuk memicu animasi CSS
-                langOptionsMenu.classList.toggle('active');
-                langToggleBtn.classList.toggle('active');
-            });
         }
     </script>
 </body>

@@ -196,20 +196,17 @@ nav.scrolled .logo-bg {
 }
 
 /* Dropdown menu styling */
-.dropdown:active .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
 .dropdown-menu {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s ease;
-    /* Tailwind classes should handle most of this: absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 */
 }
-
+.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 /*
  * =========================================
  * Hamburger Menu Styles (Mobile)
