@@ -23,6 +23,7 @@ Route::prefix('supplier')->middleware('auth')->group(function () {
     Route::get('/mill-factory-form', [SupplierController::class, 'showForm'])->name('supplier.formFactory');
     Route::get('/collector-form', [SupplierController::class, 'showCollectorForm'])->name('supplier.formCollector');
 });
+
 // Route untuk mengirim contact form
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
@@ -59,11 +60,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/submissions/{supplier}/reject', [AdminUserController::class, 'rejectSubmission'])->name('submissions.reject');
 });
 
-// --- Supplier (URL: /supplier-dashboard/...) ---
 Route::middleware(['auth', 'role:supplier'])
     ->prefix('supplier-dashboard')
     ->name('supplier.')
     ->group(function () {
+        // Dashboard
         Route::get('/dashboard', [SupplierDashboardController::class, 'index'])->name('dashboard');
 
         // Profile & Product
@@ -71,8 +72,11 @@ Route::middleware(['auth', 'role:supplier'])
         Route::post('/profile/update', [SupplierDashboardController::class, 'updateProfile'])->name('profile.update');
         Route::post('/product/save', [SupplierDashboardController::class, 'saveProductManagement'])->name('product.save');
 
-        // Orders → hanya tampilkan 5 item dari Supplier
+        // Orders
         Route::get('/orders', [SupplierDashboardController::class, 'ordersIndex'])->name('orders.index');
+
+        // Mill Factory Form
+        Route::get('/mill-factory-form', [SupplierController::class, 'showForm'])->name('formFactory');
     });
 
 // --- Buyer ---

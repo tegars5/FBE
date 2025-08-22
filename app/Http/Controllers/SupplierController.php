@@ -13,6 +13,14 @@ use App\Mail\SupplierSubmissionMail;
 
 class SupplierController extends Controller
 {
+    public function showForm()
+    {
+        return view('supplier.mill-factory-form');
+    }
+    public function showCollectorForm()
+    {
+        return view('supplier.collector-form');
+    }
     /**
      * Store a newly created or updated supplier in storage.
      */
