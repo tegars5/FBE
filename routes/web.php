@@ -25,7 +25,7 @@ Route::prefix('supplier')->middleware('auth')->group(function () {
 });
 
 // Route untuk mengirim contact form
-Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+// Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 
 
@@ -76,7 +76,10 @@ Route::middleware(['auth', 'role:supplier'])
         Route::get('/orders', [SupplierDashboardController::class, 'ordersIndex'])->name('orders.index');
 
         // Mill Factory Form
-        Route::get('/mill-factory-form', [SupplierController::class, 'showForm'])->name('formFactory');
+
+        // Di dalam grup supplier-dashboard
+        Route::get('/mill-factory-form', [SupplierController::class, 'showForm'])->name('formFactoryDashboard');
+        // Jadinya: supplier.formFactoryDashboard
     });
 
 // --- Buyer ---
