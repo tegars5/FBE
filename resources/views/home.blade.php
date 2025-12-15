@@ -1172,7 +1172,11 @@
         }
 
         // Slider Hero with Touch Swipe
-        const heroImages = [];
+        const heroImages = [
+            '{{ asset('assets/foto-bg/bg-1.webp') }}',
+            '{{ asset('assets/foto-bg/bg-2.webp') }}',
+            '{{ asset('assets/foto-bg/bg-3.webp') }}'
+        ];
 
         const homeHero = document.getElementById('home-hero');
         const heroDotsContainer = document.getElementById('hero-dots');

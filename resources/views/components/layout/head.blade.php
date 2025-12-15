@@ -6,10 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/fujiyama-logo.webp') }}" sizes="96x96" />
+    <link rel="icon" type="image/webp" href="{{ asset('assets/fujiyama-logo.webp') }}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('assets/fujiyama-logo.svg') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/fujiyama-logo-32.webp') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/fujiyama-logo-96.webp') }}">
+    <link rel="icon" type="image/webp" sizes="32x32" href="{{ asset('assets/fujiyama-logo-32.webp') }}">
+    <link rel="icon" type="image/webp" sizes="96x96" href="{{ asset('assets/fujiyama-logo-96.webp') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/fujiyama-logo-apple.webp') }}">
     <link rel="shortcut icon" href="{{ asset('assets/fujiyama-logo.ico') }}" />
     <link rel="manifest" href="/site.webmanifest" />
