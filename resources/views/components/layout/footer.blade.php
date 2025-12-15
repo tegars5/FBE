@@ -3,7 +3,7 @@
          <div class="grid md:grid-cols-4 gap-6">
              <div>
                  <div class="flex items-center gap-3 mb-4">
-                     <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Fujiyama logo"
+                     <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
                          class="w-10 h-10 object-contain">
                      <div>
                          <h3 class="font-bold text-lg">Fujiyama</h3>

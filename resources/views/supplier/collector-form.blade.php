@@ -253,7 +253,7 @@
                     <div class="mt-8">
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Our Office</h3>
                         <div class="w-full h-48 sm:h-64 md:h-72 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                            <img src="{{ asset('assets/neo-soho.webp') }}" alt="Neo Soho Office Building"
+                            <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Neo Soho Office Building"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
                         <p class="text-xs sm:text-sm text-gray-500 mt-3 text-center">Modern office space at Neo Soho
@@ -334,7 +334,7 @@
             <div class="grid md:grid-cols-4 gap-6">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Fujiyama logo"
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
                             class="w-10 h-10 object-contain">
                         <div>
                             <h3 class="font-bold text-lg">Fujiyama</h3>

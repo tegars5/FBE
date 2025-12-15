@@ -14,7 +14,7 @@
                     <div class="registration-form-inner-content w-100" style="max-height: 80vh; overflow-y: auto;">
                         <div class="logo-and-title mb-4 text-center text-md-start">
                             <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
-                                <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Fujiyama Logo"
+                                <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Logo"
                                     class="app-logo me-2">
                                 <h2 class="app-title fw-bold text-dark mb-0">Fujiyama Biomass Energy</h2>
                             </div>
@@ -776,7 +776,7 @@
                     class="col-12 col-lg-6 decorative-register-column d-none d-lg-flex align-items-center justify-content-center p-0">
                     <div
                         class="decorative-register-content w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white text-center">
-                        <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Join Us"
+                        <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Join Us"
                             class="register-decorative-image mb-4">
                         <h3 class="decorative-register-title mb-2">Build a Sustainable Future With Us!</h3>
                         <p class="decorative-register-subtitle mb-4">

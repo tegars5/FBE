@@ -403,7 +403,7 @@
                     <div class="mt-8">
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Our Office</h3>
                         <div class="w-full h-48 sm:h-64 md:h-72 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                            <img src="{{ asset('assets/neo-soho.webp') }}" alt="Neo Soho Office Building"
+                            <img src="{{ asset('assets/neo-soho.jpg') }}" alt="Neo Soho Office Building"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
                         <p class="text-xs sm:text-sm text-gray-500 mt-3 text-center">Modern office space at Neo Soho
