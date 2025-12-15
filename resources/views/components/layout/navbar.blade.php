@@ -10,7 +10,7 @@
                 <div class="hidden md:block absolute top-24 -left-52 w-96 h-24 bg-beige logo-bg -z-10"></div>
                 <div
                     class="logo-image-container w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative md:top-8 bg-transparent">
-                    <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama Biomass Energy Logo"
+                    <img src="{{ asset('assets/fujiyama-logowebp') }}" alt="Fujiyama Biomass Energy Logo"
                         class="w-full h-full object-contain" />
                 </div>
             </div>
@@ -190,7 +190,7 @@
         <div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-header">
                 <div class="flex items-center gap-3">
-                    <img src="{{ asset('assets/fujiyama-logo.png') }}" alt="Fujiyama logo"
+                    <img src="{{ asset('assets/fujiyama-logowebp') }}" alt="Fujiyama logo"
                         class="w-10 h-10 object-contain rounded-full" />
                     <div>
                         <h3 class="font-bold text-lg text-green-custom">Fujiyama</h3>
@@ -374,9 +374,9 @@
                 dropdown.addEventListener('mouseleave', handleMouseLeave);
             });
             const heroImages = [
-                '{{ asset('assets/foto-bg/bg-1.png') }}',
-                '{{ asset('assets/foto-bg/bg-2.JPG') }}',
-                '{{ asset('assets/foto-bg/bg-3.jpg') }}'
+                '{{ asset('assets/foto-bg/bg-1webp') }}',
+                '{{ asset('assets/foto-bg/bg-2webp') }}',
+                '{{ asset('assets/foto-bg/bg-3webp') }}'
             ];
             const homeHero = document.getElementById('home-hero');
             const heroDotsContainer = document.getElementById('hero-dots');
