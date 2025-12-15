@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/fujiyama-logowebp') }}" sizes="96x96" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/fujiyama-logo.webp') }}" sizes="96x96" />
     <title>{{ $title ?? 'Login | Fujiyama Biomass Energy' }}</title>
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -472,7 +472,7 @@
                     <div class="login-form-content w-100">
                         <div class="text-center mb-4">
                             <div class="logo-wrapper mb-3 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('assets/fujiyama-logowebp') }}" alt="Fujiyama Logo"
+                                <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Fujiyama Logo"
                                     class="logo-image me-2">
                                 <h2 class="fw-bold text-dark mb-0 ms-2">Fujiyama Biomass Energy</h2>
                             </div>
@@ -557,7 +557,7 @@
                         class="decorative-content w-100 h-100 d-flex flex-column align-items-center justify-content-center">
                         <div class="brand-logo mb-4">
                             <div class="logo-circle-wrapper">
-                                <img src="{{ asset('assets/fujiyama-logowebp') }}" alt="Fujiyama Logo"
+                                <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Fujiyama Logo"
                                     class="brand-image">
                             </div>
                         </div>

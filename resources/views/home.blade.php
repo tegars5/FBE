@@ -123,7 +123,7 @@
 
                         <!-- Left Item -->
                         <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/fotowebp') }}" alt="Yoshihiro Nakagawa - CEO"
+                            <img src="{{ asset('assets/foto.webp') }}" alt="Yoshihiro Nakagawa - CEO"
                                 class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
                             <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
                                 <p class="text-lg font-semibold mb-1 text-gray-800">Yoshihiro Nakagawa</p>
@@ -140,7 +140,7 @@
 
                         <!-- Right Item -->
                         <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/fotowebp') }}" alt="Azmi Roza - COO"
+                            <img src="{{ asset('assets/foto.webp') }}" alt="Azmi Roza - COO"
                                 class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
                             <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
                                 <p class="text-lg font-semibold mb-1 text-gray-800">Azmi Roza</p>
@@ -157,7 +157,7 @@
 
                         <!-- Left Item -->
                         <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/fotowebp') }}" alt="Naoki Yoshida - Direktur"
+                            <img src="{{ asset('assets/foto.webp') }}" alt="Naoki Yoshida - Direktur"
                                 class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
                             <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
                                 <p class="text-lg font-semibold mb-1 text-gray-800">Naoki Yoshida</p>
@@ -175,7 +175,7 @@
 
                         <!-- Right Item -->
                         <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/fotowebp') }}" alt="Takaki Morita - Director"
+                            <img src="{{ asset('assets/foto.webp') }}" alt="Takaki Morita - Director"
                                 class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
                             <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
                                 <p class="text-lg font-semibold mb-1 text-gray-800">Takaki Morita</p>
@@ -197,28 +197,28 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
                     <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                         onclick="toggleSDG('sdg7')">
-                        <img src="{{ asset('assets/logo-brand/SDG-7webp') }}" alt="SDG 7 - Affordable and Clean Energy"
+                        <img src="{{ asset('assets/logo-brand/SDG-7.webp') }}" alt="SDG 7 - Affordable and Clean Energy"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Affordable & Clean Energy</p>
                         <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                         onclick="toggleSDG('sdg13')">
-                        <img src="{{ asset('assets/logo-brand/SDG-13webp') }}" alt="SDG 13 - Climate Action"
+                        <img src="{{ asset('assets/logo-brand/SDG-13.webp') }}" alt="SDG 13 - Climate Action"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Climate Action</p>
                         <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                         onclick="toggleSDG('sdg15')">
-                        <img src="{{ asset('assets/logo-brand/SDG-15webp') }}" alt="SDG 15 - Life on Land"
+                        <img src="{{ asset('assets/logo-brand/SDG-15.webp') }}" alt="SDG 15 - Life on Land"
                             class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Life on Land</p>
                         <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
                     <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                         onclick="toggleSDG('sdg8')">
-                        <img src="{{ asset('assets/logo-brand/SDG-8webp') }}"
+                        <img src="{{ asset('assets/logo-brand/SDG-8.webp') }}"
                             alt="SDG 8 - Decent Work and Economic Growth" class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Decent Work & Economic Growth</p>
                         <p class="text-xs text-blue-600 mt-1">Click for details</p>
@@ -274,7 +274,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 <div
                     class="bg-beige rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
-                    <img src="{{ asset('assets/pks-materialwebp') }}" alt="PKS Charcoal"
+                    <img src="{{ asset('assets/pks-material.webp') }}" alt="PKS Charcoal"
                         class="w-full h-64 md:h-72 object-cover">
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Premium PKS Charcoal</h3>
@@ -329,16 +329,16 @@
 
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Specification Sheets:</h4>
                         <div class="flex flex-wrap gap-3 mb-6 justify-center sm:justify-start">
-                            <a href="{{ asset('assets/aboutwebp') }}" target="_blank" class="block group relative">
-                                <img src="{{ asset('assets/Palm kernel shell charcoalwebp') }}"
+                            <a href="{{ asset('assets/about.webp') }}" target="_blank" class="block group relative">
+                                <img src="{{ asset('assets/Palm kernel shell charcoal.webp') }}"
                                     alt="PKS Charcoal Spec 1"
                                     class="w-20 h-28 object-cover border border-gray-300 rounded-md shadow-sm group-hover:shadow-md transition">
                                 <span
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
                                     1</span>
                             </a>
-                            <a href="{{ asset('assets/aboutwebp') }}" target="_blank" class="block group relative">
-                                <img src="{{ asset('assets/Palm-Oil-Goodwebp') }}" alt="PKS Charcoal Spec 2"
+                            <a href="{{ asset('assets/about.webp') }}" target="_blank" class="block group relative">
+                                <img src="{{ asset('assets/Palm-Oil-Good.webp') }}" alt="PKS Charcoal Spec 2"
                                     class="w-20 h-28 object-cover border border-gray-300 rounded-md shadow-sm group-hover:shadow-md transition">
                                 <span
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
@@ -355,7 +355,7 @@
 
                 <div
                     class="bg-beige rounded-lg shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-xl">
-                    <img src="{{ asset('assets/kelapa-sawitwebp') }}" alt="Raw PKS"
+                    <img src="{{ asset('assets/kelapa-sawit.webp') }}" alt="Raw PKS"
                         class="w-full h-64 md:h-72 object-cover">
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-bold text-green-custom mb-4">Raw PKS (Palm Kernel
@@ -404,9 +404,9 @@
 
                         <h4 class="font-semibold text-md mb-3 text-gray-800">Specification Sheets:</h4>
                         <div class="flex flex-wrap gap-3 mb-6 justify-center sm:justify-start">
-                            <a href="{{ asset('assets/tumpukan-kelapa-sawitwebp') }}" target="_blank"
+                            <a href="{{ asset('assets/tumpukan-kelapa-sawit.webp') }}" target="_blank"
                                 class="block group relative">
-                                <img src="{{ asset('assets/tumpukan-kelapa-sawitwebp') }}" alt="Raw PKS Spec 1"
+                                <img src="{{ asset('assets/tumpukan-kelapa-sawit.webp') }}" alt="Raw PKS Spec 1"
                                     class="w-20 h-28 object-cover border border-gray-300 rounded-md shadow-sm group-hover:shadow-md transition">
                                 <span
                                     class="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white text-xs text-center py-1 opacity-0 group-hover:opacity-100 transition-opacity">Page
@@ -473,7 +473,7 @@
 
                         <div class="mt-8">
                             <h4 class="font-semibold text-xl mb-4 text-gray-800">Certified Sustainable:</h4>
-                            <img src="{{ asset('assets/logo-brand/logo-gglwebp') }}" alt="GGL Certification Logo"
+                            <img src="{{ asset('assets/logo-brand/logo-ggl.webp') }}" alt="GGL Certification Logo"
                                 class="w-56 h-auto object-contain mb-4">
                             <p class="text-lg md:text-xl text-gray-600">Proudly certified with
                                 Green Gold Label (GGL) for sustainable biomass practices.</p>
@@ -485,7 +485,7 @@
                     <div class="p-6 md:p-8 bg-white rounded-lg shadow-lg md:min-h-[756px] lg:min-h-[512px]">
                         <h4 class="text-lg md:text-xl font-bold text-center mb-4 text-green-custom">CO₂
                             Emission Comparison</h4>
-                        <img src="{{ asset('assets/diagram-cowebp') }}" alt="CO2 Reduction Diagram"
+                        <img src="{{ asset('assets/diagram-co.webp') }}" alt="CO2 Reduction Diagram"
                             class="w-full h-auto object-contain rounded-lg mb-4">
                         <p class="text-base md:text-l text-gray-700 text-center">Comparative CO₂
                             emissions for different
@@ -497,13 +497,14 @@
                             Environmental Initiatives in Action
                         </h3>
                         <div class="grid grid-cols-2 gap-6">
-                            <img src="{{ asset('assets/cangkang-sawitwebp') }}" alt="Environmental Initiative 1"
+                            <img src="{{ asset('assets/cangkang-sawit.webp') }}" alt="Environmental Initiative 1"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                            <img src="{{ asset('assets/produksi-cangkangwebp') }}" alt="Environmental Initiative 2"
+                            <img src="{{ asset('assets/produksi-cangkang.webp') }}" alt="Environmental Initiative 2"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                            <img src="{{ asset('assets/palm-trees-palm-oilwebp') }}" alt="Environmental Initiative 3"
+                            <img src="{{ asset('assets/palm-trees-palm-oil.webp') }}"
+                                alt="Environmental Initiative 3"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
-                            <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-projectwebp') }}"
+                            <img src="{{ asset('assets/back-view-man-working-eco-friendly-wind-power-project.webp') }}"
                                 alt="Environmental Initiative 4"
                                 class="w-full h-40 object-cover rounded-lg shadow-md hover:scale-105 transition-transform">
                         </div>
@@ -651,7 +652,7 @@
                             <img src="{{ Storage::disk('s3')->url($featured->photo) }}" alt="{{ $featured->title }}"
                                 class="rounded-md w-full object-cover h-40 md:h-48 transition-all hover:scale-105" />
                         @else
-                            <img src="{{ asset('images/no-imagewebp') }}" alt="No Image Available"
+                            <img src="{{ asset('images/no-image.webp') }}" alt="No Image Available"
                                 class="rounded-md w-full object-cover h-40 md:h-48 transition-all hover:scale-105" />
                         @endif
                         <h4 class="font-semibold text-sm md:text-base leading-tight mt-2">{{ $featured->title }}
@@ -672,7 +673,7 @@
                                             alt="{{ $article->title }}"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @else
-                                        <img src="{{ asset('images/no-imagewebp') }}" alt="No Image Available"
+                                        <img src="{{ asset('images/no-image.webp') }}" alt="No Image Available"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @endif
                                     <div class="flex flex-col justify-between">
@@ -698,7 +699,7 @@
                                             alt="{{ $article->title }}"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @else
-                                        <img src="{{ asset('images/no-imagewebp') }}" alt="No Image Available"
+                                        <img src="{{ asset('images/no-image.webp') }}" alt="No Image Available"
                                             class="rounded-md w-20 md:w-24 h-12 md:h-16 object-cover flex-shrink-0 transition-all hover:scale-105" />
                                     @endif
                                     <div class="flex flex-col justify-between">
@@ -727,7 +728,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/kumpulan-cangkangwebp') }}" alt="Large Stockpile of PKS Charcoal"
+                    <img src="{{ asset('assets/kumpulan-cangkang.webp') }}" alt="Large Stockpile of PKS Charcoal"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -736,7 +737,7 @@
                 </div>
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/Raw PKS webp') }}" alt="Raw PKS Material Stock"
+                    <img src="{{ asset('assets/Raw PKS .webp') }}" alt="Raw PKS Material Stock"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -746,7 +747,7 @@
 
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/alatwebp') }}" alt="PKS Charcoal Production Line"
+                    <img src="{{ asset('assets/alat.webp') }}" alt="PKS Charcoal Production Line"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -755,7 +756,7 @@
                 </div>
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/quality-controlwebp') }}" alt="Quality Control Area"
+                    <img src="{{ asset('assets/quality-control.webp') }}" alt="Quality Control Area"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -765,7 +766,7 @@
 
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/containerwebp') }}" alt="Container Loading for Export"
+                    <img src="{{ asset('assets/container.webp') }}" alt="Container Loading for Export"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -774,7 +775,7 @@
                 </div>
                 <div
                     class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                    <img src="{{ asset('assets/PKS Charcoal Readywebp') }}" alt="PKS Charcoal Ready for Shipment"
+                    <img src="{{ asset('assets/PKS Charcoal Ready.webp') }}" alt="PKS Charcoal Ready for Shipment"
                         class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300">
                     <div
                         class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -820,7 +821,7 @@
                     <div class="grid grid-cols-2 gap-4">
                         <a href="{{ asset('assets/certifications/certificate_1_full_1.pdf') }}" target="_blank"
                             class="block group relative">
-                            <img src="{{ asset('assets/certifications/certificate_thumb_1webp') }}"
+                            <img src="{{ asset('assets/certifications/certificate_thumb_1.webp') }}"
                                 alt="Certification Document 1 Thumbnail"
                                 class="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform">
                             <span
@@ -829,7 +830,7 @@
                         </a>
                         <a href="{{ asset('assets/certifications/certificate_2_full_1.pdf') }}" target="_blank"
                             class="block group relative">
-                            <img src="{{ asset('assets/certifications/certificate_thumb_2webp') }}"
+                            <img src="{{ asset('assets/certifications/certificate_thumb_2.webp') }}"
                                 alt="Certification Document 2 Thumbnail"
                                 class="w-full h-48 object-cover rounded-lg shadow-md group-hover:scale-105 transition-transform">
                             <span
@@ -928,7 +929,7 @@
                     <div class="mt-8">
                         <h3 class="text-lg sm:text-xl font-bold mb-6 text-green-custom">Our Office</h3>
                         <div class="w-full h-48 sm:h-64 md:h-72 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
-                            <img src="{{ asset('assets/neo-sohowebp') }}" alt="Neo Soho Office Building"
+                            <img src="{{ asset('assets/neo-soho.webp') }}" alt="Neo Soho Office Building"
                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                         </div>
                         <p class="text-xs sm:text-sm text-gray-500 mt-3 text-center">Modern office space at Neo Soho
@@ -1009,7 +1010,7 @@
             <div class="grid md:grid-cols-4 gap-6">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <img src="{{ asset('assets/fujiyama-logowebp') }}" alt="Fujiyama logo"
+                        <img src="{{ asset('assets/fujiyama-logo.webp') }}" alt="Fujiyama logo"
                             class="w-10 h-10 object-contain">
                         <div>
                             <h3 class="font-bold text-lg">Fujiyama</h3>
