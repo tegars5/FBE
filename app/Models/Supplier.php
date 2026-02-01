@@ -13,88 +13,43 @@ class Supplier extends Model
 
     protected $fillable = [
         'user_id',
-        'supplier_type',
+        'type',
+        'company_name',
         'region',
-        'annual_production_volume',
-        'monthly_available_volume',
+        'monthly_capacity',
+        'accepted_volume',
         'dura_composition',
         'tenera_composition',
         'pisifera_composition',
-        'sales_record',
-        'desired_selling_price',
+        'annual_sales',
+        'desired_price',
         'minimum_order_quantity',
-        'product_photos',
-        'notes',
-        'urgent_sale_available',
-        'factory_photos',
-        'sample_pks_photos',
-        'lab_test_report',
+        'years_operation',
+        'contact_name',
+        'contact_email',
+        'contact_phone',
+        'factory_warehouse_photos',
+        'pks_sample_photos',
+        'lab_test_report_path',
+        'submission_status',
+        // optional:
+        'pending_inquiries',
     ];
 
-    // Mengubah tipe data untuk kolom yang akan disimpan sebagai array (JSON) atau boolean
     protected $casts = [
-        'annual_production_volume' => 'float',
-        'monthly_available_volume' => 'float',
+        'monthly_capacity' => 'float',
+        'accepted_volume' => 'float',
+        'annual_sales' => 'float',
+        'desired_price' => 'float',
+        'years_operation' => 'integer',
+        'minimum_order_quantity' => 'integer',
         'dura_composition' => 'float',
         'tenera_composition' => 'float',
         'pisifera_composition' => 'float',
-        'sales_record' => 'float',
-        'minimum_order_quantity' => 'integer',
-        'urgent_sale_available' => 'boolean',
-        'product_photos' => 'array',
-        'factory_photos' => 'array',
-        'sample_pks_photos' => 'array',
+        'factory_warehouse_photos' => 'array',
+        'pks_sample_photos' => 'array',
+        'lab_test_report_path' => 'string',
     ];
-
-    /**
-     * Accessor untuk product_photos - mengembalikan array kosong jika null
-     */
-    public function getProductPhotosAttribute($value)
-    {
-        if (is_null($value)) {
-            return [];
-        }
-
-        // Jika sudah berupa array (dari casting), return langsung
-        if (is_array($value)) {
-            return $value;
-        }
-
-        // Jika masih string JSON, decode dulu
-        return json_decode($value, true) ?: [];
-    }
-
-    /**
-     * Accessor untuk factory_photos - mengembalikan array kosong jika null
-     */
-    public function getFactoryPhotosAttribute($value)
-    {
-        if (is_null($value)) {
-            return [];
-        }
-
-        if (is_array($value)) {
-            return $value;
-        }
-
-        return json_decode($value, true) ?: [];
-    }
-
-    /**
-     * Accessor untuk sample_pks_photos - mengembalikan array kosong jika null
-     */
-    public function getSamplePksPhotosAttribute($value)
-    {
-        if (is_null($value)) {
-            return [];
-        }
-
-        if (is_array($value)) {
-            return $value;
-        }
-
-        return json_decode($value, true) ?: [];
-    }
 
     public function user()
     {

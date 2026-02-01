@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <x.layout.head :styles="true" title="Homes" />
 
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/') }}#exports"
+                    <a href="{{ url('/') }}#supplier-info"
                         class="nav-link text-gray-800 font-medium text-base py-2.5
                     relative hover:text-green-light transition duration-300">
                         Exports & Partnerships
@@ -72,40 +72,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="relative dropdown">
-                    @auth
-                        @if (Auth::user()->role === 'buyer')
-                            <button
-                                class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
-                                Buyer
-                                <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <ul
-                                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
-                                <li>
-                                    <a href="{{ route('buyer.purchase-orders') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        Purchase Orders
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('buyer.request-quote') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        Request Quote
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        Order History
-                                    </a>
-                                </li>
-                            </ul>
-                        @elseif(Auth::user()->role === 'supplier')
+
+                {{-- START: Conditional Links based on User Role (Desktop Navbar) --}}
+                @auth
+                    {{-- If user is logged in, show personalized dashboard link --}}
+                    @if (Auth::user()->role === 'supplier')
+                        <li class="relative dropdown">
                             <button
                                 class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
                                 Supplier
@@ -130,10 +102,13 @@
                                     </a>
                                 </li>
                             </ul>
-                        @else
+                        </li>
+                    @elseif(Auth::user()->role === 'buyer')
+                        {{-- Add specific buyer links here if needed, e.g., "Browse Suppliers" --}}
+                        <li class="relative dropdown">
                             <button
                                 class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
-                                Options
+                                Buyer
                                 <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -143,63 +118,30 @@
                             <ul
                                 class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
                                 <li>
-                                    <a href="#"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        Admin Panel
+                                    <a href="{{ route('buyer.purchaserequest') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
+                                        Purchase Request
                                     </a>
                                 </li>
                             </ul>
-                        @endif
-                    @else
-                        <button
-                            class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none">
-                            Supplier
-                            <svg class="w-3 h-3 ml-1 transition-transform duration-200" fill="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <ul
-                            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50">
-                            <li>
-                                <a href="{{ route('supplier.formFactory') }}"
-                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition mill-factory-link">
-                                    Mill Factory
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('supplier.formCollector') }}"
-                                    class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition collector-link">
-                                    Collector
-                                </a>
-                            </li>
-                        </ul>
-                    @endauth
-                </li>
-                {{-- This section will be hidden if the user is logged in --}}
-                @guest
-                    <li>
-                        <a href="{{ route('login') }}"
-                            class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Sign&nbsp;In
-                        </a>
-                    </li>
-                    {{-- Registration link only appears if not logged in --}}
-                    <li>
-                        <a href="{{ route('register') }}"
-                            class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
-                            Sign&nbsp;Up
-                        </a>
-                    </li>
-                @endguest
-                {{-- Dynamic User/Language Section --}}
+                        </li>
+                    @elseif(Auth::user()->role === 'admin')
+                        {{-- Add specific admin links here if needed --}}
+                        <li>
+                            <a href="{{ route('admin.dashboard') }}"
+                                class="nav-link text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300">
+                                Admin Panel
+                            </a>
+                        </li>
+                    @endif
+                @endauth
+                {{-- END: Conditional Links based on User Role (Desktop Navbar) --}}
+
+                {{-- Dynamic User/Language Section & Auth Buttons (Desktop) --}}
                 <li class="relative flex items-center">
-                    {{-- Check if the user is logged in --}}
                     @auth
-                        {{-- ---------------------------------------------- --}}
-                        {{-- START: Changes for Profile Dropdown --}}
-                        {{-- ---------------------------------------------- --}}
-                        <div class="relative dropdown group"> {{-- Using group class for Tailwind dropdown --}}
+                        {{-- User is logged in: Show profile dropdown --}}
+                        <div class="relative dropdown group">
                             <button
                                 class="nav-link flex items-center gap-1 text-gray-800 font-medium text-base py-2.5 relative hover:text-green-light transition duration-300 focus:outline-none"
                                 id="profile-dropdown-btn">
@@ -212,17 +154,9 @@
                             </button>
                             <ul
                                 class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100 z-50 hidden group-hover:block">
-                                {{-- hidden and group-hover:block for Tailwind --}}
                                 <li>
-                                    <a href="{{ route('profile.show') }}"
-                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    {{-- Link to Dashboard based on role --}}
                                     @php
-                                        $dashboardRoute = 'dashboard'; // Default to general dashboard route
+                                        $dashboardRoute = 'dashboard';
                                         if (Auth::user()->role === 'admin') {
                                             $dashboardRoute = 'admin.dashboard';
                                         } elseif (Auth::user()->role === 'supplier') {
@@ -231,10 +165,15 @@
                                             $dashboardRoute = 'buyer.dashboard';
                                         }
                                     @endphp
+                                    <a href="{{ route('profile.show') }}"
+                                        class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
+                                        My Profile
+                                    </a>
                                     <a href="{{ route($dashboardRoute) }}"
                                         class="block px-6 py-3 text-gray-800 hover:bg-green-50 hover:text-green-custom transition">
                                         Dashboard
                                     </a>
+
                                 </li>
                                 <li>
                                     <form id="logout-form-desktop" action="{{ route('logout') }}" method="POST"
@@ -248,17 +187,29 @@
                                 </li>
                             </ul>
                         </div>
-                        {{-- ---------------------------------------------- --}}
-                        {{-- END: Changes for Profile Dropdown --}}
-                        {{-- ---------------------------------------------- --}}
                     @else
-                        {{-- If not logged in, show language option --}}
+                        {{-- User is not logged in: Show Sign In/Sign Up buttons and Language --}}
+                    <li>
+                        <a href="{{ route('login') }}"
+                            class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
+                            Sign&nbsp;In
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}"
+                            class="min-w-[100px] text-center px-4 xl:px-6 py-2.5 rounded-md text-sm xl:text-base font-semibold bg-green-custom text-white shadow-green-custom hover:bg-green-hover transition-all duration-300">
+                            Sign&nbsp;Up
+                        </a>
+                    </li>
+                    {{-- Language button is static, can be nested within a dropdown if multiple languages are supported --}}
+                    <li>
                         <a href="#"
                             class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
                             <i class="fas fa-globe mr-1"></i>
                             Language
                         </a>
-                    @endauth
+                    </li>
+                @endauth
                 </li>
             </ul>
 
@@ -323,31 +274,12 @@
                     <a href="{{ url('/') }}#contact" class="mobile-menu-link">
                         <i class="fas fa-envelope"></i>Contact
                     </a>
-                    <div class="mobile-menu-item">
-                        <a href="{{ url('/') }}#supplier-info" class="mobile-menu-link">
-                            <i class="fas fa-handshake"></i>Supplier Info
-                        </a>
-                    </div>
                 </div>
-                {{-- Add Mill Factory and Collector links in mobile menu --}}
+
+                {{-- START: Conditional Links based on User Role (Mobile Navbar) --}}
                 @auth
-                    @if (Auth::user()->role === 'buyer')
-                        <div class="mobile-menu-item">
-                            <a href="{{ route('buyer.purchase-orders') }}" class="mobile-menu-link">
-                                <i class="fas fa-shopping-cart"></i>Purchase Orders
-                            </a>
-                        </div>
-                        <div class="mobile-menu-item">
-                            <a href="{{ route('buyer.request-quote') }}" class="mobile-menu-link">
-                                <i class="fas fa-quote-right"></i>Request Quote
-                            </a>
-                        </div>
-                        <div class="mobile-menu-item">
-                            <a href="{{ route('buyer.order-history') }}" class="mobile-menu-link">
-                                <i class="fas fa-history"></i>Order History
-                            </a>
-                        </div>
-                    @elseif(Auth::user()->role === 'supplier')
+                    {{-- If user is logged in, show personalized dashboard link --}}
+                    @if (Auth::user()->role === 'supplier')
                         <div class="mobile-menu-item">
                             <a href="{{ route('supplier.formFactory') }}" class="mobile-menu-link mill-factory-link">
                                 <i class="fas fa-industry"></i>Mill Factory Form
@@ -358,29 +290,34 @@
                                 <i class="fas fa-hard-hat"></i>Collector Form
                             </a>
                         </div>
+                    @elseif(Auth::user()->role === 'buyer')
+                        {{-- Add specific buyer links here for mobile menu --}}
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('buyer.dashboard') }}" class="mobile-menu-link mill-factory-link">
+                                <i class="fas fa-industry"></i>Buyer Form
+                            </a>
+                        </div>
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('buyer.dashboard') }}" class="mobile-menu-link collector-link">
+                                <i class="fas fa-hard-hat"></i>Buyer Collector Form
+                            </a>
+                        </div>
+                    @elseif(Auth::user()->role === 'admin')
+                        {{-- Add specific admin links here for mobile menu --}}
+                        <div class="mobile-menu-item">
+                            <a href="{{ route('admin.dashboard') }}" class="mobile-menu-link">
+                                <i class="fas fa-user-shield"></i>Admin Panel
+                            </a>
+                        </div>
                     @endif
-                @else
-                    <div class="mobile-menu-item">
-                        <a href="{{ route('supplier.formFactory') }}" class="mobile-menu-link mill-factory-link">
-                            <i class="fas fa-industry"></i>Mill Factory Form
-                        </a>
-                    </div>
-                    <div class="mobile-menu-item">
-                        <a href="{{ route('supplier.formCollector') }}" class="mobile-menu-link collector-link">
-                            <i class="fas fa-hard-hat"></i>Collector Form
-                        </a>
-                    </div>
                 @endauth
+                {{-- END: Conditional Links based on User Role (Mobile Navbar) --}}
+
                 <div class="mobile-menu-item">
-                    {{-- Check if the user is logged in for mobile menu --}}
                     @auth
-                        {{-- This is the section for the mobile menu when the user is logged in --}}
-                        <a href="{{ route('home') }}" class="mobile-menu-link">
-                            <i class="fas fa-user-circle"></i>{{ Auth::user()->name }}
-                        </a>
-                        {{-- Dashboard Link for Mobile Menu --}}
+                        {{-- User profile and logout for mobile menu --}}
                         @php
-                            $dashboardRoute = 'dashboard'; // Default to general dashboard route
+                            $dashboardRoute = 'dashboard'; // Default general dashboard
                             if (Auth::user()->role === 'admin') {
                                 $dashboardRoute = 'admin.dashboard';
                             } elseif (Auth::user()->role === 'supplier') {
@@ -389,17 +326,9 @@
                                 $dashboardRoute = 'buyer.dashboard';
                             }
                         @endphp
-                        {{-- NEW PROFILE LINK FOR MOBILE --}}
-                        <div class="mobile-menu-item">
-                            <a href="{{ route('profile.show') }}" class="mobile-menu-link">
-                                <i class="fas fa-user"></i> Profile
-                            </a>
-                        </div>
-                        {{-- END NEW PROFILE LINK FOR MOBILE --}}
                         <a href="{{ route($dashboardRoute) }}" class="mobile-menu-link">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                            <i class="fas fa-user-circle"></i>{{ Auth::user()->name }}
                         </a>
-                        {{-- Logout Link for Mobile Menu --}}
                         <a href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();"
                             class="mobile-menu-link text-red-600 hover:text-red-800">
@@ -409,7 +338,7 @@
                             @csrf
                         </form>
                     @else
-                        {{-- If not logged in, show language option --}}
+                        {{-- If not logged in, show language option (mobile menu) --}}
                         <a href="#"
                             class="text-sm xl:text-base font-semibold text-green-custom hover:text-green-light transition duration-300">
                             <i class="fas fa-globe mr-1"></i>
@@ -418,15 +347,17 @@
                     @endauth
                 </div>
             </nav>
+
+            {{-- Auth buttons for mobile menu when user is NOT logged in --}}
             @guest
                 <div class="mobile-menu-footer">
                     <button class="mobile-login-btn w-full min-w-[120px]"
                         onclick="window.location.href='{{ route('login') }}'">
-                        <i class="fas fa-sign-in-alt"></i>Login
+                        <i class="fas fa-sign-in-alt"></i>Sign In
                     </button>
                     <button class="mobile-login-btn w-full min-w-[120px] mt-2 bg-blue-600 hover:bg-blue-700"
                         onclick="window.location.href='{{ route('register') }}'">
-                        <i class="fas fa-user-plus"></i>Register
+                        <i class="fas fa-user-plus"></i>Sign Up
                     </button>
                 </div>
             @endguest
@@ -496,12 +427,12 @@
             });
         });
 
-        // // Simple Form submission alert (for demonstration)
-        // function handleSubmit(event) {
-        //      event.preventDefault();
-        //      alert('Terima kasih! Pesan Anda telah dikirim. Kami akan merespons dalam waktu 24 jam.');
-        //      event.target.reset(); // Clear form fields
-        // }
+        // Simple Form submission alert (for demonstration)
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! Your message has been sent. We will respond within 24 hours.');
+            event.target.reset(); // Clear form fields
+        }
 
         function toggleSDG(sdgId) {
             const element = document.getElementById(sdgId);
@@ -531,8 +462,8 @@
         // Slider Hero with Touch Swipe
         const heroImages = [
             '{{ asset('assets/foto-bg/bg-1.png') }}',
-            '{{ asset('assets/foto-bg/bg-2.JPG') }}', // Slide 2: only image
-            '{{ asset('assets/foto-bg/bg-3.jpg') }}' // Slide 3: only image
+            '{{ asset('assets/foto-bg/bg-2.JPG') }}',
+            '{{ asset('assets/foto-bg/bg-3.jpg') }}'
         ];
 
         const homeHero = document.getElementById('home-hero');

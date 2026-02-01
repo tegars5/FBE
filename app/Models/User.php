@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Buyer;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'is_verified', // Harus ada di fillable
+        'status',
     ];
 
     protected $hidden = [
@@ -32,33 +33,21 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the supplier record associated with the user.
+     */
     public function supplier()
     {
-        return $this->hasOne(Supplier::class);
+        return $this->hasOne(\App\Models\Supplier::class, 'user_id');
     }
 
+    /**
+     * Get the buyer record associated with the user.
+     */
     public function buyer()
     {
-        return $this->hasOne(Buyer::class);
-    }
-
-    public function isBuyer()
-    {
-        return $this->role === 'buyer';
-    }
-
-    public function isSupplier()
-    {
-        return $this->role === 'supplier';
-    }
-
-    public function hasBuyer()
-    {
-        return $this->buyer()->exists();
-    }
-
-    public function getBuyerData()
-    {
-        return $this->buyer ?: new Buyer();
+        // Pastikan Anda sudah memiliki model Buyer
+        // Ganti \App\Models\Buyer::class jika path atau nama modelnya berbeda
+        return $this->hasOne(\App\Models\Buyer::class, 'user_id');
     }
 }

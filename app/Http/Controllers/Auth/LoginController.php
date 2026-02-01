@@ -14,30 +14,59 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    // Arahkan user ke halaman home (/) setelah login berhasil
-    protected $redirectTo = '/'; // <-- Perubahan di sini!
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
 
-    // ... metode login lainnya (tidak ada perubahan di metode login itu sendiri)
+    protected function redirectTo()
+    {
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case 'admin':
+                return route('admin.dashboard');
+            case 'supplier':
+                return route('supplier.dashboard');
+            case 'buyer':
+                return route('buyer.dashboard');
+            default:
+                return '/';
+        }
+    }
 
     /**
      * Send the response after the user was authenticated.
-     * Overrides the method from AuthenticatesUsers trait.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
+
         $this->clearLoginAttempts($request);
 
-        // Logika menghubungkan supplier (ini tetap penting)
+        // =================================================================
+        // FIX HERE: Add User Status Check
+        // =================================================================
+        $user = Auth::user();
+
+        // Check if user status is NOT 'active'
+        if ($user->status !== 'active') {
+            Auth::logout(); // Force logout so the session is not saved
+
+            // Prepare error message based on user status
+            $message = $user->status === 'pending'
+                ? 'Your account is waiting for admin verification.'
+                : 'Your account is inactive. Please contact the administrator.';
+
+            return redirect('/login')->with('error', $message);
+        }
+        // =================================================================
+
+        // Logic to link supplier data (only run if user is active)
         if (Session::has('pending_supplier_id')) {
             $supplierId = Session::get('pending_supplier_id');
             $supplier = Supplier::find($supplierId);
@@ -46,30 +75,18 @@ class LoginController extends Controller
                 $supplier->user_id = Auth::id();
                 $supplier->save();
                 Session::forget('pending_supplier_id');
-                Session::flash('success', 'Informasi supplier berhasil dihubungkan ke akun Anda!');
+                Session::flash('success', 'Supplier information has been successfully linked to your account!');
             } else if ($supplier && !is_null($supplier->user_id) && $supplier->user_id != Auth::id()) {
                 Session::forget('pending_supplier_id');
-                Session::flash('warning', 'Informasi supplier sudah terhubung atau tidak dapat dihubungkan ke akun ini.');
+                Session::flash('warning', 'The supplier information is already linked or cannot be linked to this account.');
             } else {
                 Session::forget('pending_supplier_id');
             }
         }
 
-        // Pengalihan ke halaman yang dituju oleh $redirectTo = '/';
+        // Redirect using the path from the redirectTo() method
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect()->intended($this->redirectPath()); // redirectPath() akan menggunakan $redirectTo
+            : redirect()->intended($this->redirectPath());
     }
-
-    /*
-     * Hapus atau komen out metode redirectTo() di sini jika ada.
-     * Cukup gunakan properti $redirectTo = '/'; di atas.
-     *
-    protected function redirectTo()
-    {
-        // Logika pengalihan sebelumnya (ke dashboard) tidak lagi digunakan di sini.
-        // Cukup hapus atau komentari seluruh metode ini jika ada.
-        // return '/';
-    }
-    */
 }

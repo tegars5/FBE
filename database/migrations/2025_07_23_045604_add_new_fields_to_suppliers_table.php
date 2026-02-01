@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float('composition_dura')->nullable()->after('monthly_available_volume');
             $table->float('composition_tenera')->nullable()->after('composition_dura');
             $table->float('composition_pisifera')->nullable()->after('composition_tenera');
-            $table->json('product_photos')->nullable()->after('minimum_order_quantity'); // Simpan sebagai string JSON
+            $table->json('product_photos')->nullable()->after('composition_pisifera'); // Simpan sebagai string JSON
             $table->text('notes')->nullable()->after('product_photos');
             $table->boolean('urgent_sale_available')->default(false)->after('notes');
             $table->json('factory_photos')->nullable()->after('urgent_sale_available'); // Simpan sebagai string JSON

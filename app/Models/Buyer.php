@@ -9,34 +9,49 @@ class Buyer extends Model
 {
     use HasFactory;
 
+    /**
+     * Atribut yang dapat diisi secara massal.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'user_id',
         'company_name',
-        'country_region',
+        'country',
         'city',
-        'annual_pks_purchase_volume',
+        'years_in_operation',
+        'annual_purchase_volume',
         'monthly_purchase_volume',
         'preferred_trade_terms',
         'target_price',
         'products_of_interest',
-        'years_in_operation',
-        'business_license',
         'contact_person_name',
         'contact_person_email',
-        'contact_person_phone_number',
+        'contact_person_phone',
+        'business_license_path',
+        'company_logo_path',
+        'purchase_records_path',
         'additional_notes',
-        'company_logo',
-        'previous_purchase_records',
-        'is_verified',
     ];
 
+    /**
+     * Tipe data cast untuk atribut.
+     *
+     * @var array
+     */
     protected $casts = [
-        'products_of_interest' => 'array', // Casting ke array untuk checkbox
-        'is_verified' => 'boolean',
+        'products_of_interest' => 'array',
+        'years_in_operation' => 'integer',
+        'annual_purchase_volume' => 'decimal:2',
+        'monthly_purchase_volume' => 'decimal:2',
+        'target_price' => 'decimal:2',
     ];
 
+    /**
+     * Mendapatkan user yang memiliki data buyer ini.
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
