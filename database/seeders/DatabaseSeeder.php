@@ -13,20 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Ganti Admin::create menjadi User::create dan tambahkan role
-        User::create([
-            'name' => 'Admin',
-            'email' => 'tegar@gmail.com',
-            'password' => bcrypt('admin123'),
-            'role' => 'admin',
-            'status' => 'active',
-        ]);
-
-        // Memanggil seeder lain (ini sudah benar)
+        // Memanggil semua seeder
         $this->call([
+            AdminSeeder::class,
             SupplierSeeder::class,
             BuyerSeeder::class,
         ]);
     }
 }
-    

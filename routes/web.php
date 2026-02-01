@@ -3,8 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\SupplierController; // Pastikan ini diimpor
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BuyerDashboardController;
+use App\Http\Controllers\SupplierDashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminSupplierController;
+use App\Http\Controllers\Admin\AdminBuyerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,23 +50,14 @@ Route::prefix('supplier')->group(function () {
 Route::resource('articles', ArticleController::class)->except(['create', 'store', 'edit', 'update', 'destroy']); // Hanya untuk publik (read-only)
 
 // --- Rute Autentikasi Laravel (Login, Register, Logout, dll.) ---
-// Ini akan membuat rute-rute seperti /login, /register, /logout, /password/reset, dll.
 Auth::routes();
-// Di dalam web.php, pastikan ada rute untuk supplier.formFactory
-// Supplier Routes
-Route::prefix('supplier')->middleware('auth')->group(function () {
-    Route::get('/mill-factory-form', [SupplierController::class, 'showForm'])->name('supplier.formFactory');
-    Route::get('/collector-form', [SupplierController::class, 'showCollectorForm'])->name('supplier.formCollector');
-});
-
-
 
 // --- Rute yang Membutuhkan Autentikasi ---
 Route::middleware('auth')->group(function () {
     // Profil Pengguna
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');  // Menampilkan Profil Pengguna
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');  // Edit Profil
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');  // Update Profil
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Dashboard berdasarkan peran (Supplier / Buyer / Admin)
     Route::get('/dashboard', function () {
@@ -72,26 +68,42 @@ Route::middleware('auth')->group(function () {
         } elseif (Auth::user()->role === 'buyer') {
             return redirect()->route('buyer.dashboard');
         }
-        return view('home'); // Halaman default jika role tidak dikenal
-    })->name('dashboard'); // Nama rute umum untuk dashboard
-
-    // Rute untuk SUBMIT formulir supplier (HARUS LOGIN DULU)
-    // Ini adalah rute POST yang akan menerima data dari form Mill Factory dan Collector.
-    Route::post('/supplier-initial-registration', [SupplierController::class, 'initialRegistration'])
-        ->name('supplier.register.initial');
-
-    Route::post('/supplier-collector-registration', [SupplierController::class, 'collectorRegistration'])
-        ->name('supplier.register.collector');
+        return view('home');
+    })->name('dashboard');
 });
 
 
 // --- Rute Khusus Admin ---
 // Hanya bisa diakses oleh user yang login DAN memiliki role 'admin'.
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        $articles = \App\Models\Article::all(); // Contoh: mengambil data untuk dashboard admin
-        return view('admin.dashboard', compact('articles'));
-    })->name('admin.dashboard');
+    Route::get('/dashboard', [AdminUserController::class, 'dashboard'])->name('admin.dashboard');
+
+    // Route untuk pending users
+    Route::get('/users/pending', [AdminUserController::class, 'pending'])->name('admin.users.pending');
+    Route::post('/users/{user}/approve', [AdminUserController::class, 'approve'])->name('admin.users.approve');
+    Route::post('/users/{user}/reject', [AdminUserController::class, 'reject'])->name('admin.users.reject');
+
+    // Routes untuk Suppliers Management
+    Route::get('/suppliers', [AdminSupplierController::class, 'index'])->name('admin.suppliers.index');
+    Route::get('/suppliers/{supplier}', [AdminSupplierController::class, 'show'])->name('admin.suppliers.show');
+    Route::get('/suppliers/{supplier}/edit', [AdminSupplierController::class, 'edit'])->name('admin.suppliers.edit');
+    Route::put('/suppliers/{supplier}', [AdminSupplierController::class, 'update'])->name('admin.suppliers.update');
+    Route::delete('/suppliers/{supplier}', [AdminSupplierController::class, 'destroy'])->name('admin.suppliers.destroy');
+
+    // Routes untuk Buyers Management
+    Route::get('/buyers', [AdminBuyerController::class, 'index'])->name('admin.buyers.index');
+    Route::get('/buyers/{buyer}', [AdminBuyerController::class, 'show'])->name('admin.buyers.show');
+    Route::get('/buyers/{buyer}/edit', [AdminBuyerController::class, 'edit'])->name('admin.buyers.edit');
+    Route::put('/buyers/{buyer}', [AdminBuyerController::class, 'update'])->name('admin.buyers.update');
+    Route::delete('/buyers/{buyer}', [AdminBuyerController::class, 'destroy'])->name('admin.buyers.destroy');
+
+    // Routes untuk Article Management
+    Route::get('/articles', [ArticleController::class, 'index'])->name('admin.articles.index');
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('admin.articles.create');
+    Route::post('/articles', [ArticleController::class, 'store'])->name('admin.articles.store');
+    Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('admin.articles.edit');
+    Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('admin.articles.update');
+    Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('admin.articles.destroy');
 
     Route::post('/submissions/{supplier}/accept', [AdminUserController::class, 'acceptSubmission'])->name('submissions.accept');
     Route::post('/submissions/{supplier}/reject', [AdminUserController::class, 'rejectSubmission'])->name('submissions.reject');
@@ -99,27 +111,28 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
 // --- Rute Khusus Supplier ---
 // Hanya bisa diakses oleh user yang login DAN memiliki role 'supplier'.
-Route::middleware(['auth', 'role:supplier'])->prefix('supplier-dashboard')->group(function () {
-    Route::get('/dashboard', function () {
-        // Logika untuk dashboard supplier
-        return view('supplier.dashboard'); // Kamu perlu membuat view ini
-    })->name('supplier.dashboard');
-
-    // Contoh rute lain untuk supplier, misalnya melihat data yang mereka submit.
+Route::middleware(['auth', 'role:supplier'])->prefix('supplier')->group(function () {
+    Route::get('/dashboard', [SupplierDashboardController::class, 'index'])->name('supplier.dashboard');
     Route::get('/my-submissions', [SupplierController::class, 'mySubmissions'])->name('supplier.mySubmissions');
+    Route::get('/orders', [SupplierController::class, 'orders'])->name('supplier.orders.index');
+    Route::get('/orders/{order}', [SupplierController::class, 'showOrder'])->name('supplier.orders.show');
+    Route::post('/mill-factory-form', [SupplierController::class, 'storeFactory'])->name('supplier.factory.store');
+    Route::post('/collector-form', [SupplierController::class, 'storeCollector'])->name('supplier.collector.store');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('supplier.profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('supplier.profile.update');
 });
 
 
 // --- Rute Khusus Buyer ---
 // Hanya bisa diakses oleh user yang login DAN memiliki role 'buyer'.
-Route::middleware(['auth', 'role:buyer'])->prefix('buyer-dashboard')->group(function () {
-    Route::get('/dashboard', function () {
-        // Logika untuk dashboard buyer
-        return view('buyer.dashboard'); // Kamu perlu membuat view ini
-    })->name('buyer.dashboard');
-
-    // Contoh rute lain untuk buyer.
-    Route::get('/products-catalog', function () {
-        return view('buyer.products-catalog');
-    })->name('buyer.productsCatalog');
+Route::middleware(['auth', 'role:buyer'])->prefix('buyer')->group(function () {
+    Route::get('/dashboard', [BuyerDashboardController::class, 'index'])->name('buyer.dashboard');
+    Route::get('/purchase-request', [BuyerDashboardController::class, 'purchaseRequest'])->name('buyer.purchaserequest');
+    Route::post('/purchase-request', [BuyerDashboardController::class, 'storePurchaseRequest'])->name('buyer.purchaserequest.store');
+    Route::get('/purchase-orders', [BuyerDashboardController::class, 'purchaseOrders'])->name('buyer.purchase-orders');
+    Route::get('/request-quote', [BuyerDashboardController::class, 'requestQuote'])->name('buyer.request-quote');
+    Route::post('/request-quote', [BuyerDashboardController::class, 'storeQuote'])->name('buyer.request-quote.store');
+    Route::get('/products-catalog', [BuyerDashboardController::class, 'productsCatalog'])->name('buyer.productsCatalog');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('buyer.profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('buyer.profile.update');
 });
