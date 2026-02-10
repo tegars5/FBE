@@ -140,10 +140,10 @@
 
                         <!-- Right Item -->
                         <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/foto.jpg') }}" alt="Azmi Roza - COO"
+                            <img src="{{ asset('assets/foto.jpg') }}" alt="Takaki Morita - COO"
                                 class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
                             <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
-                                <p class="text-lg font-semibold mb-1 text-gray-800">Azmi Roza</p>
+                                <p class="text-lg font-semibold mb-1 text-gray-800">Takaki Morita</p>
                                 <p class="text-sm font-medium">COO</p>
                                 <p class="text-sm mt-2">
                                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
@@ -169,22 +169,6 @@
                                     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
                                     dolore
                                     eu fugiat nulla pariatur.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Right Item -->
-                        <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/foto.jpg') }}" alt="Takaki Morita - Director"
-                                class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
-                            <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
-                                <p class="text-lg font-semibold mb-1 text-gray-800">Takaki Morita</p>
-                                <p class="text-sm font-medium">Director</p>
-                                <p class="text-sm mt-2">
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est laborum.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent
-                                    libero. Sed cursus ante dapibus diam.
                                 </p>
                             </div>
                         </div>
@@ -682,7 +666,7 @@
                                             {{ $article->created_at->format('F j, Y') }}</p>
                                     </div>
                                 </a>
-                            </article> 
+                            </article>
                         @endforeach
                     </div>
                 @endif
