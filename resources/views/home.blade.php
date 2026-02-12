@@ -118,58 +118,110 @@
             </div>
             <section id="company">
                 <div class="mb-8 px-4 sm:px-6 md:px-8">
-                    <h3 class="text-lg font-bold text-center mb-8">Management Team</h3>
-                    <div class="space-y-10">
+                    <h3 class="text-lg font-bold text-center mb-12">Management Team</h3>
 
-                        <!-- Left Item -->
-                        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/foto.jpg') }}" alt="Yoshihiro Nakagawa - CEO"
-                                class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
-                            <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
-                                <p class="text-lg font-semibold mb-1 text-gray-800">Yoshihiro Nakagawa</p>
-                                <p class="text-sm font-medium">CEO</p>
-                                <p class="text-sm mt-2">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                                    incididunt ut labore
-                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                    laboris nisi ut
-                                    aliquip ex ea commodo consequat.
-                                </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+                        <div
+                            class="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <img src="{{ asset('assets/foto.jpg') }}" alt="Yoshihiro Nakagawa"
+                                    class="w-full h-full object-cover rounded-full border-4 border-white shadow-md">
+                                <span
+                                    class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-green-custom text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">
+                                    Executive
+                                </span>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-1">Yoshihiro Nakagawa</h4>
+                            <p class="text-sm font-bold text-green-custom mb-5 uppercase tracking-wider">Chief Executive
+                                Officer</p>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                                With over 20 years of leadership experience in the technology sector, Yoshihiro is the
+                                visionary force behind FTS. He is dedicated to driving digital transformation in
+                                Indonesia by combining global innovation with deep local insight.
+                            </p>
+                            <div class="flex justify-center gap-4">
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-linkedin text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-twitter text-xl"></i></a>
                             </div>
                         </div>
 
-                        <!-- Right Item -->
-                        <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/foto.jpg') }}" alt="Takaki Morita - COO"
-                                class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
-                            <div class="text-right md:text-right md:max-w-xl leading-relaxed text-gray-700">
-                                <p class="text-lg font-semibold mb-1 text-gray-800">Takaki Morita</p>
-                                <p class="text-sm font-medium">COO</p>
-                                <p class="text-sm mt-2">
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat
-                                    nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est laborum.
-                                </p>
+                        <div
+                            class="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <img src="{{ asset('assets/foto.jpg') }}" alt="Takakazu Kaburaki"
+                                    class="w-full h-full object-cover rounded-full border-4 border-white shadow-md">
+                                <span
+                                    class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-green-custom text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">
+                                    Executive
+                                </span>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-1">Takakazu Kaburaki</h4>
+                            <p class="text-sm font-bold text-green-custom mb-5 uppercase tracking-wider">Chief Operating
+                                Officer</p>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                                Takakazu leads our project management and delivery teams. With a background in
+                                large-scale IT implementations, he ensures that our projects are executed flawlessly, on
+                                time, and within budget.
+                            </p>
+                            <div class="flex justify-center gap-4">
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-linkedin text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-github text-xl"></i></a>
                             </div>
                         </div>
 
-                        <!-- Left Item -->
-                        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-                            <img src="{{ asset('assets/foto.jpg') }}" alt="Naoki Yoshida - Direktur"
-                                class="w-36 h-24 object-cover shadow-md hover:scale-105 transition-transform">
-                            <div class="text-left md:max-w-xl leading-relaxed text-gray-700">
-                                <p class="text-lg font-semibold mb-1 text-gray-800">Naoki Yoshida</p>
-                                <p class="text-sm font-medium">Direktur</p>
-                                <p class="text-sm mt-2">
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea
-                                    commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                    dolore
-                                    eu fugiat nulla pariatur.
-                                </p>
+                        <div
+                            class="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <img src="{{ asset('assets/foto.jpg') }}" alt="Naoki Yoshida"
+                                    class="w-full h-full object-cover rounded-full border-4 border-white shadow-md">
+                                <span
+                                    class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-green-custom text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">
+                                    Director
+                                </span>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-1">Naoki Yoshida</h4>
+                            <p class="text-sm font-bold text-green-custom mb-5 uppercase tracking-wider">Director</p>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                                As a Director, Naoki oversees our technology and innovation strategy. He has a keen eye
+                                for emerging trends and is passionate about developing cutting-edge solutions that solve
+                                real-world problems.
+                            </p>
+                            <div class="flex justify-center gap-4">
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-linkedin text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-twitter text-xl"></i></a>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <img src="{{ asset('assets/foto.jpg') }}" alt="Takaki Morita"
+                                    class="w-full h-full object-cover rounded-full border-4 border-white shadow-md">
+                                <span
+                                    class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-green-custom text-white text-xs font-bold px-4 py-1 rounded-full shadow-sm">
+                                    Director
+                                </span>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-1">Takaki Morita</h4>
+                            <p class="text-sm font-bold text-green-custom mb-5 uppercase tracking-wider">Executive
+                                Director</p>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">
+                                Takaki leads the company's day-to-day operations with a sharp focus on excellence and
+                                efficiency. He is an expert in building high-performing teams and ensuring the
+                                successful delivery of our projects.
+                            </p>
+                            <div class="flex justify-center gap-4">
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-linkedin text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-green-custom transition"><i
+                                        class="fab fa-github text-xl"></i></a>
                             </div>
                         </div>
 
@@ -181,8 +233,8 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
                     <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                         onclick="toggleSDG('sdg7')">
-                        <img src="{{ asset('assets/logo-brand/SDG-7.png') }}" alt="SDG 7 - Affordable and Clean Energy"
-                            class="w-16 h-16 mb-1 object-contain">
+                        <img src="{{ asset('assets/logo-brand/SDG-7.png') }}"
+                            alt="SDG 7 - Affordable and Clean Energy" class="w-16 h-16 mb-1 object-contain">
                         <p class="text-xs text-gray-700 font-semibold">Affordable & Clean Energy</p>
                         <p class="text-xs text-blue-600 mt-1">Click for details</p>
                     </div>
